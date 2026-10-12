@@ -7,3 +7,12 @@
 - Tested: scaffold installs; `npm run lint` not yet run. SQL not yet run against a Supabase project.
 - Open: shadcn, next-intl, Supabase client, auth, everything in Phase 1.
 - Gotchas: embedding dim 1024 must match the face model; kiosk reads nothing directly from the DB.
+
+## Phase 1a: foundation + demo pages
+- next-intl (ar default RTL / en), Cairo + Inter, Coptic theme (red/gold/cream).
+- Pages (demo data from src/lib/demo.ts): /dashboard, /members, /kiosk (demo mode, no camera), /privacy, /login (static form).
+- Pure logic src/lib/attendance/logic.ts + 8 vitest tests (late minutes, duplicates, Eftekad).
+- Files: next.config.ts, src/proxy.ts, src/i18n/*, src/messages/*, src/components/*, src/app/[locale]/*, tests/unit.
+- Tested: vitest 8/8, tsc, eslint, next build, curl smoke of 5 routes (200, correct dir).
+- NOT done: Supabase wiring/auth, registration + consent, real face camera, reports, seed, Playwright, Phase 2.
+- Gotchas: next-intl plugin removed (its SWC binding fails on this Windows PC), alias set manually in next.config.ts. Next 16 uses proxy.ts, not middleware.ts. npm needs --legacy-peer-deps for vitest.
