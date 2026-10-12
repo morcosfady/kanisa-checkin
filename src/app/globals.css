@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-cream: #fbf6ea;
+  --color-cream: #f6ecd8;
   --color-ink: #2b1a14;
-  --color-coptic: #8b1e2d;
-  --color-gold: #c9a227;
+  --color-coptic: #7a1f2b;
+  --color-gold: #c9a13b;
 }
 
 body { font-family: var(--font-inter), var(--font-cairo), sans-serif; }

@@ -1,6 +1,6 @@
 {
-  "app": { "name": "Kanisa Check-in", "tagline": "Welcome to the house of God" },
-  "nav": { "dashboard": "Today", "members": "Members", "kiosk": "Kiosk", "privacy": "Privacy", "login": "Sign in", "lang": "العربية" },
+  "app": { "name": "Tenhos", "tagline": "Welcome to the house of God" },
+  "nav": { "dashboard": "Today", "members": "Members", "kiosk": "Kiosk", "privacy": "Privacy", "login": "Sign in", "lang": "العربية", "logout": "Sign out" },
   "dashboard": {
     "title": "Today",
     "service": "Active service",
@@ -37,5 +37,5 @@
     "withdrawBody": "Ask Abouna or a servant. Your face data is deleted immediately.",
     "share": "We never sell or share biometric data. This follows the Texas Capture or Use of Biometric Identifier Act."
   },
-  "login": { "title": "Sign in", "email": "Email", "password": "Password", "submit": "Sign in" }
+  "login": { "title": "Sign in", "email": "Email", "password": "Password", "submit": "Sign in", "failed": "Wrong email or password" }
 }

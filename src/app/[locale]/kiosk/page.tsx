@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import KioskDemo from "@/components/KioskDemo";
+import { Logo } from "@/components/Logo";
 import { demoMembers, demoService } from "@/lib/demo";
 
 export default async function Kiosk() {
@@ -8,7 +9,7 @@ export default async function Kiosk() {
   const names = demoMembers.filter((m) => m.consent).map((m) => (locale === "ar" ? m.arabic : m.name));
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-coptic p-6 text-center text-white">
-      <div aria-hidden className="text-6xl text-gold">☦</div>
+      <Logo size={96} stacked />
       <h1 className="text-3xl font-bold">
         {t("service")}: {locale === "ar" ? demoService.nameAr : demoService.nameEn}
       </h1>
