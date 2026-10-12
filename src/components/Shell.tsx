@@ -19,7 +19,7 @@ export default async function Shell({ children }: { children: React.ReactNode })
     <div>
       <header className="bg-coptic text-cream">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-4 px-4 py-3">
-          <Link href="/dashboard" className="me-auto" aria-label="Tenhos"><Logo size={44} /></Link>
+          <Link href="/dashboard" className="me-auto" aria-label="Amoinee"><Logo size={44} /></Link>
           <nav className="flex flex-wrap gap-4" aria-label="Main">
             {links.map(([href, label]) => (
               <Link key={href} href={href} className="underline-offset-4 hover:underline focus:underline">{label}</Link>

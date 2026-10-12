@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
 const coptic = Noto_Sans_Coptic({ subsets: ["coptic"], weight: "400", variable: "--font-coptic" });
 
-export const metadata: Metadata = { title: "Tenhos", manifest: "/manifest.webmanifest" };
+export const metadata: Metadata = { title: "Amoinee", manifest: "/manifest.webmanifest" };
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

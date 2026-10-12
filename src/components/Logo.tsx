@@ -1,4 +1,4 @@
-// Tenhos mark: gold ring, budded Coptic cross, gold diamond centre
+// Amoinee mark: gold ring, budded Coptic cross, gold diamond centre
 export function Mark({ size = 48 }: { size?: number }) {
   const ends: [number, number][] = [[50, 17], [50, 83], [17, 50], [83, 50]];
   return (
@@ -26,10 +26,10 @@ export function Logo({ size = 48, stacked = false }: { size?: number; stacked?: 
       <Mark size={size} />
       <div>
         <div className="font-[family-name:var(--font-cinzel)] leading-none tracking-wider text-cream" style={{ fontSize: size * 0.6 }}>
-          TENHOS
+          AMOINEE
         </div>
         <div className="mt-1 font-[family-name:var(--font-coptic)] tracking-[0.3em] text-gold" style={{ fontSize: size * 0.24 }}>
-          ⲦⲈⲚϨⲰⲤ
+          ⲁⲙⲱⲓⲛⲓ
         </div>
       </div>
     </div>

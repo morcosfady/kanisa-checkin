@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Tenhos", "tagline": "Welcome to the house of God" },
+  "app": { "name": "Amoinee", "tagline": "Welcome to the house of God" },
   "nav": { "dashboard": "Today", "members": "Members", "kiosk": "Kiosk", "privacy": "Privacy", "login": "Sign in", "logout": "Sign out" },
   "dashboard": {
     "title": "Today",
