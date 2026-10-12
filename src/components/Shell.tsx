@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import { hasSupabase } from "@/lib/supabase/env";
@@ -7,8 +7,6 @@ import SignOut from "@/components/SignOut";
 
 export default async function Shell({ children }: { children: React.ReactNode }) {
   const t = await getTranslations();
-  const locale = await getLocale();
-  const other = locale === "ar" ? "en" : "ar";
   const signedIn = hasSupabase && Boolean((await (await supabaseServer()).auth.getUser()).data.user);
   const links = [
     ["/dashboard", t("nav.dashboard")],
@@ -27,9 +25,6 @@ export default async function Shell({ children }: { children: React.ReactNode })
               <Link key={href} href={href} className="underline-offset-4 hover:underline focus:underline">{label}</Link>
             ))}
           </nav>
-          <Link href="/dashboard" locale={other} className="rounded border border-gold px-3 py-1 text-gold">
-            {t("nav.lang")}
-          </Link>
           {signedIn && <SignOut label={t("nav.logout")} />}
         </div>
       </header>

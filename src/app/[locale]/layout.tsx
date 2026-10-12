@@ -29,7 +29,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className={`${cairo.variable} ${inter.variable} ${cinzel.variable} ${coptic.variable}`}>
+    <html lang={locale} dir="ltr" className={`${cairo.variable} ${inter.variable} ${cinzel.variable} ${coptic.variable}`}>
       <body className="min-h-screen bg-cream text-ink antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>

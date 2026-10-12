@@ -19,11 +19,9 @@ export default async function proxy(req: NextRequest) {
   });
   const { data } = await supabase.auth.getUser();
 
-  const match = req.nextUrl.pathname.match(/^\/(ar|en)(\/.*)?$/);
-  const locale = match?.[1] ?? routing.defaultLocale;
-  const path = match?.[2] ?? "/";
+  const path = req.nextUrl.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
   if (!data.user && PROTECTED.some((p) => path.startsWith(p))) {
-    return NextResponse.redirect(new URL(`/${locale}/login`, req.url));
+    return NextResponse.redirect(new URL("/login", req.url));
   }
   return res;
 }
