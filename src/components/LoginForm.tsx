@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 export default function LoginForm() {
   const t = useTranslations("login");
-  const router = useRouter();
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -21,8 +20,7 @@ export default function LoginForm() {
     });
     setBusy(false);
     if (error) return setError(t("failed"));
-    router.push("/dashboard");
-    router.refresh();
+    window.location.href = "/dashboard"; // full load so the new session cookie is used
   }
 
   return (
