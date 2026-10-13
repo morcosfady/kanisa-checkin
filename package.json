@@ -23,7 +23,6 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@swc/core-win32-x64-msvc": "^1.16.18",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
