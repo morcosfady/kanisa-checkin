@@ -27,3 +27,14 @@
 - NOT tested: real sign-in (no admin user yet).
 - Open: create admin user in Supabase Auth, turn off public sign-ups, set Vercel env vars, members CRUD, consent + enrollment, real kiosk, reports, seed, Playwright, Phase 2.
 - Gotchas: secret key (SUPABASE_SECRET_KEY) not set yet; needed for kiosk routes. Never commit it.
+
+## Phase 1c: rename, English only, Vercel live, signup with approval
+- Renamed Tenhos to Amoinee (Logo.tsx, messages, manifest). App is English only: routing.ts has locale "en", no URL prefix, Arabic toggle and ar.json removed.
+- Deployed on Vercel: https://kanisa-checkin.vercel.app (project kanisa-checkin, team morcosfady, auto-deploys on push to master). Env vars set on Vercel: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
+- Deploy fixes: .npmrc legacy-peer-deps=true; removed Windows-only @swc/core-win32-x64-msvc (broke Linux install).
+- Signup with approval: /signup form -> /api/signup (supabase signUp, no access) -> optional email to heavenlyvisions25@gmail.com via Apps Script mailer. Admin accepts or declines on /approvals. Unapproved users see /pending. Migration 0004 (approved, email, declined_at; is_staff/is_super_admin require approved). Decline sets declined_at, rows are never deleted so the first-user-is-admin rule cannot fire again.
+- Supabase Auth settings changed: public sign-ups ON, Confirm email OFF. Admin user morcos.genius@gmail.com is super_admin and approved. Test request fady.ashraaf@gmail.com is a pending servant.
+- Tested: tsc, lint, build, live routes (login 200, dashboard redirects to login when signed out), DB state checked by SQL.
+- NOT tested: approve flow end to end, signup email (mailer not deployed).
+- Open: Apps Script mailer must be created under heavenlyvisions25@gmail.com (apps-script/approval-mailer.gs), then set MAILER_URL and MAILER_TOKEN in Vercel and .env.local (token saved locally at C:\Users\fadya\.amoinee_mailer_token, never commit). Dashboard and members still use demo data. Still to build: member registration + consent, face enrollment, real kiosk check-in, reports, seed data, Playwright, Phase 2.
+- Gotchas: next-intl plugin is not used (SWC native binding fails on this PC), alias set by hand in next.config.ts. Browser pane sessions for Supabase/Vercel/GitHub can expire. Browser pane is signed into morcos.genius, never send email from it.
