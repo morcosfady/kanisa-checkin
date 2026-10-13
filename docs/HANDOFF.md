@@ -51,3 +51,12 @@
 - Tested: tsc, eslint (0 errors), vitest 8/8, axe WCAG A/AA on 6 pages in light and dark (0 violations), interaction smoke test (filter, drawer, kiosk, approve) with 0 console errors. Screenshots in docs/screenshots/before and /after (scripts-shots.mjs, scripts-a11y.mjs).
 - Decisions: stayed English only (no AR/EN toggle, no RTL) because you removed Arabic earlier. Used own drawer/dialog components instead of shadcn. Reports nav item is hidden until a Reports page exists. Lighthouse was not run.
 - Gotchas: to take screenshots build with empty NEXT_PUBLIC_SUPABASE_* (demo mode, auth skipped). Tailwind dark: variant is tied to data-theme.
+
+## Members: real data, Add/Edit member, consent
+- Members page now loads from Supabase when keys exist (src/lib/members.ts loadMembers: members + families + classes + attendance summary); demo data otherwise.
+- Add member / Edit member form (components/members/MemberForm.tsx): name, gender, deacon, DOB (under 18 = minor, parent/guardian types their name to sign), phone, email, status, family (existing or new). Face consent block with typed signature and signed date. Writes members, families, and audit_log (member_created, member_updated, consent_signed, consent_withdrawn).
+- Withdraw consent calls the withdraw_consent database function (deletes embeddings, logs it) from the row menu and the profile drawer.
+- Migration 0006 adds members.has_face (run in Supabase, done). Face status in the list: none (no consent), pending (consent but has_face false), enrolled.
+- Tested: tsc, lint (0 errors), demo-mode browser test (add with new family, validation message for missing guardian signature, new member found by search, 0 console errors).
+- NOT tested: saving against the real Supabase project (needs a signed-in session; try it on the live site), edit and withdraw against real data.
+- Open: face enrollment (Enroll face is still a toast), manual check-in is still a toast, attendance stats are empty until attendance exists, Today and Kiosk still use demo data.
