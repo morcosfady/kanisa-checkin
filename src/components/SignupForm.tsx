@@ -27,7 +27,7 @@ export default function SignupForm() {
   if (state === "done") {
     return (
       <div className="mx-auto max-w-sm rounded-lg bg-white p-6 text-center shadow">
-        <p className="text-xl font-bold text-coptic">{t("sentTitle")}</p>
+        <p className="text-xl font-bold text-heading">{t("sentTitle")}</p>
         <p className="mt-2">{t("sentBody")}</p>
       </div>
     );
@@ -35,7 +35,7 @@ export default function SignupForm() {
 
   return (
     <form onSubmit={submit} className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-6 shadow">
-      <h1 className="text-xl font-bold text-coptic">{t("title")}</h1>
+      <h1 className="text-xl font-bold text-heading">{t("title")}</h1>
       <label className="block">{t("name")}
         <input name="name" required className="mt-1 w-full rounded border p-2" />
       </label>

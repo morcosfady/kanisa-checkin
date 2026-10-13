@@ -13,7 +13,7 @@ export default async function Approvals() {
   }
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-coptic">{t("title")}</h1>
+      <h1 className="text-2xl font-bold text-heading">{t("title")}</h1>
       <ApprovalList initial={rows} />
     </div>
   );

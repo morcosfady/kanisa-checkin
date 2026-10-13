@@ -3,12 +3,13 @@ import { Cairo, Cinzel, Inter, Noto_Sans_Coptic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { Toaster } from "sonner";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-cairo" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
+const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", weight: ["600", "700"] });
 const coptic = Noto_Sans_Coptic({ subsets: ["coptic"], weight: "400", variable: "--font-coptic" });
 
 export const metadata: Metadata = { title: "Amoinee", manifest: "/manifest.webmanifest" };
@@ -16,6 +17,9 @@ export const metadata: Metadata = { title: "Amoinee", manifest: "/manifest.webma
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+// applies the saved theme before first paint (no flash)
+const themeScript = `try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
 
 export default async function LocaleLayout({
   children,
@@ -29,9 +33,29 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir="ltr" className={`${cairo.variable} ${inter.variable} ${cinzel.variable} ${coptic.variable}`}>
-      <body className="min-h-screen bg-cream text-ink antialiased">
+    <html
+      lang={locale}
+      dir="ltr"
+      suppressHydrationWarning
+      className={`${cairo.variable} ${inter.variable} ${cinzel.variable} ${coptic.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen bg-page text-ink antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "var(--card)",
+              color: "var(--fg)",
+              border: "1px solid var(--line)",
+              borderRadius: "12px",
+              boxShadow: "var(--sh-soft)",
+            },
+          }}
+        />
       </body>
     </html>
   );

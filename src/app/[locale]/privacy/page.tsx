@@ -7,7 +7,7 @@ export default async function Privacy() {
   return (
     <Shell>
       <article className="space-y-4">
-        <h1 className="text-2xl font-bold text-coptic">{t("title")}</h1>
+        <h1 className="text-2xl font-bold text-heading">{t("title")}</h1>
         {sections.map((s) => (
           <section key={s}>
             <h2 className="font-bold">{t(s)}</h2>

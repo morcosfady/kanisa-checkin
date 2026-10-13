@@ -11,7 +11,7 @@ export default async function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-coptic">{t("title")}</h1>
+      <h1 className="text-2xl font-bold text-heading">{t("title")}</h1>
       <p className="rounded bg-gold/20 p-3 text-sm">{t("demoNote")}</p>
       <div className="grid gap-4 sm:grid-cols-3">
         <Card label={t("service")} value={locale === "ar" ? demoService.nameAr : demoService.nameEn} />

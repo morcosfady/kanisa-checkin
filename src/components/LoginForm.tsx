@@ -25,7 +25,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={submit} className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-6 shadow">
-      <h1 className="text-xl font-bold text-coptic">{t("title")}</h1>
+      <h1 className="text-xl font-bold text-heading">{t("title")}</h1>
       <label className="block">{t("email")}
         <input name="email" type="email" required className="mt-1 w-full rounded border p-2" />
       </label>

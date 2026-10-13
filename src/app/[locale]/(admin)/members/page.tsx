@@ -9,7 +9,7 @@ export default async function Members() {
   const t = await getTranslations("members");
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-coptic">{t("title")}</h1>
+      <h1 className="text-2xl font-bold text-heading">{t("title")}</h1>
       <ul className="flex flex-wrap gap-4 text-sm" aria-label={t("legend")}>
         <li className="flex items-center gap-2"><span className="h-4 w-4 rounded bg-sky-100 ring-1 ring-ink/20" />{t("male")}</li>
         <li className="flex items-center gap-2"><span className="h-4 w-4 rounded bg-pink-100 ring-1 ring-ink/20" />{t("female")}</li>
