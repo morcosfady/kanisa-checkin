@@ -12,6 +12,7 @@ export default async function Shell({ children }: { children: React.ReactNode })
     ["/dashboard", t("nav.dashboard")],
     ["/members", t("nav.members")],
     ["/kiosk", t("nav.kiosk")],
+    ["/approvals", t("nav.approvals")],
     ["/privacy", t("nav.privacy")],
   ] as const;
 

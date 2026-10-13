@@ -1,6 +1,17 @@
 {
-  "app": { "name": "Amoinee", "tagline": "Welcome to the house of God" },
-  "nav": { "dashboard": "Today", "members": "Members", "kiosk": "Kiosk", "privacy": "Privacy", "login": "Sign in", "logout": "Sign out" },
+  "app": {
+    "name": "Amoinee",
+    "tagline": "Welcome to the house of God"
+  },
+  "nav": {
+    "dashboard": "Today",
+    "members": "Members",
+    "kiosk": "Kiosk",
+    "privacy": "Privacy",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "approvals": "Approvals"
+  },
   "dashboard": {
     "title": "Today",
     "service": "Active service",
@@ -12,7 +23,16 @@
     "minutes": "min",
     "demoNote": "Demo data. Connect Supabase to see real attendance."
   },
-  "members": { "title": "Members", "name": "Name", "family": "Family", "status": "Status", "consent": "Face consent", "yes": "Yes", "no": "No", "search": "Search by name" },
+  "members": {
+    "title": "Members",
+    "name": "Name",
+    "family": "Family",
+    "status": "Status",
+    "consent": "Face consent",
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search by name"
+  },
   "kiosk": {
     "service": "Service",
     "lookStraight": "Please look at the camera",
@@ -37,5 +57,30 @@
     "withdrawBody": "Ask Abouna or a servant. Your face data is deleted immediately.",
     "share": "We never sell or share biometric data. This follows the Texas Capture or Use of Biometric Identifier Act."
   },
-  "login": { "title": "Sign in", "email": "Email", "password": "Password", "submit": "Sign in", "failed": "Wrong email or password" }
+  "login": {
+    "title": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "failed": "Wrong email or password",
+    "request": "Request access"
+  },
+  "signup": {
+    "title": "Request access",
+    "name": "Full name",
+    "email": "Email",
+    "password": "Password (8+ characters)",
+    "submit": "Send request",
+    "failed": "Something went wrong",
+    "sentTitle": "Request sent",
+    "sentBody": "Abouna was notified. You can sign in once your request is accepted.",
+    "waitingTitle": "Waiting for approval",
+    "waitingBody": "Your account exists but has not been accepted yet. Please check back soon."
+  },
+  "approvals": {
+    "title": "Access requests",
+    "none": "No pending requests.",
+    "accept": "Accept",
+    "decline": "Decline"
+  }
 }

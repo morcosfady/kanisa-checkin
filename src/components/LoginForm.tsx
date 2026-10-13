@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 export default function LoginForm() {
@@ -36,6 +36,7 @@ export default function LoginForm() {
       </label>
       {error && <p role="alert" className="text-red-700">{error}</p>}
       <button disabled={busy} className="w-full rounded bg-coptic p-2 text-white disabled:opacity-60">{t("submit")}</button>
+      <p className="text-center"><Link href="/signup" className="text-coptic underline">{t("request")}</Link></p>
     </form>
   );
 }
