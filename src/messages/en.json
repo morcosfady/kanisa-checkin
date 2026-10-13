@@ -31,7 +31,12 @@
     "consent": "Face consent",
     "yes": "Yes",
     "no": "No",
-    "search": "Search by name"
+    "search": "Search by name",
+    "gender": "Gender",
+    "deacon": "Deacon",
+    "male": "Male",
+    "female": "Female",
+    "legend": "Row colors"
   },
   "kiosk": {
     "service": "Service",

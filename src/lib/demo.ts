@@ -2,12 +2,12 @@
 export const demoService = { nameAr: "القداس الإلهي", nameEn: "Divine Liturgy", start: "8:00 AM" };
 
 export const demoMembers = [
-  { id: "1", name: "Mina Demo", arabic: "مينا ديمو", family: "Demo", status: "active", consent: true },
-  { id: "2", name: "Mariam Sample", arabic: "مريم سمبل", family: "Sample", status: "active", consent: true },
-  { id: "3", name: "Bishoy Test", arabic: "بيشوي تست", family: "Test", status: "active", consent: false },
-  { id: "4", name: "Verena Example", arabic: "فيرينا إكزامبل", family: "Example", status: "active", consent: true },
-  { id: "5", name: "Kyrillos Fake", arabic: "كيرلس فيك", family: "Fake", status: "visitor", consent: false },
-  { id: "6", name: "Marina Mock", arabic: "مارينا موك", family: "Mock", status: "active", consent: true },
+  { id: "1", gender: "male", deacon: true, name: "Mina Demo", arabic: "مينا ديمو", family: "Demo", status: "active", consent: true },
+  { id: "2", gender: "female", deacon: false, name: "Mariam Sample", arabic: "مريم سمبل", family: "Sample", status: "active", consent: true },
+  { id: "3", gender: "male", deacon: false, name: "Bishoy Test", arabic: "بيشوي تست", family: "Test", status: "active", consent: false },
+  { id: "4", gender: "female", deacon: false, name: "Verena Example", arabic: "فيرينا إكزامبل", family: "Example", status: "active", consent: true },
+  { id: "5", gender: "male", deacon: false, name: "Kyrillos Fake", arabic: "كيرلس فيك", family: "Fake", status: "visitor", consent: false },
+  { id: "6", gender: "female", deacon: false, name: "Marina Mock", arabic: "مارينا موك", family: "Mock", status: "active", consent: true },
 ];
 
 export const demoArrivals = [
