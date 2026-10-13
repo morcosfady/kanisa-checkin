@@ -38,3 +38,16 @@
 - NOT tested: approve flow end to end, signup email (mailer not deployed).
 - Open: Apps Script mailer must be created under heavenlyvisions25@gmail.com (apps-script/approval-mailer.gs), then set MAILER_URL and MAILER_TOKEN in Vercel and .env.local (token saved locally at C:\Users\fadya\.amoinee_mailer_token, never commit). Dashboard and members still use demo data. Still to build: member registration + consent, face enrollment, real kiosk check-in, reports, seed data, Playwright, Phase 2.
 - Gotchas: next-intl plugin is not used (SWC native binding fails on this PC), alias set by hand in next.config.ts. Browser pane sessions for Supabase/Vercel/GitHub can expire. Browser pane is signed into morcos.genius, never send email from it.
+
+## Phase 2: visual redesign (7 phases, all done)
+- Tokens in src/app/globals.css (burgundy, gold, cream, ink; semantic success/warning/danger/info; dark mode via html[data-theme], set by an inline script from localStorage or system preference; toggle in header). Fonts: Cinzel (display), Inter, Cairo, Noto Sans Coptic via next/font. Logo.tsx has variant full|mark.
+- SacredBackground.tsx: gradient, drifting cross lattice, 28 gold particles on one canvas (30fps cap, pauses when tab hidden, static for prefers-reduced-motion), haze blobs. Panel and light variants (sign in, kiosk). Headless check: about 60 fps page rate with it running; not measured on a real tablet.
+- Shell: AppHeader.tsx (sticky, blur on scroll, icons, sliding gold underline, Approvals count badge, user menu with role badge, theme toggle) and a bottom tab bar on phones. Page transition in (admin)/template.tsx, skeleton in (admin)/loading.tsx, sonner toasts.
+- Members: components/members/* (stat cards, search with Ctrl+K, filter chips, table/cards/families views, sort, pagination, row menu, withdraw-consent confirm, profile drawer with tabs and 52-week heatmap). Phones show cards instead of the table. Full-row colors removed.
+- Today: components/today/TodayView.tsx (hero with live clock, count-up stats, live feed that adds a demo check-in every 9s, manual check-in, Recharts arrivals chart). Late badge and On time % are back because this brief asked for them (an earlier request removed them).
+- Kiosk: components/kiosk/KioskScreen.tsx (camera preview via getUserMedia with fallback, gold corner brackets, scan line, success check, stacked welcome cards, 3s auto-dismiss, WebAudio chime, unknown-face card, name search, demo buttons).
+- Sign in / request access use AuthLayout (split panel with "Come, let us worship"). Approvals and Privacy restyled.
+- Demo data (src/lib/demo.ts) is fake and richer (24 members, 12 arrivals). Members, Today and Kiosk still read demo data, not Supabase.
+- Tested: tsc, eslint (0 errors), vitest 8/8, axe WCAG A/AA on 6 pages in light and dark (0 violations), interaction smoke test (filter, drawer, kiosk, approve) with 0 console errors. Screenshots in docs/screenshots/before and /after (scripts-shots.mjs, scripts-a11y.mjs).
+- Decisions: stayed English only (no AR/EN toggle, no RTL) because you removed Arabic earlier. Used own drawer/dialog components instead of shadcn. Reports nav item is hidden until a Reports page exists. Lighthouse was not run.
+- Gotchas: to take screenshots build with empty NEXT_PUBLIC_SUPABASE_* (demo mode, auth skipped). Tailwind dark: variant is tied to data-theme.
