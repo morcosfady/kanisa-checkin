@@ -24,9 +24,7 @@ export default async function Dashboard() {
           {demoArrivals.map((a) => (
             <li key={a.memberId} className="flex justify-between py-2">
               <span>{label(a.memberId)}</span>
-              <span>
-                {a.time} · {a.late ? `${t("late")} ${a.late} ${t("minutes")}` : t("onTime")}
-              </span>
+              <span>{a.time}</span>
             </li>
           ))}
         </ul>
