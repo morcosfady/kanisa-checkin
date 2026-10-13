@@ -1,10 +1,10 @@
-import Shell from "@/components/Shell";
+import AuthLayout from "@/components/AuthLayout";
 import SignupForm from "@/components/SignupForm";
 
 export default function Signup() {
   return (
-    <Shell>
+    <AuthLayout>
       <SignupForm />
-    </Shell>
+    </AuthLayout>
   );
 }

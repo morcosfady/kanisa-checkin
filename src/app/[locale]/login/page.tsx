@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Shell from "@/components/Shell";
+import AuthLayout from "@/components/AuthLayout";
 import LoginForm from "@/components/LoginForm";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseServer } from "@/lib/supabase/server";
@@ -11,8 +11,8 @@ export default async function Login() {
     if (data.user) redirect("/dashboard");
   }
   return (
-    <Shell>
+    <AuthLayout>
       <LoginForm />
-    </Shell>
+    </AuthLayout>
   );
 }

@@ -32,7 +32,7 @@ export function Logo({ variant = "full", size = 48, stacked = false }: LogoProps
         <div className="font-display leading-none tracking-wider text-cream" style={{ fontSize: size * 0.6, fontWeight: 600 }}>
           AMOINEE
         </div>
-        <div className="mt-1 font-[family-name:var(--font-coptic)] tracking-[0.3em] text-gold" style={{ fontSize: size * 0.24 }}>
+        <div className="mt-1 font-[family-name:var(--font-coptic)] tracking-[0.3em] text-gold-light" style={{ fontSize: size * 0.24 }}>
           ⲁⲙⲱⲓⲛⲓ
         </div>
       </div>

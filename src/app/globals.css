@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ---- Design tokens: single source of truth ---- */
 :root {
@@ -14,9 +15,9 @@
   --ink-900: #2a1a1c;
   --ink-600: #6b5a5c;
 
-  --success: #2f7a4f;
+  --success: #26663f;
   --success-tint: #e2f1e8;
-  --warning: #b7791f;
+  --warning: #8a5a0c;
   --warning-tint: #f8ecd2;
   --danger: #b42318;
   --danger-tint: #fbe4e1;
@@ -30,7 +31,7 @@
   --fg: var(--ink-900);
   --muted: var(--ink-600);
   --heading: var(--red-700);
-  --accent-text: var(--gold-600);
+  --accent-text: #7a5c0e;
   --hover: rgb(201 162 74 / 0.12);
   --sh-soft: 0 1px 2px rgb(122 31 43 / 0.06), 0 8px 24px -8px rgb(122 31 43 / 0.14);
   --sh-lift: 0 2px 4px rgb(122 31 43 / 0.08), 0 14px 32px -10px rgb(122 31 43 / 0.24);
@@ -54,28 +55,11 @@
   --warning-tint: #3d2f14;
   --danger-tint: #44201d;
   --info-tint: #1c3146;
+  --success: #6fc593;
+  --warning: #e5b05a;
+  --danger: #f08a80;
+  --info: #8cbbe6;
   color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1a0f11;
-    --card: #251619;
-    --line: #3b2529;
-    --fg: #f6eedc;
-    --muted: #bfa9a1;
-    --heading: var(--gold-200);
-    --accent-text: var(--gold-500);
-    --hover: rgb(201 162 74 / 0.14);
-    --sh-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -8px rgb(0 0 0 / 0.5);
-    --sh-lift: 0 2px 4px rgb(0 0 0 / 0.35), 0 14px 32px -10px rgb(0 0 0 / 0.6);
-    --pattern-opacity: 0.07;
-    --success-tint: #1d3a2b;
-    --warning-tint: #3d2f14;
-    --danger-tint: #44201d;
-    --info-tint: #1c3146;
-    color-scheme: dark;
-  }
 }
 
 @theme inline {

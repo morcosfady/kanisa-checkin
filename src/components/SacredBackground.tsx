@@ -8,7 +8,7 @@ const TILE =
 
 type P = { x: number; y: number; r: number; v: number; a: number; phase: number };
 
-export default function SacredBackground({ light = false }: { light?: boolean }) {
+export default function SacredBackground({ light = false, panel = false }: { light?: boolean; panel?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -21,8 +21,9 @@ export default function SacredBackground({ light = false }: { light?: boolean })
     let w = 0;
     let h = 0;
     const resize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+      const r = canvas.getBoundingClientRect();
+      w = canvas.width = Math.max(1, Math.round(r.width));
+      h = canvas.height = Math.max(1, Math.round(r.height));
     };
     resize();
     window.addEventListener("resize", resize);
@@ -73,22 +74,26 @@ export default function SacredBackground({ light = false }: { light?: boolean })
   }, [light]);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-page">
+    <div
+      aria-hidden
+      className={`pointer-events-none overflow-hidden ${panel ? "absolute inset-0" : "fixed inset-0 -z-10 bg-page"}`}
+    >
       <div
         className="absolute inset-0"
         style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgb(201 162 74 / 0.18), transparent 70%)" }}
       />
+      {panel && <div className="absolute inset-0 bg-gradient-to-br from-[#7a1f2b] via-[#5a1520] to-[#2a0b10]" />}
       <div
         className="sacred-pattern absolute inset-0"
-        style={{ backgroundImage: TILE, opacity: "var(--pattern-opacity)" }}
+        style={{ backgroundImage: TILE, opacity: panel ? 0.12 : "var(--pattern-opacity)" }}
       />
-      {!light && (
+      {!light && !panel && (
         <>
           <div className="haze-a absolute -left-24 top-1/4 h-96 w-96 rounded-full bg-[#7a1f2b] opacity-[0.08] blur-3xl" />
           <div className="haze-b absolute -right-24 bottom-0 h-[28rem] w-[28rem] rounded-full bg-[#c9a24a] opacity-[0.1] blur-3xl" />
         </>
       )}
-      <canvas ref={ref} className="absolute inset-0" />
+      <canvas ref={ref} className="absolute inset-0 h-full w-full" />
     </div>
   );
 }

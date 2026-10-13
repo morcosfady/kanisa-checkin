@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { MailCheck } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { b, card } from "@/components/ui";
 
 export default function SignupForm() {
   const t = useTranslations("signup");
@@ -26,27 +29,28 @@ export default function SignupForm() {
 
   if (state === "done") {
     return (
-      <div className="mx-auto max-w-sm rounded-lg bg-white p-6 text-center shadow">
-        <p className="text-xl font-bold text-heading">{t("sentTitle")}</p>
-        <p className="mt-2">{t("sentBody")}</p>
+      <div className={`${card} w-full max-w-sm space-y-3 p-7 text-center`}>
+        <MailCheck size={40} strokeWidth={1.5} className="mx-auto text-success" />
+        <p className="font-display text-2xl font-semibold text-heading">{t("sentTitle")}</p>
+        <p className="text-muted">{t("sentBody")}</p>
+        <Link href="/login" className={`${b("secondary")} w-full`}>Back to sign in</Link>
       </div>
     );
   }
 
+  const input = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 outline-none focus:border-gold";
   return (
-    <form onSubmit={submit} className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-6 shadow">
-      <h1 className="text-xl font-bold text-heading">{t("title")}</h1>
-      <label className="block">{t("name")}
-        <input name="name" required className="mt-1 w-full rounded border p-2" />
-      </label>
-      <label className="block">{t("email")}
-        <input name="email" type="email" required className="mt-1 w-full rounded border p-2" />
-      </label>
-      <label className="block">{t("password")}
-        <input name="password" type="password" minLength={8} required className="mt-1 w-full rounded border p-2" />
-      </label>
-      {error && <p role="alert" className="text-red-700">{error}</p>}
-      <button disabled={state === "busy"} className="w-full rounded bg-coptic p-2 text-white disabled:opacity-60">{t("submit")}</button>
+    <form onSubmit={submit} className={`${card} w-full max-w-sm space-y-4 p-7`}>
+      <div>
+        <h1 className="font-display text-2xl font-semibold text-heading">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted">Abouna will review your request.</p>
+      </div>
+      <label className="block text-sm font-medium">{t("name")}<input name="name" required className={input} /></label>
+      <label className="block text-sm font-medium">{t("email")}<input name="email" type="email" required className={input} /></label>
+      <label className="block text-sm font-medium">{t("password")}<input name="password" type="password" minLength={8} required className={input} /></label>
+      {error && <p role="alert" className="rounded-[8px] bg-danger-tint px-3 py-2 text-sm text-danger">{error}</p>}
+      <button disabled={state === "busy"} className={`${b("primary")} w-full !py-2.5`}>{t("submit")}</button>
+      <p className="text-center text-sm"><Link href="/login" className="font-medium text-heading underline underline-offset-4">Back to sign in</Link></p>
     </form>
   );
 }

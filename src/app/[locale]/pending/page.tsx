@@ -1,5 +1,7 @@
+import { Hourglass } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Shell from "@/components/Shell";
+import { card } from "@/components/ui";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseServer } from "@/lib/supabase/server";
 
@@ -12,10 +14,11 @@ export default async function Pending() {
   }
   return (
     <Shell>
-      <div className="mx-auto max-w-sm rounded-lg bg-white p-6 text-center shadow">
-        <p className="text-xl font-bold text-heading">{t("waitingTitle")}</p>
-        <p className="mt-2">{t("waitingBody")}</p>
-        {email && <p className="mt-3 text-sm text-ink/70">{t("signedInAs")} <b>{email}</b></p>}
+      <div className={`${card} mx-auto max-w-sm space-y-2 p-8 text-center`}>
+        <Hourglass size={40} strokeWidth={1.5} className="mx-auto text-goldtext" />
+        <p className="font-display text-2xl font-semibold text-heading">{t("waitingTitle")}</p>
+        <p className="text-muted">{t("waitingBody")}</p>
+        {email && <p className="pt-2 text-sm text-muted">{t("signedInAs")} <b className="text-ink">{email}</b></p>}
       </div>
     </Shell>
   );
