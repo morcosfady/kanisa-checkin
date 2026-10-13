@@ -2,11 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Cross, Phone, Users, GraduationCap, X, ShieldOff, ShieldCheck } from "lucide-react";
-import { toast } from "sonner";
 import { Avatar, Badge, b } from "@/components/ui";
-import type { DemoMember } from "@/lib/demo";
+import type { Member } from "@/lib/members";
 import ConfirmDialog from "./ConfirmDialog";
 import { FaceIcon, rel, statusTone } from "./MembersView";
+import { withdraw } from "./RowMenu";
 
 function Row({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
   return (
@@ -21,12 +21,13 @@ function Row({ icon: Icon, label, value }: { icon: typeof Phone; label: string; 
 const TABS = ["Overview", "Attendance", "Consent"] as const;
 
 // deterministic pseudo history: ~rate% of the last 52 Sundays
-function history(m: DemoMember) {
-  const seed = Number(m.id) * 9301;
-  return Array.from({ length: 52 }, (_, w) => ((seed + w * 49297) % 233280) / 233280 < m.rate / 100);
+function history(m: Member) {
+  if (m.rate === null) return Array.from({ length: 52 }, () => false);
+  const seed = [...m.id].reduce((a, c) => a + c.charCodeAt(0), 0) * 9301;
+  return Array.from({ length: 52 }, (_, w) => ((seed + w * 49297) % 233280) / 233280 < (m.rate ?? 0) / 100);
 }
 
-function recent(m: DemoMember) {
+function recent(m: Member) {
   const out: string[] = [];
   const h = history(m);
   const d = new Date("2026-10-11T12:00:00");
@@ -39,7 +40,7 @@ function recent(m: DemoMember) {
   return out;
 }
 
-export default function MemberDrawer({ m, onClose }: { m: DemoMember; onClose: () => void }) {
+export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Member; onClose: () => void; onEdit: () => void; onChanged: () => void }) {
   const [tab, setTab] = useState<(typeof TABS)[number]>("Overview");
   const [confirm, setConfirm] = useState(false);
   const closeBtn = useRef<HTMLButtonElement>(null);
@@ -71,6 +72,7 @@ export default function MemberDrawer({ m, onClose }: { m: DemoMember; onClose: (
               {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
               <Badge tone="info">{m.gender === "male" ? "Male" : "Female"}</Badge>
             </div>
+            <button onClick={onEdit} className="mt-3 rounded-[8px] border border-white/30 px-3 py-1 text-xs font-medium hover:bg-white/10">Edit member</button>
           </div>
           <button ref={closeBtn} onClick={onClose} aria-label="Close profile" className="grid h-8 w-8 place-items-center rounded-[8px] hover:bg-white/10"><X size={20} /></button>
         </div>
@@ -90,11 +92,11 @@ export default function MemberDrawer({ m, onClose }: { m: DemoMember; onClose: (
         <div className="flex-1 overflow-y-auto p-5">
           {tab === "Overview" && (
             <div>
-              <Row icon={Phone} label="Phone" value={m.phone} />
+              <Row icon={Phone} label="Phone" value={m.phone || "—"} />
               <Row icon={Users} label="Family" value={`${m.family} family`} />
-              <Row icon={GraduationCap} label="Class / group" value={m.className} />
+              <Row icon={GraduationCap} label="Class / group" value={m.className || "—"} />
               <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                {[["Attendance", `${m.rate}%`], ["Streak", `${m.streak} wks`], ["Last seen", rel(m.lastDays)]].map(([l, v]) => (
+                {[["Attendance", m.rate === null ? "—" : `${m.rate}%`], ["Streak", m.streak === null ? "—" : `${m.streak} wks`], ["Last seen", rel(m.lastDays)]].map(([l, v]) => (
                   <div key={l} className="rounded-[12px] bg-page p-3">
                     <div className="num font-display text-lg font-semibold text-heading">{v}</div>
                     <div className="text-xs text-muted">{l}</div>
@@ -137,7 +139,7 @@ export default function MemberDrawer({ m, onClose }: { m: DemoMember; onClose: (
                 {m.consent ? <ShieldCheck className="text-success" /> : <ShieldOff className="text-muted" />}
                 <div>
                   <div className="font-medium">{m.consent ? "Face recognition consent given" : "No face consent"}</div>
-                  <div className="text-sm text-muted">{m.consent ? "Signed Aug 24, 2026" : "Can still check in by QR or name"}</div>
+                  <div className="text-sm text-muted">{m.consent ? `Signed by ${m.signedBy ?? "—"}${m.signedAt ? ` on ${new Date(m.signedAt).toLocaleDateString("en-US")}` : ""}` : "Can still check in by QR or name"}</div>
                 </div>
                 <span className="ms-auto"><FaceIcon face={m.face} /></span>
               </div>
@@ -156,7 +158,7 @@ export default function MemberDrawer({ m, onClose }: { m: DemoMember; onClose: (
         body="Face data is deleted immediately and this is logged."
         confirmLabel="Withdraw consent"
         onCancel={() => setConfirm(false)}
-        onConfirm={() => { setConfirm(false); toast.success(`Consent withdrawn for ${m.name} (demo)`); }}
+        onConfirm={async () => { setConfirm(false); await withdraw(m, () => { onChanged(); onClose(); }); }}
       />
     </>
   );

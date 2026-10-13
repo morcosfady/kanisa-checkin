@@ -7,7 +7,10 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
-import { demoMembers, type DemoMember } from "@/lib/demo";
+import type { FamilyOption, Member } from "@/lib/members";
+import { useRouter } from "@/i18n/navigation";
+import { hasSupabase } from "@/lib/supabase/env";
+import MemberForm from "./MemberForm";
 import MemberDrawer from "./MemberDrawer";
 import RowMenu from "./RowMenu";
 
@@ -15,9 +18,9 @@ const PAGE = 10;
 type View = "table" | "cards" | "families";
 type Sort = "name" | "family" | "last" | "rate";
 
-export const rel = (d: number) => (d === 0 ? "Today" : d === 1 ? "Yesterday" : `${d} days ago`);
+export const rel = (d: number | null) => (d === null ? "Never" : d === 0 ? "Today" : d === 1 ? "Yesterday" : `${d} days ago`);
 
-export function FaceIcon({ face }: { face: DemoMember["face"] }) {
+export function FaceIcon({ face }: { face: Member["face"] }) {
   const map = {
     enrolled: { Icon: Check, cls: "text-success", tip: "Face enrolled" },
     pending: { Icon: AlertCircle, cls: "text-warning", tip: "Consent given, face not enrolled yet" },
@@ -34,6 +37,7 @@ export function FaceIcon({ face }: { face: DemoMember["face"] }) {
 export const statusTone = { active: "success", inactive: "gray", visitor: "gold" } as const;
 
 function Spark({ pts }: { pts: number[] }) {
+  if (pts.length < 2) return null;
   const max = Math.max(...pts), min = Math.min(...pts);
   const d = pts.map((p, i) => `${i === 0 ? "M" : "L"}${(i / (pts.length - 1)) * 60},${22 - ((p - min) / (max - min || 1)) * 20}`).join(" ");
   return (
@@ -57,17 +61,22 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
-export default function MembersView() {
-  const all = demoMembers;
+export default function MembersView({ initial, families }: { initial: Member[]; families: FamilyOption[] }) {
+  const router = useRouter();
+  // demo mode keeps changes in memory; real mode refreshes from the server
+  const [local, setLocal] = useState<Member[]>([]);
+  const [edits, setEdits] = useState<Record<string, Member>>({});
+  const all = useMemo(() => [...initial.map((m) => edits[m.id] ?? m), ...local], [initial, local, edits]);
+  const [form, setForm] = useState<{ open: boolean; member: Member | null }>({ open: false, member: null });
   const [q, setQ] = useState("");
   const [gender, setGender] = useState<"all" | "male" | "female">("all");
   const [deacon, setDeacon] = useState(false);
-  const [status, setStatus] = useState<"all" | DemoMember["status"]>("all");
+  const [status, setStatus] = useState<"all" | Member["status"]>("all");
   const [consent, setConsent] = useState<"all" | "yes" | "no">("all");
   const [view, setView] = useState<View>("table");
   const [sort, setSort] = useState<Sort>("name");
   const [page, setPage] = useState(0);
-  const [open, setOpen] = useState<DemoMember | null>(null);
+  const [open, setOpen] = useState<Member | null>(null);
   const search = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -94,11 +103,11 @@ export default function MembersView() {
         (status === "all" || m.status === status) &&
         (consent === "all" || (consent === "yes") === m.consent),
     );
-    const cmp: Record<Sort, (a: DemoMember, c: DemoMember) => number> = {
+    const cmp: Record<Sort, (a: Member, c: Member) => number> = {
       name: (a, c) => a.name.localeCompare(c.name),
       family: (a, c) => a.family.localeCompare(c.family) || a.name.localeCompare(c.name),
-      last: (a, c) => a.lastDays - c.lastDays,
-      rate: (a, c) => c.rate - a.rate,
+      last: (a, c) => (a.lastDays ?? 9999) - (c.lastDays ?? 9999),
+      rate: (a, c) => (c.rate ?? -1) - (a.rate ?? -1),
     };
     return list.sort(cmp[sort]);
   }, [all, q, gender, deacon, status, consent, sort]);
@@ -106,17 +115,18 @@ export default function MembersView() {
   const pages = Math.max(1, Math.ceil(rows.length / PAGE));
   const cur = Math.min(page, pages - 1);
   const slice = rows.slice(cur * PAGE, cur * PAGE + PAGE);
-  const familyCount = new Set(all.map((m) => m.family)).size;
-  const enrolledPct = Math.round((all.filter((m) => m.face === "enrolled").length / all.length) * 100);
+  const familyCount = new Set(all.filter((m) => m.family !== "No family").map((m) => m.family)).size;
+  const enrolledPct = all.length ? Math.round((all.filter((m) => m.face === "enrolled").length / all.length) * 100) : 0;
+  const demoSpark = !hasSupabase;
   const stats = [
-    { label: "Total members", value: all.length, icon: Users, spark: [18, 19, 20, 21, 22, 23, 24] },
-    { label: "Active", value: all.filter((m) => m.status === "active").length, icon: UserCheck, spark: [15, 16, 18, 17, 19, 20, 20] },
-    { label: "Visitors this month", value: all.filter((m) => m.status === "visitor").length, icon: UsersRound, spark: [0, 1, 1, 2, 1, 2, 2] },
-    { label: "Face check-in enabled", value: enrolledPct, suffix: "%", icon: ScanFace, spark: [30, 38, 41, 47, 52, 55, enrolledPct] },
+    { label: "Total members", value: all.length, icon: Users, spark: demoSpark ? [18, 19, 20, 21, 22, 23, 24] : [] },
+    { label: "Active", value: all.filter((m) => m.status === "active").length, icon: UserCheck, spark: demoSpark ? [15, 16, 18, 17, 19, 20, 20] : [] },
+    { label: "Visitors this month", value: all.filter((m) => m.status === "visitor").length, icon: UsersRound, spark: demoSpark ? [0, 1, 1, 2, 1, 2, 2] : [] },
+    { label: "Face check-in enabled", value: enrolledPct, suffix: "%", icon: ScanFace, spark: demoSpark ? [30, 38, 41, 47, 52, 55, enrolledPct] : [] },
   ];
 
   const byFamily = useMemo(() => {
-    const g = new Map<string, DemoMember[]>();
+    const g = new Map<string, Member[]>();
     rows.forEach((m) => g.set(m.family, [...(g.get(m.family) ?? []), m]));
     return [...g.entries()];
   }, [rows]);
@@ -130,7 +140,7 @@ export default function MembersView() {
         </div>
         <button className={b("secondary")} onClick={() => toast("Import is coming soon")}><Upload size={18} strokeWidth={1.75} /> Import</button>
         <button className={b("secondary")} onClick={() => toast("Export (Excel / PDF) is coming soon")}><Download size={18} strokeWidth={1.75} /> Export</button>
-        <button className={b("primary")} onClick={() => toast("Add member form is the next feature")}><Plus size={18} strokeWidth={1.75} /> Add member</button>
+        <button className={b("primary")} onClick={() => setForm({ open: true, member: null })}><Plus size={18} strokeWidth={1.75} /> Add member</button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -271,14 +281,14 @@ export default function MembersView() {
                     <td className="p-3 text-muted">{rel(m.lastDays)}</td>
                     <td className="p-3">
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-20 overflow-hidden rounded-full bg-line" role="img" aria-label={`${m.rate} percent`}>
-                          <div className="h-full rounded-full bg-gold" style={{ width: `${m.rate}%` }} />
+                        <div className="h-2 w-20 overflow-hidden rounded-full bg-line" role="img" aria-label={m.rate === null ? "No data yet" : `${m.rate} percent`}>
+                          <div className="h-full rounded-full bg-gold" style={{ width: `${m.rate ?? 0}%` }} />
                         </div>
-                        <span className="num text-xs text-muted">{m.rate}%</span>
+                        <span className="num text-xs text-muted">{m.rate === null ? "—" : `${m.rate}%`}</span>
                       </div>
                     </td>
-                    <td className="p-3 num">{m.streak} <span className="text-muted">wks</span></td>
-                    <td className="p-3 text-end" onClick={(e) => e.stopPropagation()}><RowMenu m={m} onView={() => setOpen(m)} /></td>
+                    <td className="p-3 num">{m.streak === null ? "—" : <>{m.streak} <span className="text-muted">wks</span></>}</td>
+                    <td className="p-3 text-end" onClick={(e) => e.stopPropagation()}><RowMenu m={m} onView={() => setOpen(m)} onEdit={() => setForm({ open: true, member: m })} onChanged={() => router.refresh()} /></td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -304,12 +314,25 @@ export default function MembersView() {
         </div>
       )}
 
-      <AnimatePresence>{open && <MemberDrawer m={open} onClose={() => setOpen(null)} />}</AnimatePresence>
+      <AnimatePresence>
+        {open && <MemberDrawer m={open} onClose={() => setOpen(null)} onEdit={() => { setForm({ open: true, member: open }); setOpen(null); }} onChanged={() => router.refresh()} />}
+      </AnimatePresence>
+      <MemberForm
+        open={form.open}
+        member={form.member}
+        families={families}
+        onClose={() => setForm({ open: false, member: null })}
+        onSaved={(m) => {
+          if (hasSupabase) return router.refresh();
+          if (form.member) setEdits((e) => ({ ...e, [m.id]: m }));
+          else setLocal((l) => [...l, m]);
+        }}
+      />
     </div>
   );
 }
 
-function MemberCard({ m, onOpen, delay = 0 }: { m: DemoMember; onOpen: (m: DemoMember) => void; delay?: number }) {
+function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) => void; delay?: number }) {
   return (
     <motion.button
       initial={{ opacity: 0, y: 8 }}
@@ -325,7 +348,7 @@ function MemberCard({ m, onOpen, delay = 0 }: { m: DemoMember; onOpen: (m: DemoM
           <div className="truncate font-semibold">{m.name}</div>
           <div className="text-xs text-muted">{m.family} family</div>
         </div>
-        <Ring pct={m.rate} />
+        <Ring pct={m.rate ?? 0} />
       </div>
       <div className="flex flex-wrap gap-1.5">
         <Badge tone={statusTone[m.status]}>{m.status[0].toUpperCase() + m.status.slice(1)}</Badge>
@@ -349,9 +372,10 @@ function Ring({ pct }: { pct: number }) {
   );
 }
 
-function FamilyCard({ fam, list, onOpen }: { fam: string; list: DemoMember[]; onOpen: (m: DemoMember) => void }) {
+function FamilyCard({ fam, list, onOpen }: { fam: string; list: Member[]; onOpen: (m: Member) => void }) {
   const [open, setOpen] = useState(true);
-  const avg = Math.round(list.reduce((s, m) => s + m.rate, 0) / list.length);
+  const rates = list.filter((m) => m.rate !== null);
+  const avg = rates.length ? Math.round(rates.reduce((s, m) => s + (m.rate ?? 0), 0) / rates.length) : null;
   return (
     <div className={card}>
       <button onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center gap-3 p-4 text-start">
@@ -360,7 +384,7 @@ function FamilyCard({ fam, list, onOpen }: { fam: string; list: DemoMember[]; on
           <div className="font-display text-lg font-semibold text-heading">{fam} family</div>
           <div className="text-sm text-muted num">{list.length} members</div>
         </div>
-        <div className="text-end text-sm"><span className="num font-semibold">{avg}%</span> <span className="text-muted">attendance</span></div>
+        <div className="text-end text-sm"><span className="num font-semibold">{avg === null ? "—" : `${avg}%`}</span> <span className="text-muted">attendance</span></div>
         <ChevronRight size={18} className={`transition ${open ? "rotate-90" : ""}`} />
       </button>
       <AnimatePresence initial={false}>
@@ -373,7 +397,7 @@ function FamilyCard({ fam, list, onOpen }: { fam: string; list: DemoMember[]; on
                     <Avatar name={m.name} gender={m.gender} />
                     <span className="me-auto font-medium">{m.name}</span>
                     {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
-                    <span className="num text-sm text-muted">{m.rate}%</span>
+                    <span className="num text-sm text-muted">{m.rate === null ? "—" : `${m.rate}%`}</span>
                   </button>
                 </li>
               ))}

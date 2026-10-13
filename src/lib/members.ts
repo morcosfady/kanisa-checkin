@@ -1,0 +1,120 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { DemoMember } from "@/lib/demo";
+
+export type Member = {
+  id: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  gender: "male" | "female";
+  deacon: boolean;
+  family: string;
+  familyId: string | null;
+  status: "active" | "inactive" | "visitor";
+  consent: boolean;
+  face: "enrolled" | "pending" | "none";
+  phone: string;
+  email: string;
+  dob: string | null;
+  className: string;
+  lastDays: number | null;
+  rate: number | null;
+  streak: number | null;
+  signedAt: string | null;
+  signedBy: string | null;
+};
+
+export type FamilyOption = { id: string; name: string };
+
+export const fromDemo = (m: DemoMember): Member => {
+  const [firstName, ...rest] = m.name.split(" ");
+  return {
+    ...m,
+    firstName,
+    lastName: rest.join(" "),
+    familyId: m.family,
+    email: "",
+    dob: null,
+    signedAt: m.consent ? "2026-08-24" : null,
+    signedBy: m.consent ? m.name : null,
+  };
+};
+
+type Row = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  gender: "male" | "female" | null;
+  is_deacon: boolean;
+  status: Member["status"];
+  phone: string | null;
+  email: string | null;
+  date_of_birth: string | null;
+  biometric_consent: boolean;
+  has_face: boolean;
+  consent_signed_at: string | null;
+  consent_signed_by: string | null;
+  family_id: string | null;
+  families: { family_name: string } | null;
+  classes: { name_en: string } | null;
+};
+
+// Real data: members + attendance summary (rate and last seen come from attendance rows)
+export async function loadMembers(db: SupabaseClient): Promise<{ members: Member[]; families: FamilyOption[] }> {
+  const [{ data: rows }, { data: fams }, { data: att }, { count: services }] = await Promise.all([
+    db
+      .from("members")
+      .select(
+        "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, family_id, families(family_name), classes(name_en)",
+      )
+      .order("first_name")
+      .returns<Row[]>(),
+    db.from("families").select("id, family_name").order("family_name"),
+    db.from("attendance").select("member_id, checked_in_at"),
+    db.from("services").select("id", { count: "exact", head: true }),
+  ]);
+
+  const seen = new Map<string, { n: number; last: number }>();
+  (att ?? []).forEach((a: { member_id: string; checked_in_at: string }) => {
+    const t = Date.parse(a.checked_in_at);
+    const cur = seen.get(a.member_id) ?? { n: 0, last: 0 };
+    seen.set(a.member_id, { n: cur.n + 1, last: Math.max(cur.last, t) });
+  });
+  const total = Math.min(services ?? 0, 52);
+
+  const members = (rows ?? []).map((r): Member => {
+    const s = seen.get(r.id);
+    return {
+      id: r.id,
+      name: `${r.first_name} ${r.last_name}`.trim(),
+      firstName: r.first_name,
+      lastName: r.last_name,
+      gender: r.gender ?? "male",
+      deacon: r.is_deacon,
+      family: r.families?.family_name ?? "No family",
+      familyId: r.family_id,
+      status: r.status,
+      consent: r.biometric_consent,
+      face: !r.biometric_consent ? "none" : r.has_face ? "enrolled" : "pending",
+      phone: r.phone ?? "",
+      email: r.email ?? "",
+      dob: r.date_of_birth,
+      className: r.classes?.name_en ?? "",
+      lastDays: s ? Math.max(0, Math.floor((Date.now() - s.last) / 86400000)) : null,
+      rate: total && s ? Math.min(100, Math.round((s.n / total) * 100)) : null,
+      streak: null,
+      signedAt: r.consent_signed_at,
+      signedBy: r.consent_signed_by,
+    };
+  });
+  return { members, families: (fams ?? []).map((f: { id: string; family_name: string }) => ({ id: f.id, name: f.family_name })) };
+}
+
+export const isMinor = (dob: string | null) => {
+  if (!dob) return false;
+  const d = new Date(dob);
+  const t = new Date();
+  let age = t.getFullYear() - d.getFullYear();
+  if (t < new Date(t.getFullYear(), d.getMonth(), d.getDate())) age--;
+  return age < 18;
+};
