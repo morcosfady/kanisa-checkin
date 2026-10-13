@@ -74,6 +74,7 @@
     "failed": "Something went wrong",
     "sentTitle": "Request sent",
     "sentBody": "Abouna was notified. You can sign in once your request is accepted.",
+    "signedInAs": "Signed in as",
     "waitingTitle": "Waiting for approval",
     "waitingBody": "Your account exists but has not been accepted yet. Please check back soon."
   },
