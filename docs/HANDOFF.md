@@ -95,3 +95,12 @@
 - DB migration 0010 (run in Supabase): admin_invites, grant_admin(email), revoke_admin(user), updated handle_new_user. Audit actions: admin_granted, admin_invited, admin_invite_used, admin_revoked.
 - Tested: rolled-back DB test (14 checks: member blocked, bad email, mixed-case email, promote, cannot revoke self, revoke, invite stored lowercase, real auth.users insert picks up invite and is admin+approved, invite consumed, ordinary sign-up still pending member, audit rows); demo-mode browser test (validation, add and remove invite, 0 console errors); tsc and lint clean.
 - NOT tested: clicking it in the live app with a real login.
+
+## Profile requirements, address, city and church
+- Regular-user profile (/profile): every field is required except face consent: first name, last name, gender (no default), date of birth, phone, email, family name, address, city, church. Enforced in the form and again in the upsert_my_profile database function. No deacon option for users (admins still set it).
+- City and Church are typeahead boxes (components/Combobox.tsx: keyboard, ARIA combobox, churches in the chosen city ranked first). Both allow "not listed: use what I typed" (stored in members.city_other / church_other).
+- New tables cities (78 DFW cities) and churches (7 DFW Coptic Orthodox churches) with RLS: any approved user reads, only admins write. Source list: src/lib/places.json; migration 0011_places.sql (run in Supabase). members got address, city_id, city_other, church_id, church_other.
+- Churches seeded (public sources, may be incomplete): St. Abanoub (Euless), St. George (Arlington), St. Marina (Lewisville), St. Mark (Prosper), St. Mary (Colleyville), St. Meena (Fort Worth), St. Philopateer (Richardson). To add more of the USA later: add rows to cities/churches (admins can insert from the dashboard; update places.json for demo mode).
+- Admin Add/Edit member form also has optional Address/City/Church; the member drawer shows address, city and church. The 20 fake members got fake addresses, cities and churches.
+- Tested: rolled-back DB test (each missing field blocked, fake city id blocked, member cannot add churches, members can read the lists, "not listed" path), browser test in demo mode (missing-fields message, city and church typeahead, keyboard pick, not-listed option, save), tsc, lint.
+- NOT tested: saving from the live site with a real login.
