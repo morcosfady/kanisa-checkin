@@ -200,3 +200,10 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Attendance page now starts in the dark "ink" look (app default). The parchment look is a toggle (sun/moon button) remembered per device; localStorage key amoinee-ledger-ink ("0" = parchment).
 
 - Members list is numbered (# column; numbering continues across pages; cards show the number too).
+
+## Explainer video (branch feature/explainer-video, 2026-10-14)
+- Folder `video/` (app code untouched). Source of truth: `video/scenes.json` (words, Arabic, prompts, timing). `video/README.md` lists the steps.
+- Done: real demo-mode screen recordings (`scripts/record.mjs`), Remotion edit (`src/`), offline placeholder voice (`scripts/tts.mjs`), original music (`scripts/music.mjs`), EN + AR subtitles (`out/*.srt`), storyboard, Google Vids pack (`video/google-vids-pack/`, csv + scene texts; big media kept out of git), thumbnail, 16:9 cut (2:54) and a 9:16 cut (`out/amoinee-short-vertical.mp4`).
+- NOT done (blocked on keys): animated-style pictures and the Veo clip (`GEMINI_API_KEY`, `node scripts/images.mjs`), real voice (`ELEVENLABS_API_KEY`). Missing pictures show a labelled placeholder card. Style decision: 3D animated family-movie look, never photorealistic (user request).
+- Script changes vs the brief: no family check-in (removed from the app), "other ways to check in" = kiosk QR + 3-digit code. Narration is about 330 words; the cut is 2:54.
+- Gotchas: Remotion needs a headless browser, `render.mjs` points to Playwright's headless shell; MP4s are git-ignored (68 MB), regenerate with `node scripts/render.mjs`. Audio loudness is normalised with ffmpeg loudnorm (-14 LUFS target) but not measured.
