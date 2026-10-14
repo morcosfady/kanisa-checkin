@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, CalendarCheck, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, CalendarDays, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -17,6 +17,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard", label: "Today", icon: CalendarCheck },
   { href: "/members", label: "Members", icon: Users },
   { href: "/kiosk", label: "Check-in Kiosk", short: "Check-in", icon: ScanFace },
+  { href: "/schedule", label: "Weekly events", short: "Schedule", icon: CalendarDays },
   { href: "/approvals", label: "Approvals", icon: ShieldCheck, badge: true },
   { href: "/reports", label: "Reports", icon: BarChart3, hidden: true }, // page not built yet
 ];

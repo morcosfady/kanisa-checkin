@@ -18,12 +18,13 @@ export default async function Dashboard() {
   }
 
   const { db } = await getSession();
-  const [{ data: svc }, { data: ms }, { data: settings }] = await Promise.all([
-    db.from("services").select("id, name_en, date, start_time").eq("is_active", true).order("date", { ascending: false }).limit(1).maybeSingle(),
+  const [{ data: opened }, { data: ms }, { data: settings }] = await Promise.all([
+    db.rpc("open_service"),
     db.from("members").select("id, first_name, last_name, gender, is_deacon, status").order("first_name"),
     db.from("settings").select("late_after_minutes").limit(1).maybeSingle(),
   ]);
 
+  const svc = opened && opened.id ? opened : null;
   const members: TodayMember[] = (ms ?? []).map((m) => ({
     id: m.id, name: `${m.first_name} ${m.last_name}`.trim(), gender: m.gender ?? "male", deacon: m.is_deacon, status: m.status,
   }));
@@ -32,7 +33,7 @@ export default async function Dashboard() {
   const { data: att } = await db.from("attendance").select("member_id, checked_in_at, method, late_minutes").eq("service_id", svc.id);
   const [h, mm] = String(svc.start_time).split(":").map(Number);
   const service: TodayService = {
-    id: svc.id, name: svc.name_en, whenLabel: fmtService(svc.date, svc.start_time), startMin: h * 60 + mm, graceMin: settings?.late_after_minutes ?? 10,
+    id: svc.id, name: svc.name_en, whenLabel: fmtService(svc.date, svc.start_time, svc.end_time), startMin: h * 60 + mm, graceMin: settings?.late_after_minutes ?? 10,
   };
   const arrivals: Arrival[] = (att ?? []).map((a) => ({
     memberId: a.member_id, min: chicagoMinutes(a.checked_in_at), method: a.method, late: a.late_minutes > 0,

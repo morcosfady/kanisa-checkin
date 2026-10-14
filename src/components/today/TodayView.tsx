@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
 import { fmtTime } from "@/lib/demo";
 import { METHOD_LABEL } from "@/lib/checkin";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 export type TodayMember = { id: string; name: string; gender: string; deacon: boolean; status: string };
@@ -55,7 +55,7 @@ function StartService() {
     <div className={`${card} mx-auto max-w-md space-y-4 p-8 text-center`}>
       <CalendarClock size={40} strokeWidth={1.5} className="mx-auto text-goldtext" />
       <h2 className="font-display text-2xl font-semibold text-heading">No service is open</h2>
-      <p className="text-muted">Start today’s service so people can check in.</p>
+      <p className="text-muted">Start a service now, or set up a weekly event so check-in opens by itself.</p>
       <div className="grid gap-3 text-start sm:grid-cols-2">
         <label className="text-sm font-medium">Service
           <select value={type} onChange={(e) => setType(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5">
@@ -67,6 +67,7 @@ function StartService() {
         </label>
       </div>
       <button onClick={start} disabled={busy} className={`${b("primary")} w-full`}>{busy ? "Starting…" : "Start service"}</button>
+      <Link href="/schedule" className="block text-sm font-medium text-heading underline underline-offset-4">Set up weekly events (like every Sunday)</Link>
     </div>
   );
 }
