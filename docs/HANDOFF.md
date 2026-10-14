@@ -154,3 +154,5 @@
 - Approvals page = admin requests + admin access (list_admin_requests / list_admins / list_admin_invites).
 - Header pending badge counts admin requests. Role labels: Super admin / Admin / Member.
 - NOTE: profiles has two FKs to churches, so embeds need the hint `churches!profiles_church_id_fkey`.
+
+- 0019: list_admins hides the super admin from regular admins (super admin still sees everyone). LIVE.
