@@ -104,3 +104,11 @@
 - Admin Add/Edit member form also has optional Address/City/Church; the member drawer shows address, city and church. The 20 fake members got fake addresses, cities and churches.
 - Tested: rolled-back DB test (each missing field blocked, fake city id blocked, member cannot add churches, members can read the lists, "not listed" path), browser test in demo mode (missing-fields message, city and church typeahead, keyboard pick, not-listed option, save), tsc, lint.
 - NOT tested: saving from the live site with a real login.
+
+## "Create new profile" flow
+- "Request access" is now "Create new profile". Step 1 (/signup): full name, email, password; /api/signup creates the account (email to the approver is optional, needs MAILER_URL), the browser then signs in. Step 2 (/welcome): the full required profile form (MyProfileForm with onboarding) incl. address, city, church. Submit goes to /pending ("Profile sent"). Abouna approves on Approvals; then the person can check in.
+- DB migration 0012 (run in Supabase): upsert_my_profile no longer requires approval (only a signed-in account); new members from unapproved accounts are status 'visitor'; trigger profiles_activate_member flips them to 'active' when approved. Unapproved people still cannot check in, use the kiosk or see other members (tested).
+- Unapproved users see no menu (AppHeader). /pending redirects to /welcome if the profile form was never finished; /welcome redirects approved or already-profiled users away.
+- Removed the Coptic sentence on the sign-in panel; "Come, let us worship" and the logo's Coptic line stay.
+- Tested: rolled-back DB test (new account unapproved, saves profile, status visitor, blocked from check-in and kiosk, sees only own row, active after approval); demo-mode browser test of login link text, signup step 1, welcome step 2, 0 console errors; tsc, lint 0 errors.
+- NOT tested: the full flow on the live site (it would create a real account in the production database; try it with a fresh email).
