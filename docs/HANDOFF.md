@@ -116,3 +116,11 @@
 ## Step 1 form: first and last name, confirm password
 - /signup now asks First name, Last name, Email, Password, Confirm password (mismatch shows an error before anything is sent). /api/signup takes firstName and lastName and stores first_name, last_name and full_name in the auth user metadata; /welcome pre-fills the profile form with the exact first and last name typed there.
 - Tested: tsc, lint, demo-mode browser test (field list, mismatch message, 0 console errors). The account creation itself was not run on the live site.
+
+## No family, apartment, forgiving search, one person at a time
+- Family removed from the UI: no Family field on the profile forms (user and admin), no Families view or sort on Members, no family subtitle, no "Simulate a family" on the kiosk, no family check-in label. DB keeps the old families table and the 'family' check-in enum value (unused) so nothing breaks; members.family_id is just no longer set.
+- Kiosk checks in one person at a time: it uses the biggest face; if a second face is more than 45% of its size it shows "One person at a time, please." and checks nobody in.
+- Optional Apartment / unit on both forms (members.apartment, migration 0013 run in Supabase; upsert_my_profile signature changed: p_family removed, p_apartment added). Shown in the member drawer address.
+- City and Church typeahead now uses src/lib/search.ts: ignores punctuation and capitals ("st philopater" finds "St. Philopateer"), matches word starts and the city hint, tolerates one or two typos and swapped letters. 7 unit tests.
+- Note: cities are DFW only (78). A city outside DFW (e.g. Tampa) correctly shows only the "not listed: use what I typed" row.
+- Tested: DB check (no family needed, apartment optional, address still required), 25 unit tests, browser test in demo mode (suggestions for the exact typos, save without apartment, no family anywhere on profile, members and kiosk), tsc, lint 0 errors.
