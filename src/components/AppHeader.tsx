@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { BarChart3, CalendarCheck, CalendarDays, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
-import ThemeToggle from "@/components/ThemeToggle";
 import { Avatar, Badge } from "@/components/ui";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { hasSupabase } from "@/lib/supabase/env";
@@ -93,8 +92,6 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
               </Link>
             ))}
           </nav>
-
-          <ThemeToggle />
 
           {user ? (
             <div className="relative" ref={menuRef}>

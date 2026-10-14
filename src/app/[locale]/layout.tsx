@@ -18,9 +18,6 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-// applies the saved theme before first paint (no flash)
-const themeScript = `try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
-
 export default async function LocaleLayout({
   children,
   params,
@@ -36,12 +33,10 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir="ltr"
+      data-theme="dark"
       suppressHydrationWarning
       className={`${cairo.variable} ${inter.variable} ${cinzel.variable} ${coptic.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-screen bg-page text-ink antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
         <Toaster
