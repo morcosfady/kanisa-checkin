@@ -47,8 +47,9 @@ export async function loadProfileData() {
         consent: m.biometric_consent, signedBy: m.consent_signed_by ?? "",
       };
     } else {
+      const meta = (user!.user_metadata ?? {}) as { first_name?: string; last_name?: string };
       const [first, ...rest] = (profile?.full_name ?? "").split(" ");
-      initial = { ...emptyProfile, firstName: first ?? "", lastName: rest.join(" "), email: user!.email ?? "" };
+      initial = { ...emptyProfile, firstName: meta.first_name ?? first ?? "", lastName: meta.last_name ?? rest.join(" "), email: user!.email ?? "" };
     }
   }
   return { initial, existing, hasFace, approved, cities, churches };

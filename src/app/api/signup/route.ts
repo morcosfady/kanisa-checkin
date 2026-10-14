@@ -6,13 +6,16 @@ const APPROVER = "heavenlyvisions25@gmail.com";
 
 // Create the account (no access yet), then tell the approver by email
 export async function POST(req: Request) {
-  const { name, email, password } = await req.json();
-  if (!name || !email || !password || String(password).length < 8) {
+  const { firstName, lastName, email, password } = await req.json();
+  const first = String(firstName ?? "").trim();
+  const last = String(lastName ?? "").trim();
+  const name = `${first} ${last}`.trim();
+  if (!first || !last || !email || !password || String(password).length < 8) {
     return NextResponse.json({ error: "Please fill every field. Password needs 8+ characters." }, { status: 400 });
   }
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-  const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name } } });
+  const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name, first_name: first, last_name: last } } });
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
 
   const origin = new URL(req.url).origin;
