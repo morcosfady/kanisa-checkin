@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, CalendarCheck, CalendarDays, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, ClipboardList, Ellipsis, CalendarDays, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import { Avatar, Badge } from "@/components/ui";
@@ -14,6 +14,7 @@ type NavItem = { href: string; label: string; short?: string; icon: typeof Users
 
 const NAV: NavItem[] = [
   { href: "/dashboard", label: "Today", icon: CalendarCheck },
+  { href: "/attendance", label: "Attendance", icon: ClipboardList },
   { href: "/members", label: "Members", icon: Users },
   { href: "/kiosk", label: "Check-in Kiosk", short: "Check-in", icon: ScanFace },
   { href: "/schedule", label: "Weekly events", short: "Schedule", icon: CalendarDays },
@@ -35,6 +36,11 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
   const menuRef = useRef<HTMLDivElement>(null);
   const isMember = user?.role === "member";
   const items = !user?.approved ? [] : isMember ? MEMBER_NAV : NAV.filter((n) => !n.hidden && user);
+  // phone: 4 tabs + "More" for the rest
+  const MORE = ["/schedule", "/approvals"];
+  const barItems = isMember ? items : items.filter((n) => !MORE.includes(n.href));
+  const moreItems = isMember ? [] : items.filter((n) => MORE.includes(n.href));
+  const [more, setMore] = useState(false);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 6);
@@ -145,14 +151,14 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
         </div>
       </header>
 
-      {/* phone: bottom tab bar */}
+      {/* phone: bottom tab bar (max 5: four tabs + More for admins) */}
       {items.length > 0 && (
         <nav
           aria-label="Main mobile"
           className="fixed inset-x-0 bottom-0 z-40 grid border-t border-gold/30 bg-coptic/95 pb-[env(safe-area-inset-bottom)] text-cream backdrop-blur-md md:hidden"
-          style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+          style={{ gridTemplateColumns: `repeat(${barItems.length + (moreItems.length ? 1 : 0)}, minmax(0, 1fr))` }}
         >
-          {items.map(({ href, label, short, icon: Icon, badge }) => (
+          {barItems.map(({ href, label, short, icon: Icon, badge }) => (
             <Link
               key={href}
               href={href}
@@ -170,6 +176,36 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
               {short ?? label}
             </Link>
           ))}
+          {moreItems.length > 0 && (
+            <div className="relative">
+              <button
+                onClick={() => setMore(!more)}
+                aria-haspopup="menu"
+                aria-expanded={more}
+                className={`relative flex w-full flex-col items-center gap-0.5 py-2 text-[11px] font-medium ${moreItems.some((m) => active(m.href)) ? "text-gold-light" : "text-cream/75"}`}
+              >
+                <span className="relative">
+                  <Ellipsis size={22} strokeWidth={1.75} />
+                  {user && user.pending > 0 && (
+                    <span className="absolute -end-2 -top-1.5 grid min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-4 text-white">{user.pending}</span>
+                  )}
+                </span>
+                More
+              </button>
+              {more && (
+                <div role="menu" className="absolute bottom-full end-1 mb-2 w-52 rounded-[16px] border border-line bg-card p-2 text-ink shadow-lift">
+                  {moreItems.map(({ href, label, icon: Icon }) => (
+                    <Link key={href} href={href} role="menuitem" onClick={() => setMore(false)} className="flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-sm font-medium hover:bg-hover">
+                      <Icon size={18} strokeWidth={1.75} /> {label}
+                    </Link>
+                  ))}
+                  <Link href="/privacy" role="menuitem" onClick={() => setMore(false)} className="flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-sm font-medium hover:bg-hover">
+                    <ShieldCheck size={18} strokeWidth={1.75} /> Privacy
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
         </nav>
       )}
     </>

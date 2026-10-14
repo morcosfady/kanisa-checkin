@@ -109,6 +109,7 @@ export type Sheet = {
     faithful: number; followup: number; excused: number;
     lateCount: number; onTimeCount: number;
   };
+  lateBuckets: { label: string; count: number }[];
   welcomeBack: Row[];
   newcomers: Row[];
   birthdays: Row[];
@@ -205,10 +206,20 @@ export function computeSheet(raw: Raw, o: Options): Sheet {
     if (m?.deacon) c.deacons++;
     count.set(sid, c);
   }
-  const perService = services.map((s) => {
+  const prevSorted = [...prevServices].sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
+  const perService = services.map((s, i) => {
     const c = count.get(s.id) ?? { n: 0, late: 0, men: 0, women: 0, deacons: 0 };
-    return { id: s.id, name: s.name, date: s.date, count: c.n, late: c.late, men: c.men, women: c.women, deacons: c.deacons };
+    const p = prevSorted[i];
+    return { id: s.id, name: s.name, date: s.date, count: c.n, late: c.late, men: c.men, women: c.women, deacons: c.deacons, prevCount: p ? count.get(p.id)?.n ?? 0 : undefined };
   });
+  const inPeriod = new Set(services.map((s) => s.id));
+  const lateBuckets = [
+    { label: "On time", count: 0 }, { label: "1–10 min", count: 0 }, { label: "11–20 min", count: 0 }, { label: "20+ min", count: 0 },
+  ];
+  for (const [, sid, late] of raw.present) {
+    if (!inPeriod.has(sid)) continue;
+    lateBuckets[late <= 0 ? 0 : late <= 10 ? 1 : late <= 20 ? 2 : 3].count++;
+  }
   const sum = (a: number[]) => a.reduce((x, y) => x + y, 0);
   const avgPerService = perService.length ? sum(perService.map((p) => p.count)) / perService.length : 0;
   const prevCounts = prevServices.map((s) => count.get(s.id)?.n ?? 0);
@@ -237,7 +248,7 @@ export function computeSheet(raw: Raw, o: Options): Sheet {
       tiers, faithful: tiers.faithful, followup: rows.filter((r) => r.followup).length, excused: tiers.excused,
       lateCount, onTimeCount: Math.max(0, total - lateCount),
     },
-    welcomeBack, newcomers, birthdays,
+    lateBuckets, welcomeBack, newcomers, birthdays,
   };
 }
 
