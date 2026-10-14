@@ -1,4 +1,5 @@
 /* "Parchment ledger" look for the Attendance tab only. Everything hangs off .ledger so other pages are untouched. */
+@layer components {
 .ledger {
   --l-bg: #faf6ec; --l-card: #fffdf7; --l-line: #e8dfc8; --l-ink: #1e2a44; --l-mute: #5b6275;
   --l-gold: #b8892e; --l-goldtext: #8a6420; --l-burg: #7a1f2b; --l-hover: #f3ecd9; --l-soft: #f6f0df;
@@ -8,9 +9,10 @@
   position: relative; isolation: isolate; overflow: hidden;
   background: var(--l-bg); color: var(--l-ink);
   border: 1px solid var(--l-line); border-radius: 24px; padding: 24px; box-shadow: var(--l-shadow);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums; color-scheme: light;
 }
 .ledger[data-ink="true"] {
+  color-scheme: dark;
   --l-bg: #121826; --l-card: #1a2236; --l-line: #2c3652; --l-ink: #f3ebda; --l-mute: #aab1c4;
   --l-gold: #c9a24a; --l-goldtext: #dcb862; --l-burg: #c4485a; --l-hover: #222c45; --l-soft: #172033;
   --l-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
@@ -95,6 +97,13 @@
   .ledger::before, .ledger::after { display: none; }
   .l-card { box-shadow: none; break-inside: avoid; }
 }
-.ledger input[type="checkbox"] { accent-color: var(--l-burg); width: 16px; height: 16px; }
+.ledger input[type="checkbox"] { appearance: auto; accent-color: var(--l-burg); width: 16px; height: 16px; }
 .ledger select { color-scheme: light; }
 .ledger[data-ink="true"] select, .ledger[data-ink="true"] input[type="date"] { color-scheme: dark; }
+
+/* the Attendance page covers the screen with its own paper, so the animated lantern background is switched off here (lighter, no scroll glitches) */
+body:has(.ledger-page) .sacred-bg { display: none; }
+body:has(.ledger-page) header { backdrop-filter: none; }
+@media (max-width: 767px) { .ledger::before { display: none; } }
+
+}

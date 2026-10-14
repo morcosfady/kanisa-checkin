@@ -76,7 +76,7 @@ export default function SacredBackground({ light = false, panel = false }: { lig
   return (
     <div
       aria-hidden
-      className={`pointer-events-none overflow-hidden ${panel ? "absolute inset-0" : "fixed inset-0 -z-10 bg-page"}`}
+      className={`pointer-events-none overflow-hidden ${panel ? "absolute inset-0" : "sacred-bg fixed inset-0 -z-10 bg-page"}`}
     >
       <div
         className="absolute inset-0"

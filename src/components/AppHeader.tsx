@@ -28,6 +28,9 @@ const MEMBER_NAV: NavItem[] = [
   { href: "/history", label: "My history", short: "History", icon: History },
 ];
 
+// a name that is really an email address shows only the part before the @
+const shortName = (n: string) => (n.includes("@") ? n.split("@")[0] : n);
+
 export default function AppHeader({ user }: { user: HeaderUser }) {
   const path = usePathname();
   const router = useRouter();
@@ -110,7 +113,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
               >
                 <Avatar name={user.name} size={32} />
                 <span className="hidden text-start text-sm leading-tight sm:block">
-                  <span className="block max-w-48 truncate font-medium">{user.name}</span>
+                  <span className="block max-w-48 truncate font-medium">{shortName(user.name)}</span>
                 </span>
                 {user.role !== "member" && (
                   <span className="hidden rounded-full bg-gold/25 px-2 py-0.5 text-[11px] font-semibold text-gold-light sm:block">
@@ -129,7 +132,8 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
                   <div className="flex items-center gap-3 border-b border-line pb-3">
                     <Avatar name={user.name} size={40} />
                     <div className="min-w-0">
-                      <div className="truncate font-semibold">{user.name}</div>
+                      <div className="truncate font-semibold">{shortName(user.name)}</div>
+                      {user.name.includes("@") && <div className="truncate text-xs text-muted">{user.name}</div>}
                       <Badge tone="gold">{user.role === "super_admin" ? "Super admin" : user.role === "admin" ? "Admin" : user.role === "servant" ? "Servant" : "Member"}</Badge>
                     </div>
                   </div>

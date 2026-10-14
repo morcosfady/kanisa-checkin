@@ -185,3 +185,14 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Members list shows the photo as avatar and a note icon next to people who have a private note.
 - Tests: `node tests/e2e/members.mjs` (demo mode, 8 steps incl. axe). Not tested signed in against the live database.
 - Photos are stored in the table (about 8 KB each), fine for hundreds of members; move to Supabase Storage if the list grows large.
+
+## Attendance review fixes (2026-10-14)
+- "New this period" was counting the 20 older fake members (created recently). Data fixed (created_at set 400 days back; also in `seed_attendance_demo.sql`). Rule stays: joined inside the period, or has a New member / Visitor label.
+- Deacons show a gold "Deacon" pill instead of the dagger. Donut renamed "Came at least once" (the rate card stays "present ÷ possible").
+- KPI numbers show the real value at once and animate only on later changes.
+- Register scrolls sideways only (no vertical scroll trap), side lists only scroll inside on desktop.
+- Attendance page hides the animated lantern background and header blur (`body:has(.ledger-page)`), grain off on phones.
+- Compact list toggle (default on phones): one line per person.
+- ledger.css is now inside `@layer components` so Tailwind utilities (ps-9 etc.) win; checkboxes use native look.
+- Header shows the part before @ when the profile name is an email, with the Super admin badge.
+- Not changed: "session expired after deploy". Deploys do not touch Supabase sessions (cookies refreshed in `proxy.ts`); could not reproduce, likely the test browser's cookies.

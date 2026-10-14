@@ -44,7 +44,7 @@ export default function Heatmap({ raw, sheet, rows, onOpen }: { raw: Raw; sheet:
       {sheet.services.length === 0 ? (
         <p className="l-mute py-6 text-center text-sm">No services in this period.</p>
       ) : (
-        <div className="l-scroll max-h-[28rem] rounded-xl border border-[var(--l-line)]" tabIndex={0} aria-label="Attendance register, scrolls sideways">
+        <div className="rounded-xl border border-[var(--l-line)]" style={{ overflowX: "auto", overflowY: "hidden", touchAction: "pan-x pan-y" }} tabIndex={0} aria-label="Attendance register, scrolls sideways">
           <table className="border-separate border-spacing-0 text-xs">
             <thead>
               <tr>

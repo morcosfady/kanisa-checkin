@@ -19,6 +19,7 @@ begin
 
   -- fake members that already exist (no login) move into this church
   update members set church_id = c where user_id is null and church_id is distinct from c and email like '%@example.com';
+  update members set created_at = now() - interval '400 days' where user_id is null and email like '%@example.com' and email not like 'demo.%' and created_at > now() - interval '60 days';
 
   -- services for the last 12 weeks
   for d in select generate_series(current_date - 84, current_date, interval '1 day')::date loop

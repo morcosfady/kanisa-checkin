@@ -85,6 +85,18 @@ await page.getByRole("button", { name: "Export PDF" }).click();
 assert.equal(await page.evaluate(() => window.__printed), "report");
 ok("PDF export opens the one-page report print");
 
+// compact list
+const tall = (await page.locator("ol > li").first().boundingBox()).height;
+await page.getByRole("button", { name: "Compact" }).click();
+const short = (await page.locator("ol > li").first().boundingBox()).height;
+assert.ok(short < tall, `compact row (${short}) should be shorter than detailed (${tall})`);
+await page.getByRole("button", { name: "Compact" }).click();
+ok(`compact list: ${Math.round(short)}px per person instead of ${Math.round(tall)}px`);
+
+// no dagger sign, deacons get a badge
+assert.equal(await page.getByText("✝").count(), 0);
+ok("no dagger sign next to names");
+
 // phone width: no sideways scroll
 await page.setViewportSize({ width: 390, height: 844 });
 await page.waitForTimeout(300);

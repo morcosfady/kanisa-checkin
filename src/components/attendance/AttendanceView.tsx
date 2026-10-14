@@ -189,7 +189,7 @@ export default function AttendanceView({ raw, period, periodKey, today, church, 
             <Summary sheet={sheet} periodLabel={period.label} serviceName={service || undefined} onFollowup={() => { setFilter({ ...DEFAULT_FILTER, tier: "followup" }); document.getElementById("who-h")?.scrollIntoView({ behavior: "smooth" }); }} />
             <Charts sheet={sheet} onTier={(t) => { setFilter({ ...DEFAULT_FILTER, tier: t }); document.getElementById("who-h")?.scrollIntoView({ behavior: "smooth" }); }} />
             <Heatmap raw={grouped} sheet={sheet} rows={rows} onOpen={(r) => setOpen(r.id)} />
-            <div className="grid gap-6 xl:grid-cols-[1fr_22rem]">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
               <RankedList
                 rows={rows} total={sheet.rows.length} filter={filter} setFilter={setFilter} tierCounts={tierCounts} defs={defs} today={today} canEdit={canEdit}
                 selected={selected} setSelected={setSelected} onOpen={(r) => setOpen(r.id)} actions={actions} labelCounts={labelCounts}

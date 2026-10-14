@@ -1,8 +1,22 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { animate, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUp, Bell, Gauge, Heart, Minus, Users } from "lucide-react";
-import { CountUp } from "@/components/ui";
 import { summaryText, trend, type Sheet } from "@/lib/attendance/calc";
+
+// shows the real number straight away; only animates when it changes later (filters, period)
+function Num({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const reduce = useReducedMotion();
+  const [n, setN] = useState(value);
+  const prev = useRef(value);
+  useEffect(() => {
+    if (reduce || prev.current === value) { prev.current = value; return; }
+    const c = animate(prev.current, value, { duration: 0.4, ease: "easeOut", onUpdate: (v) => setN(Math.round(v)), onComplete: () => setN(value) });
+    prev.current = value;
+    return () => c.stop();
+  }, [value, reduce]);
+  return <span className="num">{reduce ? value : n}{suffix}</span>;
+}
 
 function Tile({ label, value, suffix, icon: Icon, tone, delta, onClick, hint }: {
   label: string; value: number; suffix?: string; icon: typeof Users; tone?: string; delta?: { dir: "up" | "down" | "flat" | "none"; pct: number; goodWhenDown?: boolean }; onClick?: () => void; hint?: string;
@@ -12,7 +26,7 @@ function Tile({ label, value, suffix, icon: Icon, tone, delta, onClick, hint }: 
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl" style={{ background: `color-mix(in srgb, ${tone ?? "var(--l-gold)"} 16%, var(--l-card))`, color: tone ?? "var(--l-goldtext)" }}><Icon size={20} strokeWidth={1.75} /></span>
       <span className="min-w-0 flex-1 text-start">
         <span className="l-mute block text-sm">{label}</span>
-        <span className="l-h block text-3xl leading-tight" style={tone ? { color: tone } : undefined}><CountUp value={value} suffix={suffix} /></span>
+        <span className="l-h block text-3xl leading-tight" style={tone ? { color: tone } : undefined}><Num value={value} suffix={suffix} /></span>
         {hint && <span className="l-mute block text-xs">{hint}</span>}
       </span>
       {delta && delta.dir !== "none" && (

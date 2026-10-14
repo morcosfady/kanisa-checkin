@@ -1,7 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
-import { Medal, Search, Tags } from "lucide-react";
+import { Medal, Rows3, Search, Tags } from "lucide-react";
 import { SORTS, TIERS, TIER_LABEL, lastSeenText, pct, type LabelDef, type Row, type SortKey, type Tier } from "@/lib/attendance/calc";
 import { AddLabel, type LabelActions } from "./Labels";
 import { LAvatar, LabelPill, TierBadge, TIER_COLOR } from "./ledger-ui";
@@ -20,6 +20,10 @@ export function applyFilter(rows: Row[], f: Filter): Row[] {
 
 const MEDAL = ["#C9A24A", "#9AA3B2", "#B07A4A"];
 const PAGE = 25;
+// phones start in the compact list (one line per person)
+const phoneQuery = "(max-width: 640px)";
+const subPhone = (cb: () => void) => { const m = window.matchMedia(phoneQuery); m.addEventListener("change", cb); return () => m.removeEventListener("change", cb); };
+const isPhoneNow = () => window.matchMedia(phoneQuery).matches;
 const COLS = "grid items-start gap-x-3 grid-cols-[1.25rem_2rem_minmax(0,1fr)] md:grid-cols-[1.25rem_2rem_minmax(0,1fr)_9rem_8rem_7rem]";
 
 function Spark({ dots }: { dots: (boolean | null)[] }) {
@@ -45,6 +49,9 @@ export default function RankedList({
   selected: Set<string>; setSelected: (s: Set<string>) => void; onOpen: (r: Row) => void; actions: LabelActions; labelCounts: Map<string, number>;
 }) {
   const [shown, setShown] = useState(PAGE);
+  const phone = useSyncExternalStore(subPhone, isPhoneNow, () => false);
+  const [pref, setPref] = useState<boolean | null>(null);
+  const compact = pref ?? phone;
   const visible = rows.slice(0, shown);
   const allOn = visible.length > 0 && visible.every((r) => selected.has(r.id));
   const usedLabels = useMemo(() => defs.filter((d) => d.active && (labelCounts.get(d.id) ?? 0) > 0), [defs, labelCounts]);
@@ -56,7 +63,7 @@ export default function RankedList({
   ];
 
   return (
-    <section aria-labelledby="who-h" className="l-card p-4">
+    <section aria-labelledby="who-h" className="l-card min-w-0 p-4">
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <h2 id="who-h" className="l-h me-auto text-lg">Who attends</h2>
         <label className="relative">
@@ -64,6 +71,7 @@ export default function RankedList({
           <Search size={16} className="l-mute pointer-events-none absolute start-3 top-1/2 -translate-y-1/2" />
           <input value={filter.q} onChange={(e) => set({ q: e.target.value })} placeholder="Search name or family" className="l-input ps-9" />
         </label>
+        <button type="button" aria-pressed={compact} onClick={() => setPref(!compact)} className="l-chip"><Rows3 size={14} /> Compact</button>
         <label>
           <span className="sr-only">Sort by</span>
           <select value={filter.sort} onChange={(e) => set({ sort: e.target.value as SortKey })} className="l-select">
@@ -105,7 +113,7 @@ export default function RankedList({
         <p className="l-mute py-10 text-center">Nobody matches these filters.</p>
       ) : (
         <>
-          <div className={`${COLS} l-mute hidden px-2 pb-1 text-xs font-semibold uppercase tracking-wide md:grid`}>
+          <div className={`${COLS} l-mute hidden px-2 pb-1 text-xs font-semibold uppercase tracking-wide ${compact ? "" : "md:grid"}`}>
             {canEdit ? (
               <input type="checkbox" aria-label="Select all shown" checked={allOn} onChange={() => setSelected(allOn ? new Set() : new Set([...selected, ...visible.map((r) => r.id)]))} />
             ) : <span />}
@@ -115,6 +123,16 @@ export default function RankedList({
             {visible.map((r, i) => (
               <motion.li key={r.id} initial={i < 15 ? { opacity: 0, y: 6 } : false} animate={{ opacity: 1, y: 0 }} transition={{ delay: i < 15 ? i * 0.02 : 0 }}
                 className="l-row cursor-pointer px-2 py-3" onClick={() => onOpen(r)}>
+                {compact ? (
+                  <div className="flex items-center gap-2">
+                    {canEdit && <input type="checkbox" aria-label={`Select ${r.name}`} checked={selected.has(r.id)} onClick={(e) => e.stopPropagation()} onChange={() => toggle(r.id)} />}
+                    <span className="w-6 shrink-0 text-center text-xs font-bold" aria-label={`Rank ${r.rank}`}>{r.rank <= 3 && r.present > 0 ? <Medal size={16} style={{ color: MEDAL[r.rank - 1] }} /> : r.rank}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm font-semibold">{r.name}</span>
+                    {r.deacon && <span className="l-pill" style={{ ["--pill" as string]: "#B8892E" }}>Deacon</span>}
+                    <TierBadge tier={r.tier} />
+                    <span className="w-10 shrink-0 text-end text-xs font-bold">{pct(r.rate)}</span>
+                  </div>
+                ) : (
                 <div className={`${COLS} gap-y-2`}>
                   {canEdit ? <input type="checkbox" aria-label={`Select ${r.name}`} checked={selected.has(r.id)} onClick={(e) => e.stopPropagation()} onChange={() => toggle(r.id)} /> : <span />}
                   <span className="grid place-items-center text-sm font-bold" aria-label={`Rank ${r.rank}`}>
@@ -123,9 +141,9 @@ export default function RankedList({
                   <div className="flex min-w-0 items-center gap-3">
                     <LAvatar name={r.name} gender={r.gender} size={38} />
                     <div className="min-w-0">
-                      <div className="truncate font-semibold">{r.name} {r.deacon && <span title="Deacon" aria-label="Deacon">✝</span>}</div>
+                      <div className="truncate font-semibold">{r.name}</div>
                       <div className="l-mute truncate text-xs">{r.family || "—"}</div>
-                      <div className="mt-1"><TierBadge tier={r.tier} /></div>
+                      <div className="mt-1 flex flex-wrap items-center gap-1"><TierBadge tier={r.tier} />{r.deacon && <span className="l-pill" style={{ ["--pill" as string]: "#B8892E" }}>Deacon</span>}</div>
                     </div>
                   </div>
                   <div className="col-span-3 md:col-span-1">
@@ -142,7 +160,8 @@ export default function RankedList({
                     <div className="l-mute">{r.present === 0 ? "—" : r.avgLate > 0 ? `+${r.avgLate} min late` : "On time"}</div>
                   </div>
                 </div>
-                <div className="mt-2 flex flex-wrap items-center gap-1.5 md:ps-[4.5rem]" onClick={(e) => e.stopPropagation()}>
+                )}
+                <div className={`mt-2 flex flex-wrap items-center gap-1.5 ${compact ? "ps-8" : "md:ps-[4.5rem]"}`} onClick={(e) => e.stopPropagation()}>
                   {r.labels.map(({ ml, def }) => <LabelPill key={ml.id} def={def} ml={ml} onRemove={canEdit ? () => actions.remove(r.id, def.id) : undefined} />)}
                   {canEdit && <AddLabel compact defs={defs} label="Label" onAdd={(id, note, until) => actions.add([r.id], id, note, until)} />}
                 </div>

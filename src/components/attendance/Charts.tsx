@@ -20,7 +20,7 @@ function ChartCard({ title, summary, columns, rows, children, className = "" }: 
       </figcaption>
       <p className="sr-only">{summary}</p>
       {table ? (
-        <div className="l-scroll max-h-64">
+        <div className="l-scroll md:max-h-64">
           <table className="w-full text-sm">
             <thead><tr>{columns.map((c) => <th key={c} className="l-mute py-1 pe-3 text-start text-xs font-semibold">{c}</th>)}</tr></thead>
             <tbody>{rows.map((r, i) => <tr key={i} className="l-row">{r.map((v, j) => <td key={j} className="py-1 pe-3">{v}</td>)}</tr>)}</tbody>
@@ -37,7 +37,7 @@ export function Charts({ sheet, onTier }: { sheet: Sheet; onTier: (t: Tier) => v
   const anim = !useReducedMotion();
   const t = sheet.totals;
   const notYet = Math.max(0, t.members - t.attendedAtLeastOnce);
-  const donut = [{ name: "Attended", value: t.attendedAtLeastOnce, color: "var(--t-faithful)" }, { name: "Did not attend", value: notYet, color: "var(--t-absent)" }];
+  const donut = [{ name: "Came at least once", value: t.attendedAtLeastOnce, color: "var(--t-faithful)" }, { name: "Did not attend", value: notYet, color: "var(--t-absent)" }];
   const pctAtt = t.members ? Math.round((t.attendedAtLeastOnce / t.members) * 100) : 0;
   const trendData = sheet.perService.map((p) => ({ label: md(p.date), name: p.name, count: p.count, prev: p.prevCount, avg: Math.round(t.avgPerService * 10) / 10 }));
   const tierData = TIERS.map((k) => ({ key: k, name: TIER_LABEL[k], count: t.tiers[k], color: TIER_COLOR[k] }));
@@ -46,7 +46,7 @@ export function Charts({ sheet, onTier }: { sheet: Sheet; onTier: (t: Tier) => v
   return (
     <div className="space-y-4">
       <div className="grid gap-4 lg:grid-cols-3">
-        <ChartCard title="Present vs absent" summary={`${pctAtt}% of members attended at least once: ${t.attendedAtLeastOnce} attended, ${notYet} did not.`}
+        <ChartCard title="Came at least once" summary={`${pctAtt}% of members came at least once: ${t.attendedAtLeastOnce} came, ${notYet} did not.`}
           columns={["", "Members"]} rows={donut.map((d) => [d.name, d.value])}>
           <div className="relative h-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -58,7 +58,7 @@ export function Charts({ sheet, onTier }: { sheet: Sheet; onTier: (t: Tier) => v
               </PieChart>
             </ResponsiveContainer>
             <div className="pointer-events-none absolute inset-0 grid place-items-center text-center">
-              <div><div className="l-h text-3xl">{pctAtt}%</div><div className="l-mute text-xs">attended</div></div>
+              <div><div className="l-h text-3xl">{pctAtt}%</div><div className="l-mute text-xs">came at least once</div></div>
             </div>
           </div>
         </ChartCard>

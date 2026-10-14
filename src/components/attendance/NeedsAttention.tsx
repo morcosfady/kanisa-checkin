@@ -40,7 +40,7 @@ export default function NeedsAttention({ sheet, defs, today, canEdit, actions, o
     <div className="space-y-4">
       <Block title="Follow up needed" icon={BellRing} count={need.length}>
         {need.length === 0 ? empty("Nobody needs a call right now 🙏") : (
-          <ul className="max-h-[26rem] space-y-1 overflow-auto">
+          <ul className="space-y-1 md:max-h-[26rem] md:overflow-auto">
             {need.slice(0, 30).map((r) => (
               <li key={r.id} className="rounded-xl p-2 hover:bg-[var(--l-hover)]">
                 <button onClick={() => onOpen(r)} className="flex w-full items-center gap-2 text-start">
