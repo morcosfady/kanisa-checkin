@@ -243,7 +243,7 @@ export default function MembersView({ initial, cities, churches, church = null }
       ) : view === "table" ? (
         <>
         <div className="grid gap-3 lg:hidden">
-          {slice.map((m) => <MemberCard key={m.id} m={m} onOpen={setOpen} />)}
+          {slice.map((m, i) => <MemberCard key={m.id} m={m} n={cur * PAGE + i + 1} onOpen={setOpen} />)}
           <div className="flex items-center justify-between text-sm text-muted">
             <button className={b("secondary")} disabled={cur === 0} onClick={() => setPage(cur - 1)} aria-label="Previous page"><ChevronLeft size={18} /></button>
             <span className="num">{cur + 1} / {pages}</span>
@@ -255,6 +255,7 @@ export default function MembersView({ initial, cities, churches, church = null }
             <table className="w-full min-w-[820px] text-sm">
               <thead className="sticky top-0 bg-page/80 text-start text-xs uppercase tracking-wide text-muted">
                 <tr>
+                  <th className="w-12 p-3 text-center font-semibold">#</th>
                   <th className="p-3 text-start font-semibold">Member</th>
                   <th className="p-3 text-start font-semibold">Status</th>
                   <th className="p-3 text-start font-semibold">Face</th>
@@ -274,6 +275,7 @@ export default function MembersView({ initial, cities, churches, church = null }
                     onClick={() => setOpen(m)}
                     className="cursor-pointer border-t border-line transition-colors even:bg-page/40 hover:bg-hover"
                   >
+                    <td className="num w-12 p-3 text-center text-muted">{cur * PAGE + i + 1}</td>
                     <td className="p-3">
                       <div className="flex items-center gap-3">
                         <Avatar name={m.name} gender={m.gender} src={m.photo} />
@@ -327,7 +329,7 @@ export default function MembersView({ initial, cities, churches, church = null }
         </>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {rows.map((m, i) => <MemberCard key={m.id} m={m} onOpen={setOpen} delay={Math.min(i, 14) * 0.025} />)}
+          {rows.map((m, i) => <MemberCard key={m.id} m={m} n={i + 1} onOpen={setOpen} delay={Math.min(i, 14) * 0.025} />)}
         </div>
       )}
 
@@ -351,7 +353,7 @@ export default function MembersView({ initial, cities, churches, church = null }
   );
 }
 
-function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) => void; delay?: number }) {
+function MemberCard({ m, n, onOpen, delay = 0 }: { m: Member; n: number; onOpen: (m: Member) => void; delay?: number }) {
   return (
     <motion.button
       initial={{ opacity: 0, y: 8 }}
@@ -362,6 +364,7 @@ function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) =
       className={`${card} flex flex-col items-start gap-3 p-4 text-start transition-shadow hover:shadow-lift`}
     >
       <div className="flex w-full items-center gap-3">
+        <span className="num w-6 shrink-0 text-center text-xs text-muted" aria-label={`Number ${n}`}>{n}</span>
         <Avatar name={m.name} gender={m.gender} size={44} src={m.photo} />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 truncate font-semibold">{m.name}{m.hasNote && <StickyNote size={13} className="shrink-0 text-goldtext" aria-label="Has a private note" />}</div>

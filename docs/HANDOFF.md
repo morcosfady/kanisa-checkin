@@ -198,3 +198,5 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Not changed: "session expired after deploy". Deploys do not touch Supabase sessions (cookies refreshed in `proxy.ts`); could not reproduce, likely the test browser's cookies.
 
 - Attendance page now starts in the dark "ink" look (app default). The parchment look is a toggle (sun/moon button) remembered per device; localStorage key amoinee-ledger-ink ("0" = parchment).
+
+- Members list is numbered (# column; numbering continues across pages; cards show the number too).
