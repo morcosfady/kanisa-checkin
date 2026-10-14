@@ -1,4 +1,5 @@
 import { Logo } from "@/components/Logo";
+import { Link } from "@/i18n/navigation";
 import SacredBackground from "@/components/SacredBackground";
 
 // Split layout for sign in / request access
@@ -19,6 +20,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <SacredBackground light />
         <div className="rounded-[16px] bg-coptic px-5 py-3 md:hidden"><Logo size={40} /></div>
         {children}
+        <Link href="/privacy" className="text-xs text-muted underline-offset-4 hover:underline">Privacy</Link>
       </div>
     </div>
   );

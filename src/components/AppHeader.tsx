@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, CalendarCheck, Lock, LogOut, ScanFace, ShieldCheck, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, LogOut, ScanFace, ShieldCheck, Users } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -14,9 +14,8 @@ export type HeaderUser = { name: string; role: string; pending: number } | null;
 const NAV = [
   { href: "/dashboard", label: "Today", icon: CalendarCheck },
   { href: "/members", label: "Members", icon: Users },
-  { href: "/kiosk", label: "Kiosk", icon: ScanFace },
+  { href: "/kiosk", label: "Check-in Kiosk", short: "Check-in", icon: ScanFace },
   { href: "/approvals", label: "Approvals", icon: ShieldCheck, badge: true },
-  { href: "/privacy", label: "Privacy", icon: Lock },
   { href: "/reports", label: "Reports", icon: BarChart3, hidden: true }, // page not built yet
 ];
 
@@ -26,7 +25,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const items = NAV.filter((n) => !n.hidden && (user || n.href === "/privacy"));
+  const items = NAV.filter((n) => !n.hidden && user);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 6);
@@ -141,7 +140,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
           className="fixed inset-x-0 bottom-0 z-40 grid border-t border-gold/30 bg-coptic/95 pb-[env(safe-area-inset-bottom)] text-cream backdrop-blur-md md:hidden"
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         >
-          {items.map(({ href, label, icon: Icon, badge }) => (
+          {items.map(({ href, label, short, icon: Icon, badge }) => (
             <Link
               key={href}
               href={href}
@@ -156,7 +155,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
                   </span>
                 )}
               </span>
-              {label}
+              {short ?? label}
             </Link>
           ))}
         </nav>

@@ -1,5 +1,6 @@
 import AppHeader, { type HeaderUser } from "@/components/AppHeader";
 import SacredBackground from "@/components/SacredBackground";
+import { Link } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseServer } from "@/lib/supabase/server";
 
@@ -25,6 +26,9 @@ export default async function Shell({ children }: { children: React.ReactNode })
       <SacredBackground />
       <AppHeader user={user} />
       <main className="mx-auto max-w-[1280px] px-4 py-6 sm:px-6 sm:py-8">{children}</main>
+      <footer className="mx-auto max-w-[1280px] px-4 pb-6 text-center text-xs text-muted sm:px-6">
+        <Link href="/privacy" className="underline-offset-4 hover:underline">Privacy</Link>
+      </footer>
     </div>
   );
 }
