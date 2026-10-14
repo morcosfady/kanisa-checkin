@@ -60,3 +60,12 @@
 - Tested: tsc, lint (0 errors), demo-mode browser test (add with new family, validation message for missing guardian signature, new member found by search, 0 console errors).
 - NOT tested: saving against the real Supabase project (needs a signed-in session; try it on the live site), edit and withdraw against real data.
 - Open: face enrollment (Enroll face is still a toast), manual check-in is still a toast, attendance stats are empty until attendance exists, Today and Kiosk still use demo data.
+
+## Two access levels: admin and regular user
+- Roles: super_admin (Abouna, sees everything), servant (staff, unused in UI), member (regular user). New sign-ups are members; the first user ever is the admin. Admin chooses Regular user or Admin when approving on /approvals.
+- DB (migrations 0007a enums, 0007b portal; both run in Supabase): profiles.role member, attendance method self, members.user_id, is_staff() now excludes members, policies so members read only their own member row, own attendance, own family, and services. RPCs: upsert_my_profile (find or create family by name, create or update own member row, consent and audit log), check_in_self (open service, no duplicates, late minutes). fady.ashraaf@gmail.com was switched to member for testing.
+- Regular user pages (src/app/[locale]/(member)): /check-in (I am here button), /profile (create/edit own profile + optional face consent), /history (own check-ins only, even for admins). Member menu shows Check in, My profile, My history; they cannot open admin pages (admin layout redirects to /check-in). /home redirects by role after sign in.
+- Admin Today is now real: starts/ends a service (services row, is_active), shows check-ins with how each person checked in (kiosk face, self, QR, manual), manual check-in for people not here yet, expected/late stats. Demo mode keeps the fake live feed.
+- Tested: tsc, lint (0 errors), demo-mode browser test of check-in, profile, history, Today (0 console errors), DB verification of functions and roles.
+- NOT tested: the regular-user flow against real Supabase with a real member login (needs a sign-in as fady.ashraaf@gmail.com), start service + self check-in + admin feed end to end, approve with role select.
+- Open: face enrollment, real kiosk matching (kiosk page still demo), reports, email approver (Apps Script mailer under heavenlyvisions25), seed attendance history.
