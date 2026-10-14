@@ -1,4 +1,4 @@
-The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.
+And the Attendance Sheet gives Abouna a clear summary. How many came, who is faithful, who is drifting, and who hasn't come in weeks, ranked from most to least. A beautiful register shows every person at every service, at a glance.
 
 عربي:
-تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة.
+وتعطي صفحة الحضور أبونا ملخصًا واضحًا. كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ أسابيع، مرتّبين من الأكثر إلى الأقل. وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة.

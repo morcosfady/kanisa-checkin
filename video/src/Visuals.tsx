@@ -37,14 +37,15 @@ export const Photo: React.FC<{ file: string; dur: number; label: string; hasFile
   const scale = 1.03 + p * 0.08;
   const dx = (random(file) - 0.5) * 40 * p;
   if (!hasFile) {
+    // no picture yet: an elegant title card instead of an empty frame
     return (
-      <AbsoluteFill style={{ background: `linear-gradient(135deg, #4a1520, ${C.dark})`, alignItems: "center", justifyContent: "center", transform: `scale(${scale})` }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 70% 30%, rgba(201,162,74,.22), transparent 55%)" }} />
-        <div style={{ textAlign: "center", color: C.cream, fontFamily: FONT.body, maxWidth: vertical ? 800 : 1300, padding: 40 }}>
-          <div style={{ fontFamily: FONT.title, fontSize: vertical ? 56 : 64, color: "#e6cf8f", marginBottom: 20 }}>Animated illustration goes here</div>
-          <div style={{ fontSize: vertical ? 30 : 32, lineHeight: 1.4, opacity: 0.85 }}>{label}</div>
-          <div style={{ marginTop: 24, fontSize: 24, opacity: 0.5 }}>{file}</div>
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 60% 30%, #6a2430 0%, ${C.dark} 70%)`, alignItems: "center", justifyContent: "center", transform: `scale(${scale})` }}>
+        <Particles n={22} seed={file} />
+        <div style={{ textAlign: "center", color: C.cream, maxWidth: vertical ? 900 : 1300, padding: 40 }}>
+          <div style={{ width: 90, height: 3, background: C.gold, margin: "0 auto 36px", borderRadius: 2 }} />
+          <div style={{ fontFamily: FONT.title, fontSize: vertical ? 78 : 84, lineHeight: 1.12 }}>{label}</div>
         </div>
+        <div style={{ position: "absolute", right: 24, bottom: 18, fontFamily: FONT.body, fontSize: 18, color: "rgba(255,255,255,.28)" }}>{file}</div>
       </AbsoluteFill>
     );
   }
@@ -110,7 +111,10 @@ export const LowerThird: React.FC<{ text: string; vertical?: boolean; top?: bool
   );
 };
 
-export const Subtitle: React.FC<{ cues: { lang: string; start: number; end: number; text: string }[]; vertical?: boolean }> = ({ cues, vertical }) => {
+type Cue = { lang: string; start: number; end: number; text: string; words?: { t: string; start: number; end: number }[] };
+
+// English subtitles; the word being spoken lights up in gold
+export const Subtitle: React.FC<{ cues: Cue[]; vertical?: boolean }> = ({ cues, vertical }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = f / fps;
@@ -118,7 +122,17 @@ export const Subtitle: React.FC<{ cues: { lang: string; start: number; end: numb
   if (!c) return null;
   return (
     <div style={{ position: "absolute", left: 0, right: 0, bottom: vertical ? 220 : 56, display: "flex", justifyContent: "center", padding: "0 80px" }}>
-      <div style={{ background: "rgba(14,4,7,.72)", color: "#fff", fontFamily: FONT.body, fontWeight: 600, fontSize: vertical ? 46 : 40, lineHeight: 1.3, padding: "10px 28px", borderRadius: 14, textAlign: "center", maxWidth: vertical ? 960 : 1500, boxShadow: "0 8px 30px rgba(0,0,0,.35)" }}>{c.text}</div>
+      <div style={{ background: "rgba(14,4,7,.78)", fontFamily: FONT.body, fontWeight: 600, fontSize: vertical ? 46 : 40, lineHeight: 1.3, padding: "10px 28px", borderRadius: 14, textAlign: "center", maxWidth: vertical ? 960 : 1500, boxShadow: "0 8px 30px rgba(0,0,0,.35)" }}>
+        {c.words
+          ? c.words.map((w, i) => {
+              const now = t >= w.start && t < w.end + 0.06;
+              const done = t >= w.end;
+              return (
+                <span key={i} style={{ color: now ? "#2a0b10" : done ? "#ffffff" : "rgba(255,255,255,.55)", background: now ? C.gold : "transparent", borderRadius: 8, padding: "0 7px", margin: "0 -1px", boxShadow: now ? "0 0 18px rgba(201,162,74,.65)" : "none", display: "inline-block", transition: "none" }}>{w.t}</span>
+              );
+            })
+          : <span style={{ color: "#fff" }}>{c.text}</span>}
+      </div>
     </div>
   );
 };

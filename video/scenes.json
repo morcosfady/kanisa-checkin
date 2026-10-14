@@ -1,13 +1,12 @@
 [
   {
-    "id": "a1",
+    "id": "a2",
     "part": "A",
-    "title": "A Sunday morning",
+    "title": "So many faces",
     "visual": {
       "type": "image",
-      "file": "a1-liturgy.png",
-      "clip": "a1-liturgy.mp4",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. Morning light streaming into a Coptic Orthodox church, families in their Sunday best walking through the open doors toward wooden pews, incense haze, icons and a carved wooden iconostasis in the background, warm golden tones, 16:9, no text inside the image, no logos"
+      "file": "a2-entrance.png",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
     },
     "onScreen": "Every Sunday, more families come",
     "sentences": [
@@ -18,20 +17,7 @@
       {
         "en": "Every Sunday, more families fill the church.",
         "ar": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
-      }
-    ]
-  },
-  {
-    "id": "a2",
-    "part": "A",
-    "title": "So many faces",
-    "visual": {
-      "type": "image",
-      "file": "a2-entrance.png",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
-    },
-    "onScreen": "Who came? Who is missing?",
-    "sentences": [
+      },
       {
         "en": "But with so many faces, it becomes almost impossible to know who came, who is missing, and who quietly drifted away.",
         "ar": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب، ومن ابتعد بهدوء."
@@ -244,7 +230,7 @@
     "id": "c3",
     "part": "C",
     "title": "The Attendance Sheet",
-    "minDur": 27,
+    "minDur": 30,
     "visual": {
       "type": "screen",
       "mockup": "laptop",

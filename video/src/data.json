@@ -1,6 +1,6 @@
 {
  "fps": 30,
- "total": 174.35619047619048,
+ "total": 172.15,
  "aiUsed": false,
  "have": [],
  "marks": {
@@ -209,14 +209,13 @@
  },
  "scenes": [
   {
-   "id": "a1",
+   "id": "a2",
    "part": "A",
-   "title": "A Sunday morning",
+   "title": "So many faces",
    "visual": {
     "type": "image",
-    "file": "a1-liturgy.png",
-    "clip": "a1-liturgy.mp4",
-    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. Morning light streaming into a Coptic Orthodox church, families in their Sunday best walking through the open doors toward wooden pews, incense haze, icons and a carved wooden iconostasis in the background, warm golden tones, 16:9, no text inside the image, no logos"
+    "file": "a2-entrance.png",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
    },
    "onScreen": "Every Sunday, more families come",
    "sentences": [
@@ -227,82 +226,241 @@
     {
      "en": "Every Sunday, more families fill the church.",
      "ar": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
-    }
-   ],
-   "start": 0,
-   "dur": 7.938503401360544,
-   "audio": "a1.wav",
-   "audioDur": 6.938503401360544,
-   "cues": [
-    {
-     "lang": "en",
-     "start": 0.5,
-     "end": 3.5740204942736584,
-     "text": "Thank God, His people keep growing."
     },
-    {
-     "lang": "ar",
-     "start": 0.5,
-     "end": 3.5740204942736584,
-     "text": "الحمد لله، شعبه في ازدياد."
-    },
-    {
-     "lang": "en",
-     "start": 3.5740204942736584,
-     "end": 7.438503401360544,
-     "text": "Every Sunday, more families fill the church."
-    },
-    {
-     "lang": "ar",
-     "start": 3.5740204942736584,
-     "end": 7.438503401360544,
-     "text": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
-    }
-   ]
-  },
-  {
-   "id": "a2",
-   "part": "A",
-   "title": "So many faces",
-   "visual": {
-    "type": "image",
-    "file": "a2-entrance.png",
-    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
-   },
-   "onScreen": "Who came? Who is missing?",
-   "sentences": [
     {
      "en": "But with so many faces, it becomes almost impossible to know who came, who is missing, and who quietly drifted away.",
      "ar": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب، ومن ابتعد بهدوء."
     }
    ],
-   "start": 7.538503401360543,
-   "dur": 9.463219954648526,
-   "audio": "a2.wav",
-   "audioDur": 8.463219954648526,
+   "start": 0,
+   "dur": 16.310000000000002,
+   "audio": "a2.mp3",
+   "audioDur": 15.31,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 5.2099658878043975,
-     "text": "But with so many faces, it becomes almost impossible to know who"
+     "start": 0.699458,
+     "end": 3.465416,
+     "text": "Thank God, His people keep growing.",
+     "words": [
+      {
+       "t": "Thank",
+       "start": 0.699458,
+       "end": 0.925541
+      },
+      {
+       "t": "God,",
+       "start": 0.925541,
+       "end": 1.351082
+      },
+      {
+       "t": "His",
+       "start": 1.75,
+       "end": 1.856375
+      },
+      {
+       "t": "people",
+       "start": 1.856375,
+       "end": 2.2154160000000003
+      },
+      {
+       "t": "keep",
+       "start": 2.228708,
+       "end": 2.547874
+      },
+      {
+       "t": "growing.",
+       "start": 2.547875,
+       "end": 3.026583
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 5.2099658878043975,
-     "end": 8.963219954648526,
-     "text": "came, who is missing, and who quietly drifted away."
+     "start": 3.465416,
+     "end": 6.789875,
+     "text": "Every Sunday, more families fill the church.",
+     "words": [
+      {
+       "t": "Every",
+       "start": 3.465416,
+       "end": 3.678166
+      },
+      {
+       "t": "Sunday,",
+       "start": 3.6915,
+       "end": 4.25
+      },
+      {
+       "t": "more",
+       "start": 4.742041,
+       "end": 4.928207
+      },
+      {
+       "t": "families",
+       "start": 4.9415,
+       "end": 5.473416
+      },
+      {
+       "t": "fill",
+       "start": 5.486708,
+       "end": 5.659583
+      },
+      {
+       "t": "the",
+       "start": 5.672875,
+       "end": 5.752666
+      },
+      {
+       "t": "church.",
+       "start": 5.765958,
+       "end": 6.351083
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 6.789875,
+     "end": 10.952125,
+     "text": "But with so many faces, it becomes almost impossible to know",
+     "words": [
+      {
+       "t": "But",
+       "start": 6.789875,
+       "end": 6.869666
+      },
+      {
+       "t": "with",
+       "start": 6.869666,
+       "end": 7.042541
+      },
+      {
+       "t": "so",
+       "start": 7.042541,
+       "end": 7.414874
+      },
+      {
+       "t": "many",
+       "start": 7.428208,
+       "end": 7.640958
+      },
+      {
+       "t": "faces,",
+       "start": 7.640958,
+       "end": 8.398916
+      },
+      {
+       "t": "it",
+       "start": 8.678208,
+       "end": 8.771291
+      },
+      {
+       "t": "becomes",
+       "start": 8.771291,
+       "end": 9.196832
+      },
+      {
+       "t": "almost",
+       "start": 9.210125,
+       "end": 9.59575
+      },
+      {
+       "t": "impossible",
+       "start": 9.59575,
+       "end": 10.340416
+      },
+      {
+       "t": "to",
+       "start": 10.340416,
+       "end": 10.433499
+      },
+      {
+       "t": "know",
+       "start": 10.4335,
+       "end": 10.872333
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 10.952125,
+     "end": 15.820249,
+     "text": "who came, who is missing, and who quietly drifted away.",
+     "words": [
+      {
+       "t": "who",
+       "start": 10.952125,
+       "end": 11.151583
+      },
+      {
+       "t": "came,",
+       "start": 11.151583,
+       "end": 11.670208
+      },
+      {
+       "t": "who",
+       "start": 12.135625,
+       "end": 12.281916
+      },
+      {
+       "t": "is",
+       "start": 12.281916,
+       "end": 12.428207
+      },
+      {
+       "t": "missing,",
+       "start": 12.428208,
+       "end": 13.053208
+      },
+      {
+       "t": "and",
+       "start": 13.492041,
+       "end": 13.611707
+      },
+      {
+       "t": "who",
+       "start": 13.625,
+       "end": 13.851083
+      },
+      {
+       "t": "quietly",
+       "start": 13.864375,
+       "end": 14.515958
+      },
+      {
+       "t": "drifted",
+       "start": 14.515958,
+       "end": 14.914874
+      },
+      {
+       "t": "away.",
+       "start": 14.928208,
+       "end": 15.420249
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 7.082504409171076,
+     "start": 0.699458,
+     "end": 3.026583,
+     "text": "الحمد لله، شعبه في ازدياد."
+    },
+    {
+     "lang": "ar",
+     "start": 3.465416,
+     "end": 6.351083,
+     "text": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
+    },
+    {
+     "lang": "ar",
+     "start": 6.789875,
+     "end": 13.502388111111111,
      "text": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب،"
     },
     {
      "lang": "ar",
-     "start": 7.082504409171076,
-     "end": 8.963219954648526,
+     "start": 13.502388111111111,
+     "end": 15.420249,
      "text": "ومن ابتعد بهدوء."
     }
    ]
@@ -327,39 +485,141 @@
      "ar": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن يفوتنا أمرهم."
     }
    ],
-   "start": 16.601723356009067,
-   "dur": 7.203492063492064,
-   "audio": "a3.wav",
-   "audioDur": 6.203492063492064,
+   "start": 15.910000000000002,
+   "dur": 6.64,
+   "audio": "a3.mp3",
+   "audioDur": 5.64,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 2.0326274509803923,
-     "text": "Paper lists get lost."
-    },
-    {
-     "lang": "ar",
-     "start": 0.5,
-     "end": 2.0326274509803923,
-     "text": "القوائم الورقية تضيع."
+     "start": 0.606375,
+     "end": 2.2952079999999997,
+     "text": "Paper lists get lost.",
+     "words": [
+      {
+       "t": "Paper",
+       "start": 0.606375,
+       "end": 0.8590409999999999
+      },
+      {
+       "t": "lists",
+       "start": 0.8590409999999999,
+       "end": 1.1382910000000002
+      },
+      {
+       "t": "get",
+       "start": 1.1382910000000002,
+       "end": 1.297874
+      },
+      {
+       "t": "lost.",
+       "start": 1.311166,
+       "end": 1.882957
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 2.0326274509803923,
-     "end": 6.703492063492064,
-     "text": "And the people who need a call the most are the easiest to miss."
+     "start": 2.2952079999999997,
+     "end": 5.15425,
+     "text": "And the people who need a call the most are the easiest to",
+     "words": [
+      {
+       "t": "And",
+       "start": 2.2952079999999997,
+       "end": 2.361708
+      },
+      {
+       "t": "the",
+       "start": 2.375,
+       "end": 2.454791
+      },
+      {
+       "t": "people",
+       "start": 2.454791,
+       "end": 2.787249
+      },
+      {
+       "t": "who",
+       "start": 2.78725,
+       "end": 2.893625
+      },
+      {
+       "t": "need",
+       "start": 2.893625,
+       "end": 3.119666
+      },
+      {
+       "t": "a",
+       "start": 3.119666,
+       "end": 3.172874
+      },
+      {
+       "t": "call",
+       "start": 3.172875,
+       "end": 3.452125
+      },
+      {
+       "t": "the",
+       "start": 3.465416,
+       "end": 3.531916
+      },
+      {
+       "t": "most",
+       "start": 3.531916,
+       "end": 4.037249
+      },
+      {
+       "t": "are",
+       "start": 4.1835,
+       "end": 4.329791
+      },
+      {
+       "t": "the",
+       "start": 4.343083,
+       "end": 4.449458
+      },
+      {
+       "t": "easiest",
+       "start": 4.542541,
+       "end": 5.087749
+      },
+      {
+       "t": "to",
+       "start": 5.08775,
+       "end": 5.15425
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 5.15425,
+     "end": 6.139375,
+     "text": "miss.",
+     "words": [
+      {
+       "t": "miss.",
+       "start": 5.15425,
+       "end": 5.739375
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 2.0326274509803923,
-     "end": 5.797204899870396,
+     "start": 0.606375,
+     "end": 1.8829569999999998,
+     "text": "القوائم الورقية تضيع."
+    },
+    {
+     "lang": "ar",
+     "start": 2.2952079999999997,
+     "end": 5.071103791044776,
      "text": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن"
     },
     {
      "lang": "ar",
-     "start": 5.797204899870396,
-     "end": 6.703492063492064,
+     "start": 5.071103791044776,
+     "end": 5.739375,
      "text": "يفوتنا أمرهم."
     }
    ]
@@ -382,45 +642,179 @@
      "ar": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن تعرف أولادها وألا تفقد واحدًا منهم."
     }
    ],
-   "start": 23.405215419501133,
-   "dur": 10.682993197278911,
-   "audio": "a4.wav",
-   "audioDur": 9.682993197278911,
+   "start": 22.150000000000002,
+   "dur": 11.01,
+   "audio": "a4.mp3",
+   "audioDur": 10.01,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 2.635954381752701,
-     "text": "That's where Amoinee comes in."
+     "start": 0.593083,
+     "end": 2.561166,
+     "text": "That's where Amoinee comes in.",
+     "words": [
+      {
+       "t": "That's",
+       "start": 0.593083,
+       "end": 0.739374
+      },
+      {
+       "t": "where",
+       "start": 0.739375,
+       "end": 0.885625
+      },
+      {
+       "t": "Amoinee",
+       "start": 0.885625,
+       "end": 1.457416
+      },
+      {
+       "t": "comes",
+       "start": 1.47075,
+       "end": 1.856375
+      },
+      {
+       "t": "in.",
+       "start": 1.856375,
+       "end": 2.1223330000000002
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 2.561166,
+     "end": 6.218083,
+     "text": "Amoinee, from the Coptic word for \"Come!\",",
+     "words": [
+      {
+       "t": "Amoinee,",
+       "start": 2.561166,
+       "end": 3.226041
+      },
+      {
+       "t": "from",
+       "start": 3.518625,
+       "end": 3.638291
+      },
+      {
+       "t": "the",
+       "start": 3.638291,
+       "end": 3.718082
+      },
+      {
+       "t": "Coptic",
+       "start": 3.718083,
+       "end": 4.130333
+      },
+      {
+       "t": "word",
+       "start": 4.130333,
+       "end": 4.489374
+      },
+      {
+       "t": "for",
+       "start": 4.502666,
+       "end": 4.994707
+      },
+      {
+       "t": "\"Come!\",",
+       "start": 5.15425,
+       "end": 5.619666
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 6.218083,
+     "end": 8.864375,
+     "text": "helps every church know its people,",
+     "words": [
+      {
+       "t": "helps",
+       "start": 6.218083,
+       "end": 6.510624
+      },
+      {
+       "t": "every",
+       "start": 6.670208,
+       "end": 7.002666
+      },
+      {
+       "t": "church",
+       "start": 7.002666,
+       "end": 7.441499
+      },
+      {
+       "t": "know",
+       "start": 7.4415,
+       "end": 7.747333
+      },
+      {
+       "t": "its",
+       "start": 7.760625,
+       "end": 7.880291
+      },
+      {
+       "t": "people,",
+       "start": 7.893625,
+       "end": 8.398958
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 8.864375,
+     "end": 10.514333,
+     "text": "and never lose one of them.",
+     "words": [
+      {
+       "t": "and",
+       "start": 8.864375,
+       "end": 9.010625
+      },
+      {
+       "t": "never",
+       "start": 9.010625,
+       "end": 9.329791
+      },
+      {
+       "t": "lose",
+       "start": 9.329791,
+       "end": 9.662249
+      },
+      {
+       "t": "one",
+       "start": 9.66225,
+       "end": 9.821791
+      },
+      {
+       "t": "of",
+       "start": 9.821791,
+       "end": 9.901582
+      },
+      {
+       "t": "them.",
+       "start": 9.901583,
+       "end": 10.114333
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 2.635954381752701,
+     "start": 0.593083,
+     "end": 2.1223330000000002,
      "text": "وهنا يأتي دور أمويني."
     },
     {
-     "lang": "en",
-     "start": 2.635954381752701,
-     "end": 7.02042455077269,
-     "text": "Amoinee, from the Coptic word for \"Come!\", helps every church"
-    },
-    {
-     "lang": "en",
-     "start": 7.02042455077269,
-     "end": 10.182993197278911,
-     "text": "know its people, and never lose one of them."
-    },
-    {
      "lang": "ar",
-     "start": 2.635954381752701,
-     "end": 7.146828156549976,
+     "start": 2.561166,
+     "end": 7.07570259770115,
      "text": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن"
     },
     {
      "lang": "ar",
-     "start": 7.146828156549976,
-     "end": 10.182993197278911,
+     "start": 7.07570259770115,
+     "end": 10.114333,
      "text": "تعرف أولادها وألا تفقد واحدًا منهم."
     }
    ]
@@ -453,63 +847,274 @@
      "ar": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
     }
    ],
-   "start": 33.688208616780045,
-   "dur": 17.02190476190476,
-   "audio": "b1.wav",
-   "audioDur": 16.02190476190476,
+   "start": 32.760000000000005,
+   "dur": 15.16,
+   "audio": "b1.mp3",
+   "audioDur": 14.16,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 4.930019749835418,
-     "text": "For members, it starts with one simple step, done only once."
+     "start": 0.646291,
+     "end": 3.465416,
+     "text": "For members, it starts with one simple step,",
+     "words": [
+      {
+       "t": "For",
+       "start": 0.646291,
+       "end": 0.726082
+      },
+      {
+       "t": "members,",
+       "start": 0.726083,
+       "end": 1.284583
+      },
+      {
+       "t": "it",
+       "start": 1.430833,
+       "end": 1.497333
+      },
+      {
+       "t": "starts",
+       "start": 1.497333,
+       "end": 1.803166
+      },
+      {
+       "t": "with",
+       "start": 1.803208,
+       "end": 1.922874
+      },
+      {
+       "t": "one",
+       "start": 1.936166,
+       "end": 2.335082
+      },
+      {
+       "t": "simple",
+       "start": 2.3351249999999997,
+       "end": 2.734041
+      },
+      {
+       "t": "step,",
+       "start": 2.734041,
+       "end": 3.186166
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 3.465416,
+     "end": 5.167541,
+     "text": "done only once.",
+     "words": [
+      {
+       "t": "done",
+       "start": 3.465416,
+       "end": 3.744666
+      },
+      {
+       "t": "only",
+       "start": 3.757958,
+       "end": 4.050499
+      },
+      {
+       "t": "once.",
+       "start": 4.050541,
+       "end": 4.742041
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 5.167541,
+     "end": 9.03725,
+     "text": "Create your profile with your name and contact details,",
+     "words": [
+      {
+       "t": "Create",
+       "start": 5.167541,
+       "end": 5.446791
+      },
+      {
+       "t": "your",
+       "start": 5.460125,
+       "end": 5.593083
+      },
+      {
+       "t": "profile",
+       "start": 5.606375,
+       "end": 6.284583
+      },
+      {
+       "t": "with",
+       "start": 6.297875,
+       "end": 6.457458
+      },
+      {
+       "t": "your",
+       "start": 6.457458,
+       "end": 6.550541
+      },
+      {
+       "t": "name",
+       "start": 6.550541,
+       "end": 6.989374
+      },
+      {
+       "t": "and",
+       "start": 7.135625,
+       "end": 7.268583
+      },
+      {
+       "t": "contact",
+       "start": 7.281916,
+       "end": 7.960124
+      },
+      {
+       "t": "details,",
+       "start": 7.960125,
+       "end": 8.651625
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 9.03725,
+     "end": 11.417541,
+     "text": "and choose whether to turn on face check-in.",
+     "words": [
+      {
+       "t": "and",
+       "start": 9.03725,
+       "end": 9.1835
+      },
+      {
+       "t": "choose",
+       "start": 9.1835,
+       "end": 9.502666
+      },
+      {
+       "t": "whether",
+       "start": 9.502666,
+       "end": 9.728749
+      },
+      {
+       "t": "to",
+       "start": 9.742041,
+       "end": 9.781916
+      },
+      {
+       "t": "turn",
+       "start": 9.781916,
+       "end": 10.034582
+      },
+      {
+       "t": "on",
+       "start": 10.034583,
+       "end": 10.194166
+      },
+      {
+       "t": "face",
+       "start": 10.207458,
+       "end": 10.513291
+      },
+      {
+       "t": "check-in.",
+       "start": 10.513291,
+       "end": 10.991999
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 11.417541,
+     "end": 14.663291000000001,
+     "text": "It's always your choice, and you can turn it off anytime.",
+     "words": [
+      {
+       "t": "It's",
+       "start": 11.417541,
+       "end": 11.523916
+      },
+      {
+       "t": "always",
+       "start": 11.53725,
+       "end": 11.922875
+      },
+      {
+       "t": "your",
+       "start": 11.922875,
+       "end": 12.042541
+      },
+      {
+       "t": "choice,",
+       "start": 12.042541,
+       "end": 12.627666
+      },
+      {
+       "t": "and",
+       "start": 12.893625,
+       "end": 13.013291
+      },
+      {
+       "t": "you",
+       "start": 13.013291,
+       "end": 13.079791
+      },
+      {
+       "t": "can",
+       "start": 13.079791,
+       "end": 13.172874
+      },
+      {
+       "t": "turn",
+       "start": 13.186166,
+       "end": 13.385624
+      },
+      {
+       "t": "it",
+       "start": 13.398916,
+       "end": 13.452124
+      },
+      {
+       "t": "off",
+       "start": 13.452125,
+       "end": 13.6915
+      },
+      {
+       "t": "anytime.",
+       "start": 13.704791,
+       "end": 14.263291
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 4.20378700396076,
+     "start": 0.646291,
+     "end": 4.070606573770492,
      "text": "بالنسبة للأعضاء، كل شيء يبدأ بخطوة بسيطة واحدة، مرة"
     },
     {
      "lang": "ar",
-     "start": 4.20378700396076,
-     "end": 4.930019749835418,
+     "start": 4.070606573770492,
+     "end": 4.742041,
      "text": "واحدة فقط."
     },
     {
-     "lang": "en",
-     "start": 4.930019749835418,
-     "end": 9.330207716843661,
-     "text": "Create your profile with your name and contact details, and"
-    },
-    {
-     "lang": "en",
-     "start": 9.330207716843661,
-     "end": 12.313385999561115,
-     "text": "choose whether to turn on face check-in."
-    },
-    {
      "lang": "ar",
-     "start": 4.930019749835418,
-     "end": 9.588572264543298,
+     "start": 5.167541,
+     "end": 8.842496642857142,
      "text": "أنشئ ملفك الشخصي بالاسم وبيانات التواصل، واختر إن كنت"
     },
     {
      "lang": "ar",
-     "start": 9.588572264543298,
-     "end": 12.313385999561115,
+     "start": 8.842496642857142,
+     "end": 10.991999,
      "text": "تريد تفعيل تسجيل الحضور بالوجه."
     },
     {
-     "lang": "en",
-     "start": 12.313385999561115,
-     "end": 16.52190476190476,
-     "text": "It's always your choice, and you can turn it off anytime."
-    },
-    {
      "lang": "ar",
-     "start": 12.313385999561115,
-     "end": 16.52190476190476,
+     "start": 11.417541,
+     "end": 14.263291,
      "text": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
     }
    ]
@@ -554,51 +1159,209 @@
      "ar": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
     }
    ],
-   "start": 50.310113378684804,
-   "dur": 11.612743764172336,
-   "audio": "b2.wav",
-   "audioDur": 10.612743764172336,
+   "start": 47.52,
+   "dur": 10.12,
+   "audio": "b2.mp3",
+   "audioDur": 9.12,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 3.633964601500556,
-     "text": "At the church door stands the Amoinee kiosk."
+     "start": 0.579791,
+     "end": 3.797875,
+     "text": "At the church door stands the Amoinee kiosk.",
+     "words": [
+      {
+       "t": "At",
+       "start": 0.579791,
+       "end": 0.659582
+      },
+      {
+       "t": "the",
+       "start": 0.672875,
+       "end": 0.7526660000000001
+      },
+      {
+       "t": "church",
+       "start": 0.7526660000000001,
+       "end": 1.0984159999999998
+      },
+      {
+       "t": "door",
+       "start": 1.0984159999999998,
+       "end": 1.484041
+      },
+      {
+       "t": "stands",
+       "start": 1.670208,
+       "end": 2.029249
+      },
+      {
+       "t": "the",
+       "start": 2.042541,
+       "end": 2.135624
+      },
+      {
+       "t": "Amoinee",
+       "start": 2.135625,
+       "end": 2.694125
+      },
+      {
+       "t": "kiosk.",
+       "start": 2.707458,
+       "end": 3.372333
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 3.797875,
+     "end": 5.765958,
+     "text": "Just look at the screen as you walk in.",
+     "words": [
+      {
+       "t": "Just",
+       "start": 3.797875,
+       "end": 3.930833
+      },
+      {
+       "t": "look",
+       "start": 3.930833,
+       "end": 4.050499
+      },
+      {
+       "t": "at",
+       "start": 4.050541,
+       "end": 4.117041
+      },
+      {
+       "t": "the",
+       "start": 4.117041,
+       "end": 4.196791
+      },
+      {
+       "t": "screen",
+       "start": 4.196791,
+       "end": 4.662207
+      },
+      {
+       "t": "as",
+       "start": 4.66225,
+       "end": 4.768625
+      },
+      {
+       "t": "you",
+       "start": 4.768625,
+       "end": 4.861708
+      },
+      {
+       "t": "walk",
+       "start": 4.861708,
+       "end": 5.180833
+      },
+      {
+       "t": "in.",
+       "start": 5.180833,
+       "end": 5.353708
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 5.765958,
+     "end": 8.0665,
+     "text": "In a second it welcomes you by name,",
+     "words": [
+      {
+       "t": "In",
+       "start": 5.765958,
+       "end": 5.832458
+      },
+      {
+       "t": "a",
+       "start": 5.832458,
+       "end": 5.885666
+      },
+      {
+       "t": "second",
+       "start": 5.898916,
+       "end": 6.390957
+      },
+      {
+       "t": "it",
+       "start": 6.40425,
+       "end": 6.523916
+      },
+      {
+       "t": "welcomes",
+       "start": 6.53725,
+       "end": 7.015958
+      },
+      {
+       "t": "you",
+       "start": 7.02925,
+       "end": 7.122333
+      },
+      {
+       "t": "by",
+       "start": 7.135625,
+       "end": 7.295208
+      },
+      {
+       "t": "name,",
+       "start": 7.3085,
+       "end": 7.773916
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 8.0665,
+     "end": 9.636707,
+     "text": "and records that you're here.",
+     "words": [
+      {
+       "t": "and",
+       "start": 8.0665,
+       "end": 8.21275
+      },
+      {
+       "t": "records",
+       "start": 8.21275,
+       "end": 8.598375
+      },
+      {
+       "t": "that",
+       "start": 8.598416,
+       "end": 8.704791
+      },
+      {
+       "t": "you're",
+       "start": 8.704791,
+       "end": 8.797874
+      },
+      {
+       "t": "here.",
+       "start": 8.811166,
+       "end": 9.236707
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 3.633964601500556,
+     "start": 0.579791,
+     "end": 3.3723330000000002,
      "text": "عند باب الكنيسة يقف جهاز أمويني."
     },
     {
-     "lang": "en",
-     "start": 3.633964601500556,
-     "end": 6.411796861921503,
-     "text": "Just look at the screen as you walk in."
-    },
-    {
      "lang": "ar",
-     "start": 3.633964601500556,
-     "end": 6.411796861921503,
+     "start": 3.797875,
+     "end": 5.353708,
      "text": "فقط انظر إلى الشاشة وأنت تدخل."
     },
     {
-     "lang": "en",
-     "start": 6.411796861921503,
-     "end": 10.751132463999197,
-     "text": "In a second it welcomes you by name, and records that you're"
-    },
-    {
-     "lang": "en",
-     "start": 10.751132463999197,
-     "end": 11.112743764172338,
-     "text": "here."
-    },
-    {
      "lang": "ar",
-     "start": 6.411796861921503,
-     "end": 11.112743764172336,
+     "start": 5.765958,
+     "end": 9.236707,
      "text": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
     }
    ]
@@ -631,57 +1394,238 @@
      "ar": "لا أحد يبقى عند الباب."
     }
    ],
-   "start": 61.52285714285714,
-   "dur": 13.547437641723356,
-   "audio": "b3.wav",
-   "audioDur": 12.547437641723356,
+   "start": 57.24,
+   "dur": 11.92,
+   "audio": "b3.mp3",
+   "audioDur": 10.92,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 3.65658808596814,
-     "text": "Prefer not to use your face? No problem."
+     "start": 0.593083,
+     "end": 2.4415,
+     "text": "Prefer not to use your face?",
+     "words": [
+      {
+       "t": "Prefer",
+       "start": 0.593083,
+       "end": 0.805833
+      },
+      {
+       "t": "not",
+       "start": 0.805833,
+       "end": 1.0452080000000001
+      },
+      {
+       "t": "to",
+       "start": 1.0452080000000001,
+       "end": 1.1249989999999999
+      },
+      {
+       "t": "use",
+       "start": 1.125,
+       "end": 1.33775
+      },
+      {
+       "t": "your",
+       "start": 1.33775,
+       "end": 1.430833
+      },
+      {
+       "t": "face?",
+       "start": 1.430833,
+       "end": 2.002624
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 2.4415,
+     "end": 3.531916,
+     "text": "No problem.",
+     "words": [
+      {
+       "t": "No",
+       "start": 2.4415,
+       "end": 2.614375
+      },
+      {
+       "t": "problem.",
+       "start": 2.614375,
+       "end": 3.106416
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 3.531916,
+     "end": 6.550541,
+     "text": "Scan the QR code on the kiosk with your phone,",
+     "words": [
+      {
+       "t": "Scan",
+       "start": 3.531916,
+       "end": 3.757957
+      },
+      {
+       "t": "the",
+       "start": 3.757958,
+       "end": 3.824458
+      },
+      {
+       "t": "QR",
+       "start": 3.83775,
+       "end": 4.25
+      },
+      {
+       "t": "code",
+       "start": 4.263291000000001,
+       "end": 4.648916
+      },
+      {
+       "t": "on",
+       "start": 4.66225,
+       "end": 4.768625
+      },
+      {
+       "t": "the",
+       "start": 4.781916,
+       "end": 4.835124
+      },
+      {
+       "t": "kiosk",
+       "start": 4.835125,
+       "end": 5.367041
+      },
+      {
+       "t": "with",
+       "start": 5.380333,
+       "end": 5.486708
+      },
+      {
+       "t": "your",
+       "start": 5.486708,
+       "end": 5.579791
+      },
+      {
+       "t": "phone,",
+       "start": 5.579791,
+       "end": 6.058499
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 6.550541,
+     "end": 8.771291,
+     "text": "or type the three-digit code of the day.",
+     "words": [
+      {
+       "t": "or",
+       "start": 6.550541,
+       "end": 6.630332
+      },
+      {
+       "t": "type",
+       "start": 6.643625,
+       "end": 6.896291
+      },
+      {
+       "t": "the",
+       "start": 6.896291,
+       "end": 7.015957
+      },
+      {
+       "t": "three-digit",
+       "start": 7.015958,
+       "end": 7.614374
+      },
+      {
+       "t": "code",
+       "start": 7.614375,
+       "end": 7.813833
+      },
+      {
+       "t": "of",
+       "start": 7.827125,
+       "end": 7.880333
+      },
+      {
+       "t": "the",
+       "start": 7.880333,
+       "end": 7.960124
+      },
+      {
+       "t": "day.",
+       "start": 7.960125,
+       "end": 8.332457999999999
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 8.771291,
+     "end": 11.418625,
+     "text": "Nobody is ever left at the door.",
+     "words": [
+      {
+       "t": "Nobody",
+       "start": 8.771291,
+       "end": 9.316499
+      },
+      {
+       "t": "is",
+       "start": 9.542541,
+       "end": 9.821791
+      },
+      {
+       "t": "ever",
+       "start": 9.821791,
+       "end": 10.087749
+      },
+      {
+       "t": "left",
+       "start": 10.08775,
+       "end": 10.4335
+      },
+      {
+       "t": "at",
+       "start": 10.4335,
+       "end": 10.486708
+      },
+      {
+       "t": "the",
+       "start": 10.486708,
+       "end": 10.566499
+      },
+      {
+       "t": "door.",
+       "start": 10.5665,
+       "end": 11.018625
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 3.65658808596814,
+     "start": 0.593083,
+     "end": 3.106416,
      "text": "لا تفضّل استخدام وجهك؟ لا مشكلة."
     },
     {
-     "lang": "en",
-     "start": 3.65658808596814,
-     "end": 8.28686235393187,
-     "text": "Scan the QR code on the kiosk with your phone, or type the"
-    },
-    {
-     "lang": "en",
-     "start": 8.28686235393187,
-     "end": 10.522167172948844,
-     "text": "three-digit code of the day."
-    },
-    {
      "lang": "ar",
-     "start": 3.65658808596814,
-     "end": 7.5692299312367135,
+     "start": 3.531916,
+     "end": 6.267708752688171,
      "text": "امسح رمز الاستجابة السريعة على الجهاز بهاتفك، أو اكتب"
     },
     {
      "lang": "ar",
-     "start": 7.5692299312367135,
-     "end": 10.522167172948844,
+     "start": 6.267708752688171,
+     "end": 8.332457999999999,
      "text": "الرمز المكوّن من ثلاثة أرقام لهذا اليوم."
     },
     {
-     "lang": "en",
-     "start": 10.522167172948844,
-     "end": 13.047437641723356,
-     "text": "Nobody is ever left at the door."
-    },
-    {
      "lang": "ar",
-     "start": 10.522167172948844,
-     "end": 13.047437641723356,
+     "start": 8.771291,
+     "end": 11.018625,
      "text": "لا أحد يبقى عند الباب."
     }
    ]
@@ -702,27 +1646,81 @@
      "ar": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
     }
    ],
-   "start": 74.67029478458049,
-   "dur": 5.938548752834467,
-   "audio": "c0.wav",
-   "audioDur": 4.938548752834467,
+   "start": 68.76,
+   "dur": 6.83,
+   "audio": "c0.mp3",
+   "audioDur": 5.83,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 5.064416271559128,
-     "text": "For Abouna and church servants, Amoinee turns attendance into"
+     "start": 0.672875,
+     "end": 5.486708,
+     "text": "For Abouna and church servants, Amoinee turns attendance into",
+     "words": [
+      {
+       "t": "For",
+       "start": 0.672875,
+       "end": 0.84575
+      },
+      {
+       "t": "Abouna",
+       "start": 0.84575,
+       "end": 1.390958
+      },
+      {
+       "t": "and",
+       "start": 1.643625,
+       "end": 1.869708
+      },
+      {
+       "t": "church",
+       "start": 2.109041,
+       "end": 2.521291
+      },
+      {
+       "t": "servants,",
+       "start": 2.534583,
+       "end": 3.186166
+      },
+      {
+       "t": "Amoinee",
+       "start": 3.598416,
+       "end": 4.156916
+      },
+      {
+       "t": "turns",
+       "start": 4.170208000000001,
+       "end": 4.502666
+      },
+      {
+       "t": "attendance",
+       "start": 4.515958,
+       "end": 5.234041
+      },
+      {
+       "t": "into",
+       "start": 5.300541,
+       "end": 5.473416
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 5.064416271559128,
-     "end": 5.438548752834466,
-     "text": "care."
+     "start": 5.486708,
+     "end": 6.338833,
+     "text": "care.",
+     "words": [
+      {
+       "t": "care.",
+       "start": 5.486708,
+       "end": 5.938833
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 5.438548752834467,
+     "start": 0.672875,
+     "end": 5.938833,
      "text": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
     }
    ]
@@ -751,57 +1749,210 @@
      "ar": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر."
     }
    ],
-   "start": 80.20884353741496,
-   "dur": 12.797641723356008,
-   "audio": "c1.wav",
-   "audioDur": 11.797641723356008,
+   "start": 75.19,
+   "dur": 12.64,
+   "audio": "c1.mp3",
+   "audioDur": 11.64,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 5.363880085135772,
-     "text": "The Today screen shows who is here, live, as the Liturgy begins,"
+     "start": 0.606375,
+     "end": 3.199458,
+     "text": "The Today screen shows who is here,",
+     "words": [
+      {
+       "t": "The",
+       "start": 0.606375,
+       "end": 0.699458
+      },
+      {
+       "t": "Today",
+       "start": 0.699458,
+       "end": 1.0452080000000001
+      },
+      {
+       "t": "screen",
+       "start": 1.0452080000000001,
+       "end": 1.577124
+      },
+      {
+       "t": "shows",
+       "start": 1.577125,
+       "end": 2.015958
+      },
+      {
+       "t": "who",
+       "start": 2.015958,
+       "end": 2.1223330000000002
+      },
+      {
+       "t": "is",
+       "start": 2.1223330000000002,
+       "end": 2.268624
+      },
+      {
+       "t": "here,",
+       "start": 2.281916,
+       "end": 2.654249
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 5.363880085135772,
-     "end": 7.187835117061686,
-     "text": "with every arrival time."
+     "start": 3.199458,
+     "end": 7.601083,
+     "text": "live, as the Liturgy begins, with every arrival time.",
+     "words": [
+      {
+       "t": "live,",
+       "start": 3.199458,
+       "end": 3.797874
+      },
+      {
+       "t": "as",
+       "start": 4.289875,
+       "end": 4.422833
+      },
+      {
+       "t": "the",
+       "start": 4.4228749999999994,
+       "end": 4.52925
+      },
+      {
+       "t": "Liturgy",
+       "start": 4.52925,
+       "end": 5.021291
+      },
+      {
+       "t": "begins,",
+       "start": 5.021291,
+       "end": 5.686166
+      },
+      {
+       "t": "with",
+       "start": 5.71275,
+       "end": 5.912208
+      },
+      {
+       "t": "every",
+       "start": 6.098416,
+       "end": 6.377666
+      },
+      {
+       "t": "arrival",
+       "start": 6.377666,
+       "end": 6.789874
+      },
+      {
+       "t": "time.",
+       "start": 6.789875,
+       "end": 7.162208
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 7.601083,
+     "end": 10.340416,
+     "text": "Weekly events open check-in on their own,",
+     "words": [
+      {
+       "t": "Weekly",
+       "start": 7.601083,
+       "end": 7.933499
+      },
+      {
+       "t": "events",
+       "start": 7.9335,
+       "end": 8.345749999999999
+      },
+      {
+       "t": "open",
+       "start": 8.452124999999999,
+       "end": 8.744666
+      },
+      {
+       "t": "check-in",
+       "start": 8.757958,
+       "end": 9.276583
+      },
+      {
+       "t": "on",
+       "start": 9.276583,
+       "end": 9.382958
+      },
+      {
+       "t": "their",
+       "start": 9.382958,
+       "end": 9.542541
+      },
+      {
+       "t": "own,",
+       "start": 9.542541,
+       "end": 9.848374
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 10.340416,
+     "end": 12.15,
+     "text": "so no one has to remember.",
+     "words": [
+      {
+       "t": "so",
+       "start": 10.340416,
+       "end": 10.473374
+      },
+      {
+       "t": "no",
+       "start": 10.473416,
+       "end": 10.726082
+      },
+      {
+       "t": "one",
+       "start": 10.739375,
+       "end": 10.84575
+      },
+      {
+       "t": "has",
+       "start": 10.84575,
+       "end": 11.085125
+      },
+      {
+       "t": "to",
+       "start": 11.098416,
+       "end": 11.191499
+      },
+      {
+       "t": "remember.",
+       "start": 11.1915,
+       "end": 11.75
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 5.953157864681067,
+     "start": 0.606375,
+     "end": 5.951900369230769,
      "text": "تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت"
     },
     {
      "lang": "ar",
-     "start": 5.953157864681067,
-     "end": 7.187835117061686,
+     "start": 5.951900369230769,
+     "end": 7.162208,
      "text": "وصول كل شخص."
     },
     {
-     "lang": "en",
-     "start": 7.187835117061686,
-     "end": 11.611249791167218,
-     "text": "Weekly events open check-in on their own, so no one has to"
-    },
-    {
-     "lang": "en",
-     "start": 11.611249791167218,
-     "end": 12.297641723356007,
-     "text": "remember."
-    },
-    {
      "lang": "ar",
-     "start": 7.187835117061686,
-     "end": 11.334924536662875,
+     "start": 7.601083,
+     "end": 10.968319985507247,
      "text": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج"
     },
     {
      "lang": "ar",
-     "start": 11.334924536662875,
-     "end": 12.297641723356008,
+     "start": 10.968319985507247,
+     "end": 11.75,
      "text": "أحد أن يتذكر."
     }
    ]
@@ -826,39 +1977,165 @@
      "ar": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
     }
    ],
-   "start": 92.60648526077097,
-   "dur": 10.067800453514739,
-   "audio": "c2.wav",
-   "audioDur": 9.067800453514739,
+   "start": 87.42999999999999,
+   "dur": 10.31,
+   "audio": "c2.mp3",
+   "audioDur": 9.31,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 4.442521936310756,
-     "text": "The Members page keeps every person in one place, with their"
+     "start": 0.619666,
+     "end": 4.023916,
+     "text": "The Members page keeps every person in one place,",
+     "words": [
+      {
+       "t": "The",
+       "start": 0.619666,
+       "end": 0.672874
+      },
+      {
+       "t": "Members",
+       "start": 0.672875,
+       "end": 1.005333
+      },
+      {
+       "t": "page",
+       "start": 1.0186250000000001,
+       "end": 1.47075
+      },
+      {
+       "t": "keeps",
+       "start": 1.47075,
+       "end": 1.843083
+      },
+      {
+       "t": "every",
+       "start": 2.002666,
+       "end": 2.321791
+      },
+      {
+       "t": "person",
+       "start": 2.321791,
+       "end": 2.800499
+      },
+      {
+       "t": "in",
+       "start": 2.800541,
+       "end": 2.920207
+      },
+      {
+       "t": "one",
+       "start": 2.9335,
+       "end": 3.14625
+      },
+      {
+       "t": "place,",
+       "start": 3.159583,
+       "end": 3.824458
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 4.442521936310756,
-     "end": 8.58216996943705,
-     "text": "photo, consent status, and private notes that only the church's"
+     "start": 4.023916,
+     "end": 7.840416,
+     "text": "with their photo, consent status, and private notes that only",
+     "words": [
+      {
+       "t": "with",
+       "start": 4.023916,
+       "end": 4.1702069999999996
+      },
+      {
+       "t": "their",
+       "start": 4.170208000000001,
+       "end": 4.303166
+      },
+      {
+       "t": "photo,",
+       "start": 4.3165,
+       "end": 4.861708
+      },
+      {
+       "t": "consent",
+       "start": 5.047875,
+       "end": 5.513291
+      },
+      {
+       "t": "status,",
+       "start": 5.513291,
+       "end": 6.178166
+      },
+      {
+       "t": "and",
+       "start": 6.430833,
+       "end": 6.550499
+      },
+      {
+       "t": "private",
+       "start": 6.550541,
+       "end": 7.015957
+      },
+      {
+       "t": "notes",
+       "start": 7.015958,
+       "end": 7.348416
+      },
+      {
+       "t": "that",
+       "start": 7.361708,
+       "end": 7.494666
+      },
+      {
+       "t": "only",
+       "start": 7.507958,
+       "end": 7.840416
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 8.58216996943705,
-     "end": 9.567800453514739,
-     "text": "admins can see."
+     "start": 7.840416,
+     "end": 9.822874,
+     "text": "the church's admins can see.",
+     "words": [
+      {
+       "t": "the",
+       "start": 7.840416,
+       "end": 7.933499
+      },
+      {
+       "t": "church's",
+       "start": 7.946791,
+       "end": 8.452124000000001
+      },
+      {
+       "t": "admins",
+       "start": 8.465416000000001,
+       "end": 8.864332
+      },
+      {
+       "t": "can",
+       "start": 8.864375,
+       "end": 8.997333
+      },
+      {
+       "t": "see.",
+       "start": 8.997333,
+       "end": 9.422874
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 5.165955573167778,
+     "start": 0.619666,
+     "end": 5.149472058252426,
      "text": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة"
     },
     {
      "lang": "ar",
-     "start": 5.165955573167778,
-     "end": 9.567800453514739,
+     "start": 5.149472058252426,
+     "end": 9.422874,
      "text": "موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
     }
    ]
@@ -867,7 +2144,7 @@
    "id": "c3",
    "part": "C",
    "title": "The Attendance Sheet",
-   "minDur": 27,
+   "minDur": 30,
    "visual": {
     "type": "screen",
     "mockup": "laptop",
@@ -892,63 +2169,278 @@
      "ar": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
     }
    ],
-   "start": 102.27428571428571,
-   "dur": 27,
-   "audio": "c3.wav",
-   "audioDur": 16.546666666666667,
+   "start": 97.33999999999999,
+   "dur": 30,
+   "audio": "c3.mp3",
+   "audioDur": 18.1,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 4.4018340611353715,
-     "text": "And the Attendance Sheet gives Abouna a clear summary."
+     "start": 0.579791,
+     "end": 4.569166,
+     "text": "And the Attendance Sheet gives Abouna a clear summary.",
+     "words": [
+      {
+       "t": "And",
+       "start": 0.579791,
+       "end": 0.646291
+      },
+      {
+       "t": "the",
+       "start": 0.659583,
+       "end": 0.739374
+      },
+      {
+       "t": "Attendance",
+       "start": 0.739375,
+       "end": 1.244666
+      },
+      {
+       "t": "Sheet",
+       "start": 1.244666,
+       "end": 1.643582
+      },
+      {
+       "t": "gives",
+       "start": 1.869666,
+       "end": 2.135624
+      },
+      {
+       "t": "Abouna",
+       "start": 2.135625,
+       "end": 2.773916
+      },
+      {
+       "t": "a",
+       "start": 3.093083,
+       "end": 3.159583
+      },
+      {
+       "t": "clear",
+       "start": 3.159583,
+       "end": 3.492041
+      },
+      {
+       "t": "summary.",
+       "start": 3.505333,
+       "end": 4.117041
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 4.569166,
+     "end": 9.010625,
+     "text": "How many came, who is faithful, who is drifting,",
+     "words": [
+      {
+       "t": "How",
+       "start": 4.569166,
+       "end": 4.702124
+      },
+      {
+       "t": "many",
+       "start": 4.702125,
+       "end": 5.007958
+      },
+      {
+       "t": "came,",
+       "start": 5.007958,
+       "end": 5.460083
+      },
+      {
+       "t": "who",
+       "start": 5.978708,
+       "end": 6.111666
+      },
+      {
+       "t": "is",
+       "start": 6.111708,
+       "end": 6.271291
+      },
+      {
+       "t": "faithful,",
+       "start": 6.271291,
+       "end": 7.055874
+      },
+      {
+       "t": "who",
+       "start": 7.454791,
+       "end": 7.587749
+      },
+      {
+       "t": "is",
+       "start": 7.58775,
+       "end": 7.747333
+      },
+      {
+       "t": "drifting,",
+       "start": 7.747333,
+       "end": 8.465416000000001
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 9.010625,
+     "end": 12.547875,
+     "text": "and who hasn't come in weeks, ranked from most to least.",
+     "words": [
+      {
+       "t": "and",
+       "start": 9.010625,
+       "end": 9.090416
+      },
+      {
+       "t": "who",
+       "start": 9.090416,
+       "end": 9.183499
+      },
+      {
+       "t": "hasn't",
+       "start": 9.1835,
+       "end": 9.582416
+      },
+      {
+       "t": "come",
+       "start": 9.582458,
+       "end": 9.742041
+      },
+      {
+       "t": "in",
+       "start": 9.742041,
+       "end": 9.861707
+      },
+      {
+       "t": "weeks,",
+       "start": 9.875,
+       "end": 10.367041
+      },
+      {
+       "t": "ranked",
+       "start": 10.792541,
+       "end": 11.124999
+      },
+      {
+       "t": "from",
+       "start": 11.125,
+       "end": 11.271291
+      },
+      {
+       "t": "most",
+       "start": 11.271291,
+       "end": 11.497332
+      },
+      {
+       "t": "to",
+       "start": 11.497333,
+       "end": 11.550541
+      },
+      {
+       "t": "least.",
+       "start": 11.550541,
+       "end": 12.135666
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 12.547875,
+     "end": 17.414875,
+     "text": "A beautiful register shows every person at every service,",
+     "words": [
+      {
+       "t": "A",
+       "start": 12.547875,
+       "end": 12.627666
+      },
+      {
+       "t": "beautiful",
+       "start": 12.640958,
+       "end": 13.265958
+      },
+      {
+       "t": "register",
+       "start": 13.265958,
+       "end": 13.930833
+      },
+      {
+       "t": "shows",
+       "start": 14.143625,
+       "end": 14.648958
+      },
+      {
+       "t": "every",
+       "start": 14.821791,
+       "end": 15.114332
+      },
+      {
+       "t": "person",
+       "start": 15.127666,
+       "end": 15.659582
+      },
+      {
+       "t": "at",
+       "start": 15.77925,
+       "end": 15.952125
+      },
+      {
+       "t": "every",
+       "start": 16.098416,
+       "end": 16.417582
+      },
+      {
+       "t": "service,",
+       "start": 16.430833,
+       "end": 17.175499
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 17.414875,
+     "end": 18.599458,
+     "text": "at a glance.",
+     "words": [
+      {
+       "t": "at",
+       "start": 17.414875,
+       "end": 17.507958
+      },
+      {
+       "t": "a",
+       "start": 17.507958,
+       "end": 17.534541
+      },
+      {
+       "t": "glance.",
+       "start": 17.534583,
+       "end": 18.199458
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 4.4018340611353715,
+     "start": 0.579791,
+     "end": 4.117041,
      "text": "وتعطي صفحة الحضور أبونا ملخصًا واضحًا."
     },
     {
-     "lang": "en",
-     "start": 4.4018340611353715,
-     "end": 8.997744373530399,
-     "text": "How many came, who is faithful, who is drifting, and who hasn't"
-    },
-    {
-     "lang": "en",
-     "start": 8.997744373530399,
-     "end": 11.988733624454147,
-     "text": "come in weeks, ranked from most to least."
-    },
-    {
      "lang": "ar",
-     "start": 4.4018340611353715,
-     "end": 8.775458515283843,
+     "start": 4.569166,
+     "end": 8.931030705882353,
      "text": "كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ"
     },
     {
      "lang": "ar",
-     "start": 8.775458515283843,
-     "end": 11.988733624454149,
+     "start": 8.931030705882353,
+     "end": 12.135666,
      "text": "أسابيع، مرتّبين من الأكثر إلى الأقل."
     },
     {
-     "lang": "en",
-     "start": 11.988733624454149,
-     "end": 16.53354302470308,
-     "text": "A beautiful register shows every person at every service, at a"
-    },
-    {
-     "lang": "en",
-     "start": 16.53354302470308,
-     "end": 17.046666666666667,
-     "text": "glance."
-    },
-    {
      "lang": "ar",
-     "start": 11.988733624454149,
-     "end": 17.046666666666667,
+     "start": 12.547875,
+     "end": 18.199458,
      "text": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
     }
    ]
@@ -981,93 +2473,347 @@
      "ar": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا الأسبوع."
     }
    ],
-   "start": 128.87428571428572,
-   "dur": 21.396507936507938,
-   "audio": "c4.wav",
-   "audioDur": 20.396507936507938,
+   "start": 126.94,
+   "dur": 21.93,
+   "audio": "c4.mp3",
+   "audioDur": 20.93,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 4.899297711136835,
-     "text": "When someone misses several Sundays, Amoinee gently marks them"
+     "start": 0.593083,
+     "end": 3.053208,
+     "text": "When someone misses several Sundays,",
+     "words": [
+      {
+       "t": "When",
+       "start": 0.593083,
+       "end": 0.712749
+      },
+      {
+       "t": "someone",
+       "start": 0.71275,
+       "end": 1.111666
+      },
+      {
+       "t": "misses",
+       "start": 1.1117080000000001,
+       "end": 1.444166
+      },
+      {
+       "t": "several",
+       "start": 1.457458,
+       "end": 1.882999
+      },
+      {
+       "t": "Sundays,",
+       "start": 1.896291,
+       "end": 2.654249
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 4.899297711136835,
-     "end": 6.2474695903561885,
-     "text": "\"Follow up needed.\""
+     "start": 3.053208,
+     "end": 7.707458,
+     "text": "Amoinee gently marks them \"Follow up needed.\" Servants add",
+     "words": [
+      {
+       "t": "Amoinee",
+       "start": 3.053208,
+       "end": 3.691499
+      },
+      {
+       "t": "gently",
+       "start": 3.930833,
+       "end": 4.303166
+      },
+      {
+       "t": "marks",
+       "start": 4.303208,
+       "end": 4.688833
+      },
+      {
+       "t": "them",
+       "start": 4.688833,
+       "end": 5.007999
+      },
+      {
+       "t": "\"Follow",
+       "start": 5.260625,
+       "end": 5.819125
+      },
+      {
+       "t": "up",
+       "start": 5.819166,
+       "end": 5.965457
+      },
+      {
+       "t": "needed.\"",
+       "start": 5.978708,
+       "end": 6.430833
+      },
+      {
+       "t": "Servants",
+       "start": 6.869666,
+       "end": 7.361707
+      },
+      {
+       "t": "add",
+       "start": 7.361708,
+       "end": 7.694166
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 7.707458,
+     "end": 11.284583,
+     "text": "labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or",
+     "words": [
+      {
+       "t": "labels",
+       "start": 7.707458,
+       "end": 8.066499
+      },
+      {
+       "t": "like",
+       "start": 8.0665,
+       "end": 8.239374999999999
+      },
+      {
+       "t": "\"Called,\"",
+       "start": 8.252666,
+       "end": 8.664916
+      },
+      {
+       "t": "\"Visited,\"",
+       "start": 8.744666,
+       "end": 9.303166
+      },
+      {
+       "t": "\"Needs",
+       "start": 9.622333,
+       "end": 10.034583
+      },
+      {
+       "t": "prayer,\"",
+       "start": 10.034583,
+       "end": 10.646291
+      },
+      {
+       "t": "or",
+       "start": 10.898916,
+       "end": 11.218082
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 11.284583,
+     "end": 14.210125,
+     "text": "\"Traveling,\" and can snooze a reminder when it's not the",
+     "words": [
+      {
+       "t": "\"Traveling,\"",
+       "start": 11.284583,
+       "end": 11.922874
+      },
+      {
+       "t": "and",
+       "start": 12.401583,
+       "end": 12.494666
+      },
+      {
+       "t": "can",
+       "start": 12.494666,
+       "end": 12.640957
+      },
+      {
+       "t": "snooze",
+       "start": 12.65425,
+       "end": 13
+      },
+      {
+       "t": "a",
+       "start": 13,
+       "end": 13.039875
+      },
+      {
+       "t": "reminder",
+       "start": 13.039875,
+       "end": 13.625
+      },
+      {
+       "t": "when",
+       "start": 13.625,
+       "end": 13.718083
+      },
+      {
+       "t": "it's",
+       "start": 13.718083,
+       "end": 13.837749
+      },
+      {
+       "t": "not",
+       "start": 13.83775,
+       "end": 14.130291
+      },
+      {
+       "t": "the",
+       "start": 14.130333,
+       "end": 14.196833
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 14.210125,
+     "end": 15.313833,
+     "text": "right time.",
+     "words": [
+      {
+       "t": "right",
+       "start": 14.210125,
+       "end": 14.489375
+      },
+      {
+       "t": "time.",
+       "start": 14.489375,
+       "end": 14.875
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 15.313833,
+     "end": 19.077125,
+     "text": "Abouna also sees who came back, who is new,",
+     "words": [
+      {
+       "t": "Abouna",
+       "start": 15.313833,
+       "end": 15.686166
+      },
+      {
+       "t": "also",
+       "start": 15.686166,
+       "end": 16.071790999999997
+      },
+      {
+       "t": "sees",
+       "start": 16.071790999999997,
+       "end": 16.444124000000002
+      },
+      {
+       "t": "who",
+       "start": 16.457458000000003,
+       "end": 16.563833
+      },
+      {
+       "t": "came",
+       "start": 16.563833,
+       "end": 16.843083
+      },
+      {
+       "t": "back,",
+       "start": 16.843083,
+       "end": 17.454791
+      },
+      {
+       "t": "who",
+       "start": 17.853708,
+       "end": 17.999999
+      },
+      {
+       "t": "is",
+       "start": 18.013291,
+       "end": 18.159582
+      },
+      {
+       "t": "new,",
+       "start": 18.172875,
+       "end": 18.5585
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 19.077125,
+     "end": 21.445207,
+     "text": "and whose birthday is this week.",
+     "words": [
+      {
+       "t": "and",
+       "start": 19.077125,
+       "end": 19.170208
+      },
+      {
+       "t": "whose",
+       "start": 19.170208,
+       "end": 19.369666
+      },
+      {
+       "t": "birthday",
+       "start": 19.382958,
+       "end": 20.101041
+      },
+      {
+       "t": "is",
+       "start": 20.313833,
+       "end": 20.446791
+      },
+      {
+       "t": "this",
+       "start": 20.446791,
+       "end": 20.646249
+      },
+      {
+       "t": "week.",
+       "start": 20.646291,
+       "end": 21.045207
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 4.941226501638873,
+     "start": 0.593083,
+     "end": 5.104071636363636,
      "text": "عندما يغيب شخص عدة آحاد، تضع أمويني عليه بلطف علامة"
     },
     {
      "lang": "ar",
-     "start": 4.941226501638873,
-     "end": 6.2474695903561885,
+     "start": 5.104071636363636,
+     "end": 6.430833,
      "text": "«يحتاج متابعة»."
     },
     {
-     "lang": "en",
-     "start": 6.2474695903561885,
-     "end": 10.80178546757755,
-     "text": "Servants add labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or"
-    },
-    {
-     "lang": "en",
-     "start": 10.80178546757755,
-     "end": 15.213778973635746,
-     "text": "\"Traveling,\" and can snooze a reminder when it's not the right"
-    },
-    {
-     "lang": "en",
-     "start": 15.213778973635746,
-     "end": 15.569584901543665,
-     "text": "time."
-    },
-    {
      "lang": "ar",
-     "start": 6.2474695903561885,
-     "end": 10.14441943355751,
+     "start": 6.869666,
+     "end": 10.216158081967214,
      "text": "ويضيف الخدام علامات مثل «تم الاتصال» و«تمت الزيارة»"
     },
     {
      "lang": "ar",
-     "start": 10.14441943355751,
-     "end": 14.117780057998074,
+     "start": 10.216158081967214,
+     "end": 13.628267655737705,
      "text": "و«يحتاج صلاة» و«مسافر»، ويمكنهم تأجيل التذكير حين لا"
     },
     {
      "lang": "ar",
-     "start": 14.117780057998074,
-     "end": 15.569584901543664,
+     "start": 13.628267655737705,
+     "end": 14.875,
      "text": "يكون الوقت مناسبًا."
     },
     {
-     "lang": "en",
-     "start": 15.569584901543664,
-     "end": 19.97317461044746,
-     "text": "Abouna also sees who came back, who is new, and whose birthday"
-    },
-    {
-     "lang": "en",
-     "start": 19.97317461044746,
-     "end": 20.896507936507934,
-     "text": "is this week."
-    },
-    {
      "lang": "ar",
-     "start": 15.569584901543664,
-     "end": 20.2306425571374,
+     "start": 15.313833,
+     "end": 20.328785250000003,
      "text": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا"
     },
     {
      "lang": "ar",
-     "start": 20.2306425571374,
-     "end": 20.896507936507934,
+     "start": 20.328785250000003,
+     "end": 21.045207,
      "text": "الأسبوع."
     }
    ]
@@ -1096,57 +2842,253 @@
      "ar": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة، والخصوصية والموافقة جزء من التصميم منذ البداية."
     }
    ],
-   "start": 149.87079365079364,
-   "dur": 15.526938775510205,
-   "audio": "c5.wav",
-   "audioDur": 14.526938775510205,
+   "start": 148.47,
+   "dur": 16.36,
+   "audio": "c5.mp3",
+   "audioDur": 15.36,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 4.796725844116316,
-     "text": "With one tap, Abouna can print a one-page report, or export"
+     "start": 0.606375,
+     "end": 4.476083,
+     "text": "With one tap, Abouna can print a one-page report,",
+     "words": [
+      {
+       "t": "With",
+       "start": 0.606375,
+       "end": 0.7526660000000001
+      },
+      {
+       "t": "one",
+       "start": 0.765958,
+       "end": 1.0452080000000001
+      },
+      {
+       "t": "tap,",
+       "start": 1.0452080000000001,
+       "end": 1.444124
+      },
+      {
+       "t": "Abouna",
+       "start": 1.922875,
+       "end": 2.3484160000000003
+      },
+      {
+       "t": "can",
+       "start": 2.3484160000000003,
+       "end": 2.494666
+      },
+      {
+       "t": "print",
+       "start": 2.494666,
+       "end": 2.760624
+      },
+      {
+       "t": "a",
+       "start": 2.760625,
+       "end": 2.813833
+      },
+      {
+       "t": "one-page",
+       "start": 2.813833,
+       "end": 3.452124
+      },
+      {
+       "t": "report,",
+       "start": 3.452125,
+       "end": 3.984041
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 4.796725844116316,
-     "end": 6.253243079409982,
-     "text": "everything to Excel."
+     "start": 4.476083,
+     "end": 6.922875,
+     "text": "or export everything to Excel.",
+     "words": [
+      {
+       "t": "or",
+       "start": 4.476083,
+       "end": 4.542541
+      },
+      {
+       "t": "export",
+       "start": 4.542541,
+       "end": 5.101041
+      },
+      {
+       "t": "everything",
+       "start": 5.28725,
+       "end": 5.752666
+      },
+      {
+       "t": "to",
+       "start": 5.765958,
+       "end": 5.885624
+      },
+      {
+       "t": "Excel.",
+       "start": 5.898916,
+       "end": 6.497332
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 6.922875,
+     "end": 9.8085,
+     "text": "Each church sees only its own people,",
+     "words": [
+      {
+       "t": "Each",
+       "start": 6.922875,
+       "end": 7.109041
+      },
+      {
+       "t": "church",
+       "start": 7.109041,
+       "end": 7.428207
+      },
+      {
+       "t": "sees",
+       "start": 7.428208,
+       "end": 8.106416
+      },
+      {
+       "t": "only",
+       "start": 8.21275,
+       "end": 8.492
+      },
+      {
+       "t": "its",
+       "start": 8.492041,
+       "end": 8.651624
+      },
+      {
+       "t": "own",
+       "start": 8.664875,
+       "end": 8.917541
+      },
+      {
+       "t": "people,",
+       "start": 8.917541,
+       "end": 9.436166
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 9.8085,
+     "end": 12.468083,
+     "text": "with access given church by church,",
+     "words": [
+      {
+       "t": "with",
+       "start": 9.8085,
+       "end": 9.994666
+      },
+      {
+       "t": "access",
+       "start": 10.061166,
+       "end": 10.686166
+      },
+      {
+       "t": "given",
+       "start": 10.699458,
+       "end": 10.991999
+      },
+      {
+       "t": "church",
+       "start": 10.992041,
+       "end": 11.390957
+      },
+      {
+       "t": "by",
+       "start": 11.390958,
+       "end": 11.563833
+      },
+      {
+       "t": "church,",
+       "start": 11.577125,
+       "end": 12.255333
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 12.468083,
+     "end": 15.860083,
+     "text": "and privacy and consent built in from the start.",
+     "words": [
+      {
+       "t": "and",
+       "start": 12.468083,
+       "end": 12.587749
+      },
+      {
+       "t": "privacy",
+       "start": 12.601083,
+       "end": 13.425541
+      },
+      {
+       "t": "and",
+       "start": 13.571791,
+       "end": 13.718082
+      },
+      {
+       "t": "consent",
+       "start": 13.718083,
+       "end": 14.396291
+      },
+      {
+       "t": "built",
+       "start": 14.396291,
+       "end": 14.662249
+      },
+      {
+       "t": "in",
+       "start": 14.675541,
+       "end": 14.795207
+      },
+      {
+       "t": "from",
+       "start": 14.795208,
+       "end": 14.941499
+      },
+      {
+       "t": "the",
+       "start": 14.9415,
+       "end": 15.007958
+      },
+      {
+       "t": "start.",
+       "start": 15.007958,
+       "end": 15.460083
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 0.5,
-     "end": 4.56562510944972,
+     "start": 0.606375,
+     "end": 4.769317946666667,
      "text": "بلمسة واحدة يستطيع أبونا طباعة تقرير من صفحة واحدة أو"
     },
     {
      "lang": "ar",
-     "start": 4.56562510944972,
-     "end": 6.253243079409982,
+     "start": 4.769317946666667,
+     "end": 6.497332,
      "text": "تصدير كل شيء إلى إكسل."
     },
     {
-     "lang": "en",
-     "start": 6.253243079409982,
-     "end": 10.748855750139022,
-     "text": "Each church sees only its own people, with access given church"
-    },
-    {
-     "lang": "en",
-     "start": 10.748855750139022,
-     "end": 15.026938775510205,
-     "text": "by church, and privacy and consent built in from the start."
-    },
-    {
      "lang": "ar",
-     "start": 6.253243079409982,
-     "end": 11.023407729716899,
+     "start": 6.922875,
+     "end": 11.56446381553398,
      "text": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة،"
     },
     {
      "lang": "ar",
-     "start": 11.023407729716899,
-     "end": 15.026938775510205,
+     "start": 11.56446381553398,
+     "end": 15.460083,
      "text": "والخصوصية والموافقة جزء من التصميم منذ البداية."
     }
    ]
@@ -1171,33 +3113,120 @@
      "ar": "أمويني. تعالوا نسجد."
     }
    ],
-   "start": 164.99773242630386,
-   "dur": 9.358458049886622,
-   "audio": "d.wav",
-   "audioDur": 8.358458049886622,
+   "start": 164.43,
+   "dur": 7.72,
+   "audio": "d.mp3",
+   "audioDur": 6.72,
    "cues": [
     {
      "lang": "en",
-     "start": 0.5,
-     "end": 6.041000280261917,
-     "text": "Because every soul matters, and no one should be forgotten."
-    },
-    {
-     "lang": "ar",
-     "start": 0.5,
-     "end": 6.041000280261917,
-     "text": "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."
+     "start": 0.606375,
+     "end": 4.875,
+     "text": "Because every soul matters, and no one should be forgotten.",
+     "words": [
+      {
+       "t": "Because",
+       "start": 0.606375,
+       "end": 1.0052910000000002
+      },
+      {
+       "t": "every",
+       "start": 1.0186250000000001,
+       "end": 1.444166
+      },
+      {
+       "t": "soul",
+       "start": 1.457458,
+       "end": 1.869666
+      },
+      {
+       "t": "matters,",
+       "start": 1.869666,
+       "end": 2.587749
+      },
+      {
+       "t": "and",
+       "start": 2.853708,
+       "end": 3.053166
+      },
+      {
+       "t": "no",
+       "start": 3.0665,
+       "end": 3.359041
+      },
+      {
+       "t": "one",
+       "start": 3.359041,
+       "end": 3.611707
+      },
+      {
+       "t": "should",
+       "start": 3.625,
+       "end": 3.797875
+      },
+      {
+       "t": "be",
+       "start": 3.797875,
+       "end": 3.90425
+      },
+      {
+       "t": "forgotten.",
+       "start": 3.90425,
+       "end": 4.449458
+      }
+     ]
     },
     {
      "lang": "en",
-     "start": 6.041000280261917,
-     "end": 8.858458049886622,
-     "text": "Amoinee. Come, let us worship."
+     "start": 4.875,
+     "end": 5.84575,
+     "text": "Amoinee.",
+     "words": [
+      {
+       "t": "Amoinee.",
+       "start": 4.875,
+       "end": 5.4335
+      }
+     ]
+    },
+    {
+     "lang": "en",
+     "start": 5.84575,
+     "end": 7.2297910000000005,
+     "text": "Come, let us worship.",
+     "words": [
+      {
+       "t": "Come,",
+       "start": 5.84575,
+       "end": 6.031916
+      },
+      {
+       "t": "let",
+       "start": 6.045208,
+       "end": 6.204791
+      },
+      {
+       "t": "us",
+       "start": 6.218083,
+       "end": 6.337749
+      },
+      {
+       "t": "worship.",
+       "start": 6.33775,
+       "end": 6.829791
+      }
+     ]
     },
     {
      "lang": "ar",
-     "start": 6.041000280261917,
-     "end": 8.858458049886622,
+     "start": 0.606375,
+     "end": 4.449458,
+     "text": "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."
+    },
+    {
+     "lang": "ar",
+     "start": 4.875,
+     "end": 6.829791,
      "text": "أمويني. تعالوا نسجد."
     }
    ]

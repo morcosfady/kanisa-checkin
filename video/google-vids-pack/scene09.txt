@@ -1,4 +1,4 @@
-The Today screen shows who is here, live, as the Liturgy begins, with every arrival time. Weekly events open check-in on their own, so no one has to remember.
+The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.
 
 عربي:
-تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت وصول كل شخص. والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر.
+تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة.

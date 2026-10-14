@@ -14,8 +14,15 @@ function wavSeconds(file) {
   while (i < b.length - 8) { const id = b.toString("ascii", i, i + 4), sz = b.readUInt32LE(i + 4); if (id === "data") return sz / byteRate; i += 8 + sz + (sz % 2); }
   return b.length / byteRate;
 }
-const audioFile = (id) => ["wav", "mp3"].map((e) => `raw/audio/${id}.${e}`).find(exists);
-const audioDur = (id) => { const f = audioFile(id); return f?.endsWith(".wav") ? wavSeconds(f) : f ? rd(f).length / 16000 : 5; };
+const audioFile = (id) => ["mp3", "wav"].map((e) => `raw/audio/${id}.${e}`).find(exists);
+import { execFileSync } from "node:child_process";
+function mp3Seconds(file) {
+  let txt = "";
+  try { execFileSync("npx", ["remotion", "ffmpeg", "-i", file], { shell: true, stdio: ["ignore", "pipe", "pipe"] }); } catch (e) { txt = String(e.stderr ?? "") + String(e.stdout ?? ""); }
+  const m = /Duration: (\d+):(\d+):([\d.]+)/.exec(txt);
+  return m ? +m[1] * 3600 + +m[2] * 60 + +m[3] : 5;
+}
+const audioDur = (id) => { const f = audioFile(id); return f?.endsWith(".wav") ? wavSeconds(f) : f ? mp3Seconds(f) : 5; };
 
 // subtitle chunks: at most ~64 characters, timed by share of characters
 function chunk(text, max = 64) {
@@ -31,18 +38,50 @@ const out = [];
 for (const s of scenes) {
   const ad = audioDur(s.id);
   const dur = Math.max(s.minDur ?? 0, ad + LEAD + TAIL);
-  const total = s.sentences.reduce((a, x) => a + x.en.length, 0);
-  let cursor = LEAD;
+  const wf = `raw/audio/${s.id}.words.json`;
+  const words = exists(wf) ? JSON.parse(fs.readFileSync(wf, "utf8")) : null;
+  const tokens = s.sentences.map((x) => x.en).join(" ").split(/\s+/);
   const cues = [];
-  for (const sen of s.sentences) {
-    const sd = (sen.en.length / total) * ad;
-    const enChunks = chunk(sen.en), arChunks = chunk(sen.ar, 56);
-    const enTotal = enChunks.reduce((a, c) => a + c.length, 0), arTotal = arChunks.reduce((a, c) => a + c.length, 0);
-    let c1 = cursor;
-    for (const c of enChunks) { const d = (c.length / enTotal) * sd; cues.push({ lang: "en", start: c1, end: c1 + d, text: c }); c1 += d; }
-    let c2 = cursor;
-    for (const c of arChunks) { const d = (c.length / arTotal) * sd; cues.push({ lang: "ar", start: c2, end: c2 + d, text: c }); c2 += d; }
-    cursor += sd;
+  if (words && words.length === tokens.length) {
+    // English: lines of whole words, each word keeps its real start and end (for the highlight)
+    let line = [], len = 0;
+    const flush = () => {
+      if (!line.length) return;
+      cues.push({ lang: "en", start: LEAD + line[0].start, end: LEAD + line[line.length - 1].end, text: line.map((w) => w.t).join(" "), words: line.map((w) => ({ t: w.t, start: LEAD + w.start, end: LEAD + w.end })) });
+      line = []; len = 0;
+    };
+    tokens.forEach((t, i) => {
+      if (len + t.length + 1 > 62 && line.length) flush();
+      line.push({ t, start: words[i].start, end: words[i].end });
+      len += t.length + 1;
+      if (/[.!?]$/.test(t)) flush();
+      else if (/[,;:]$/.test(t) && len > 34) flush();
+    });
+    flush();
+    // keep each line on screen until the next one starts
+    cues.forEach((c, i) => { if (cues[i + 1]) c.end = Math.max(c.end, Math.min(cues[i + 1].start, c.end + 0.6)); else c.end += 0.4; });
+    // Arabic: one block per sentence, timed from the spoken English sentence
+    let k = 0;
+    for (const sen of s.sentences) {
+      const n = sen.en.split(/\s+/).length;
+      const st = LEAD + words[k].start, en = LEAD + words[k + n - 1].end;
+      k += n;
+      const chunks = chunk(sen.ar, 56), tot = chunks.reduce((a2, c) => a2 + c.length, 0);
+      let cur = st;
+      for (const c of chunks) { const d = ((en - st) * c.length) / tot; cues.push({ lang: "ar", start: cur, end: cur + d, text: c }); cur += d; }
+    }
+  } else {
+    const total = s.sentences.reduce((a2, x) => a2 + x.en.length, 0);
+    let cursor = LEAD;
+    for (const sen of s.sentences) {
+      const sd = (sen.en.length / total) * ad;
+      for (const lang of ["en", "ar"]) {
+        const chunks = chunk(sen[lang], lang === "en" ? 64 : 56), tot = chunks.reduce((a2, c) => a2 + c.length, 0);
+        let c1 = cursor;
+        for (const c of chunks) { const d = (c.length / tot) * sd; cues.push({ lang, start: c1, end: c1 + d, text: c }); c1 += d; }
+      }
+      cursor += sd;
+    }
   }
   const f = audioFile(s.id);
   out.push({ ...s, start: t, dur, audio: f ? path.basename(f) : null, audioDur: ad, cues });

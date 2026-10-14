@@ -31,7 +31,7 @@ const Visual: React.FC<{ s: Scene; vertical: boolean }> = ({ s, vertical }) => {
       )}
     </>
   );
-  if (v.type === "image") return <Photo file={v.file} dur={dur} label={v.prompt} hasFile={have.has(v.file)} vertical={vertical} />;
+  if (v.type === "image") return <Photo file={v.file} dur={dur} label={s.onScreen} hasFile={have.has(v.file)} vertical={vertical} />;
   if (v.type === "logo") {
     const come = interpolate(f, [2.6 * FPS, 3.4 * FPS], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
     return (
@@ -50,7 +50,7 @@ const Visual: React.FC<{ s: Scene; vertical: boolean }> = ({ s, vertical }) => {
     const cut = Math.round(a.weight * dur * FPS);
     return (
       <>
-        <Sequence from={0} durationInFrames={cut + 10}><Photo file={a.file} dur={a.weight * dur} label={a.prompt} hasFile={have.has(a.file)} vertical={vertical} /></Sequence>
+        <Sequence from={0} durationInFrames={cut + 10}><Photo file={a.file} dur={a.weight * dur} label={s.onScreen} hasFile={have.has(a.file)} vertical={vertical} /></Sequence>
         <Sequence from={cut} durationInFrames={Math.round(dur * FPS) - cut}>
           <AbsoluteFill>{screen(b, b.weight * dur)}</AbsoluteFill>
         </Sequence>
@@ -62,7 +62,7 @@ const Visual: React.FC<{ s: Scene; vertical: boolean }> = ({ s, vertical }) => {
   const card = interpolate(f, [endAt, endAt + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <>
-      <Photo file={v.file} dur={dur} label={v.prompt} hasFile={have.has(v.file)} vertical={vertical} />
+      <Photo file={v.file} dur={dur} label={s.onScreen} hasFile={have.has(v.file)} vertical={vertical} />
       <AbsoluteFill style={{ opacity: card, background: `linear-gradient(160deg, ${C.burgundy}, ${C.dark})`, alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 40 }}>
         <Particles n={20} seed="end" />
         <LogoAnim size={vertical ? 240 : 200} delay={(endAt + 6) / FPS} />
@@ -83,7 +83,7 @@ const SceneView: React.FC<{ s: Scene; vertical: boolean; first: boolean }> = ({ 
   return (
     <AbsoluteFill style={{ opacity }}>
       <Visual s={s} vertical={vertical} />
-      {vt !== "logo" && (s.visual as any).mockup !== "phone" && <LowerThird text={s.onScreen} vertical={vertical} top={isMock && !vertical && (s.visual as any).mockup !== "phone"} />}
+      {vt !== "logo" && !((vt === "image" || vt === "outro") && !have.has((s.visual as any).file)) && (s.visual as any).mockup !== "phone" && <LowerThird text={s.onScreen} vertical={vertical} top={isMock && !vertical && (s.visual as any).mockup !== "phone"} />}
       <Subtitle cues={s.cues as any} vertical={vertical} />
     </AbsoluteFill>
   );
