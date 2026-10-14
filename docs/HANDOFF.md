@@ -124,3 +124,8 @@
 - City and Church typeahead now uses src/lib/search.ts: ignores punctuation and capitals ("st philopater" finds "St. Philopateer"), matches word starts and the city hint, tolerates one or two typos and swapped letters. 7 unit tests.
 - Note: cities are DFW only (78). A city outside DFW (e.g. Tampa) correctly shows only the "not listed: use what I typed" row.
 - Tested: DB check (no family needed, apartment optional, address still required), 25 unit tests, browser test in demo mode (suggestions for the exact typos, save without apartment, no family anywhere on profile, members and kiosk), tsc, lint 0 errors.
+
+## Fix: city and church suggestions empty for new people
+- Cause: cities_read / churches_read required an approved account, but new people fill in the profile before approval, so the lists loaded empty and only "not listed" showed. Migration 0014 (run in Supabase) lets any signed-in account read them; signed-out visitors still get an empty result (checked through the public API); only admins can edit.
+- Tested: rolled-back DB test as a brand-new unapproved account (78 cities, 7 churches, cannot insert), public API without login returns [].
+- Gotcha: when a feature moves earlier in the sign-up flow, re-check every RLS policy it reads.
