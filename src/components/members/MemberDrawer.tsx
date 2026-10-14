@@ -6,7 +6,9 @@ import { Avatar, Badge, b } from "@/components/ui";
 import type { Member } from "@/lib/members";
 import ConfirmDialog from "./ConfirmDialog";
 import { FaceIcon, rel, statusTone } from "./MembersView";
-import { withdraw } from "./RowMenu";
+import { enrollFor, withdraw } from "./RowMenu";
+import FaceEnroll from "@/components/face/FaceEnroll";
+import { ScanFace } from "lucide-react";
 
 function Row({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
   return (
@@ -43,6 +45,7 @@ function recent(m: Member) {
 export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Member; onClose: () => void; onEdit: () => void; onChanged: () => void }) {
   const [tab, setTab] = useState<(typeof TABS)[number]>("Overview");
   const [confirm, setConfirm] = useState(false);
+  const [enroll, setEnroll] = useState(false);
   const closeBtn = useRef<HTMLButtonElement>(null);
   const h = history(m);
 
@@ -144,6 +147,11 @@ export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Mem
                 <span className="ms-auto"><FaceIcon face={m.face} /></span>
               </div>
               {m.consent && (
+                <button className={`${b("secondary")} w-full`} onClick={() => setEnroll(true)}>
+                  <ScanFace size={18} strokeWidth={1.75} /> {m.face === "enrolled" ? "Re-enroll face" : "Enroll face"}
+                </button>
+              )}
+              {m.consent && (
                 <button className={`${b("danger")} w-full border border-danger/30`} onClick={() => setConfirm(true)}>
                   <ShieldOff size={18} strokeWidth={1.75} /> Withdraw consent
                 </button>
@@ -152,6 +160,7 @@ export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Mem
           )}
         </div>
       </motion.aside>
+      <FaceEnroll open={enroll} name={m.name} onClose={() => setEnroll(false)} onDone={(e) => enrollFor(m, e, () => { onChanged(); })} />
       <ConfirmDialog
         open={confirm}
         title="Withdraw face consent?"

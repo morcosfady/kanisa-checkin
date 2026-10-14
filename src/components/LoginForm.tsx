@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { b, card } from "@/components/ui";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
-export default function LoginForm() {
+export default function LoginForm({ next }: { next: string | null }) {
   const t = useTranslations("login");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -23,7 +23,7 @@ export default function LoginForm() {
     });
     setBusy(false);
     if (error) return setError(t("failed"));
-    window.location.href = "/home"; // full load so the new session cookie is used
+    window.location.href = next ?? "/home"; // full load so the new session cookie is used
   }
 
   const input = "w-full rounded-[8px] border border-line bg-page py-2.5 ps-10 pe-3 outline-none focus:border-gold";

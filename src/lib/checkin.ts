@@ -1,7 +1,7 @@
 export const METHOD_LABEL: Record<string, string> = {
   face: "Face scan at the kiosk",
-  self: "Self check-in",
-  qr: "QR code",
+  self: "3-digit code",
+  qr: "QR code at the kiosk",
   manual: "Added by an admin",
   family: "Family check-in",
 };

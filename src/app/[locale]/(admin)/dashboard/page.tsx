@@ -33,7 +33,7 @@ export default async function Dashboard() {
   const { data: att } = await db.from("attendance").select("member_id, checked_in_at, method, late_minutes").eq("service_id", svc.id);
   const [h, mm] = String(svc.start_time).split(":").map(Number);
   const service: TodayService = {
-    id: svc.id, name: svc.name_en, whenLabel: fmtService(svc.date, svc.start_time, svc.end_time), startMin: h * 60 + mm, graceMin: settings?.late_after_minutes ?? 10,
+    id: svc.id, name: svc.name_en, whenLabel: fmtService(svc.date, svc.start_time, svc.end_time), startMin: h * 60 + mm, graceMin: settings?.late_after_minutes ?? 10, code: svc.code ?? null,
   };
   const arrivals: Arrival[] = (att ?? []).map((a) => ({
     memberId: a.member_id, min: chicagoMinutes(a.checked_in_at), method: a.method, late: a.late_minutes > 0,

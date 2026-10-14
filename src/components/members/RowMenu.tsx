@@ -6,6 +6,7 @@ import type { Member } from "@/lib/members";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import ConfirmDialog from "./ConfirmDialog";
+import FaceEnroll from "@/components/face/FaceEnroll";
 
 // Deletes the face data now and logs it (database function); demo mode only shows a message
 export async function withdraw(m: Member, done: () => void) {
@@ -16,9 +17,26 @@ export async function withdraw(m: Member, done: () => void) {
   done();
 }
 
+// Saves 3 face templates for a member (needs their consent); admins only
+export async function enrollFor(m: Member, embeddings: number[][], done: () => void): Promise<boolean> {
+  if (!hasSupabase) {
+    toast.success(`${m.name}: ${embeddings.length} face templates captured (demo, not saved)`);
+    return true;
+  }
+  const { error } = await supabaseBrowser().rpc("enroll_face", { p_member: m.id, p_emb: embeddings });
+  if (error) {
+    toast.error(error.message);
+    return false;
+  }
+  toast.success(`${m.name}'s face is enrolled`);
+  done();
+  return true;
+}
+
 export default function RowMenu({ m, onView, onEdit, onChanged }: { m: Member; onView: () => void; onEdit: () => void; onChanged: () => void }) {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [enroll, setEnroll] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,12 +60,13 @@ export default function RowMenu({ m, onView, onEdit, onChanged }: { m: Member; o
           <button role="menuitem" className={item} onClick={act(onView)}><Eye size={18} strokeWidth={1.75} /> View profile</button>
           <button role="menuitem" className={item} onClick={act(onEdit)}><Pencil size={18} strokeWidth={1.75} /> Edit</button>
           <button role="menuitem" className={item} onClick={act(() => toast.success(`${m.name} checked in manually`))}><CheckCircle2 size={18} strokeWidth={1.75} /> Check in manually</button>
-          <button role="menuitem" className={item} onClick={act(() => toast(`Face enrollment for ${m.name} is coming soon`))}><ScanFace size={18} strokeWidth={1.75} /> Enroll face</button>
+          <button role="menuitem" className={item} onClick={act(() => (m.consent ? setEnroll(true) : toast.error(`${m.name} has not given face consent yet. Edit the member and sign the consent first.`)))}><ScanFace size={18} strokeWidth={1.75} /> Enroll face</button>
           {m.consent && (
             <button role="menuitem" className={`${item} text-danger`} onClick={act(() => setConfirm(true))}><ShieldOff size={18} strokeWidth={1.75} /> Withdraw consent</button>
           )}
         </div>
       )}
+      <FaceEnroll open={enroll} name={m.name} onClose={() => setEnroll(false)} onDone={(e) => enrollFor(m, e, onChanged)} />
       <ConfirmDialog
         open={confirm}
         title="Withdraw face consent?"

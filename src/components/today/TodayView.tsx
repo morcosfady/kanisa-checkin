@@ -12,7 +12,7 @@ import { supabaseBrowser } from "@/lib/supabase/client";
 
 export type TodayMember = { id: string; name: string; gender: string; deacon: boolean; status: string };
 export type Arrival = { memberId: string; min: number; method: string; late: boolean; fresh?: boolean };
-export type TodayService = { id: string | null; name: string; whenLabel: string; startMin: number; graceMin: number };
+export type TodayService = { id: string | null; name: string; whenLabel: string; startMin: number; graceMin: number; code?: string | null };
 
 const METHOD_ICON: Record<string, typeof ScanFace> = { face: ScanFace, qr: QrCode, manual: UserPlus, self: Smartphone, family: Users };
 
@@ -165,6 +165,11 @@ export default function TodayView({
             <p className="text-sm uppercase tracking-widest text-gold-light">Now serving</p>
             <h1 className="font-display text-3xl font-semibold sm:text-4xl">{service.name}</h1>
             <p className="mt-1 text-cream/80">{service.whenLabel}</p>
+            {service.code && (
+              <p className="mt-3 inline-flex items-center gap-2 rounded-[12px] bg-white/10 px-3 py-1.5 text-sm">
+                Check-in code <span className="font-display text-xl font-semibold tracking-[0.25em] num">{service.code}</span>
+              </p>
+            )}
             {!demo && service.id && (
               <button onClick={endService} className="mt-3 inline-flex items-center gap-2 rounded-[12px] border border-white/30 px-3 py-1.5 text-sm hover:bg-white/10">
                 <Square size={14} /> End service
