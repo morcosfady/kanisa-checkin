@@ -178,3 +178,10 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Not tested: signed-in run of /attendance against the real database (RPC shapes were checked in SQL). Servant role has no access (page is admin/super admin only).
 - Screenshots: `docs/screenshots/attendance/` (1440, 1280, 768, 390, ink). No "before" (the tab is new).
 - Gotchas: Playwright `waitForURL` does not see soft navigations, use `waitForFunction`. Wait for hydration before using selects in e2e. next-intl `router.push` with `?query` drops the query, the sheet uses `next/navigation` for that.
+
+## Member profile upgrade (2026-10-14)
+- Migration 0022 (LIVE): `members.photo_url` (small 192px JPEG as data URL, resized in the browser by `src/lib/photo.ts`). Uploading sets `photo_consent = true`.
+- Profile panel (`MemberDrawer`): camera button to add/change/remove the photo; quick actions (make/remove deacon, Call/Text/Email, hidden when the member has the "Do not contact" label); status buttons; labels (add/remove, same label system as Attendance); phone, email, birthday + age, class, address, church, member since; family members (tap to open); new Notes tab (private `pastoral_notes`, admins of that church only, add/delete); latest note shown on Overview; Attendance tab now uses real check-ins (the old one was pseudo data).
+- Members list shows the photo as avatar and a note icon next to people who have a private note.
+- Tests: `node tests/e2e/members.mjs` (demo mode, 8 steps incl. axe). Not tested signed in against the live database.
+- Photos are stored in the table (about 8 KB each), fine for hundreds of members; move to Supabase Storage if the list grows large.

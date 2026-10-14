@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronLeft, ChevronRight, Download, LayoutGrid, List, Plus, ScanFace, Search,
-  Upload, UserCheck, Users, UsersRound, X, Cross, Check, AlertCircle,
+  Upload, UserCheck, Users, UsersRound, X, Cross, Check, AlertCircle, StickyNote,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
@@ -11,6 +11,7 @@ import type { Member } from "@/lib/members";
 import type { ChurchRow, CityRow } from "@/lib/places";
 import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
+import { supabaseBrowser } from "@/lib/supabase/client";
 import MemberForm from "./MemberForm";
 import MemberDrawer from "./MemberDrawer";
 import RowMenu from "./RowMenu";
@@ -79,6 +80,23 @@ export default function MembersView({ initial, cities, churches, church = null }
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState<Member | null>(null);
   const search = useRef<HTMLInputElement>(null);
+
+  // quick edits from the profile panel (deacon, status, photo)
+  async function patch(m: Member, p: Partial<Member>) {
+    if (hasSupabase) {
+      const col: Record<string, unknown> = {};
+      if ("deacon" in p) col.is_deacon = p.deacon;
+      if ("status" in p) col.status = p.status;
+      if ("photo" in p) { col.photo_url = p.photo; if (p.photo) col.photo_consent = true; }
+      const { error } = await supabaseBrowser().from("members").update(col).eq("id", m.id);
+      if (error) return void toast.error(error.message);
+      router.refresh();
+    } else {
+      setEdits((e) => ({ ...e, [m.id]: { ...(e[m.id] ?? m), ...p } }));
+    }
+    setOpen((o) => (o && o.id === m.id ? { ...o, ...p } : o));
+    toast.success("Saved");
+  }
 
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
@@ -258,10 +276,11 @@ export default function MembersView({ initial, cities, churches, church = null }
                   >
                     <td className="p-3">
                       <div className="flex items-center gap-3">
-                        <Avatar name={m.name} gender={m.gender} />
+                        <Avatar name={m.name} gender={m.gender} src={m.photo} />
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 font-medium">
                             {m.name}
+                            {m.hasNote && <StickyNote size={14} className="text-goldtext" aria-label="Has a private note" />}
                             {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
                           </div>
                           <div className="text-xs text-muted">{m.church || m.city || "—"}</div>
@@ -313,7 +332,7 @@ export default function MembersView({ initial, cities, churches, church = null }
       )}
 
       <AnimatePresence>
-        {open && <MemberDrawer m={open} onClose={() => setOpen(null)} onEdit={() => { setForm({ open: true, member: open }); setOpen(null); }} onChanged={() => router.refresh()} />}
+        {open && <MemberDrawer m={open} all={all} onPatch={patch} onOpenOther={setOpen} onClose={() => setOpen(null)} onEdit={() => { setForm({ open: true, member: open }); setOpen(null); }} onChanged={() => router.refresh()} />}
       </AnimatePresence>
       <MemberForm
         open={form.open}
@@ -343,9 +362,9 @@ function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) =
       className={`${card} flex flex-col items-start gap-3 p-4 text-start transition-shadow hover:shadow-lift`}
     >
       <div className="flex w-full items-center gap-3">
-        <Avatar name={m.name} gender={m.gender} size={44} />
+        <Avatar name={m.name} gender={m.gender} size={44} src={m.photo} />
         <div className="min-w-0 flex-1">
-          <div className="truncate font-semibold">{m.name}</div>
+          <div className="flex items-center gap-1.5 truncate font-semibold">{m.name}{m.hasNote && <StickyNote size={13} className="shrink-0 text-goldtext" aria-label="Has a private note" />}</div>
           <div className="text-xs text-muted">{m.church || m.city || "—"}</div>
         </div>
         <Ring pct={m.rate ?? 0} />

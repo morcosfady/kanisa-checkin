@@ -119,6 +119,9 @@ function Inner({ member, cities, churches, defaultChurch, onClose, onSaved }: { 
       city: city.text.trim(),
       churchId: church.id,
       church: church.text.trim(),
+      photo: member?.photo ?? null,
+      joined: member?.joined ?? null,
+      hasNote: member?.hasNote ?? false,
     };
 
     if (!hasSupabase) {

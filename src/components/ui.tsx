@@ -39,7 +39,9 @@ export function initials(name: string) {
   return name.split(" ").filter(Boolean).slice(0, 2).map((p) => p[0]).join("").toUpperCase();
 }
 
-export function Avatar({ name, gender, size = 36 }: { name: string; gender?: string; size?: number }) {
+export function Avatar({ name, gender, size = 36, src }: { name: string; gender?: string; size?: number; src?: string | null }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  if (src) return <img src={src} alt="" aria-hidden width={size} height={size} className="shrink-0 rounded-full object-cover" style={{ width: size, height: size }} />;
   const tone = gender === "male" ? "bg-info-tint text-info" : gender === "female" ? "bg-[#f7dfe4] text-[#9a2f4b] dark:bg-[#4a2230] dark:text-[#f2b8c6]" : "bg-line text-muted";
   return (
     <span

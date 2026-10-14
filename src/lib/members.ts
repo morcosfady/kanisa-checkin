@@ -29,6 +29,9 @@ export type Member = {
   city: string;
   churchId: string | null;
   church: string;
+  photo: string | null;
+  joined: string | null;
+  hasNote: boolean;
 };
 
 export type FamilyOption = { id: string; name: string };
@@ -44,7 +47,7 @@ export const fromDemo = (m: DemoMember): Member => {
     dob: null,
     signedAt: m.consent ? "2026-08-24" : null,
     signedBy: m.consent ? m.name : null,
-    address: "", apartment: "", cityId: null, city: "", churchId: null, church: "",
+    address: "", apartment: "", cityId: null, city: "", churchId: null, church: "", photo: null, joined: null, hasNote: false,
   };
 };
 
@@ -68,6 +71,8 @@ type Row = {
   city_other: string | null;
   church_id: string | null;
   church_other: string | null;
+  photo_url: string | null;
+  created_at: string;
   cities: { name: string } | null;
   churches: { name: string } | null;
   family_id: string | null;
@@ -77,11 +82,11 @@ type Row = {
 
 // Real data: members + attendance summary (rate and last seen come from attendance rows)
 export async function loadMembers(db: SupabaseClient, churchId: string | null): Promise<{ members: Member[]; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[] }> {
-  const [{ data: rows }, { data: fams }, { data: att }, { count: services }, { data: cs }, { data: hs }] = await Promise.all([
+  const [{ data: rows }, { data: fams }, { data: att }, { count: services }, { data: cs }, { data: hs }, { data: noted }] = await Promise.all([
     db
       .from("members")
       .select(
-        "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, address, apartment, city_id, city_other, church_id, church_other, cities(name), churches(name), family_id, families(family_name), classes(name_en)",
+        "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, address, apartment, city_id, city_other, church_id, church_other, photo_url, created_at, cities(name), churches(name), family_id, families(family_name), classes(name_en)",
       )
       .eq("church_id", churchId ?? "00000000-0000-0000-0000-000000000000")
       .order("first_name")
@@ -91,7 +96,9 @@ export async function loadMembers(db: SupabaseClient, churchId: string | null): 
     db.from("services").select("id", { count: "exact", head: true }),
     db.from("cities").select("id, name").order("name"),
     db.from("churches").select("id, name, city_id").order("name"),
+    db.from("pastoral_notes").select("member_id"),
   ]);
+  const withNote = new Set((noted ?? []).map((n: { member_id: string }) => n.member_id));
 
   const seen = new Map<string, { n: number; last: number }>();
   (att ?? []).forEach((a: { member_id: string; checked_in_at: string }) => {
@@ -130,6 +137,9 @@ export async function loadMembers(db: SupabaseClient, churchId: string | null): 
       city: r.cities?.name ?? r.city_other ?? "",
       churchId: r.church_id,
       church: r.churches?.name ?? r.church_other ?? "",
+      photo: r.photo_url,
+      joined: r.created_at,
+      hasNote: withNote.has(r.id),
     };
   });
   return { members, cities: (cs ?? []) as CityRow[], churches: (hs ?? []) as ChurchRow[], families: (fams ?? []).map((f: { id: string; family_name: string }) => ({ id: f.id, name: f.family_name })) };
