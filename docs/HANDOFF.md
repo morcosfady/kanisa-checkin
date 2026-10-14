@@ -33,7 +33,7 @@
 - Deployed on Vercel: https://kanisa-checkin.vercel.app (project kanisa-checkin, team morcosfady, auto-deploys on push to master). Env vars set on Vercel: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
 - Deploy fixes: .npmrc legacy-peer-deps=true; removed Windows-only @swc/core-win32-x64-msvc (broke Linux install).
 - Signup with approval: /signup form -> /api/signup (supabase signUp, no access) -> optional email to heavenlyvisions25@gmail.com via Apps Script mailer. Admin accepts or declines on /approvals. Unapproved users see /pending. Migration 0004 (approved, email, declined_at; is_staff/is_super_admin require approved). Decline sets declined_at, rows are never deleted so the first-user-is-admin rule cannot fire again.
-- Supabase Auth settings changed: public sign-ups ON, Confirm email OFF. Admin user morcos.genius@gmail.com is super_admin and approved. Test request fady.ashraaf@gmail.com is a pending servant.
+- Supabase Auth settings changed: public sign-ups ON, Confirm email OFF. Admin user heavenlyvisions25@gmail.com (was morcos.genius) is super_admin and approved. Test request fady.ashraaf@gmail.com is a pending servant.
 - Tested: tsc, lint, build, live routes (login 200, dashboard redirects to login when signed out), DB state checked by SQL.
 - NOT tested: approve flow end to end, signup email (mailer not deployed).
 - Open: Apps Script mailer must be created under heavenlyvisions25@gmail.com (apps-script/approval-mailer.gs), then set MAILER_URL and MAILER_TOKEN in Vercel and .env.local (token saved locally at C:\Users\fadya\.amoinee_mailer_token, never commit). Dashboard and members still use demo data. Still to build: member registration + consent, face enrollment, real kiosk check-in, reports, seed data, Playwright, Phase 2.
@@ -141,7 +141,7 @@
 - New service types (seeded per church when an admin picks their church): Divine Liturgy, Vespers, Bible Study, Sunday School, Choir, Theater Activity, High School Meeting, Family Meeting (Arabic), Family Meeting (English), Men Meeting, Women Meeting, Youth Meeting (Arabic), Youth Meeting (English). Admins add or remove types in "Services at <church>" on the Weekly events page; the old hard-coded dropdowns (Weekly events and Today > Start service) now read this list. The old single "Youth Meeting" and "Other service" are gone.
 - Church scope (migrations 0016 and 0017, run in Supabase): profiles.church_id (the church an admin serves), my_church(), service_kinds, set_my_church(church) (one time; adopts existing weekly events and services with no church and seeds the types), grant_admin(email, church) / revoke_admin only within your own church, admin invites carry the church, handle_new_user applies it. RLS: service_kinds and service_templates writable/readable only by an admin of that church; services readable by staff but only written for your own church. trg_profiles_guard blocks changing role or church_id by editing profiles directly (only the functions can).
 - UI: admins with no church see a "Which church do you serve?" card (ChurchGate) on Weekly events, Today (Start service) and Approvals. Approvals no longer has the "Admin" option in the dropdown; admins are added only through Admin access, and that list shows only your church's admins and invites.
-- The first admin (morcos.genius@gmail.com) has NO church yet: pick it once on first visit; this adopts the starter Sunday Liturgy event.
+- The super admin (heavenlyvisions25@gmail.com) has NO church yet: pick it once on first visit; this adopts the starter Sunday Liturgy event.
 - Tested: rolled-back DB tests (18 checks: other church admin sees and changes nothing of yours, cannot add admins or services for another church, church is one-time, kinds seeded 13, invites carry the church; 3 guard checks), browser demo test (13 options, youth split, add/remove type, duplicate blocked, add weekly event from a type, approvals), tsc, lint 0 errors, 27 unit tests.
 - NOT tested: the one-time church choice and add/remove from the live site with a real login.
 - Gotcha: services of other churches are still visible to staff for reading, and the kiosk/check-in opens any active service (multi-church kiosks would need church filtering later).
@@ -149,7 +149,7 @@
 ## Three kinds of users (2026-10-14)
 - Regular users: no approval. Sign up, profile, then straight to /check-in. /pending only redirects now.
 - Admins (priests): ask via "Request admin access" on /profile (RPC `request_admin`). An admin of that church or the super admin approves on /approvals (`approve_admin` / `decline_admin`). One church per admin.
-- Super admin: only morcos.genius@gmail.com (unique index `one_super_admin`). Manages every church, switches with the "Managing: ..." bar (`ChurchBar`, RPC `set_my_church`).
+- Super admin: only heavenlyvisions25@gmail.com (changed from morcos.genius on 2026-10-14; unique index `one_super_admin`). Manages every church, switches with the "Managing: ..." bar (`ChurchBar`, RPC `set_my_church`).
 - Migrations 0018a (enum value `admin`) and 0018b (functions, policies, admin_request_church columns) are LIVE. DB test (20 checks, rolled back) passed.
 - Approvals page = admin requests + admin access (list_admin_requests / list_admins / list_admin_invites).
 - Header pending badge counts admin requests. Role labels: Super admin / Admin / Member.
