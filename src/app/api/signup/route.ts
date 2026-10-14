@@ -23,8 +23,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         token: process.env.MAILER_TOKEN,
         to: APPROVER,
-        subject: `Amoinee access request: ${name}`,
-        html: `<p><b>${escapeHtml(name)}</b> (${escapeHtml(email)}) asked for access to Amoinee.</p>
+        subject: `Amoinee: new profile from ${name}`,
+        html: `<p><b>${escapeHtml(name)}</b> (${escapeHtml(email)}) created a new profile on Amoinee and is waiting for your approval.</p>
                <p><a href="${origin}/approvals">Open approvals to accept or decline</a></p>`,
       }),
     }).catch(() => {});

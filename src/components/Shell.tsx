@@ -5,18 +5,18 @@ import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseServer } from "@/lib/supabase/server";
 
 async function currentUser(): Promise<HeaderUser> {
-  if (!hasSupabase) return { name: "Demo Admin", role: "super_admin", pending: 2 }; // demo mode
+  if (!hasSupabase) return { name: "Demo Admin", role: "super_admin", pending: 2, approved: true }; // demo mode
   const db = await supabaseServer();
   const { data: auth } = await db.auth.getUser();
   if (!auth.user) return null;
   const { data: p } = await db.from("profiles").select("full_name, role, approved").eq("id", auth.user.id).maybeSingle();
-  if (!p?.approved) return { name: p?.full_name ?? auth.user.email ?? "User", role: p?.role ?? "servant", pending: 0 };
+  if (!p?.approved) return { name: p?.full_name ?? auth.user.email ?? "User", role: p?.role ?? "member", pending: 0, approved: false };
   let pending = 0;
   if (p.role === "super_admin") {
     const { count } = await db.from("profiles").select("id", { count: "exact", head: true }).eq("approved", false).is("declined_at", null);
     pending = count ?? 0;
   }
-  return { name: p.full_name, role: p.role, pending };
+  return { name: p.full_name, role: p.role, pending, approved: true };
 }
 
 export default async function Shell({ children }: { children: React.ReactNode }) {

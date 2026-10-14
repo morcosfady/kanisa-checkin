@@ -68,10 +68,10 @@
     "password": "Password",
     "submit": "Sign in",
     "failed": "Wrong email or password",
-    "request": "Request access"
+    "request": "Create new profile"
   },
   "signup": {
-    "title": "Request access",
+    "title": "Create new profile",
     "name": "Full name",
     "email": "Email",
     "password": "Password (8+ characters)",

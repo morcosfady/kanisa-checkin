@@ -8,7 +8,7 @@ import { Avatar, Badge } from "@/components/ui";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { hasSupabase } from "@/lib/supabase/env";
 
-export type HeaderUser = { name: string; role: string; pending: number } | null;
+export type HeaderUser = { name: string; role: string; pending: number; approved: boolean } | null;
 
 type NavItem = { href: string; label: string; short?: string; icon: typeof Users; badge?: boolean; hidden?: boolean };
 
@@ -34,7 +34,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const isMember = user?.role === "member";
-  const items = isMember ? MEMBER_NAV : NAV.filter((n) => !n.hidden && user);
+  const items = !user?.approved ? [] : isMember ? MEMBER_NAV : NAV.filter((n) => !n.hidden && user);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 6);
@@ -65,7 +65,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center gap-4 px-4 py-2.5 sm:px-6">
-          <Link href={user ? (isMember ? "/check-in" : "/dashboard") : "/login"} aria-label="Amoinee home" className="me-auto md:me-6">
+          <Link href={!user ? "/login" : !user.approved ? "/pending" : isMember ? "/check-in" : "/dashboard"} aria-label="Amoinee home" className="me-auto md:me-6">
             <Logo size={40} />
           </Link>
 

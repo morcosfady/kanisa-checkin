@@ -20,7 +20,8 @@ const field = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 
 
 export default function MyProfileForm({
   initial, existing, cities, churches,
-}: { initial: MyProfile; existing: boolean; cities: CityRow[]; churches: ChurchRow[] }) {
+  onboarding = false,
+}: { initial: MyProfile; existing: boolean; cities: CityRow[]; churches: ChurchRow[]; onboarding?: boolean }) {
   const router = useRouter();
   const [v, setV] = useState(initial);
   const [busy, setBusy] = useState(false);
@@ -70,6 +71,11 @@ export default function MyProfileForm({
     setBusy(false);
     if (err) return setError(err.message);
     setSaved(true);
+    if (onboarding) {
+      toast.success("Profile sent 🙏");
+      window.location.href = "/pending"; // full load so the new profile is picked up
+      return;
+    }
     toast.success(existing ? "Profile updated" : "Profile created. You can check in now 🙏");
     router.refresh();
   }
@@ -125,7 +131,7 @@ export default function MyProfileForm({
       {error && <p role="alert" className="rounded-[8px] bg-danger-tint px-3 py-2 text-sm text-danger">{error}</p>}
       <div className="flex flex-wrap items-center justify-end gap-3">
         {saved && <Link href="/check-in" className="me-auto text-sm font-medium text-heading underline underline-offset-4">Go to check in →</Link>}
-        <button disabled={busy} className={b("primary")}>{busy ? "Saving…" : existing ? "Save changes" : "Create my profile"}</button>
+        <button disabled={busy} className={b("primary")}>{busy ? "Saving…" : existing ? "Save changes" : onboarding ? "Submit my profile" : "Create my profile"}</button>
       </div>
     </form>
   );

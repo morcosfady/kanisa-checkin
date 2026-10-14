@@ -2,7 +2,7 @@ import { Logo } from "@/components/Logo";
 import { Link } from "@/i18n/navigation";
 import SacredBackground from "@/components/SacredBackground";
 
-// Split layout for sign in / request access
+// Split layout for sign in / create new profile
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-screen md:grid-cols-2">
@@ -12,7 +12,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Logo size={88} stacked />
           <div>
             <p className="font-display text-3xl font-semibold">Come, let us worship</p>
-            <p className="mt-2 font-[family-name:var(--font-coptic)] text-lg tracking-wider text-gold-light">ⲁⲙⲱⲓⲛⲓ ⲙⲁⲣⲉⲛⲟⲩⲱϣⲧ</p>
           </div>
         </div>
       </aside>

@@ -5,7 +5,7 @@ import { routing } from "./i18n/routing";
 import { hasSupabase, SUPABASE_KEY, SUPABASE_URL } from "./lib/supabase/env";
 
 const intl = createMiddleware(routing);
-const PROTECTED = ["/dashboard", "/members", "/services", "/attendance", "/reports", "/followups", "/settings", "/approvals", "/schedule", "/check-in", "/profile", "/history", "/home"];
+const PROTECTED = ["/dashboard", "/members", "/services", "/attendance", "/reports", "/followups", "/settings", "/approvals", "/welcome", "/schedule", "/check-in", "/profile", "/history", "/home"];
 
 export default async function proxy(req: NextRequest) {
   const res = intl(req);
