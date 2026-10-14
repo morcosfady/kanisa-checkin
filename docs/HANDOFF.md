@@ -112,3 +112,7 @@
 - Removed the Coptic sentence on the sign-in panel; "Come, let us worship" and the logo's Coptic line stay.
 - Tested: rolled-back DB test (new account unapproved, saves profile, status visitor, blocked from check-in and kiosk, sees only own row, active after approval); demo-mode browser test of login link text, signup step 1, welcome step 2, 0 console errors; tsc, lint 0 errors.
 - NOT tested: the full flow on the live site (it would create a real account in the production database; try it with a fresh email).
+
+## Step 1 form: first and last name, confirm password
+- /signup now asks First name, Last name, Email, Password, Confirm password (mismatch shows an error before anything is sent). /api/signup takes firstName and lastName and stores first_name, last_name and full_name in the auth user metadata; /welcome pre-fills the profile form with the exact first and last name typed there.
+- Tested: tsc, lint, demo-mode browser test (field list, mismatch message, 0 console errors). The account creation itself was not run on the live site.
