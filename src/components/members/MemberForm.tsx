@@ -36,8 +36,9 @@ export function Seg({ value, options, onChange, label }: { value: string; option
 }
 
 export default function MemberForm({
-  open, member, cities, churches, onClose, onSaved,
+  open, member, cities, churches, defaultChurch, onClose, onSaved,
 }: {
+  defaultChurch?: { id: string; name: string } | null; // new members start in the church being managed
   open: boolean;
   member: Member | null; // null = add
   cities: CityRow[];
@@ -47,12 +48,12 @@ export default function MemberForm({
 }) {
   return (
     <AnimatePresence>
-      {open && <Inner key={member?.id ?? "new"} member={member} cities={cities} churches={churches} onClose={onClose} onSaved={onSaved} />}
+      {open && <Inner key={member?.id ?? "new"} member={member} cities={cities} churches={churches} defaultChurch={defaultChurch ?? null} onClose={onClose} onSaved={onSaved} />}
     </AnimatePresence>
   );
 }
 
-function Inner({ member, cities, churches, onClose, onSaved }: { member: Member | null; cities: CityRow[]; churches: ChurchRow[]; onClose: () => void; onSaved: (m: Member) => void }) {
+function Inner({ member, cities, churches, defaultChurch, onClose, onSaved }: { member: Member | null; cities: CityRow[]; churches: ChurchRow[]; defaultChurch: { id: string; name: string } | null; onClose: () => void; onSaved: (m: Member) => void }) {
   const [first, setFirst] = useState(member?.firstName ?? "");
   const [last, setLast] = useState(member?.lastName ?? "");
   const [gender, setGender] = useState<string>(member?.gender ?? "male");
@@ -66,7 +67,7 @@ function Inner({ member, cities, churches, onClose, onSaved }: { member: Member 
   const [signature, setSignature] = useState(member?.signedBy ?? "");
   const [address, setAddress] = useState(member?.address ?? "");
   const [city, setCity] = useState<Choice>({ id: member?.cityId ?? null, text: member?.city ?? "" });
-  const [church, setChurch] = useState<Choice>({ id: member?.churchId ?? null, text: member?.church ?? "" });
+  const [church, setChurch] = useState<Choice>(member ? { id: member.churchId, text: member.church } : { id: defaultChurch?.id ?? null, text: defaultChurch?.name ?? "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const firstRef = useRef<HTMLInputElement>(null);

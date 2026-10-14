@@ -13,5 +13,5 @@ export default async function Members() {
   const { db, user } = await getSession();
   const { church } = await loadAdminChurch(db, user!.id);
   const { members, cities, churches } = await loadMembers(db, church?.id ?? null);
-  return <MembersView initial={members} cities={cities} churches={churches} />;
+  return <MembersView initial={members} cities={cities} churches={churches} church={church} />;
 }

@@ -62,7 +62,7 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
-export default function MembersView({ initial, cities, churches }: { initial: Member[]; cities: CityRow[]; churches: ChurchRow[] }) {
+export default function MembersView({ initial, cities, churches, church = null }: { initial: Member[]; cities: CityRow[]; churches: ChurchRow[]; church?: { id: string; name: string } | null }) {
   const router = useRouter();
   // demo mode keeps changes in memory; real mode refreshes from the server
   const [local, setLocal] = useState<Member[]>([]);
@@ -320,6 +320,7 @@ export default function MembersView({ initial, cities, churches }: { initial: Me
         member={form.member}
         cities={cities}
         churches={churches}
+        defaultChurch={church}
         onClose={() => setForm({ open: false, member: null })}
         onSaved={(m) => {
           if (hasSupabase) return router.refresh();
