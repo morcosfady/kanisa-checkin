@@ -67,7 +67,7 @@ function StartService() {
         </label>
       </div>
       <button onClick={start} disabled={busy} className={`${b("primary")} w-full`}>{busy ? "Starting…" : "Start service"}</button>
-      <Link href="/schedule" className="block text-sm font-medium text-heading underline underline-offset-4">Set up weekly events (like every Sunday)</Link>
+      <Link href="/schedule" className="block text-sm font-medium text-heading underline underline-offset-4">Set up weekly events</Link>
     </div>
   );
 }
