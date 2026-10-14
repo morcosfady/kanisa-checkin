@@ -129,3 +129,10 @@
 - Cause: cities_read / churches_read required an approved account, but new people fill in the profile before approval, so the lists loaded empty and only "not listed" showed. Migration 0014 (run in Supabase) lets any signed-in account read them; signed-out visitors still get an empty result (checked through the public API); only admins can edit.
 - Tested: rolled-back DB test as a brand-new unapproved account (78 cities, 7 churches, cannot insert), public API without login returns [].
 - Gotcha: when a feature moves earlier in the sign-up flow, re-check every RLS policy it reads.
+
+## Church on each service + Church column in My history
+- Migration 0015 (run in Supabase): services.church_id and service_templates.church_id; _open_service() copies the weekly event's church into the day's service. My history is now a table: Service | Church | How | Time (church shows "—" when the service has no church).
+- Weekly events: the add form needs a Church (typeahead); each event card has a Church selector (amber border when empty). Today > Start service (one-off) also asks for the church. The starter Sunday Liturgy event has NO church yet: an admin must pick it on the Weekly events page, otherwise history shows "—" for those visits.
+- Admin Today feed does not show church (one church per install for now).
+- Demo preview: a demo_role=member cookie switches the demo build to the regular-user menu (demo mode only).
+- Tested: rolled-back DB test (weekly event opens by itself, service inherits the church, history join returns the church name), browser test in demo mode (table headers, church per row, phone layout, event card selector, native required on the church box when adding an event), tsc, lint 0 errors.
