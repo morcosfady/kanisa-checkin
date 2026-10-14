@@ -69,3 +69,11 @@
 - Tested: tsc, lint (0 errors), demo-mode browser test of check-in, profile, history, Today (0 console errors), DB verification of functions and roles.
 - NOT tested: the regular-user flow against real Supabase with a real member login (needs a sign-in as fady.ashraaf@gmail.com), start service + self check-in + admin feed end to end, approve with role select.
 - Open: face enrollment, real kiosk matching (kiosk page still demo), reports, email approver (Apps Script mailer under heavenlyvisions25), seed attendance history.
+
+## Weekly events (recurring services)
+- New admin page /schedule ("Weekly events" in the menu): add, pause and delete weekly events (type, day, start, end). Uses service_templates. Starter event created: Divine Liturgy every Sunday 8:00 AM to 12:00 PM.
+- DB migration 0008 (run in Supabase): open_service() returns the service open right now: first a service an admin started that has not ended or expired (6h if no end time), else a template whose weekday and time window match now (creates today's services row once, template_id+date unique). If an admin presses End service on a scheduled event it stays closed for that day. check_in_self() now uses open_service().
+- Today and /check-in call open_service(); Today shows the time range; "No service is open" card links to the schedule page; manual Start service still works for one-off events.
+- Tested: tsc, lint, demo-mode browser test of the schedule page (add, pause, 0 console errors), migration ran with no errors.
+- NOT tested: automatic opening against real Supabase during a real Sunday window (try on a Sunday 8 AM to 12 PM Chicago time, or add a test weekly event for today covering the current time).
+- Gotcha: times are America/Chicago. Services created from a template have is_active true until the window ends or an admin ends them.
