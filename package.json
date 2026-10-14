@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "e2e:attendance": "node tests/e2e/attendance.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

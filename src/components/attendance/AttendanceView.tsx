@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { computeSheet, type LabelDef, type MemLabel, type Period, type PeriodKey, type Raw, type Row, type Tier } from "@/lib/attendance/calc";
 import { exportXlsx } from "@/lib/attendance/export";
 import { useRouter } from "@/i18n/navigation";
+import { useRouter as useNextRouter } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { Charts } from "./Charts";
 import Controls, { PERIODS, type Group } from "./Controls";
@@ -22,10 +23,11 @@ const readInk = () => { try { return localStorage.getItem(INK_KEY) === "1"; } ca
 const subInk = (cb: () => void) => { inkListeners.add(cb); return () => { inkListeners.delete(cb); }; };
 const setInk = (v: boolean) => { try { localStorage.setItem(INK_KEY, v ? "1" : "0"); } catch {} inkListeners.forEach((f) => f()); };
 
-export default function AttendanceView({ raw, period, periodKey, today, church, demo, canEdit }: {
-  raw: Raw; period: Period; periodKey: PeriodKey; today: string; church: { id: string; name: string }; demo: boolean; canEdit: boolean;
+export default function AttendanceView({ raw, period, periodKey, today, church, demo, canEdit, isSuper = false }: {
+  raw: Raw; period: Period; periodKey: PeriodKey; today: string; church: { id: string; name: string }; demo: boolean; canEdit: boolean; isSuper?: boolean;
 }) {
   const router = useRouter();
+  const nextRouter = useNextRouter(); // keeps ?query (English only app, no locale prefix)
   const ink = useSyncExternalStore(subInk, readInk, () => false);
   const [local, setLocal] = useState<Raw>(raw); // demo mode keeps label changes in memory
   const data = demo ? local : raw;
@@ -63,8 +65,8 @@ export default function AttendanceView({ raw, period, periodKey, today, church, 
 
   const goPeriod = useCallback((k: PeriodKey, c = custom) => {
     const q = k === "custom" ? `?p=custom&from=${c.from}&to=${c.to}` : `?p=${k}`;
-    router.push(`/attendance${q}`);
-  }, [router, custom]);
+    nextRouter.push(`/attendance${q}`);
+  }, [nextRouter, custom]);
 
   // ----- label changes: demo = in memory, real = database functions then refresh -----
   const afterChange = useCallback((msg: string) => { toast.success(msg); router.refresh(); }, [router]);
@@ -133,6 +135,11 @@ export default function AttendanceView({ raw, period, periodKey, today, church, 
         const { error } = await db().from("labels").delete().eq("id", id);
         if (!fail(error)) afterChange("Label deleted");
       },
+      async setMisses(n) {
+        if (demo) return void toast.success(`Follow-up now starts after ${n} missed services (demo)`);
+        const { error } = await db().from("settings").update({ followup_misses: n }).neq("timezone", "");
+        if (!fail(error)) afterChange(`Follow-up now starts after ${n} missed services`);
+      },
       async move(id, dir) {
         const sorted = [...data.labels].sort((a, b) => a.order - b.order);
         const i = sorted.findIndex((l) => l.id === id), j = i + dir;
@@ -193,7 +200,7 @@ export default function AttendanceView({ raw, period, periodKey, today, church, 
         )}
 
         {openRow && <MemberDrawer row={openRow} raw={grouped} sheet={sheet} defs={defs} today={today} canEdit={canEdit} actions={actions} demo={demo} onClose={() => setOpen(null)} />}
-        {manage && <ManageLabels defs={defs} actions={actions} onClose={() => setManage(false)} />}
+        {manage && <ManageLabels defs={defs} actions={actions} onClose={() => setManage(false)} misses={data.followupMisses} canSetMisses={isSuper} />}
       </div>
       <PrintReport sheet={sheet} church={church.name} periodText={periodText} serviceName={service || undefined} today={today} ar={arPdf} />
     </>

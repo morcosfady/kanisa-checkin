@@ -166,3 +166,15 @@
 - Header shows a role badge (Super admin / Admin) next to the name. Name = profile name (the super admin's is their email).
 - Members table now only at >=1024px; cards below. Delete-event confirm already existed (ConfirmDialog).
 - html/body `overflow-x: clip` as a guard for the phone clipping; could not reproduce at 375/390px in demo mode.
+
+## Attendance Sheet (branch feature/attendance-sheet, 2026-10-14)
+What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (scoped by `.ledger` in `src/app/ledger.css`, ink dark toggle). Summary sentence + 4 KPIs, 6 charts (each has "Table" view), the register (heatmap), ranked list with tiers/streaks/labels, "needs attention" panel, member side sheet, labels system, exports.
+- Phone nav: Today, Attendance, Members, Check-in, More (Schedule, Approvals, Privacy).
+- Scoping bug fixed (migration 0020): members/attendance/pastoral notes/follow-ups are limited to the managed church in RLS (`can_see_member`) and in queries. New members default to the managed church. Tests: `tests/unit/scoping.test.ts`, `supabase/tests/scoping.sql` (6 checks pass).
+- Migration 0021 (LIVE): `labels`, `member_labels`, `label_events` (RLS by `can_manage_church`), `settings.followup_misses` (default 3), functions `ensure_labels`, `label_members`, `unlabel_member`, `snooze_followup`, `sync_auto_labels`, `get_attendance_data`, `member_label_history`. Tests: `supabase/tests/attendance.sql` (17 checks pass, rolled back).
+- Decisions: the SQL function returns raw rows for the window (selected + previous period) and `src/lib/attendance/calc.ts` does the maths (pure, 21 unit tests). Auto follow-up uses the church's main service (most held in 12 weeks, usually Liturgy), N missed in a row. "Returned" label for 14 days when a follow-up person attends again. "Last attended" only looks inside the loaded window. PDF = print dialog of a one-page report (`PrintReport`, EN or AR) so Arabic renders properly; Excel = `xlsx`. Follow-up threshold N editable in Manage labels (super admin only, it is a shared setting).
+- Seed: `supabase/seed_attendance_demo.sql` (fake only; 60 members, 12 weeks, 3 service kinds; already run for St. Philopateer; the 20 older fake example.com members were moved to that church).
+- Tests: `npm test` (50 pass), `npm run e2e:attendance` (14 steps incl. axe light + ink, demo mode, needs `NEXT_PUBLIC_SUPABASE_URL= npx next dev -p 3055`). Speed: computeSheet for 500 members, 157 services, 42k check-ins = ~64 ms (node). Not measured: real-browser interactive time with live Supabase.
+- Not tested: signed-in run of /attendance against the real database (RPC shapes were checked in SQL). Servant role has no access (page is admin/super admin only).
+- Screenshots: `docs/screenshots/attendance/` (1440, 1280, 768, 390, ink). No "before" (the tab is new).
+- Gotchas: Playwright `waitForURL` does not see soft navigations, use `waitForFunction`. Wait for hydration before using selects in e2e. next-intl `router.push` with `?query` drops the query, the sheet uses `next/navigation` for that.

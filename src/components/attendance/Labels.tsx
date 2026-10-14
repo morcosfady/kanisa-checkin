@@ -12,6 +12,7 @@ export type LabelActions = {
   save: (def: Partial<LabelDef> & { id?: string }) => Promise<void>;
   del: (id: string) => Promise<void>;
   move: (id: string, dir: -1 | 1) => Promise<void>;
+  setMisses: (n: number) => Promise<void>;
 };
 
 const COLORS = ["#C0392B", "#2F7F86", "#2E7D4F", "#7B4FA0", "#B5546A", "#3B82B6", "#4F5BB5", "#C08A1E", "#B8892E", "#8C93A3", "#4B5563", "#1E2A44"];
@@ -83,7 +84,7 @@ export function AddLabel({ defs, onAdd, label = "Label", compact = false }: { de
   );
 }
 
-export function ManageLabels({ defs, actions, onClose }: { defs: LabelDef[]; actions: LabelActions; onClose: () => void }) {
+export function ManageLabels({ defs, actions, onClose, misses, canSetMisses }: { defs: LabelDef[]; actions: LabelActions; onClose: () => void; misses: number; canSetMisses: boolean }) {
   const [edit, setEdit] = useState<Partial<LabelDef> | null>(null);
   const [busy, setBusy] = useState(false);
   const sorted = [...defs].sort((a, b) => a.order - b.order);
@@ -140,6 +141,13 @@ export function ManageLabels({ defs, actions, onClose }: { defs: LabelDef[]; act
         </div>
       ) : (
         <div className="space-y-3">
+          <label className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--l-line)] bg-[var(--l-soft)] px-3 py-2 text-sm">
+            <span className="me-auto">🔔 Add “Follow up needed” after</span>
+            <input type="number" min={1} max={12} defaultValue={misses} disabled={!canSetMisses} aria-label="Missed services in a row" className="l-input !min-h-9 w-20 text-center"
+              onBlur={(e) => { const n = Math.max(1, Math.min(12, Number(e.target.value) || misses)); if (n !== misses) actions.setMisses(n); }} />
+            <span>missed services in a row</span>
+            {!canSetMisses && <span className="l-mute w-full text-xs">Only the super admin can change this (it is shared by all churches).</span>}
+          </label>
           <ul className="divide-y divide-[var(--l-line)] rounded-xl border border-[var(--l-line)]">
             {sorted.map((d, i) => (
               <li key={d.id} className={`flex flex-wrap items-center gap-2 px-3 py-2 ${d.active ? "" : "opacity-50"}`}>

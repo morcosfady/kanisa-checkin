@@ -183,3 +183,16 @@ describe("text", () => {
     expect(lastSeenText(null, TODAY, "2025-01-01")).toBe("Not in this window");
   });
 });
+
+describe("speed", () => {
+  it("works out 500 members x 52 services in well under a second", async () => {
+    const { buildDemoRaw } = await import("../../src/lib/attendance/demo");
+    const raw = buildDemoRaw(TODAY, 500, 52);
+    const t0 = performance.now();
+    const s = computeSheet(raw, { from: addDays(TODAY, -364), to: TODAY, today: TODAY });
+    const ms = performance.now() - t0;
+    console.log(`computeSheet: ${raw.members.length} members, ${raw.services.length} services, ${raw.present.length} check-ins -> ${ms.toFixed(0)} ms`);
+    expect(s.rows.length).toBeGreaterThan(400);
+    expect(ms).toBeLessThan(1000);
+  });
+});

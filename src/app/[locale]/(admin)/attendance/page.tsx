@@ -4,7 +4,7 @@ import { addDays, resolvePeriod, type PeriodKey, type Raw } from "@/lib/attendan
 import { buildDemoRaw } from "@/lib/attendance/demo";
 import { chicagoToday, loadAttendance } from "@/lib/attendance/load";
 import { loadAdminChurch } from "@/lib/kinds";
-import { demoChurches, demoCities } from "@/lib/places";
+import { demoChurches } from "@/lib/places";
 import { getSession, hasSupabase } from "@/lib/session";
 import "@/app/ledger.css";
 
@@ -20,7 +20,7 @@ export default async function Attendance({ searchParams }: { searchParams: Promi
 
   if (!hasSupabase) {
     const raw = buildDemoRaw(today, 60, 24);
-    return <AttendanceView raw={raw} period={period} periodKey={key} today={today} church={{ id: demoChurches[6].id, name: demoChurches[6].name }} demo canEdit />;
+    return <AttendanceView raw={raw} period={period} periodKey={key} today={today} church={{ id: demoChurches[6].id, name: demoChurches[6].name }} demo canEdit isSuper />;
   }
 
   const { db, user, profile } = await getSession();
@@ -31,5 +31,5 @@ export default async function Attendance({ searchParams }: { searchParams: Promi
   }
   await db.rpc("ensure_labels", { p_church: church.id });
   const raw: Raw = await loadAttendance(db, church.id, addDays(period.prevFrom, 0), period.to);
-  return <AttendanceView raw={raw} period={period} periodKey={key} today={today} church={church} demo={false} canEdit={profile?.role === "admin" || profile?.role === "super_admin"} />;
+  return <AttendanceView raw={raw} period={period} periodKey={key} today={today} church={church} demo={false} canEdit={profile?.role === "admin" || profile?.role === "super_admin"} isSuper={profile?.role === "super_admin"} />;
 }
