@@ -1,0 +1,348 @@
+[
+  {
+    "id": "a1",
+    "part": "A",
+    "title": "A Sunday morning",
+    "visual": {
+      "type": "image",
+      "file": "a1-liturgy.png",
+      "clip": "a1-liturgy.mp4",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. Morning light streaming into a Coptic Orthodox church, families in their Sunday best walking through the open doors toward wooden pews, incense haze, icons and a carved wooden iconostasis in the background, warm golden tones, 16:9, no text inside the image, no logos"
+    },
+    "onScreen": "Every Sunday, more families come",
+    "sentences": [
+      {
+        "en": "Thank God, His people keep growing.",
+        "ar": "الحمد لله، شعبه في ازدياد."
+      },
+      {
+        "en": "Every Sunday, more families fill the church.",
+        "ar": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
+      }
+    ]
+  },
+  {
+    "id": "a2",
+    "part": "A",
+    "title": "So many faces",
+    "visual": {
+      "type": "image",
+      "file": "a2-entrance.png",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
+    },
+    "onScreen": "Who came? Who is missing?",
+    "sentences": [
+      {
+        "en": "But with so many faces, it becomes almost impossible to know who came, who is missing, and who quietly drifted away.",
+        "ar": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب، ومن ابتعد بهدوء."
+      }
+    ]
+  },
+  {
+    "id": "a3",
+    "part": "A",
+    "title": "Abouna at night",
+    "visual": {
+      "type": "image",
+      "file": "a3-abouna-desk.png",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood with a Coptic hand cross on the desk, sitting at a wooden desk at night under a warm lamp, papers with handwritten lists and a phone full of contacts, slightly tired and thoughtful, an icon on the wall behind him, 16:9, no text inside the image. The priest is a fictional person, not a real one."
+    },
+    "onScreen": "Paper lists get lost",
+    "sentences": [
+      {
+        "en": "Paper lists get lost.",
+        "ar": "القوائم الورقية تضيع."
+      },
+      {
+        "en": "And the people who need a call the most are the easiest to miss.",
+        "ar": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن يفوتنا أمرهم."
+      }
+    ]
+  },
+  {
+    "id": "a4",
+    "part": "A",
+    "title": "Amoinee",
+    "visual": {
+      "type": "logo"
+    },
+    "onScreen": "ⲁⲙⲱⲓⲛⲓ · Come!",
+    "sentences": [
+      {
+        "en": "That's where Amoinee comes in.",
+        "ar": "وهنا يأتي دور أمويني."
+      },
+      {
+        "en": "Amoinee, from the Coptic word for \"Come!\", helps every church know its people, and never lose one of them.",
+        "ar": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن تعرف أولادها وألا تفقد واحدًا منهم."
+      }
+    ]
+  },
+  {
+    "id": "b1",
+    "part": "B",
+    "title": "Create your profile, once",
+    "visual": {
+      "type": "screen",
+      "mockup": "phone",
+      "src": {
+        "file": "phone-signup",
+        "from": 0.5,
+        "to": 25
+      }
+    },
+    "onScreen": "One time only",
+    "sentences": [
+      {
+        "en": "For members, it starts with one simple step, done only once.",
+        "ar": "بالنسبة للأعضاء، كل شيء يبدأ بخطوة بسيطة واحدة، مرة واحدة فقط."
+      },
+      {
+        "en": "Create your profile with your name and contact details, and choose whether to turn on face check-in.",
+        "ar": "أنشئ ملفك الشخصي بالاسم وبيانات التواصل، واختر إن كنت تريد تفعيل تسجيل الحضور بالوجه."
+      },
+      {
+        "en": "It's always your choice, and you can turn it off anytime.",
+        "ar": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
+      }
+    ]
+  },
+  {
+    "id": "b2",
+    "part": "B",
+    "title": "The kiosk at the door",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b2-kiosk-door.png",
+          "weight": 0.38,
+          "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A sleek tablet kiosk on an elegant dark wooden floor stand just inside the doors of a Coptic Orthodox church, a Coptic family of three walking toward it in warm light, the tablet screen softly glowing (screen content blurred, no readable text), candles and icons in the background, 16:9, no text inside the image, no logos"
+        },
+        {
+          "type": "screen",
+          "mockup": "tablet",
+          "weight": 0.62,
+          "src": {
+            "file": "kiosk",
+            "from": 1.2,
+            "to": 9
+          }
+        }
+      ]
+    },
+    "onScreen": "Just look at the screen",
+    "sentences": [
+      {
+        "en": "At the church door stands the Amoinee kiosk.",
+        "ar": "عند باب الكنيسة يقف جهاز أمويني."
+      },
+      {
+        "en": "Just look at the screen as you walk in.",
+        "ar": "فقط انظر إلى الشاشة وأنت تدخل."
+      },
+      {
+        "en": "In a second it welcomes you by name, and records that you're here.",
+        "ar": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
+      }
+    ]
+  },
+  {
+    "id": "b3",
+    "part": "B",
+    "title": "Other ways to check in",
+    "visual": {
+      "type": "screen",
+      "mockup": "tablet",
+      "src": {
+        "file": "kiosk",
+        "from": 9,
+        "to": 17.2
+      }
+    },
+    "onScreen": "QR code or 3-digit code",
+    "sentences": [
+      {
+        "en": "Prefer not to use your face? No problem.",
+        "ar": "لا تفضّل استخدام وجهك؟ لا مشكلة."
+      },
+      {
+        "en": "Scan the QR code on the kiosk with your phone, or type the three-digit code of the day.",
+        "ar": "امسح رمز الاستجابة السريعة على الجهاز بهاتفك، أو اكتب الرمز المكوّن من ثلاثة أرقام لهذا اليوم."
+      },
+      {
+        "en": "Nobody is ever left at the door.",
+        "ar": "لا أحد يبقى عند الباب."
+      }
+    ]
+  },
+  {
+    "id": "c0",
+    "part": "C",
+    "title": "For Abouna and servants",
+    "visual": {
+      "type": "image",
+      "file": "c0-abouna-laptop.png",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood, smiling gently at a laptop in a calm church office, an icon of the Virgin and Child on the wall, warm window light, 16:9, no text inside the image, the laptop screen not readable. Fictional cartoon character, not a real person."
+    },
+    "onScreen": "Attendance becomes care",
+    "sentences": [
+      {
+        "en": "For Abouna and church servants, Amoinee turns attendance into care.",
+        "ar": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
+      }
+    ]
+  },
+  {
+    "id": "c1",
+    "part": "C",
+    "title": "Today",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "today",
+        "from": 0.5,
+        "to": 14.3
+      }
+    },
+    "onScreen": "Today · live",
+    "sentences": [
+      {
+        "en": "The Today screen shows who is here, live, as the Liturgy begins, with every arrival time.",
+        "ar": "تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت وصول كل شخص."
+      },
+      {
+        "en": "Weekly events open check-in on their own, so no one has to remember.",
+        "ar": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر."
+      }
+    ]
+  },
+  {
+    "id": "c2",
+    "part": "C",
+    "title": "Members",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "members",
+        "from": 1.5,
+        "to": 19
+      }
+    },
+    "onScreen": "Members, notes, consent",
+    "sentences": [
+      {
+        "en": "The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.",
+        "ar": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
+      }
+    ]
+  },
+  {
+    "id": "c3",
+    "part": "C",
+    "title": "The Attendance Sheet",
+    "minDur": 27,
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "attendance",
+        "from": 1,
+        "to": 27.5
+      }
+    },
+    "onScreen": "The Attendance Sheet",
+    "sentences": [
+      {
+        "en": "And the Attendance Sheet gives Abouna a clear summary.",
+        "ar": "وتعطي صفحة الحضور أبونا ملخصًا واضحًا."
+      },
+      {
+        "en": "How many came, who is faithful, who is drifting, and who hasn't come in weeks, ranked from most to least.",
+        "ar": "كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ أسابيع، مرتّبين من الأكثر إلى الأقل."
+      },
+      {
+        "en": "A beautiful register shows every person at every service, at a glance.",
+        "ar": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
+      }
+    ]
+  },
+  {
+    "id": "c4",
+    "part": "C",
+    "title": "Labels and follow-up",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "labels",
+        "from": 4,
+        "to": 29.3
+      }
+    },
+    "onScreen": "Follow up needed",
+    "sentences": [
+      {
+        "en": "When someone misses several Sundays, Amoinee gently marks them \"Follow up needed.\"",
+        "ar": "عندما يغيب شخص عدة آحاد، تضع أمويني عليه بلطف علامة «يحتاج متابعة»."
+      },
+      {
+        "en": "Servants add labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or \"Traveling,\" and can snooze a reminder when it's not the right time.",
+        "ar": "ويضيف الخدام علامات مثل «تم الاتصال» و«تمت الزيارة» و«يحتاج صلاة» و«مسافر»، ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا."
+      },
+      {
+        "en": "Abouna also sees who came back, who is new, and whose birthday is this week.",
+        "ar": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا الأسبوع."
+      }
+    ]
+  },
+  {
+    "id": "c5",
+    "part": "C",
+    "title": "Reports and privacy",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "reports",
+        "from": 1.5,
+        "to": 17.8
+      }
+    },
+    "onScreen": "One-page report · Excel · private",
+    "sentences": [
+      {
+        "en": "With one tap, Abouna can print a one-page report, or export everything to Excel.",
+        "ar": "بلمسة واحدة يستطيع أبونا طباعة تقرير من صفحة واحدة أو تصدير كل شيء إلى إكسل."
+      },
+      {
+        "en": "Each church sees only its own people, with access given church by church, and privacy and consent built in from the start.",
+        "ar": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة، والخصوصية والموافقة جزء من التصميم منذ البداية."
+      }
+    ]
+  },
+  {
+    "id": "d",
+    "part": "D",
+    "title": "Every soul matters",
+    "visual": {
+      "type": "outro",
+      "file": "d-outro.png",
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind Coptic Orthodox priest in black robe and eiskeem hood warmly greeting a returning Coptic family of four at the church door in soft golden morning light, the mother holds a child's hand, joyful and peaceful, 16:9, no text inside the image. Fictional cartoon characters, not real people."
+    },
+    "onScreen": "Every one of God's people, known and cared for.",
+    "sentences": [
+      {
+        "en": "Because every soul matters, and no one should be forgotten.",
+        "ar": "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."
+      },
+      {
+        "en": "Amoinee. Come, let us worship.",
+        "ar": "أمويني. تعالوا نسجد."
+      }
+    ]
+  }
+]

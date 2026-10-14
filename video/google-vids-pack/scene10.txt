@@ -1,0 +1,4 @@
+The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.
+
+عربي:
+تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة.

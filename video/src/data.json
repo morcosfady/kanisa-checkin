@@ -1,0 +1,1206 @@
+{
+ "fps": 30,
+ "total": 174.35619047619048,
+ "aiUsed": false,
+ "have": [],
+ "marks": {
+  "attendance": {
+   "width": 1440,
+   "height": 900,
+   "marks": [
+    {
+     "t": 4.901,
+     "label": "Abouna's summary",
+     "x": 0.10625,
+     "y": 0.5211111111111111,
+     "w": 0.7895833333333333,
+     "h": 0.03111111111111111
+    },
+    {
+     "t": 14.683,
+     "label": "The register",
+     "x": 0.10138888888888889,
+     "y": 0.07472222222222222,
+     "w": 0.07520616319444444,
+     "h": 0.02666666666666667
+    },
+    {
+     "t": 18.937,
+     "label": "Who attends, ranked",
+     "x": 0.10138888888888889,
+     "y": 1.2452256944444444,
+     "w": 0.08881293402777778,
+     "h": 0.03111111111111111
+    }
+   ]
+  },
+  "kiosk": {
+   "width": 1194,
+   "height": 834,
+   "marks": [
+    {
+     "t": 2.466,
+     "label": "Scan frame",
+     "x": 0.11474036850921274,
+     "y": 0.21013189448441247,
+     "w": 0.4824120603015075,
+     "h": 0.5179856115107914
+    },
+    {
+     "t": 5.308,
+     "label": "Welcome by name",
+     "x": 0.13484087102177555,
+     "y": 0.7712829736211031,
+     "w": 0.2424230527638191,
+     "h": 0.04316546762589928
+    },
+    {
+     "t": 10.364,
+     "label": "Scan the QR code",
+     "x": 0.678391959798995,
+     "y": 0.13459232613908872,
+     "w": 0.23283082077051925,
+     "h": 0.03357314148681055
+    },
+    {
+     "t": 12.81,
+     "label": "Or type the 3-digit code",
+     "x": 0.678391959798995,
+     "y": 0.5782374100719424,
+     "w": 0.23283082077051925,
+     "h": 0.03357314148681055
+    }
+   ]
+  },
+  "labels": {
+   "width": 1440,
+   "height": 900,
+   "marks": [
+    {
+     "t": 6.955,
+     "label": "Follow up needed",
+     "x": 0.6659722222222222,
+     "y": 0.9418923611111111,
+     "w": 0.24444444444444444,
+     "h": 0.5355555555555556
+    },
+    {
+     "t": 20.695,
+     "label": "Add a label",
+     "x": 0.15694444444444444,
+     "y": 0.5196701388888889,
+     "w": 0.2,
+     "h": 0.34
+    },
+    {
+     "t": 27.232,
+     "label": "Welcome back, new, birthdays",
+     "x": 0.6659722222222222,
+     "y": 1.1063368055555556,
+     "w": 0.24444444444444444,
+     "h": 0.2822222222222222
+    }
+   ]
+  },
+  "members": {
+   "width": 1440,
+   "height": 900,
+   "marks": [
+    {
+     "t": 7.074,
+     "label": "Deacon badges",
+     "x": 0.1872271007961697,
+     "y": 0.5288953653971354,
+     "w": 0.05371420118543837,
+     "h": 0.037764824761284725
+    },
+    {
+     "t": 13.072,
+     "label": "Consent and notes",
+     "x": 0.7587131076388889,
+     "y": 0.17222222222222222,
+     "w": 0.04405381944444445,
+     "h": 0.04888888888888889
+    }
+   ]
+  },
+  "phone-signup": {
+   "width": 430,
+   "height": 900,
+   "marks": [
+    {
+     "t": 7.565,
+     "label": "One time only",
+     "x": 0.12325581395348838,
+     "y": 0.22909722222222223,
+     "w": 0.7534883720930232,
+     "h": 0.035555555555555556
+    },
+    {
+     "t": 20.899,
+     "label": "Your consent, your choice",
+     "x": 0.09534883720930233,
+     "y": -0.5217881944444445,
+     "w": 0.8093023255813954,
+     "h": 0.044444444444444446
+    }
+   ]
+  },
+  "reports": {
+   "width": 1440,
+   "height": 900,
+   "marks": [
+    {
+     "t": 4.496,
+     "label": "Export PDF",
+     "x": 0.6201931423611111,
+     "y": 0.4266666666666667,
+     "w": 0.08860677083333333,
+     "h": 0.044444444444444446
+    },
+    {
+     "t": 6.732,
+     "label": "Export Excel",
+     "x": 0.71435546875,
+     "y": 0.4266666666666667,
+     "w": 0.09476996527777778,
+     "h": 0.044444444444444446
+    },
+    {
+     "t": 11.402,
+     "label": "Admin access, one church each",
+     "x": 0.24791666666666667,
+     "y": 0.4911111111111111,
+     "w": 0.5041666666666667,
+     "h": 0.035555555555555556
+    },
+    {
+     "t": 13.862,
+     "label": "Switch church",
+     "x": 0.7542534722222223,
+     "y": 0.13333333333333333,
+     "w": 0.08949652777777778,
+     "h": 0.04
+    }
+   ]
+  },
+  "today": {
+   "width": 1440,
+   "height": 900,
+   "marks": [
+    {
+     "t": 2.609,
+     "label": "Live: who is here",
+     "x": 0.12569444444444444,
+     "y": 0.4888888888888889,
+     "w": 0.06276041666666667,
+     "h": 0.022222222222222223
+    },
+    {
+     "t": 5.676,
+     "label": "Arrival times",
+     "x": 0.08680555555555555,
+     "y": 0.62,
+     "w": 0.47749565972222224,
+     "h": 0.03111111111111111
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": "a1",
+   "part": "A",
+   "title": "A Sunday morning",
+   "visual": {
+    "type": "image",
+    "file": "a1-liturgy.png",
+    "clip": "a1-liturgy.mp4",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. Morning light streaming into a Coptic Orthodox church, families in their Sunday best walking through the open doors toward wooden pews, incense haze, icons and a carved wooden iconostasis in the background, warm golden tones, 16:9, no text inside the image, no logos"
+   },
+   "onScreen": "Every Sunday, more families come",
+   "sentences": [
+    {
+     "en": "Thank God, His people keep growing.",
+     "ar": "الحمد لله، شعبه في ازدياد."
+    },
+    {
+     "en": "Every Sunday, more families fill the church.",
+     "ar": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
+    }
+   ],
+   "start": 0,
+   "dur": 7.938503401360544,
+   "audio": "a1.wav",
+   "audioDur": 6.938503401360544,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 3.5740204942736584,
+     "text": "Thank God, His people keep growing."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 3.5740204942736584,
+     "text": "الحمد لله، شعبه في ازدياد."
+    },
+    {
+     "lang": "en",
+     "start": 3.5740204942736584,
+     "end": 7.438503401360544,
+     "text": "Every Sunday, more families fill the church."
+    },
+    {
+     "lang": "ar",
+     "start": 3.5740204942736584,
+     "end": 7.438503401360544,
+     "text": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
+    }
+   ]
+  },
+  {
+   "id": "a2",
+   "part": "A",
+   "title": "So many faces",
+   "visual": {
+    "type": "image",
+    "file": "a2-entrance.png",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
+   },
+   "onScreen": "Who came? Who is missing?",
+   "sentences": [
+    {
+     "en": "But with so many faces, it becomes almost impossible to know who came, who is missing, and who quietly drifted away.",
+     "ar": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب، ومن ابتعد بهدوء."
+    }
+   ],
+   "start": 7.538503401360543,
+   "dur": 9.463219954648526,
+   "audio": "a2.wav",
+   "audioDur": 8.463219954648526,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 5.2099658878043975,
+     "text": "But with so many faces, it becomes almost impossible to know who"
+    },
+    {
+     "lang": "en",
+     "start": 5.2099658878043975,
+     "end": 8.963219954648526,
+     "text": "came, who is missing, and who quietly drifted away."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 7.082504409171076,
+     "text": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب،"
+    },
+    {
+     "lang": "ar",
+     "start": 7.082504409171076,
+     "end": 8.963219954648526,
+     "text": "ومن ابتعد بهدوء."
+    }
+   ]
+  },
+  {
+   "id": "a3",
+   "part": "A",
+   "title": "Abouna at night",
+   "visual": {
+    "type": "image",
+    "file": "a3-abouna-desk.png",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood with a Coptic hand cross on the desk, sitting at a wooden desk at night under a warm lamp, papers with handwritten lists and a phone full of contacts, slightly tired and thoughtful, an icon on the wall behind him, 16:9, no text inside the image. The priest is a fictional person, not a real one."
+   },
+   "onScreen": "Paper lists get lost",
+   "sentences": [
+    {
+     "en": "Paper lists get lost.",
+     "ar": "القوائم الورقية تضيع."
+    },
+    {
+     "en": "And the people who need a call the most are the easiest to miss.",
+     "ar": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن يفوتنا أمرهم."
+    }
+   ],
+   "start": 16.601723356009067,
+   "dur": 7.203492063492064,
+   "audio": "a3.wav",
+   "audioDur": 6.203492063492064,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 2.0326274509803923,
+     "text": "Paper lists get lost."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 2.0326274509803923,
+     "text": "القوائم الورقية تضيع."
+    },
+    {
+     "lang": "en",
+     "start": 2.0326274509803923,
+     "end": 6.703492063492064,
+     "text": "And the people who need a call the most are the easiest to miss."
+    },
+    {
+     "lang": "ar",
+     "start": 2.0326274509803923,
+     "end": 5.797204899870396,
+     "text": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن"
+    },
+    {
+     "lang": "ar",
+     "start": 5.797204899870396,
+     "end": 6.703492063492064,
+     "text": "يفوتنا أمرهم."
+    }
+   ]
+  },
+  {
+   "id": "a4",
+   "part": "A",
+   "title": "Amoinee",
+   "visual": {
+    "type": "logo"
+   },
+   "onScreen": "ⲁⲙⲱⲓⲛⲓ · Come!",
+   "sentences": [
+    {
+     "en": "That's where Amoinee comes in.",
+     "ar": "وهنا يأتي دور أمويني."
+    },
+    {
+     "en": "Amoinee, from the Coptic word for \"Come!\", helps every church know its people, and never lose one of them.",
+     "ar": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن تعرف أولادها وألا تفقد واحدًا منهم."
+    }
+   ],
+   "start": 23.405215419501133,
+   "dur": 10.682993197278911,
+   "audio": "a4.wav",
+   "audioDur": 9.682993197278911,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 2.635954381752701,
+     "text": "That's where Amoinee comes in."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 2.635954381752701,
+     "text": "وهنا يأتي دور أمويني."
+    },
+    {
+     "lang": "en",
+     "start": 2.635954381752701,
+     "end": 7.02042455077269,
+     "text": "Amoinee, from the Coptic word for \"Come!\", helps every church"
+    },
+    {
+     "lang": "en",
+     "start": 7.02042455077269,
+     "end": 10.182993197278911,
+     "text": "know its people, and never lose one of them."
+    },
+    {
+     "lang": "ar",
+     "start": 2.635954381752701,
+     "end": 7.146828156549976,
+     "text": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن"
+    },
+    {
+     "lang": "ar",
+     "start": 7.146828156549976,
+     "end": 10.182993197278911,
+     "text": "تعرف أولادها وألا تفقد واحدًا منهم."
+    }
+   ]
+  },
+  {
+   "id": "b1",
+   "part": "B",
+   "title": "Create your profile, once",
+   "visual": {
+    "type": "screen",
+    "mockup": "phone",
+    "src": {
+     "file": "phone-signup",
+     "from": 0.5,
+     "to": 25
+    }
+   },
+   "onScreen": "One time only",
+   "sentences": [
+    {
+     "en": "For members, it starts with one simple step, done only once.",
+     "ar": "بالنسبة للأعضاء، كل شيء يبدأ بخطوة بسيطة واحدة، مرة واحدة فقط."
+    },
+    {
+     "en": "Create your profile with your name and contact details, and choose whether to turn on face check-in.",
+     "ar": "أنشئ ملفك الشخصي بالاسم وبيانات التواصل، واختر إن كنت تريد تفعيل تسجيل الحضور بالوجه."
+    },
+    {
+     "en": "It's always your choice, and you can turn it off anytime.",
+     "ar": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
+    }
+   ],
+   "start": 33.688208616780045,
+   "dur": 17.02190476190476,
+   "audio": "b1.wav",
+   "audioDur": 16.02190476190476,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 4.930019749835418,
+     "text": "For members, it starts with one simple step, done only once."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 4.20378700396076,
+     "text": "بالنسبة للأعضاء، كل شيء يبدأ بخطوة بسيطة واحدة، مرة"
+    },
+    {
+     "lang": "ar",
+     "start": 4.20378700396076,
+     "end": 4.930019749835418,
+     "text": "واحدة فقط."
+    },
+    {
+     "lang": "en",
+     "start": 4.930019749835418,
+     "end": 9.330207716843661,
+     "text": "Create your profile with your name and contact details, and"
+    },
+    {
+     "lang": "en",
+     "start": 9.330207716843661,
+     "end": 12.313385999561115,
+     "text": "choose whether to turn on face check-in."
+    },
+    {
+     "lang": "ar",
+     "start": 4.930019749835418,
+     "end": 9.588572264543298,
+     "text": "أنشئ ملفك الشخصي بالاسم وبيانات التواصل، واختر إن كنت"
+    },
+    {
+     "lang": "ar",
+     "start": 9.588572264543298,
+     "end": 12.313385999561115,
+     "text": "تريد تفعيل تسجيل الحضور بالوجه."
+    },
+    {
+     "lang": "en",
+     "start": 12.313385999561115,
+     "end": 16.52190476190476,
+     "text": "It's always your choice, and you can turn it off anytime."
+    },
+    {
+     "lang": "ar",
+     "start": 12.313385999561115,
+     "end": 16.52190476190476,
+     "text": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
+    }
+   ]
+  },
+  {
+   "id": "b2",
+   "part": "B",
+   "title": "The kiosk at the door",
+   "visual": {
+    "type": "mix",
+    "parts": [
+     {
+      "type": "image",
+      "file": "b2-kiosk-door.png",
+      "weight": 0.38,
+      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A sleek tablet kiosk on an elegant dark wooden floor stand just inside the doors of a Coptic Orthodox church, a Coptic family of three walking toward it in warm light, the tablet screen softly glowing (screen content blurred, no readable text), candles and icons in the background, 16:9, no text inside the image, no logos"
+     },
+     {
+      "type": "screen",
+      "mockup": "tablet",
+      "weight": 0.62,
+      "src": {
+       "file": "kiosk",
+       "from": 1.2,
+       "to": 9
+      }
+     }
+    ]
+   },
+   "onScreen": "Just look at the screen",
+   "sentences": [
+    {
+     "en": "At the church door stands the Amoinee kiosk.",
+     "ar": "عند باب الكنيسة يقف جهاز أمويني."
+    },
+    {
+     "en": "Just look at the screen as you walk in.",
+     "ar": "فقط انظر إلى الشاشة وأنت تدخل."
+    },
+    {
+     "en": "In a second it welcomes you by name, and records that you're here.",
+     "ar": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
+    }
+   ],
+   "start": 50.310113378684804,
+   "dur": 11.612743764172336,
+   "audio": "b2.wav",
+   "audioDur": 10.612743764172336,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 3.633964601500556,
+     "text": "At the church door stands the Amoinee kiosk."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 3.633964601500556,
+     "text": "عند باب الكنيسة يقف جهاز أمويني."
+    },
+    {
+     "lang": "en",
+     "start": 3.633964601500556,
+     "end": 6.411796861921503,
+     "text": "Just look at the screen as you walk in."
+    },
+    {
+     "lang": "ar",
+     "start": 3.633964601500556,
+     "end": 6.411796861921503,
+     "text": "فقط انظر إلى الشاشة وأنت تدخل."
+    },
+    {
+     "lang": "en",
+     "start": 6.411796861921503,
+     "end": 10.751132463999197,
+     "text": "In a second it welcomes you by name, and records that you're"
+    },
+    {
+     "lang": "en",
+     "start": 10.751132463999197,
+     "end": 11.112743764172338,
+     "text": "here."
+    },
+    {
+     "lang": "ar",
+     "start": 6.411796861921503,
+     "end": 11.112743764172336,
+     "text": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
+    }
+   ]
+  },
+  {
+   "id": "b3",
+   "part": "B",
+   "title": "Other ways to check in",
+   "visual": {
+    "type": "screen",
+    "mockup": "tablet",
+    "src": {
+     "file": "kiosk",
+     "from": 9,
+     "to": 17.2
+    }
+   },
+   "onScreen": "QR code or 3-digit code",
+   "sentences": [
+    {
+     "en": "Prefer not to use your face? No problem.",
+     "ar": "لا تفضّل استخدام وجهك؟ لا مشكلة."
+    },
+    {
+     "en": "Scan the QR code on the kiosk with your phone, or type the three-digit code of the day.",
+     "ar": "امسح رمز الاستجابة السريعة على الجهاز بهاتفك، أو اكتب الرمز المكوّن من ثلاثة أرقام لهذا اليوم."
+    },
+    {
+     "en": "Nobody is ever left at the door.",
+     "ar": "لا أحد يبقى عند الباب."
+    }
+   ],
+   "start": 61.52285714285714,
+   "dur": 13.547437641723356,
+   "audio": "b3.wav",
+   "audioDur": 12.547437641723356,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 3.65658808596814,
+     "text": "Prefer not to use your face? No problem."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 3.65658808596814,
+     "text": "لا تفضّل استخدام وجهك؟ لا مشكلة."
+    },
+    {
+     "lang": "en",
+     "start": 3.65658808596814,
+     "end": 8.28686235393187,
+     "text": "Scan the QR code on the kiosk with your phone, or type the"
+    },
+    {
+     "lang": "en",
+     "start": 8.28686235393187,
+     "end": 10.522167172948844,
+     "text": "three-digit code of the day."
+    },
+    {
+     "lang": "ar",
+     "start": 3.65658808596814,
+     "end": 7.5692299312367135,
+     "text": "امسح رمز الاستجابة السريعة على الجهاز بهاتفك، أو اكتب"
+    },
+    {
+     "lang": "ar",
+     "start": 7.5692299312367135,
+     "end": 10.522167172948844,
+     "text": "الرمز المكوّن من ثلاثة أرقام لهذا اليوم."
+    },
+    {
+     "lang": "en",
+     "start": 10.522167172948844,
+     "end": 13.047437641723356,
+     "text": "Nobody is ever left at the door."
+    },
+    {
+     "lang": "ar",
+     "start": 10.522167172948844,
+     "end": 13.047437641723356,
+     "text": "لا أحد يبقى عند الباب."
+    }
+   ]
+  },
+  {
+   "id": "c0",
+   "part": "C",
+   "title": "For Abouna and servants",
+   "visual": {
+    "type": "image",
+    "file": "c0-abouna-laptop.png",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood, smiling gently at a laptop in a calm church office, an icon of the Virgin and Child on the wall, warm window light, 16:9, no text inside the image, the laptop screen not readable. Fictional cartoon character, not a real person."
+   },
+   "onScreen": "Attendance becomes care",
+   "sentences": [
+    {
+     "en": "For Abouna and church servants, Amoinee turns attendance into care.",
+     "ar": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
+    }
+   ],
+   "start": 74.67029478458049,
+   "dur": 5.938548752834467,
+   "audio": "c0.wav",
+   "audioDur": 4.938548752834467,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 5.064416271559128,
+     "text": "For Abouna and church servants, Amoinee turns attendance into"
+    },
+    {
+     "lang": "en",
+     "start": 5.064416271559128,
+     "end": 5.438548752834466,
+     "text": "care."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 5.438548752834467,
+     "text": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
+    }
+   ]
+  },
+  {
+   "id": "c1",
+   "part": "C",
+   "title": "Today",
+   "visual": {
+    "type": "screen",
+    "mockup": "laptop",
+    "src": {
+     "file": "today",
+     "from": 0.5,
+     "to": 14.3
+    }
+   },
+   "onScreen": "Today · live",
+   "sentences": [
+    {
+     "en": "The Today screen shows who is here, live, as the Liturgy begins, with every arrival time.",
+     "ar": "تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت وصول كل شخص."
+    },
+    {
+     "en": "Weekly events open check-in on their own, so no one has to remember.",
+     "ar": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر."
+    }
+   ],
+   "start": 80.20884353741496,
+   "dur": 12.797641723356008,
+   "audio": "c1.wav",
+   "audioDur": 11.797641723356008,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 5.363880085135772,
+     "text": "The Today screen shows who is here, live, as the Liturgy begins,"
+    },
+    {
+     "lang": "en",
+     "start": 5.363880085135772,
+     "end": 7.187835117061686,
+     "text": "with every arrival time."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 5.953157864681067,
+     "text": "تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت"
+    },
+    {
+     "lang": "ar",
+     "start": 5.953157864681067,
+     "end": 7.187835117061686,
+     "text": "وصول كل شخص."
+    },
+    {
+     "lang": "en",
+     "start": 7.187835117061686,
+     "end": 11.611249791167218,
+     "text": "Weekly events open check-in on their own, so no one has to"
+    },
+    {
+     "lang": "en",
+     "start": 11.611249791167218,
+     "end": 12.297641723356007,
+     "text": "remember."
+    },
+    {
+     "lang": "ar",
+     "start": 7.187835117061686,
+     "end": 11.334924536662875,
+     "text": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج"
+    },
+    {
+     "lang": "ar",
+     "start": 11.334924536662875,
+     "end": 12.297641723356008,
+     "text": "أحد أن يتذكر."
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "part": "C",
+   "title": "Members",
+   "visual": {
+    "type": "screen",
+    "mockup": "laptop",
+    "src": {
+     "file": "members",
+     "from": 1.5,
+     "to": 19
+    }
+   },
+   "onScreen": "Members, notes, consent",
+   "sentences": [
+    {
+     "en": "The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.",
+     "ar": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
+    }
+   ],
+   "start": 92.60648526077097,
+   "dur": 10.067800453514739,
+   "audio": "c2.wav",
+   "audioDur": 9.067800453514739,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 4.442521936310756,
+     "text": "The Members page keeps every person in one place, with their"
+    },
+    {
+     "lang": "en",
+     "start": 4.442521936310756,
+     "end": 8.58216996943705,
+     "text": "photo, consent status, and private notes that only the church's"
+    },
+    {
+     "lang": "en",
+     "start": 8.58216996943705,
+     "end": 9.567800453514739,
+     "text": "admins can see."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 5.165955573167778,
+     "text": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة"
+    },
+    {
+     "lang": "ar",
+     "start": 5.165955573167778,
+     "end": 9.567800453514739,
+     "text": "موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "part": "C",
+   "title": "The Attendance Sheet",
+   "minDur": 27,
+   "visual": {
+    "type": "screen",
+    "mockup": "laptop",
+    "src": {
+     "file": "attendance",
+     "from": 1,
+     "to": 27.5
+    }
+   },
+   "onScreen": "The Attendance Sheet",
+   "sentences": [
+    {
+     "en": "And the Attendance Sheet gives Abouna a clear summary.",
+     "ar": "وتعطي صفحة الحضور أبونا ملخصًا واضحًا."
+    },
+    {
+     "en": "How many came, who is faithful, who is drifting, and who hasn't come in weeks, ranked from most to least.",
+     "ar": "كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ أسابيع، مرتّبين من الأكثر إلى الأقل."
+    },
+    {
+     "en": "A beautiful register shows every person at every service, at a glance.",
+     "ar": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
+    }
+   ],
+   "start": 102.27428571428571,
+   "dur": 27,
+   "audio": "c3.wav",
+   "audioDur": 16.546666666666667,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 4.4018340611353715,
+     "text": "And the Attendance Sheet gives Abouna a clear summary."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 4.4018340611353715,
+     "text": "وتعطي صفحة الحضور أبونا ملخصًا واضحًا."
+    },
+    {
+     "lang": "en",
+     "start": 4.4018340611353715,
+     "end": 8.997744373530399,
+     "text": "How many came, who is faithful, who is drifting, and who hasn't"
+    },
+    {
+     "lang": "en",
+     "start": 8.997744373530399,
+     "end": 11.988733624454147,
+     "text": "come in weeks, ranked from most to least."
+    },
+    {
+     "lang": "ar",
+     "start": 4.4018340611353715,
+     "end": 8.775458515283843,
+     "text": "كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ"
+    },
+    {
+     "lang": "ar",
+     "start": 8.775458515283843,
+     "end": 11.988733624454149,
+     "text": "أسابيع، مرتّبين من الأكثر إلى الأقل."
+    },
+    {
+     "lang": "en",
+     "start": 11.988733624454149,
+     "end": 16.53354302470308,
+     "text": "A beautiful register shows every person at every service, at a"
+    },
+    {
+     "lang": "en",
+     "start": 16.53354302470308,
+     "end": 17.046666666666667,
+     "text": "glance."
+    },
+    {
+     "lang": "ar",
+     "start": 11.988733624454149,
+     "end": 17.046666666666667,
+     "text": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
+    }
+   ]
+  },
+  {
+   "id": "c4",
+   "part": "C",
+   "title": "Labels and follow-up",
+   "visual": {
+    "type": "screen",
+    "mockup": "laptop",
+    "src": {
+     "file": "labels",
+     "from": 4,
+     "to": 29.3
+    }
+   },
+   "onScreen": "Follow up needed",
+   "sentences": [
+    {
+     "en": "When someone misses several Sundays, Amoinee gently marks them \"Follow up needed.\"",
+     "ar": "عندما يغيب شخص عدة آحاد، تضع أمويني عليه بلطف علامة «يحتاج متابعة»."
+    },
+    {
+     "en": "Servants add labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or \"Traveling,\" and can snooze a reminder when it's not the right time.",
+     "ar": "ويضيف الخدام علامات مثل «تم الاتصال» و«تمت الزيارة» و«يحتاج صلاة» و«مسافر»، ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا."
+    },
+    {
+     "en": "Abouna also sees who came back, who is new, and whose birthday is this week.",
+     "ar": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا الأسبوع."
+    }
+   ],
+   "start": 128.87428571428572,
+   "dur": 21.396507936507938,
+   "audio": "c4.wav",
+   "audioDur": 20.396507936507938,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 4.899297711136835,
+     "text": "When someone misses several Sundays, Amoinee gently marks them"
+    },
+    {
+     "lang": "en",
+     "start": 4.899297711136835,
+     "end": 6.2474695903561885,
+     "text": "\"Follow up needed.\""
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 4.941226501638873,
+     "text": "عندما يغيب شخص عدة آحاد، تضع أمويني عليه بلطف علامة"
+    },
+    {
+     "lang": "ar",
+     "start": 4.941226501638873,
+     "end": 6.2474695903561885,
+     "text": "«يحتاج متابعة»."
+    },
+    {
+     "lang": "en",
+     "start": 6.2474695903561885,
+     "end": 10.80178546757755,
+     "text": "Servants add labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or"
+    },
+    {
+     "lang": "en",
+     "start": 10.80178546757755,
+     "end": 15.213778973635746,
+     "text": "\"Traveling,\" and can snooze a reminder when it's not the right"
+    },
+    {
+     "lang": "en",
+     "start": 15.213778973635746,
+     "end": 15.569584901543665,
+     "text": "time."
+    },
+    {
+     "lang": "ar",
+     "start": 6.2474695903561885,
+     "end": 10.14441943355751,
+     "text": "ويضيف الخدام علامات مثل «تم الاتصال» و«تمت الزيارة»"
+    },
+    {
+     "lang": "ar",
+     "start": 10.14441943355751,
+     "end": 14.117780057998074,
+     "text": "و«يحتاج صلاة» و«مسافر»، ويمكنهم تأجيل التذكير حين لا"
+    },
+    {
+     "lang": "ar",
+     "start": 14.117780057998074,
+     "end": 15.569584901543664,
+     "text": "يكون الوقت مناسبًا."
+    },
+    {
+     "lang": "en",
+     "start": 15.569584901543664,
+     "end": 19.97317461044746,
+     "text": "Abouna also sees who came back, who is new, and whose birthday"
+    },
+    {
+     "lang": "en",
+     "start": 19.97317461044746,
+     "end": 20.896507936507934,
+     "text": "is this week."
+    },
+    {
+     "lang": "ar",
+     "start": 15.569584901543664,
+     "end": 20.2306425571374,
+     "text": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا"
+    },
+    {
+     "lang": "ar",
+     "start": 20.2306425571374,
+     "end": 20.896507936507934,
+     "text": "الأسبوع."
+    }
+   ]
+  },
+  {
+   "id": "c5",
+   "part": "C",
+   "title": "Reports and privacy",
+   "visual": {
+    "type": "screen",
+    "mockup": "laptop",
+    "src": {
+     "file": "reports",
+     "from": 1.5,
+     "to": 17.8
+    }
+   },
+   "onScreen": "One-page report · Excel · private",
+   "sentences": [
+    {
+     "en": "With one tap, Abouna can print a one-page report, or export everything to Excel.",
+     "ar": "بلمسة واحدة يستطيع أبونا طباعة تقرير من صفحة واحدة أو تصدير كل شيء إلى إكسل."
+    },
+    {
+     "en": "Each church sees only its own people, with access given church by church, and privacy and consent built in from the start.",
+     "ar": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة، والخصوصية والموافقة جزء من التصميم منذ البداية."
+    }
+   ],
+   "start": 149.87079365079364,
+   "dur": 15.526938775510205,
+   "audio": "c5.wav",
+   "audioDur": 14.526938775510205,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 4.796725844116316,
+     "text": "With one tap, Abouna can print a one-page report, or export"
+    },
+    {
+     "lang": "en",
+     "start": 4.796725844116316,
+     "end": 6.253243079409982,
+     "text": "everything to Excel."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 4.56562510944972,
+     "text": "بلمسة واحدة يستطيع أبونا طباعة تقرير من صفحة واحدة أو"
+    },
+    {
+     "lang": "ar",
+     "start": 4.56562510944972,
+     "end": 6.253243079409982,
+     "text": "تصدير كل شيء إلى إكسل."
+    },
+    {
+     "lang": "en",
+     "start": 6.253243079409982,
+     "end": 10.748855750139022,
+     "text": "Each church sees only its own people, with access given church"
+    },
+    {
+     "lang": "en",
+     "start": 10.748855750139022,
+     "end": 15.026938775510205,
+     "text": "by church, and privacy and consent built in from the start."
+    },
+    {
+     "lang": "ar",
+     "start": 6.253243079409982,
+     "end": 11.023407729716899,
+     "text": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة،"
+    },
+    {
+     "lang": "ar",
+     "start": 11.023407729716899,
+     "end": 15.026938775510205,
+     "text": "والخصوصية والموافقة جزء من التصميم منذ البداية."
+    }
+   ]
+  },
+  {
+   "id": "d",
+   "part": "D",
+   "title": "Every soul matters",
+   "visual": {
+    "type": "outro",
+    "file": "d-outro.png",
+    "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind Coptic Orthodox priest in black robe and eiskeem hood warmly greeting a returning Coptic family of four at the church door in soft golden morning light, the mother holds a child's hand, joyful and peaceful, 16:9, no text inside the image. Fictional cartoon characters, not real people."
+   },
+   "onScreen": "Every one of God's people, known and cared for.",
+   "sentences": [
+    {
+     "en": "Because every soul matters, and no one should be forgotten.",
+     "ar": "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."
+    },
+    {
+     "en": "Amoinee. Come, let us worship.",
+     "ar": "أمويني. تعالوا نسجد."
+    }
+   ],
+   "start": 164.99773242630386,
+   "dur": 9.358458049886622,
+   "audio": "d.wav",
+   "audioDur": 8.358458049886622,
+   "cues": [
+    {
+     "lang": "en",
+     "start": 0.5,
+     "end": 6.041000280261917,
+     "text": "Because every soul matters, and no one should be forgotten."
+    },
+    {
+     "lang": "ar",
+     "start": 0.5,
+     "end": 6.041000280261917,
+     "text": "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."
+    },
+    {
+     "lang": "en",
+     "start": 6.041000280261917,
+     "end": 8.858458049886622,
+     "text": "Amoinee. Come, let us worship."
+    },
+    {
+     "lang": "ar",
+     "start": 6.041000280261917,
+     "end": 8.858458049886622,
+     "text": "أمويني. تعالوا نسجد."
+    }
+   ]
+  }
+ ]
+}

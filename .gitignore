@@ -41,3 +41,19 @@ yarn-error.log*
 next-env.d.ts
 
 !.env.example
+video/raw/
+video/node_modules/
+video/public/*.wav
+video/public/*.mp4
+video/public/images/
+video/public/screens/
+video/public/audio/
+video/out/*.mp4
+video/out/frames/
+video/google-vids-pack/*.webm
+video/google-vids-pack/*.wav
+video/google-vids-pack/*.mp3
+video/google-vids-pack/*.png
+video/google-vids-pack/*.mp4
+video/out/render-*.log
+video/out/_*.mp4
