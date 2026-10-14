@@ -4,17 +4,17 @@ import { fmtDate, fmtTime, METHOD_LABEL } from "@/lib/checkin";
 import { Link } from "@/i18n/navigation";
 import { getSession, hasSupabase } from "@/lib/session";
 
-type Row = { checked_in_at: string; method: string; late_minutes: number; service: string };
+type Row = { checked_in_at: string; method: string; late_minutes: number; service: string; church: string };
 
 const DEMO: Row[] = [
-  { checked_in_at: "2026-10-11T13:02:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
-  { checked_in_at: "2026-10-04T13:09:00Z", method: "self", late_minutes: 0, service: "Divine Liturgy" },
-  { checked_in_at: "2026-09-27T13:21:00Z", method: "qr", late_minutes: 11, service: "Divine Liturgy" },
-  { checked_in_at: "2026-09-24T23:05:00Z", method: "self", late_minutes: 0, service: "Bible Study" },
-  { checked_in_at: "2026-09-20T12:58:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
-  { checked_in_at: "2026-09-13T13:06:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
-  { checked_in_at: "2026-09-10T23:01:00Z", method: "qr", late_minutes: 0, service: "Bible Study" },
-  { checked_in_at: "2026-09-06T13:18:00Z", method: "manual", late_minutes: 8, service: "Divine Liturgy" },
+  { checked_in_at: "2026-10-11T13:02:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy", church: "St. Philopateer Coptic Orthodox Church" },
+  { checked_in_at: "2026-10-04T13:09:00Z", method: "self", late_minutes: 0, service: "Divine Liturgy", church: "St. Philopateer Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-27T13:21:00Z", method: "qr", late_minutes: 11, service: "Divine Liturgy", church: "St. Philopateer Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-24T23:05:00Z", method: "self", late_minutes: 0, service: "Bible Study", church: "St. Mark Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-20T12:58:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy", church: "St. Philopateer Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-13T13:06:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy", church: "St. Philopateer Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-10T23:01:00Z", method: "qr", late_minutes: 0, service: "Bible Study", church: "St. Mark Coptic Orthodox Church" },
+  { checked_in_at: "2026-09-06T13:18:00Z", method: "manual", late_minutes: 8, service: "Divine Liturgy", church: "St. Mark Coptic Orthodox Church" },
 ];
 
 export default async function History() {
@@ -30,7 +30,7 @@ export default async function History() {
       // only my own rows, even if I am an admin
       const { data } = await db
         .from("attendance")
-        .select("checked_in_at, method, late_minutes, services(name_en)")
+        .select("checked_in_at, method, late_minutes, services(name_en, churches(name))")
         .eq("member_id", me.id)
         .order("checked_in_at", { ascending: false })
         .limit(200);
@@ -38,7 +38,8 @@ export default async function History() {
         checked_in_at: a.checked_in_at,
         method: a.method,
         late_minutes: a.late_minutes,
-        service: (a.services as unknown as { name_en: string } | null)?.name_en ?? "Service",
+        service: (a.services as unknown as { name_en: string; churches: { name: string } | null } | null)?.name_en ?? "Service",
+        church: (a.services as unknown as { churches: { name: string } | null } | null)?.churches?.name ?? "",
       }));
     }
   }
@@ -69,18 +70,24 @@ export default async function History() {
               <p className="text-muted">No check-ins yet. Your visits will appear here.</p>
             </div>
           ) : (
-            <ul className={`${card} divide-y divide-line`}>
-              {rows.map((r, i) => (
-                <li key={i} className="flex flex-wrap items-center gap-3 px-4 py-3">
-                  <div className="me-auto">
-                    <div className="font-medium">{r.service}</div>
-                    <div className="text-sm text-muted">{fmtDate(r.checked_in_at)}</div>
-                  </div>
-                  <Badge tone="gray">{METHOD_LABEL[r.method] ?? r.method}</Badge>
-                  <span className="num w-20 text-end text-sm">{fmtTime(r.checked_in_at)}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={`${card} overflow-hidden`}>
+              <div className="hidden grid-cols-[1.2fr_1.4fr_1.4fr_5rem] gap-3 border-b border-line bg-page/60 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-muted sm:grid">
+                <span>Service</span><span>Church</span><span>How</span><span className="text-end">Time</span>
+              </div>
+              <ul className="divide-y divide-line">
+                {rows.map((r, i) => (
+                  <li key={i} className="grid gap-x-3 gap-y-1 px-4 py-3 sm:grid-cols-[1.2fr_1.4fr_1.4fr_5rem] sm:items-center">
+                    <div>
+                      <div className="font-medium">{r.service}</div>
+                      <div className="text-sm text-muted">{fmtDate(r.checked_in_at)}</div>
+                    </div>
+                    <div className="text-sm"><span className="text-muted sm:hidden">Church: </span>{r.church || "—"}</div>
+                    <div><Badge tone="gray">{METHOD_LABEL[r.method] ?? r.method}</Badge></div>
+                    <div className="num text-sm sm:text-end">{fmtTime(r.checked_in_at)}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </>
       )}

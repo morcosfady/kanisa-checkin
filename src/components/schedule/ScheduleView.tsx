@@ -4,12 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CalendarDays, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Badge, b, card } from "@/components/ui";
+import Combobox, { type Choice } from "@/components/Combobox";
 import ConfirmDialog from "@/components/members/ConfirmDialog";
+import { churchOptions, type ChurchRow, type CityRow } from "@/lib/places";
 import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
-export type Template = { id: string; name: string; type: string; weekday: number; start: string; end: string | null; active: boolean };
+export type Template = { id: string; name: string; type: string; weekday: number; start: string; end: string | null; active: boolean; churchId: string | null; church: string };
 
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const TYPES: [string, string][] = [
@@ -24,7 +26,7 @@ const t12 = (t: string) => {
 
 const field = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 text-sm outline-none focus:border-gold";
 
-export default function ScheduleView({ initial }: { initial: Template[] }) {
+export default function ScheduleView({ initial, churches, cities }: { initial: Template[]; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const [local, setLocal] = useState<Template[]>(initial);
   const [type, setType] = useState("mass");
@@ -32,6 +34,7 @@ export default function ScheduleView({ initial }: { initial: Template[] }) {
   const [weekday, setWeekday] = useState(0);
   const [start, setStart] = useState("08:00");
   const [end, setEnd] = useState("12:00");
+  const [church, setChurch] = useState<Choice>({ id: null, text: "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [del, setDel] = useState<Template | null>(null);
@@ -43,18 +46,28 @@ export default function ScheduleView({ initial }: { initial: Template[] }) {
     setError("");
     if (!name.trim()) return setError("Give the event a name.");
     if (end && end <= start) return setError("The end time must be after the start time.");
+    if (!church.id) return setError("Choose the church for this event from the list.");
     setBusy(true);
     if (!hasSupabase) {
-      setLocal((l) => [...l, { id: `t${Date.now()}`, name: name.trim(), type, weekday, start, end: end || null, active: true }]);
+      setLocal((l) => [...l, { id: `t${Date.now()}`, name: name.trim(), type, weekday, start, end: end || null, active: true, churchId: church.id, church: church.text }]);
       setBusy(false);
       return toast.success("Weekly event added (demo)");
     }
     const { error: err } = await supabaseBrowser().from("service_templates").insert({
-      name_ar: name.trim(), name_en: name.trim(), type, weekday, start_time: start, end_time: end || null, active: true,
+      name_ar: name.trim(), name_en: name.trim(), type, weekday, start_time: start, end_time: end || null, active: true, church_id: church.id,
     });
     setBusy(false);
     if (err) return setError(err.message);
     toast.success(`${name.trim()} will open check-in every ${DAYS[weekday]}`);
+    router.refresh();
+  }
+
+  async function changeChurch(t: Template, id: string) {
+    const name = churches.find((c) => c.id === id)?.name ?? "";
+    if (!hasSupabase) return setLocal((l) => l.map((x) => (x.id === t.id ? { ...x, churchId: id || null, church: name } : x)));
+    const { error: err } = await supabaseBrowser().from("service_templates").update({ church_id: id || null }).eq("id", t.id);
+    if (err) return toast.error(err.message);
+    toast.success(`${t.name} is now at ${name || "no church"}`);
     router.refresh();
   }
 
@@ -104,6 +117,18 @@ export default function ScheduleView({ initial }: { initial: Template[] }) {
                 <div className="text-sm text-muted">
                   Every {DAYS[t.weekday]} · <span className="num">{t12(t.start)}{t.end ? ` – ${t12(t.end)}` : ""}</span>
                 </div>
+                <label className="mt-1 flex items-center gap-2 text-sm">
+                  <span className="text-muted">Church</span>
+                  <select
+                    value={t.churchId ?? ""}
+                    onChange={(e) => changeChurch(t, e.target.value)}
+                    aria-label={`Church for ${t.name}`}
+                    className={`max-w-56 rounded-[8px] border bg-page px-2 py-1 text-sm ${t.churchId ? "border-line" : "border-warning"}`}
+                  >
+                    <option value="">Choose a church…</option>
+                    {churches.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+                  </select>
+                </label>
               </div>
               <button onClick={() => toggle(t)} role="switch" aria-checked={t.active} aria-label={`${t.active ? "Pause" : "Turn on"} ${t.name}`}
                 className={`relative h-7 w-12 rounded-full transition ${t.active ? "bg-success" : "bg-line"}`}>
@@ -133,7 +158,10 @@ export default function ScheduleView({ initial }: { initial: Template[] }) {
               {DAYS.map((d, i) => <option key={d} value={i}>Every {d}</option>)}
             </select>
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="sm:col-span-2">
+            <Combobox label="Church" required value={church} onChange={setChurch} options={churchOptions(churches, cities)} placeholder="Start typing the church" />
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:col-span-2">
             <label className="text-sm font-medium">Starts
               <input type="time" value={start} onChange={(e) => setStart(e.target.value)} required className={field} />
             </label>

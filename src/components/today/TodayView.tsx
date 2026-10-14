@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
 import { fmtTime } from "@/lib/demo";
 import { METHOD_LABEL } from "@/lib/checkin";
+import Combobox, { type Choice } from "@/components/Combobox";
+import { churchOptions, type ChurchRow, type CityRow } from "@/lib/places";
 import { Link, useRouter } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
@@ -32,19 +34,21 @@ const TYPES: [string, string][] = [
   ["youth_meeting", "Youth Meeting"], ["sunday_school", "Sunday School"], ["other", "Other service"],
 ];
 
-function StartService() {
+function StartService({ churches, cities }: { churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const [type, setType] = useState("mass");
   const [time, setTime] = useState("08:00");
+  const [church, setChurch] = useState<Choice>({ id: null, text: "" });
   const [busy, setBusy] = useState(false);
 
   async function start() {
+    if (!church.id) return toast.error("Choose the church from the list first.");
     setBusy(true);
     const db = supabaseBrowser();
     const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Chicago" });
     const name = TYPES.find((t) => t[0] === type)![1];
     await db.from("services").update({ is_active: false }).eq("is_active", true);
-    const { error } = await db.from("services").insert({ name_en: name, name_ar: name, type, date: today, start_time: time, is_active: true });
+    const { error } = await db.from("services").insert({ name_en: name, name_ar: name, type, date: today, start_time: time, is_active: true, church_id: church.id });
     setBusy(false);
     if (error) return toast.error(error.message);
     toast.success(`${name} started. Check-in is open.`);
@@ -66,6 +70,9 @@ function StartService() {
           <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5" />
         </label>
       </div>
+      <div className="text-start">
+        <Combobox label="Church" required value={church} onChange={setChurch} options={churchOptions(churches, cities)} placeholder="Start typing the church" />
+      </div>
       <button onClick={start} disabled={busy} className={`${b("primary")} w-full`}>{busy ? "Starting…" : "Start service"}</button>
       <Link href="/schedule" className="block text-sm font-medium text-heading underline underline-offset-4">Set up weekly events</Link>
     </div>
@@ -73,8 +80,8 @@ function StartService() {
 }
 
 export default function TodayView({
-  demo, service, initialArrivals, members,
-}: { demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[] }) {
+  demo, service, initialArrivals, members, churches, cities,
+}: { demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[]; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const byId = useMemo(() => new Map(members.map((m) => [m.id, m])), [members]);
   const [feed, setFeed] = useState<Arrival[]>(() => [...initialArrivals].sort((x, y) => y.min - x.min));
@@ -144,7 +151,7 @@ export default function TodayView({
     return out;
   }, [arrivals, start]);
 
-  if (!service) return <StartService />;
+  if (!service) return <StartService churches={churches} cities={cities} />;
 
   const stats = [
     { label: "Checked in", value: arrivals.length, icon: UserCheck, live: true },
