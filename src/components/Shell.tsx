@@ -3,9 +3,14 @@ import SacredBackground from "@/components/SacredBackground";
 import { Link } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseServer } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
 
 async function currentUser(): Promise<HeaderUser> {
-  if (!hasSupabase) return { name: "Demo Admin", role: "super_admin", pending: 2, approved: true }; // demo mode
+  if (!hasSupabase) {
+    // demo mode: a cookie can switch the preview to the regular-user view
+    const member = (await cookies()).get("demo_role")?.value === "member";
+    return member ? { name: "Demo Member", role: "member", pending: 0, approved: true } : { name: "Demo Admin", role: "super_admin", pending: 2, approved: true };
+  }
   const db = await supabaseServer();
   const { data: auth } = await db.auth.getUser();
   if (!auth.user) return null;

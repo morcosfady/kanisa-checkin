@@ -9,7 +9,12 @@ type Row = { checked_in_at: string; method: string; late_minutes: number; servic
 const DEMO: Row[] = [
   { checked_in_at: "2026-10-11T13:02:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
   { checked_in_at: "2026-10-04T13:09:00Z", method: "self", late_minutes: 0, service: "Divine Liturgy" },
-  { checked_in_at: "2026-09-27T13:21:00Z", method: "face", late_minutes: 11, service: "Divine Liturgy" },
+  { checked_in_at: "2026-09-27T13:21:00Z", method: "qr", late_minutes: 11, service: "Divine Liturgy" },
+  { checked_in_at: "2026-09-24T23:05:00Z", method: "self", late_minutes: 0, service: "Bible Study" },
+  { checked_in_at: "2026-09-20T12:58:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
+  { checked_in_at: "2026-09-13T13:06:00Z", method: "face", late_minutes: 0, service: "Divine Liturgy" },
+  { checked_in_at: "2026-09-10T23:01:00Z", method: "qr", late_minutes: 0, service: "Bible Study" },
+  { checked_in_at: "2026-09-06T13:18:00Z", method: "manual", late_minutes: 8, service: "Divine Liturgy" },
 ];
 
 export default async function History() {
