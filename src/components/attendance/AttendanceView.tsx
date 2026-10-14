@@ -16,10 +16,10 @@ import PrintReport from "./PrintReport";
 import RankedList, { DEFAULT_FILTER, applyFilter, type Filter } from "./RankedList";
 import Summary from "./Summary";
 
-// Ledger / ink look, remembered on this device
+// Dark "ink" look is the default (the whole app is dark); the parchment look is a choice remembered on this device
 const INK_KEY = "amoinee-ledger-ink";
 const inkListeners = new Set<() => void>();
-const readInk = () => { try { return localStorage.getItem(INK_KEY) === "1"; } catch { return false; } };
+const readInk = () => { try { return localStorage.getItem(INK_KEY) !== "0"; } catch { return true; } };
 const subInk = (cb: () => void) => { inkListeners.add(cb); return () => { inkListeners.delete(cb); }; };
 const setInk = (v: boolean) => { try { localStorage.setItem(INK_KEY, v ? "1" : "0"); } catch {} inkListeners.forEach((f) => f()); };
 
@@ -28,7 +28,7 @@ export default function AttendanceView({ raw, period, periodKey, today, church, 
 }) {
   const router = useRouter();
   const nextRouter = useNextRouter(); // keeps ?query (English only app, no locale prefix)
-  const ink = useSyncExternalStore(subInk, readInk, () => false);
+  const ink = useSyncExternalStore(subInk, readInk, () => true);
   const [local, setLocal] = useState<Raw>(raw); // demo mode keeps label changes in memory
   const data = demo ? local : raw;
   const [custom, setCustom] = useState({ from: period.from, to: period.to });

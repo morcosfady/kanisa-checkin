@@ -111,14 +111,14 @@ if (bad.length) console.log(bad.map((v) => `${v.id} (${v.impact}): ${v.nodes.len
 assert.equal(bad.length, 0, "axe serious/critical violations");
 ok("axe: no serious or critical issues");
 
-// dark "ink" look
-await page.getByRole("button", { name: "Use the dark ink look" }).click();
+// the page starts dark; the parchment look is a choice
 assert.equal(await page.locator(".ledger-page").getAttribute("data-ink"), "true");
-const axeInk = await new AxeBuilder({ page }).include(".ledger-page").analyze();
-const badInk = axeInk.violations.filter((v) => ["serious", "critical"].includes(v.impact));
-if (badInk.length) console.log(badInk.map((v) => `${v.id}: ${v.nodes.length} e.g. ${v.nodes[0].html.slice(0, 120)}`).join(" | "));
-assert.equal(badInk.length, 0, "axe (ink) serious/critical violations");
-ok("axe in ink mode: no serious or critical issues");
+ok("starts in the dark look");
+await page.getByRole("button", { name: "Use the parchment look" }).click();
+assert.equal(await page.locator(".ledger-page").getAttribute("data-ink"), "false");
+const axeLight = await new AxeBuilder({ page }).include(".ledger-page").analyze();
+assert.equal(axeLight.violations.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0);
+ok("parchment look still passes axe");
 
 await browser.close();
 console.log("ALL PASSED");

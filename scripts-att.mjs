@@ -15,7 +15,7 @@ for (const [name, vp] of Object.entries({ "1440": { width: 1440, height: 900 }, 
   console.log(name, "horizontal overflow px:", over);
   await page.screenshot({ path: `${out}/${tag}-${name}.png`, fullPage: true });
   if (name === "1440") {
-    await page.getByRole("button", { name: /dark ink look/ }).click();
+    await page.getByRole("button", { name: /parchment look/ }).click();
     await page.waitForTimeout(800);
     await page.screenshot({ path: `${out}/${tag}-ink-1440.png`, fullPage: false });
   }

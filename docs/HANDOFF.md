@@ -196,3 +196,5 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - ledger.css is now inside `@layer components` so Tailwind utilities (ps-9 etc.) win; checkboxes use native look.
 - Header shows the part before @ when the profile name is an email, with the Super admin badge.
 - Not changed: "session expired after deploy". Deploys do not touch Supabase sessions (cookies refreshed in `proxy.ts`); could not reproduce, likely the test browser's cookies.
+
+- Attendance page now starts in the dark "ink" look (app default). The parchment look is a toggle (sun/moon button) remembered per device; localStorage key amoinee-ledger-ink ("0" = parchment).
