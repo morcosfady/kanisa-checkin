@@ -7,8 +7,9 @@ import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
 import { fmtTime } from "@/lib/demo";
 import { METHOD_LABEL } from "@/lib/checkin";
-import Combobox, { type Choice } from "@/components/Combobox";
-import { churchOptions, type ChurchRow, type CityRow } from "@/lib/places";
+import ChurchGate from "@/components/ChurchGate";
+import type { AdminChurch, Kind } from "@/lib/kinds";
+import type { ChurchRow, CityRow } from "@/lib/places";
 import { Link, useRouter } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
@@ -29,29 +30,25 @@ function Clock12() {
   return <span className="num">{now ? now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit", timeZone: "America/Chicago" }) : "--:--"}</span>;
 }
 
-const TYPES: [string, string][] = [
-  ["mass", "Divine Liturgy"], ["vespers", "Vespers"], ["bible_study", "Bible Study"],
-  ["youth_meeting", "Youth Meeting"], ["sunday_school", "Sunday School"], ["other", "Other service"],
-];
-
-function StartService({ churches, cities }: { churches: ChurchRow[]; cities: CityRow[] }) {
+function StartService({ kinds, church, churches, cities }: { kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
-  const [type, setType] = useState("mass");
+  const [kindId, setKindId] = useState("");
   const [time, setTime] = useState("08:00");
-  const [church, setChurch] = useState<Choice>({ id: null, text: "" });
   const [busy, setBusy] = useState(false);
 
+  if (!church) return <ChurchGate churches={churches} cities={cities} />;
+  const kind = kinds.find((k) => k.id === kindId) ?? kinds[0];
+
   async function start() {
-    if (!church.id) return toast.error("Choose the church from the list first.");
+    if (!kind) return toast.error("Add a service type first (Weekly events page).");
     setBusy(true);
     const db = supabaseBrowser();
     const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Chicago" });
-    const name = TYPES.find((t) => t[0] === type)![1];
     await db.from("services").update({ is_active: false }).eq("is_active", true);
-    const { error } = await db.from("services").insert({ name_en: name, name_ar: name, type, date: today, start_time: time, is_active: true, church_id: church.id });
+    const { error } = await db.from("services").insert({ name_en: kind.name, name_ar: kind.name, type: kind.type, date: today, start_time: time, is_active: true, church_id: church!.id });
     setBusy(false);
     if (error) return toast.error(error.message);
-    toast.success(`${name} started. Check-in is open.`);
+    toast.success(`${kind.name} started. Check-in is open.`);
     router.refresh();
   }
 
@@ -60,18 +57,16 @@ function StartService({ churches, cities }: { churches: ChurchRow[]; cities: Cit
       <CalendarClock size={40} strokeWidth={1.5} className="mx-auto text-goldtext" />
       <h2 className="font-display text-2xl font-semibold text-heading">No service is open</h2>
       <p className="text-muted">Start a service now, or set up a weekly event so check-in opens by itself.</p>
+      <p className="text-sm">Church: <b>{church.name}</b></p>
       <div className="grid gap-3 text-start sm:grid-cols-2">
         <label className="text-sm font-medium">Service
-          <select value={type} onChange={(e) => setType(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5">
-            {TYPES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+          <select value={kind?.id ?? ""} onChange={(e) => setKindId(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5">
+            {kinds.map((k) => <option key={k.id} value={k.id}>{k.name}</option>)}
           </select>
         </label>
         <label className="text-sm font-medium">Starts at
           <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5" />
         </label>
-      </div>
-      <div className="text-start">
-        <Combobox label="Church" required value={church} onChange={setChurch} options={churchOptions(churches, cities)} placeholder="Start typing the church" />
       </div>
       <button onClick={start} disabled={busy} className={`${b("primary")} w-full`}>{busy ? "Starting…" : "Start service"}</button>
       <Link href="/schedule" className="block text-sm font-medium text-heading underline underline-offset-4">Set up weekly events</Link>
@@ -80,8 +75,8 @@ function StartService({ churches, cities }: { churches: ChurchRow[]; cities: Cit
 }
 
 export default function TodayView({
-  demo, service, initialArrivals, members, churches, cities,
-}: { demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[]; churches: ChurchRow[]; cities: CityRow[] }) {
+  demo, service, initialArrivals, members, kinds, church, churches, cities,
+}: { demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[]; kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const byId = useMemo(() => new Map(members.map((m) => [m.id, m])), [members]);
   const [feed, setFeed] = useState<Arrival[]>(() => [...initialArrivals].sort((x, y) => y.min - x.min));
@@ -151,7 +146,7 @@ export default function TodayView({
     return out;
   }, [arrivals, start]);
 
-  if (!service) return <StartService churches={churches} cities={cities} />;
+  if (!service) return <StartService kinds={kinds} church={church} churches={churches} cities={cities} />;
 
   const stats = [
     { label: "Checked in", value: arrivals.length, icon: UserCheck, live: true },

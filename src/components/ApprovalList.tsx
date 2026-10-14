@@ -12,14 +12,12 @@ type Req = { id: string; full_name: string; email: string | null; created_at: st
 export default function ApprovalList({ initial }: { initial: Req[] }) {
   const [rows, setRows] = useState(initial);
 
-  const [roles, setRoles] = useState<Record<string, string>>({});
-
   async function decide(r: Req, ok: boolean) {
     if (hasSupabase) {
       const db = supabaseBrowser();
       // decline keeps the row (so the first-admin rule cannot trigger again)
       const { error } = ok
-        ? await db.from("profiles").update({ approved: true, role: roles[r.id] ?? "member" }).eq("id", r.id)
+        ? await db.from("profiles").update({ approved: true }).eq("id", r.id)
         : await db.from("profiles").update({ declined_at: new Date().toISOString() }).eq("id", r.id);
       if (error) return toast.error(error.message);
     }
@@ -52,17 +50,6 @@ export default function ApprovalList({ initial }: { initial: Req[] }) {
               <div className="font-semibold">{r.full_name}</div>
               <div className="truncate text-sm text-muted">{r.email}</div>
             </div>
-            <label className="text-sm">
-              <span className="sr-only">Access level</span>
-              <select
-                value={roles[r.id] ?? "member"}
-                onChange={(e) => setRoles({ ...roles, [r.id]: e.target.value })}
-                className="rounded-[8px] border border-line bg-page px-2 py-2 text-sm"
-              >
-                <option value="member">Regular user</option>
-                <option value="super_admin">Admin</option>
-              </select>
-            </label>
             <button onClick={() => decide(r, false)} className={b("danger")}><X size={18} strokeWidth={1.75} /> Reject</button>
             <button onClick={() => decide(r, true)} className={b("primary")}><Check size={18} strokeWidth={1.75} /> Approve</button>
           </motion.li>

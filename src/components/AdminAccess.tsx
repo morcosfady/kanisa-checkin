@@ -3,7 +3,10 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Clock, Mail, ShieldCheck, UserMinus, X } from "lucide-react";
 import { toast } from "sonner";
+import ChurchGate from "@/components/ChurchGate";
 import ConfirmDialog from "@/components/members/ConfirmDialog";
+import type { AdminChurch } from "@/lib/kinds";
+import type { ChurchRow, CityRow } from "@/lib/places";
 import { Avatar, Badge, b, card } from "@/components/ui";
 import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
@@ -11,7 +14,7 @@ import { supabaseBrowser } from "@/lib/supabase/client";
 
 export type AdminRow = { id: string; name: string; email: string; isYou: boolean };
 
-export default function AdminAccess({ admins, invites }: { admins: AdminRow[]; invites: string[] }) {
+export default function AdminAccess({ admins, invites, church, churches, cities }: { admins: AdminRow[]; invites: string[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
@@ -22,6 +25,8 @@ export default function AdminAccess({ admins, invites }: { admins: AdminRow[]; i
 
   const list = hasSupabase ? admins : localAdmins;
   const waiting = hasSupabase ? invites : localInvites;
+
+  if (!church) return <ChurchGate churches={churches} cities={cities} />;
 
   async function grant(e: React.FormEvent) {
     e.preventDefault();
@@ -67,7 +72,7 @@ export default function AdminAccess({ admins, invites }: { admins: AdminRow[]; i
           <ShieldCheck size={22} strokeWidth={1.75} /> Admin access
         </h2>
         <p className="mt-1 text-sm text-muted">
-          Give someone full admin access by email. If they don’t have an account yet, they become an admin automatically the first time they sign up with that email.
+          Give someone full admin access to <b>{church.name}</b> by email. If they don’t have an account yet, they become an admin automatically the first time they sign up with that email.
         </p>
       </div>
 
