@@ -1,0 +1,22 @@
+{
+  "state": "TX",
+  "cities": [
+    "Addison", "Allen", "Anna", "Argyle", "Arlington", "Azle", "Balch Springs", "Bedford", "Benbrook", "Burleson",
+    "Carrollton", "Cedar Hill", "Celina", "Colleyville", "Coppell", "Crowley", "Dallas", "Denton", "DeSoto", "Duncanville",
+    "Euless", "Everman", "Fairview", "Farmers Branch", "Flower Mound", "Forest Hill", "Forney", "Fort Worth", "Frisco", "Garland",
+    "Glenn Heights", "Grand Prairie", "Grapevine", "Haltom City", "Haslet", "Highland Park", "Highland Village", "Hurst", "Hutchins", "Irving",
+    "Keller", "Kennedale", "Lake Dallas", "Lancaster", "Lewisville", "Little Elm", "Lucas", "Mansfield", "McKinney", "Mesquite",
+    "Midlothian", "Murphy", "North Richland Hills", "Parker", "Plano", "Princeton", "Prosper", "Red Oak", "Richardson", "Richland Hills",
+    "River Oaks", "Roanoke", "Rockwall", "Rowlett", "Royse City", "Sachse", "Saginaw", "Seagoville", "Southlake", "Sunnyvale",
+    "The Colony", "Trophy Club", "University Park", "Watauga", "Waxahachie", "Weatherford", "Westlake", "Wylie"
+  ],
+  "churches": [
+    { "name": "St. Abanoub Coptic Orthodox Church", "city": "Euless" },
+    { "name": "St. George Coptic Orthodox Church", "city": "Arlington" },
+    { "name": "St. Marina Coptic Orthodox Church", "city": "Lewisville" },
+    { "name": "St. Mark Coptic Orthodox Church", "city": "Prosper" },
+    { "name": "St. Mary Coptic Orthodox Church", "city": "Colleyville" },
+    { "name": "St. Meena Coptic Orthodox Church", "city": "Fort Worth" },
+    { "name": "St. Philopateer Coptic Orthodox Church", "city": "Richardson" }
+  ]
+}

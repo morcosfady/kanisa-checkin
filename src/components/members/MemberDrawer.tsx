@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Cross, Phone, Users, GraduationCap, X, ShieldOff, ShieldCheck } from "lucide-react";
+import { Church, Cross, MapPin, Phone, Users, GraduationCap, X, ShieldOff, ShieldCheck } from "lucide-react";
 import { Avatar, Badge, b } from "@/components/ui";
 import type { Member } from "@/lib/members";
 import ConfirmDialog from "./ConfirmDialog";
@@ -98,6 +98,8 @@ export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Mem
               <Row icon={Phone} label="Phone" value={m.phone || "—"} />
               <Row icon={Users} label="Family" value={`${m.family} family`} />
               <Row icon={GraduationCap} label="Class / group" value={m.className || "—"} />
+              <Row icon={MapPin} label="Address" value={[m.address, m.city].filter(Boolean).join(", ") || "—"} />
+              <Row icon={Church} label="Church" value={m.church || "—"} />
               <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                 {[["Attendance", m.rate === null ? "—" : `${m.rate}%`], ["Streak", m.streak === null ? "—" : `${m.streak} wks`], ["Last seen", rel(m.lastDays)]].map(([l, v]) => (
                   <div key={l} className="rounded-[12px] bg-page p-3">

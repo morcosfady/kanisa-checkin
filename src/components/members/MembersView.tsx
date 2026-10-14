@@ -8,6 +8,7 @@ import {
 import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
 import type { FamilyOption, Member } from "@/lib/members";
+import type { ChurchRow, CityRow } from "@/lib/places";
 import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import MemberForm from "./MemberForm";
@@ -61,7 +62,7 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
-export default function MembersView({ initial, families }: { initial: Member[]; families: FamilyOption[] }) {
+export default function MembersView({ initial, families, cities, churches }: { initial: Member[]; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[] }) {
   const router = useRouter();
   // demo mode keeps changes in memory; real mode refreshes from the server
   const [local, setLocal] = useState<Member[]>([]);
@@ -321,6 +322,8 @@ export default function MembersView({ initial, families }: { initial: Member[]; 
         open={form.open}
         member={form.member}
         families={families}
+        cities={cities}
+        churches={churches}
         onClose={() => setForm({ open: false, member: null })}
         onSaved={(m) => {
           if (hasSupabase) return router.refresh();

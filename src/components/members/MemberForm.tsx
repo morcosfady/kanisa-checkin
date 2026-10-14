@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Cross, ShieldCheck, X } from "lucide-react";
 import { toast } from "sonner";
 import { b } from "@/components/ui";
+import Combobox, { type Choice } from "@/components/Combobox";
 import { isMinor, type FamilyOption, type Member } from "@/lib/members";
+import { churchOptions, cityOptions, type ChurchRow, type CityRow } from "@/lib/places";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
@@ -35,22 +37,24 @@ export function Seg({ value, options, onChange, label }: { value: string; option
 }
 
 export default function MemberForm({
-  open, member, families, onClose, onSaved,
+  open, member, families, cities, churches, onClose, onSaved,
 }: {
   open: boolean;
   member: Member | null; // null = add
   families: FamilyOption[];
+  cities: CityRow[];
+  churches: ChurchRow[];
   onClose: () => void;
   onSaved: (m: Member) => void; // used in demo mode; real mode refreshes from the server
 }) {
   return (
     <AnimatePresence>
-      {open && <Inner key={member?.id ?? "new"} member={member} families={families} onClose={onClose} onSaved={onSaved} />}
+      {open && <Inner key={member?.id ?? "new"} member={member} families={families} cities={cities} churches={churches} onClose={onClose} onSaved={onSaved} />}
     </AnimatePresence>
   );
 }
 
-function Inner({ member, families, onClose, onSaved }: { member: Member | null; families: FamilyOption[]; onClose: () => void; onSaved: (m: Member) => void }) {
+function Inner({ member, families, cities, churches, onClose, onSaved }: { member: Member | null; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[]; onClose: () => void; onSaved: (m: Member) => void }) {
   const [first, setFirst] = useState(member?.firstName ?? "");
   const [last, setLast] = useState(member?.lastName ?? "");
   const [gender, setGender] = useState<string>(member?.gender ?? "male");
@@ -63,6 +67,9 @@ function Inner({ member, families, onClose, onSaved }: { member: Member | null; 
   const [newFamily, setNewFamily] = useState("");
   const [consent, setConsent] = useState(member?.consent ?? false);
   const [signature, setSignature] = useState(member?.signedBy ?? "");
+  const [address, setAddress] = useState(member?.address ?? "");
+  const [city, setCity] = useState<Choice>({ id: member?.cityId ?? null, text: member?.city ?? "" });
+  const [church, setChurch] = useState<Choice>({ id: member?.churchId ?? null, text: member?.church ?? "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const firstRef = useRef<HTMLInputElement>(null);
@@ -110,6 +117,11 @@ function Inner({ member, families, onClose, onSaved }: { member: Member | null; 
       streak: member?.streak ?? null,
       signedAt: signNow ? new Date().toISOString() : member?.signedAt ?? null,
       signedBy: signNow ? signature.trim() : member?.signedBy ?? null,
+      address: address.trim(),
+      cityId: city.id,
+      city: city.text.trim(),
+      churchId: church.id,
+      church: church.text.trim(),
     };
 
     if (!hasSupabase) {
@@ -139,6 +151,11 @@ function Inner({ member, families, onClose, onSaved }: { member: Member | null; 
         is_minor: minor,
         family_id: fid,
         status,
+        address: address.trim() || null,
+        city_id: city.id,
+        city_other: city.id || !city.text.trim() ? null : city.text.trim(),
+        church_id: church.id,
+        church_other: church.id || !church.text.trim() ? null : church.text.trim(),
         biometric_consent: consent,
         ...(signNow ? { consent_signed_at: new Date().toISOString(), consent_signed_by: signature.trim() } : {}),
       };
@@ -218,6 +235,11 @@ function Inner({ member, families, onClose, onSaved }: { member: Member | null; 
                 <option value={NEW_FAMILY}>+ New family…</option>
               </select>
             </label>
+            <label className="text-sm font-medium sm:col-span-2">Address
+              <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Street address" className={field} />
+            </label>
+            <Combobox label="City" value={city} onChange={setCity} options={cityOptions(cities)} placeholder="Start typing a city" otherLabel={(t) => `Not listed: use “${t}”`} />
+            <Combobox label="Church" value={church} onChange={setChurch} options={churchOptions(churches, cities)} placeholder="Start typing a church" otherLabel={(t) => `Not listed: use “${t}”`} />
             {familyId === NEW_FAMILY && (
               <label className="text-sm font-medium sm:col-span-2">New family name
                 <input value={newFamily} onChange={(e) => setNewFamily(e.target.value)} placeholder="Example: Girgis" className={field} />
