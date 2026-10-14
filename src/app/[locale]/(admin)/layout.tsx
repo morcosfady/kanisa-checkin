@@ -1,16 +1,14 @@
 import { redirect } from "next/navigation";
 import Shell from "@/components/Shell";
-import { hasSupabase } from "@/lib/supabase/env";
-import { supabaseServer } from "@/lib/supabase/server";
+import { getSession, hasSupabase, isAdminRole } from "@/lib/session";
 
-// Signed-in users who are not approved yet only see the waiting page
+// Admin area: signed in, approved, and an admin. Regular users go to their own pages.
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   if (hasSupabase) {
-    const db = await supabaseServer();
-    const { data: auth } = await db.auth.getUser();
-    if (!auth.user) redirect("/login");
-    const { data: profile } = await db.from("profiles").select("approved").eq("id", auth.user.id).maybeSingle();
+    const { user, profile } = await getSession();
+    if (!user) redirect("/login");
     if (!profile?.approved) redirect("/pending");
+    if (!isAdminRole(profile.role)) redirect("/check-in");
   }
   return <Shell>{children}</Shell>;
 }

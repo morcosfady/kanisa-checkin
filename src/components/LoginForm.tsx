@@ -23,7 +23,7 @@ export default function LoginForm() {
     });
     setBusy(false);
     if (error) return setError(t("failed"));
-    window.location.href = "/dashboard"; // full load so the new session cookie is used
+    window.location.href = "/home"; // full load so the new session cookie is used
   }
 
   const input = "w-full rounded-[8px] border border-line bg-page py-2.5 ps-10 pe-3 outline-none focus:border-gold";

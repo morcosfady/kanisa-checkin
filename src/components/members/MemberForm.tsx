@@ -9,9 +9,11 @@ import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 const NEW_FAMILY = "__new";
+export const CONSENT_TEXT =
+  "Amoinee keeps a numeric face template (never a photo) only to record attendance. It is kept until consent is withdrawn or 12 months after the last visit, and it is never sold or shared. Consent can be withdrawn any time and the data is deleted immediately. Without consent you can still check in by QR code or name.";
 const field = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 text-sm outline-none focus:border-gold";
 
-function Seg({ value, options, onChange, label }: { value: string; options: [string, string][]; onChange: (v: string) => void; label: string }) {
+export function Seg({ value, options, onChange, label }: { value: string; options: [string, string][]; onChange: (v: string) => void; label: string }) {
   return (
     <div role="radiogroup" aria-label={label} className="mt-1 flex gap-2">
       {options.map(([v, l]) => (

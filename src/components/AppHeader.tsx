@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { BarChart3, CalendarCheck, LogOut, ScanFace, ShieldCheck, Users } from "lucide-react";
+import { BarChart3, CalendarCheck, CheckCircle2, History, LogOut, ScanFace, ShieldCheck, UserRound, Users } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Logo } from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -11,12 +11,20 @@ import { hasSupabase } from "@/lib/supabase/env";
 
 export type HeaderUser = { name: string; role: string; pending: number } | null;
 
-const NAV = [
+type NavItem = { href: string; label: string; short?: string; icon: typeof Users; badge?: boolean; hidden?: boolean };
+
+const NAV: NavItem[] = [
   { href: "/dashboard", label: "Today", icon: CalendarCheck },
   { href: "/members", label: "Members", icon: Users },
   { href: "/kiosk", label: "Check-in Kiosk", short: "Check-in", icon: ScanFace },
   { href: "/approvals", label: "Approvals", icon: ShieldCheck, badge: true },
   { href: "/reports", label: "Reports", icon: BarChart3, hidden: true }, // page not built yet
+];
+
+const MEMBER_NAV: NavItem[] = [
+  { href: "/check-in", label: "Check in", icon: CheckCircle2 },
+  { href: "/profile", label: "My profile", short: "Profile", icon: UserRound },
+  { href: "/history", label: "My history", short: "History", icon: History },
 ];
 
 export default function AppHeader({ user }: { user: HeaderUser }) {
@@ -25,7 +33,8 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const items = NAV.filter((n) => !n.hidden && user);
+  const isMember = user?.role === "member";
+  const items = isMember ? MEMBER_NAV : NAV.filter((n) => !n.hidden && user);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 6);
@@ -56,7 +65,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center gap-4 px-4 py-2.5 sm:px-6">
-          <Link href={user ? "/dashboard" : "/login"} aria-label="Amoinee home" className="me-auto md:me-6">
+          <Link href={user ? (isMember ? "/check-in" : "/dashboard") : "/login"} aria-label="Amoinee home" className="me-auto md:me-6">
             <Logo size={40} />
           </Link>
 
@@ -112,7 +121,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
                     <Avatar name={user.name} size={40} />
                     <div className="min-w-0">
                       <div className="truncate font-semibold">{user.name}</div>
-                      <Badge tone="gold">{user.role === "super_admin" ? "Super Admin" : "Servant"}</Badge>
+                      <Badge tone="gold">{user.role === "super_admin" ? "Admin" : user.role === "servant" ? "Servant" : "Member"}</Badge>
                     </div>
                   </div>
                   <button
