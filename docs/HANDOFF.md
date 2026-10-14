@@ -145,3 +145,12 @@
 - Tested: rolled-back DB tests (18 checks: other church admin sees and changes nothing of yours, cannot add admins or services for another church, church is one-time, kinds seeded 13, invites carry the church; 3 guard checks), browser demo test (13 options, youth split, add/remove type, duplicate blocked, add weekly event from a type, approvals), tsc, lint 0 errors, 27 unit tests.
 - NOT tested: the one-time church choice and add/remove from the live site with a real login.
 - Gotcha: services of other churches are still visible to staff for reading, and the kiosk/check-in opens any active service (multi-church kiosks would need church filtering later).
+
+## Three kinds of users (2026-10-14)
+- Regular users: no approval. Sign up, profile, then straight to /check-in. /pending only redirects now.
+- Admins (priests): ask via "Request admin access" on /profile (RPC `request_admin`). An admin of that church or the super admin approves on /approvals (`approve_admin` / `decline_admin`). One church per admin.
+- Super admin: only morcos.genius@gmail.com (unique index `one_super_admin`). Manages every church, switches with the "Managing: ..." bar (`ChurchBar`, RPC `set_my_church`).
+- Migrations 0018a (enum value `admin`) and 0018b (functions, policies, admin_request_church columns) are LIVE. DB test (20 checks, rolled back) passed.
+- Approvals page = admin requests + admin access (list_admin_requests / list_admins / list_admin_invites).
+- Header pending badge counts admin requests. Role labels: Super admin / Admin / Member.
+- NOTE: profiles has two FKs to churches, so embeds need the hint `churches!profiles_church_id_fkey`.

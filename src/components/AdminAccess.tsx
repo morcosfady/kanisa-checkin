@@ -12,9 +12,10 @@ import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
-export type AdminRow = { id: string; name: string; email: string; isYou: boolean };
+export type AdminRow = { id: string; name: string; email: string; church: string; isYou: boolean; isSuper?: boolean };
+export type InviteRow = { email: string; church: string };
 
-export default function AdminAccess({ admins, invites, church, churches, cities }: { admins: AdminRow[]; invites: string[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
+export default function AdminAccess({ admins, invites, church, churches, cities }: { admins: AdminRow[]; invites: InviteRow[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
@@ -35,12 +36,12 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) return setError("Enter a valid email address.");
     setBusy(true);
     if (!hasSupabase) {
-      setLocalInvites((l) => (l.includes(value) ? l : [...l, value]));
+      setLocalInvites((l) => (l.some((x) => x.email === value) ? l : [...l, { email: value, church: church!.name }]));
       setBusy(false);
       setEmail("");
       return toast.success(`${value} will be an admin when they sign up (demo)`);
     }
-    const { data, error: err } = await supabaseBrowser().rpc("grant_admin", { p_email: value });
+    const { data, error: err } = await supabaseBrowser().rpc("grant_admin", { p_email: value, p_church: church!.id });
     setBusy(false);
     if (err) return setError(err.message);
     setEmail("");
@@ -58,7 +59,7 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
   }
 
   async function dropInvite(addr: string) {
-    if (!hasSupabase) return setLocalInvites((l) => l.filter((x) => x !== addr));
+    if (!hasSupabase) return setLocalInvites((l) => l.filter((x) => x.email !== addr));
     const { error: err } = await supabaseBrowser().from("admin_invites").delete().eq("email", addr);
     if (err) return toast.error(err.message);
     toast.success("Invite removed");
@@ -72,7 +73,7 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
           <ShieldCheck size={22} strokeWidth={1.75} /> Admin access
         </h2>
         <p className="mt-1 text-sm text-muted">
-          Give someone full admin access to <b>{church.name}</b> by email. If they don’t have an account yet, they become an admin automatically the first time they sign up with that email.
+          Give someone admin access to <b>{church.name}</b> by email. An admin manages one church only. If they don’t have an account yet, they become an admin automatically the first time they sign up with that email.
         </p>
       </div>
 
@@ -103,8 +104,9 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
                 <div className="me-auto min-w-0">
                   <div className="flex items-center gap-2 font-medium">{a.name} {a.isYou && <Badge tone="gold">You</Badge>}</div>
                   <div className="truncate text-sm text-muted">{a.email}</div>
+                  <div className="text-xs text-goldtext">{a.isSuper ? "Super admin · all churches" : a.church}</div>
                 </div>
-                {!a.isYou && (
+                {!a.isYou && !a.isSuper && (
                   <button onClick={() => setRemove(a)} className={b("danger")}><UserMinus size={16} strokeWidth={1.75} /> Remove admin</button>
                 )}
               </motion.li>
@@ -117,10 +119,10 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
         <div>
           <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">Waiting to sign up</h3>
           <ul className="divide-y divide-line rounded-[12px] border border-line">
-            {waiting.map((addr) => (
+            {waiting.map(({ email: addr, church: ch }) => (
               <li key={addr} className="flex items-center gap-3 px-3 py-2.5">
                 <Clock size={18} strokeWidth={1.75} className="text-goldtext" />
-                <span className="me-auto truncate">{addr}</span>
+                <span className="me-auto truncate">{addr} <span className="text-xs text-muted">· {ch}</span></span>
                 <button onClick={() => dropInvite(addr)} aria-label={`Remove invite for ${addr}`} className="grid h-8 w-8 place-items-center rounded-[8px] text-danger hover:bg-danger-tint"><X size={16} /></button>
               </li>
             ))}

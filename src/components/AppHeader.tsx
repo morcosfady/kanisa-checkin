@@ -119,7 +119,7 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
                     <Avatar name={user.name} size={40} />
                     <div className="min-w-0">
                       <div className="truncate font-semibold">{user.name}</div>
-                      <Badge tone="gold">{user.role === "super_admin" ? "Admin" : user.role === "servant" ? "Servant" : "Member"}</Badge>
+                      <Badge tone="gold">{user.role === "super_admin" ? "Super admin" : user.role === "admin" ? "Admin" : user.role === "servant" ? "Servant" : "Member"}</Badge>
                     </div>
                   </div>
                   <button

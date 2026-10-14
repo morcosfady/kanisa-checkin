@@ -17,9 +17,9 @@ async function currentUser(): Promise<HeaderUser> {
   const { data: p } = await db.from("profiles").select("full_name, role, approved").eq("id", auth.user.id).maybeSingle();
   if (!p?.approved) return { name: p?.full_name ?? auth.user.email ?? "User", role: p?.role ?? "member", pending: 0, approved: false };
   let pending = 0;
-  if (p.role === "super_admin") {
-    const { count } = await db.from("profiles").select("id", { count: "exact", head: true }).eq("approved", false).is("declined_at", null);
-    pending = count ?? 0;
+  if (p.role === "super_admin" || p.role === "admin") {
+    const { data } = await db.rpc("list_admin_requests");
+    pending = Array.isArray(data) ? data.length : 0;
   }
   return { name: p.full_name, role: p.role, pending, approved: true };
 }

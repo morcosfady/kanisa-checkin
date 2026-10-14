@@ -13,7 +13,7 @@ export const demoKinds: Kind[] = [
 
 // The church this admin serves, and the services that church offers (RLS keeps other churches out)
 export async function loadAdminChurch(db: SupabaseClient, userId: string): Promise<{ church: AdminChurch; kinds: Kind[] }> {
-  const { data: p } = await db.from("profiles").select("church_id, churches(name)").eq("id", userId).maybeSingle();
+  const { data: p } = await db.from("profiles").select("church_id, churches!profiles_church_id_fkey(name)").eq("id", userId).maybeSingle();
   const id = (p?.church_id as string | null) ?? null;
   if (!id) return { church: null, kinds: [] };
   const name = (p?.churches as unknown as { name: string } | null)?.name ?? "";

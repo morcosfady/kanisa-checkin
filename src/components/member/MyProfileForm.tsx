@@ -71,8 +71,8 @@ export default function MyProfileForm({
     if (err) return setError(err.message);
     setSaved(true);
     if (onboarding) {
-      toast.success("Profile sent 🙏");
-      window.location.href = "/pending"; // full load so the new profile is picked up
+      toast.success("Profile created. You can check in now 🙏");
+      window.location.href = "/check-in"; // full load so the new profile is picked up
       return;
     }
     toast.success(existing ? "Profile updated" : "Profile created. You can check in now 🙏");

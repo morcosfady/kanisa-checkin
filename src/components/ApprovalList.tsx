@@ -3,41 +3,43 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, PartyPopper, X } from "lucide-react";
 import { toast } from "sonner";
-import { Avatar, b, card } from "@/components/ui";
+import { Avatar, Badge, b, card } from "@/components/ui";
+import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
-type Req = { id: string; full_name: string; email: string | null; created_at: string };
+export type AdminRequest = { id: string; name: string; email: string | null; church: string };
 
-export default function ApprovalList({ initial }: { initial: Req[] }) {
+// People asking to become an admin of a church. Regular users never show up here.
+export default function ApprovalList({ initial }: { initial: AdminRequest[] }) {
+  const router = useRouter();
   const [rows, setRows] = useState(initial);
+  const list = hasSupabase ? initial : rows;
 
-  async function decide(r: Req, ok: boolean) {
+  async function decide(r: AdminRequest, ok: boolean) {
     if (hasSupabase) {
-      const db = supabaseBrowser();
-      // decline keeps the row (so the first-admin rule cannot trigger again)
-      const { error } = ok
-        ? await db.from("profiles").update({ approved: true }).eq("id", r.id)
-        : await db.from("profiles").update({ declined_at: new Date().toISOString() }).eq("id", r.id);
+      const { error } = await supabaseBrowser().rpc(ok ? "approve_admin" : "decline_admin", { p_user: r.id });
       if (error) return toast.error(error.message);
+      router.refresh();
+    } else {
+      setRows((x) => x.filter((y) => y.id !== r.id));
     }
-    setRows((x) => x.filter((y) => y.id !== r.id));
-    toast.success(ok ? `${r.full_name} approved` : `${r.full_name} declined`);
+    toast.success(ok ? `${r.name} is now an admin of ${r.church}` : `${r.name} declined`);
   }
 
-  if (rows.length === 0) {
+  if (list.length === 0) {
     return (
       <div className={`${card} grid place-items-center gap-2 p-12 text-center`}>
         <PartyPopper size={40} strokeWidth={1.5} className="text-goldtext" />
         <p className="font-display text-xl font-semibold text-heading">All caught up ✨</p>
-        <p className="text-muted">No pending requests.</p>
+        <p className="text-muted">No admin requests.</p>
       </div>
     );
   }
   return (
     <ul className="space-y-3">
       <AnimatePresence initial={false}>
-        {rows.map((r, i) => (
+        {list.map((r, i) => (
           <motion.li
             key={r.id}
             layout
@@ -45,12 +47,13 @@ export default function ApprovalList({ initial }: { initial: Req[] }) {
             transition={{ delay: i * 0.04 }}
             className={`${card} flex flex-wrap items-center gap-4 p-4`}
           >
-            <Avatar name={r.full_name} size={44} />
+            <Avatar name={r.name} size={44} />
             <div className="me-auto min-w-0">
-              <div className="font-semibold">{r.full_name}</div>
+              <div className="font-semibold">{r.name}</div>
               <div className="truncate text-sm text-muted">{r.email}</div>
+              <div className="mt-1"><Badge tone="gold">Wants to manage {r.church}</Badge></div>
             </div>
-            <button onClick={() => decide(r, false)} className={b("danger")}><X size={18} strokeWidth={1.75} /> Reject</button>
+            <button onClick={() => decide(r, false)} className={b("danger")}><X size={18} strokeWidth={1.75} /> Decline</button>
             <button onClick={() => decide(r, true)} className={b("primary")}><Check size={18} strokeWidth={1.75} /> Approve</button>
           </motion.li>
         ))}

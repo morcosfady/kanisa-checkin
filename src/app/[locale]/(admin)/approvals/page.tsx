@@ -1,21 +1,19 @@
-import AdminAccess, { type AdminRow } from "@/components/AdminAccess";
-import ApprovalList from "@/components/ApprovalList";
+import AdminAccess, { type AdminRow, type InviteRow } from "@/components/AdminAccess";
+import ApprovalList, { type AdminRequest } from "@/components/ApprovalList";
 import { Badge } from "@/components/ui";
 import { loadAdminChurch, type AdminChurch } from "@/lib/kinds";
 import { demoChurches, demoCities, type ChurchRow, type CityRow } from "@/lib/places";
 import { getSession, hasSupabase } from "@/lib/session";
 
-type Row = { id: string; full_name: string; email: string | null; created_at: string };
-
-const DEMO: Row[] = [
-  { id: "d1", full_name: "Sarah Demo", email: "sarah@example.com", created_at: "" },
-  { id: "d2", full_name: "Peter Sample", email: "peter@example.com", created_at: "" },
+const DEMO: AdminRequest[] = [
+  { id: "d1", name: "Fr. Demo Priest", email: "priest@example.com", church: demoChurches[6].name },
 ];
 
+// Approvals = admin requests only. Regular users never need approval.
 export default async function Approvals() {
-  let rows: Row[] = DEMO;
-  let admins: AdminRow[] = [{ id: "me", name: "Demo Admin", email: "admin@example.com", isYou: true }];
-  let invites: string[] = [];
+  let requests: AdminRequest[] = DEMO;
+  let admins: AdminRow[] = [{ id: "me", name: "Demo Admin", email: "admin@example.com", church: demoChurches[6].name, isYou: true }];
+  let invites: InviteRow[] = [];
   let church: AdminChurch = { id: demoChurches[6].id, name: demoChurches[6].name };
   let churches: ChurchRow[] = demoChurches;
   let cities: CityRow[] = demoCities;
@@ -23,18 +21,20 @@ export default async function Approvals() {
   if (hasSupabase) {
     const { db, user } = await getSession();
     church = (await loadAdminChurch(db, user!.id)).church;
-    const [{ data: pending }, { data: adm }, { data: inv }, { data: hs }, { data: cs }] = await Promise.all([
-      db.from("profiles").select("id, full_name, email, created_at").eq("approved", false).is("declined_at", null).order("created_at"),
-      db.from("profiles").select("id, full_name, email").eq("role", "super_admin").eq("approved", true).eq("church_id", church?.id ?? "00000000-0000-0000-0000-000000000000").order("created_at"),
-      db.from("admin_invites").select("email").eq("church_id", church?.id ?? "00000000-0000-0000-0000-000000000000").order("created_at"),
+    const [{ data: req }, { data: adm }, { data: inv }, { data: hs }, { data: cs }] = await Promise.all([
+      db.rpc("list_admin_requests"),
+      db.rpc("list_admins"),
+      db.rpc("list_admin_invites"),
       db.from("churches").select("id, name, city_id").order("name"),
       db.from("cities").select("id, name").order("name"),
     ]);
     churches = hs ?? [];
     cities = cs ?? [];
-    rows = pending ?? [];
-    admins = (adm ?? []).map((a) => ({ id: a.id, name: a.full_name, email: a.email ?? "", isYou: a.id === user?.id }));
-    invites = (inv ?? []).map((i) => i.email);
+    requests = (req ?? []) as AdminRequest[];
+    admins = ((adm ?? []) as { id: string; name: string; email: string; role: string; church: string | null }[]).map((a) => ({
+      id: a.id, name: a.name, email: a.email ?? "", church: a.church ?? "No church yet", isYou: a.id === user?.id, isSuper: a.role === "super_admin",
+    }));
+    invites = ((inv ?? []) as { email: string; church: string | null }[]).map((i) => ({ email: i.email, church: i.church ?? "" }));
   }
 
   return (
@@ -42,9 +42,10 @@ export default async function Approvals() {
       <div className="space-y-5">
         <div className="flex items-center gap-3">
           <h1 className="font-display text-3xl font-semibold text-heading">Approvals</h1>
-          {rows.length > 0 && <Badge tone="red">{rows.length} pending</Badge>}
+          {requests.length > 0 && <Badge tone="red">{requests.length} pending</Badge>}
         </div>
-        <ApprovalList initial={rows} />
+        <p className="text-sm text-muted">People who asked to be an admin. Regular users don’t need approval.</p>
+        <ApprovalList initial={requests} />
       </div>
       <AdminAccess admins={admins} invites={invites} church={church} churches={churches} cities={cities} />
     </div>
