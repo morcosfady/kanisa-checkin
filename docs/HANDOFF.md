@@ -156,3 +156,13 @@
 - NOTE: profiles has two FKs to churches, so embeds need the hint `churches!profiles_church_id_fkey`.
 
 - 0019: list_admins hides the super admin from regular admins (super admin still sees everyone). LIVE.
+
+## Review fixes (2026-10-14)
+- Members list and Today's "not here yet" list only show members whose home church = the managed church (loadMembers takes churchId; admin without a church sees none).
+- No clipboard code exists in the app (nothing to remove); the copy seen earlier came from the browser tool, not Amoinee.
+- Kiosk: hidden exit = press and hold the logo 2s, then the admin's password (`KioskExit`). When no service is open the camera stays OFF and the page shows "Next service: name, Sun 8:00 AM" (`lib/next-service.ts`, `loadNextService`).
+- Empty data: "No check-ins yet" instead of "Never" and empty bars. Face legend under the members table.
+- Start service defaults to the next scheduled service (name + time).
+- Header shows a role badge (Super admin / Admin) next to the name. Name = profile name (the super admin's is their email).
+- Members table now only at >=1024px; cards below. Delete-event confirm already existed (ConfirmDialog).
+- html/body `overflow-x: clip` as a guard for the phone clipping; could not reproduce at 375/390px in demo mode.

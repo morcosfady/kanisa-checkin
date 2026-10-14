@@ -9,6 +9,7 @@ import { fmtTime } from "@/lib/demo";
 import { METHOD_LABEL } from "@/lib/checkin";
 import ChurchGate from "@/components/ChurchGate";
 import type { AdminChurch, Kind } from "@/lib/kinds";
+import type { NextService } from "@/lib/next-service";
 import type { ChurchRow, CityRow } from "@/lib/places";
 import { Link, useRouter } from "@/i18n/navigation";
 import { supabaseBrowser } from "@/lib/supabase/client";
@@ -30,14 +31,14 @@ function Clock12() {
   return <span className="num">{now ? now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit", timeZone: "America/Chicago" }) : "--:--"}</span>;
 }
 
-function StartService({ kinds, church, churches, cities }: { kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
+function StartService({ kinds, church, churches, cities, next }: { kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[]; next: NextService | null }) {
   const router = useRouter();
   const [kindId, setKindId] = useState("");
-  const [time, setTime] = useState("08:00");
+  const [time, setTime] = useState(next?.time ?? "08:00");
   const [busy, setBusy] = useState(false);
 
   if (!church) return <ChurchGate churches={churches} cities={cities} />;
-  const kind = kinds.find((k) => k.id === kindId) ?? kinds[0];
+  const kind = kinds.find((k) => k.id === kindId) ?? kinds.find((k) => k.name === next?.name) ?? kinds[0];
 
   async function start() {
     if (!kind) return toast.error("Add a service type first (Weekly events page).");
@@ -58,6 +59,7 @@ function StartService({ kinds, church, churches, cities }: { kinds: Kind[]; chur
       <h2 className="font-display text-2xl font-semibold text-heading">No service is open</h2>
       <p className="text-muted">Start a service now, or set up a weekly event so check-in opens by itself.</p>
       <p className="text-sm">Church: <b>{church.name}</b></p>
+      {next && <p className="text-sm text-muted">Next scheduled: <b className="text-ink">{next.name}</b>, {next.label}</p>}
       <div className="grid gap-3 text-start sm:grid-cols-2">
         <label className="text-sm font-medium">Service
           <select value={kind?.id ?? ""} onChange={(e) => setKindId(e.target.value)} className="mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5">
@@ -75,8 +77,8 @@ function StartService({ kinds, church, churches, cities }: { kinds: Kind[]; chur
 }
 
 export default function TodayView({
-  demo, service, initialArrivals, members, kinds, church, churches, cities,
-}: { demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[]; kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
+  demo, service, initialArrivals, members, kinds, church, churches, cities, next = null,
+}: { next?: NextService | null; demo: boolean; service: TodayService | null; initialArrivals: Arrival[]; members: TodayMember[]; kinds: Kind[]; church: AdminChurch; churches: ChurchRow[]; cities: CityRow[] }) {
   const router = useRouter();
   const byId = useMemo(() => new Map(members.map((m) => [m.id, m])), [members]);
   const [feed, setFeed] = useState<Arrival[]>(() => [...initialArrivals].sort((x, y) => y.min - x.min));
@@ -146,7 +148,7 @@ export default function TodayView({
     return out;
   }, [arrivals, start]);
 
-  if (!service) return <StartService kinds={kinds} church={church} churches={churches} cities={cities} />;
+  if (!service) return <StartService kinds={kinds} church={church} churches={churches} cities={cities} next={next} />;
 
   const stats = [
     { label: "Checked in", value: arrivals.length, icon: UserCheck, live: true },

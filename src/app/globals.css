@@ -96,12 +96,13 @@
   --font-sans: var(--font-inter), var(--font-cairo), sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-inter), var(--font-cairo), sans-serif;
   font-size: 16px;
+  overflow-x: clip;
 }
 .num { font-variant-numeric: tabular-nums; }
 

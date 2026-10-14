@@ -104,8 +104,13 @@ export default function AppHeader({ user }: { user: HeaderUser }) {
               >
                 <Avatar name={user.name} size={32} />
                 <span className="hidden text-start text-sm leading-tight sm:block">
-                  <span className="block font-medium">{user.name}</span>
+                  <span className="block max-w-48 truncate font-medium">{user.name}</span>
                 </span>
+                {user.role !== "member" && (
+                  <span className="hidden rounded-full bg-gold/25 px-2 py-0.5 text-[11px] font-semibold text-gold-light sm:block">
+                    {user.role === "super_admin" ? "Super admin" : user.role === "admin" ? "Admin" : "Servant"}
+                  </span>
+                )}
               </button>
               {menu && (
                 <motion.div

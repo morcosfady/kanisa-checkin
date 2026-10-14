@@ -76,13 +76,14 @@ type Row = {
 };
 
 // Real data: members + attendance summary (rate and last seen come from attendance rows)
-export async function loadMembers(db: SupabaseClient): Promise<{ members: Member[]; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[] }> {
+export async function loadMembers(db: SupabaseClient, churchId: string | null): Promise<{ members: Member[]; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[] }> {
   const [{ data: rows }, { data: fams }, { data: att }, { count: services }, { data: cs }, { data: hs }] = await Promise.all([
     db
       .from("members")
       .select(
         "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, address, apartment, city_id, city_other, church_id, church_other, cities(name), churches(name), family_id, families(family_name), classes(name_en)",
       )
+      .eq("church_id", churchId ?? "00000000-0000-0000-0000-000000000000")
       .order("first_name")
       .returns<Row[]>(),
     db.from("families").select("id, family_name").order("family_name"),

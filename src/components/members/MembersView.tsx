@@ -19,7 +19,7 @@ const PAGE = 10;
 type View = "table" | "cards";
 type Sort = "name" | "last" | "rate";
 
-export const rel = (d: number | null) => (d === null ? "Never" : d === 0 ? "Today" : d === 1 ? "Yesterday" : `${d} days ago`);
+export const rel = (d: number | null) => (d === null ? "No check-ins yet" : d === 0 ? "Today" : d === 1 ? "Yesterday" : `${d} days ago`);
 
 export function FaceIcon({ face }: { face: Member["face"] }) {
   const map = {
@@ -224,7 +224,7 @@ export default function MembersView({ initial, cities, churches }: { initial: Me
         </div>
       ) : view === "table" ? (
         <>
-        <div className="grid gap-3 sm:hidden">
+        <div className="grid gap-3 lg:hidden">
           {slice.map((m) => <MemberCard key={m.id} m={m} onOpen={setOpen} />)}
           <div className="flex items-center justify-between text-sm text-muted">
             <button className={b("secondary")} disabled={cur === 0} onClick={() => setPage(cur - 1)} aria-label="Previous page"><ChevronLeft size={18} /></button>
@@ -232,7 +232,7 @@ export default function MembersView({ initial, cities, churches }: { initial: Me
             <button className={b("secondary")} disabled={cur >= pages - 1} onClick={() => setPage(cur + 1)} aria-label="Next page"><ChevronRight size={18} /></button>
           </div>
         </div>
-        <div className={`${card} hidden overflow-hidden sm:block`}>
+        <div className={`${card} hidden overflow-hidden lg:block`}>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[820px] text-sm">
               <thead className="sticky top-0 bg-page/80 text-start text-xs uppercase tracking-wide text-muted">
@@ -270,14 +270,18 @@ export default function MembersView({ initial, cities, churches }: { initial: Me
                     </td>
                     <td className="p-3"><Badge tone={statusTone[m.status]}>{m.status[0].toUpperCase() + m.status.slice(1)}</Badge></td>
                     <td className="p-3"><FaceIcon face={m.face} /></td>
-                    <td className="p-3 text-muted">{rel(m.lastDays)}</td>
+                    <td className="p-3 text-muted">{m.lastDays === null ? "—" : rel(m.lastDays)}</td>
                     <td className="p-3">
-                      <div className="flex items-center gap-2">
-                        <div className="h-2 w-20 overflow-hidden rounded-full bg-line" role="img" aria-label={m.rate === null ? "No data yet" : `${m.rate} percent`}>
-                          <div className="h-full rounded-full bg-gold" style={{ width: `${m.rate ?? 0}%` }} />
+                      {m.rate === null ? (
+                        <span className="text-xs text-muted">No check-ins yet</span>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <div className="h-2 w-20 overflow-hidden rounded-full bg-line" role="img" aria-label={`${m.rate} percent`}>
+                            <div className="h-full rounded-full bg-gold" style={{ width: `${m.rate}%` }} />
+                          </div>
+                          <span className="num text-xs text-muted">{m.rate}%</span>
                         </div>
-                        <span className="num text-xs text-muted">{m.rate === null ? "—" : `${m.rate}%`}</span>
-                      </div>
+                      )}
                     </td>
                     <td className="p-3 num">{m.streak === null ? "—" : <>{m.streak} <span className="text-muted">wks</span></>}</td>
                     <td className="p-3 text-end" onClick={(e) => e.stopPropagation()}><RowMenu m={m} onView={() => setOpen(m)} onEdit={() => setForm({ open: true, member: m })} onChanged={() => router.refresh()} /></td>
@@ -285,6 +289,12 @@ export default function MembersView({ initial, cities, churches }: { initial: Me
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-line px-3 py-2 text-xs text-muted">
+            <span className="font-semibold uppercase tracking-wide">Face</span>
+            <span className="inline-flex items-center gap-1"><ScanFace size={14} className="text-success" /><Check size={11} strokeWidth={2.5} className="text-success" /> Enrolled</span>
+            <span className="inline-flex items-center gap-1"><ScanFace size={14} className="text-warning" /><AlertCircle size={11} strokeWidth={2.5} className="text-warning" /> Consent given, face not enrolled yet</span>
+            <span className="inline-flex items-center gap-1"><ScanFace size={14} /><X size={11} strokeWidth={2.5} /> No face consent</span>
           </div>
           <div className="flex items-center justify-between border-t border-line p-3 text-sm text-muted">
             <span className="num">{cur * PAGE + 1}–{Math.min(rows.length, cur * PAGE + PAGE)} of {rows.length}</span>
@@ -344,7 +354,7 @@ function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) =
         {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
       </div>
       <div className="flex w-full items-center justify-between text-xs text-muted">
-        <span>Last: {rel(m.lastDays)}</span><FaceIcon face={m.face} />
+        <span>{m.lastDays === null ? "No check-ins yet" : `Last: ${rel(m.lastDays)}`}</span><FaceIcon face={m.face} />
       </div>
     </motion.button>
   );

@@ -2,6 +2,7 @@ import TodayView, { type Arrival, type TodayMember, type TodayService } from "@/
 import { demoArrivals, demoMembers, demoService, toMinutes } from "@/lib/demo";
 import { fmtService } from "@/lib/checkin";
 import { demoKinds, loadAdminChurch } from "@/lib/kinds";
+import { loadNextService } from "@/lib/next-service";
 import { demoChurches, demoCities } from "@/lib/places";
 import { getSession, hasSupabase } from "@/lib/session";
 
@@ -10,6 +11,8 @@ function chicagoMinutes(iso: string) {
   const parts = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "numeric", hour12: false, timeZone: "America/Chicago" }).formatToParts(new Date(iso));
   return (Number(parts.find((p) => p.type === "hour")!.value) % 24) * 60 + Number(parts.find((p) => p.type === "minute")!.value);
 }
+
+const NO_CHURCH = "00000000-0000-0000-0000-000000000000";
 
 export default async function Dashboard() {
   if (!hasSupabase) {
@@ -23,11 +26,12 @@ export default async function Dashboard() {
   const mine = await loadAdminChurch(db, user!.id);
   const [{ data: opened }, { data: ms }, { data: settings }, { data: hs }, { data: cs }] = await Promise.all([
     db.rpc("open_service"),
-    db.from("members").select("id, first_name, last_name, gender, is_deacon, status").order("first_name"),
+    db.from("members").select("id, first_name, last_name, gender, is_deacon, status").eq("church_id", mine.church?.id ?? NO_CHURCH).order("first_name"),
     db.from("settings").select("late_after_minutes").limit(1).maybeSingle(),
     db.from("churches").select("id, name, city_id").order("name"),
     db.from("cities").select("id, name").order("name"),
   ]);
+  const next = await loadNextService(db, mine.church?.id ?? null);
   const churches = hs ?? [];
   const cities = cs ?? [];
 
@@ -35,7 +39,7 @@ export default async function Dashboard() {
   const members: TodayMember[] = (ms ?? []).map((m) => ({
     id: m.id, name: `${m.first_name} ${m.last_name}`.trim(), gender: m.gender ?? "male", deacon: m.is_deacon, status: m.status,
   }));
-  if (!svc) return <TodayView demo={false} service={null} initialArrivals={[]} members={members} kinds={mine.kinds} church={mine.church} churches={churches} cities={cities} />;
+  if (!svc) return <TodayView demo={false} service={null} initialArrivals={[]} members={members} kinds={mine.kinds} church={mine.church} churches={churches} cities={cities} next={next} />;
 
   const { data: att } = await db.from("attendance").select("member_id, checked_in_at, method, late_minutes").eq("service_id", svc.id);
   const [h, mm] = String(svc.start_time).split(":").map(Number);

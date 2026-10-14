@@ -3,13 +3,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import QRCode from "qrcode";
 import { CalendarClock, QrCode, ScanFace, Smartphone, Volume2, VolumeX } from "lucide-react";
-import { Logo } from "@/components/Logo";
+import KioskExit from "@/components/kiosk/KioskExit";
 import SacredBackground from "@/components/SacredBackground";
 import { card } from "@/components/ui";
 import { demoMembers } from "@/lib/demo";
 import { loadHuman, setLiveness } from "@/lib/face/human";
 import { usableFace } from "@/lib/face/quality";
 import { fmtTime as fmtClock } from "@/lib/checkin";
+import type { NextService } from "@/lib/next-service";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 type Welcome = { id: number; name: string; time: string };
@@ -40,7 +41,7 @@ const Bracket = ({ cls }: { cls: string }) => (
   <motion.span aria-hidden animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 2.4, repeat: Infinity }} className={`absolute h-12 w-12 border-gold ${cls}`} />
 );
 
-export default function KioskScreen({ demo, liveness }: { demo: boolean; liveness: boolean }) {
+export default function KioskScreen({ demo, liveness, next }: { demo: boolean; liveness: boolean; next: NextService | null }) {
   const [mode, setMode] = useState<Mode>("idle");
   const [welcomes, setWelcomes] = useState<Welcome[]>([]);
   const [sound, setSound] = useState(true);
@@ -50,6 +51,7 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
   const [info, setInfo] = useState<Info | null>(demo ? { open: true, name: "Divine Liturgy", code: "482", token: "demo-token" } : null);
   const [infoError, setInfoError] = useState("");
   const [qr, setQr] = useState("");
+  const serviceOpen = info?.open === true;
   const [notice, setNotice] = useState("");
   const video = useRef<HTMLVideoElement>(null);
   const soundRef = useRef(true);
@@ -103,8 +105,9 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
     setTimeout(() => setMode("idle"), 3300);
   }, []);
 
-  // camera + face loop (real mode)
+  // camera + face loop (real mode). The camera stays off while no service is open.
   useEffect(() => {
+    if (!serviceOpen) return;
     let stopped = false;
     let stream: MediaStream | null = null;
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -182,7 +185,7 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
       if (timer) clearTimeout(timer);
       stream?.getTracks().forEach((t) => t.stop());
     };
-  }, [demo, liveness, welcome]);
+  }, [demo, liveness, welcome, serviceOpen]);
 
   const clockText = now ? now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" }) : "";
 
@@ -204,7 +207,7 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
       <SacredBackground light />
 
       <header className="-mx-4 flex w-[calc(100%+2rem)] flex-wrap items-center justify-center gap-x-8 gap-y-2 border-b border-gold/30 bg-coptic px-6 py-3 text-cream">
-        <Logo size={44} />
+        <KioskExit />
         <div className="text-center">
           <div className="text-xs uppercase tracking-widest text-gold-light">{open ? "Now serving" : "Check-in"}</div>
           <div className="font-display text-xl font-semibold">{open ? info?.name : "Not open"}</div>
@@ -218,6 +221,23 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
       {infoError && <p role="alert" className="rounded-[12px] bg-danger-tint px-4 py-2 text-danger">{infoError}</p>}
 
       <div className="grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_20rem]">
+        {open === false ? (
+        <section className="grid place-items-center">
+          <div className={`${card} w-full max-w-xl space-y-3 p-10 text-center`}>
+            <CalendarClock size={56} strokeWidth={1.25} className="mx-auto text-goldtext" />
+            <p className="font-display text-3xl font-semibold text-heading">Check-in is closed</p>
+            {next ? (
+              <>
+                <p className="text-xs uppercase tracking-widest text-muted">Next service</p>
+                <p className="font-display text-2xl font-semibold text-heading">{next.name}</p>
+                <p className="text-xl text-muted">{next.label}</p>
+              </>
+            ) : (
+              <p className="text-lg text-muted">No service is scheduled yet.</p>
+            )}
+          </div>
+        </section>
+        ) : (
         <section className="flex flex-col items-center gap-4">
           <div className="text-center">
             <p className="font-display text-2xl font-semibold text-heading sm:text-3xl">Please look at the camera 🙏</p>
@@ -238,7 +258,7 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
             <Bracket cls="end-4 top-4 rounded-se-xl border-e-4 border-t-4" />
             <Bracket cls="bottom-4 start-4 rounded-es-xl border-b-4 border-s-4" />
             <Bracket cls="bottom-4 end-4 rounded-ee-xl border-b-4 border-e-4" />
-            {(mode === "idle" || mode === "scanning") && open !== false && (
+            {(mode === "idle" || mode === "scanning") && (
               <span aria-hidden className="scanline absolute inset-x-8 h-0.5 rounded bg-gradient-to-r from-transparent via-gold to-transparent shadow-[0_0_14px_3px_rgb(201_162_74/0.7)]" />
             )}
             {!demo && models === "loading" && <p className="absolute inset-x-0 bottom-3 text-center text-sm text-cream/80">Loading face recognition…</p>}
@@ -274,12 +294,13 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
             )}
           </div>
         </section>
+        )}
 
         <aside className="space-y-4">
           {open === false ? (
             <div className={`${card} space-y-2 p-6 text-center`}>
               <CalendarClock size={36} strokeWidth={1.5} className="mx-auto text-goldtext" />
-              <p className="font-display text-xl font-semibold text-heading">No service is open right now</p>
+              <p className="font-display text-xl font-semibold text-heading">Not open yet</p>
               <p className="text-muted">Check-in opens automatically at the scheduled time.</p>
             </div>
           ) : (
