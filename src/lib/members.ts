@@ -24,6 +24,7 @@ export type Member = {
   signedAt: string | null;
   signedBy: string | null;
   address: string;
+  apartment: string;
   cityId: string | null;
   city: string;
   churchId: string | null;
@@ -43,7 +44,7 @@ export const fromDemo = (m: DemoMember): Member => {
     dob: null,
     signedAt: m.consent ? "2026-08-24" : null,
     signedBy: m.consent ? m.name : null,
-    address: "", cityId: null, city: "", churchId: null, church: "",
+    address: "", apartment: "", cityId: null, city: "", churchId: null, church: "",
   };
 };
 
@@ -62,6 +63,7 @@ type Row = {
   consent_signed_at: string | null;
   consent_signed_by: string | null;
   address: string | null;
+  apartment: string | null;
   city_id: string | null;
   city_other: string | null;
   church_id: string | null;
@@ -79,7 +81,7 @@ export async function loadMembers(db: SupabaseClient): Promise<{ members: Member
     db
       .from("members")
       .select(
-        "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, address, city_id, city_other, church_id, church_other, cities(name), churches(name), family_id, families(family_name), classes(name_en)",
+        "id, first_name, last_name, gender, is_deacon, status, phone, email, date_of_birth, biometric_consent, has_face, consent_signed_at, consent_signed_by, address, apartment, city_id, city_other, church_id, church_other, cities(name), churches(name), family_id, families(family_name), classes(name_en)",
       )
       .order("first_name")
       .returns<Row[]>(),
@@ -122,6 +124,7 @@ export async function loadMembers(db: SupabaseClient): Promise<{ members: Member
       signedAt: r.consent_signed_at,
       signedBy: r.consent_signed_by,
       address: r.address ?? "",
+      apartment: r.apartment ?? "",
       cityId: r.city_id,
       city: r.cities?.name ?? r.city_other ?? "",
       churchId: r.church_id,

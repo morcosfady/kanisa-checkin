@@ -140,7 +140,12 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
           if (stopped) return;
           setNotice("");
           const names: string[] = [];
-          for (const f of res.face.slice(0, 4)) {
+          // one person at a time: use the biggest face; if two people are close together, ask them to take turns
+          const area = (f: (typeof res.face)[number]) => (f.box?.[2] ?? 0) * (f.box?.[3] ?? 0);
+          const faces = [...res.face].sort((a, b) => area(b) - area(a));
+          const together = faces.length > 1 && area(faces[1]) > area(faces[0]) * 0.45;
+          if (together) setNotice("One person at a time, please.");
+          for (const f of together ? [] : faces.slice(0, 1)) {
             const u = usableFace(f as never, v.videoWidth, { liveness });
             if (!u.ok) {
               if (u.reason === "liveness") setNotice("Please look straight at the camera.");
@@ -181,12 +186,12 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
 
   const clockText = now ? now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" }) : "";
 
-  const simulate = (kind: "one" | "family" | "unknown") => {
+  const simulate = (kind: "one" | "unknown") => {
     setMode("scanning");
     setTimeout(() => {
       if (kind === "unknown") return setMode("unknown");
       const pool = demoMembers.filter((m) => m.face === "enrolled").map((m) => m.name.split(" ")[0]);
-      welcome([...pool].sort(() => Math.random() - 0.5).slice(0, kind === "one" ? 1 : 3));
+      welcome([...pool].sort(() => Math.random() - 0.5).slice(0, 1));
     }, 1300);
   };
 
@@ -299,7 +304,6 @@ export default function KioskScreen({ demo, liveness }: { demo: boolean; livenes
         <div className="mt-auto flex flex-wrap items-center justify-center gap-2 pt-2 text-sm text-muted">
           <span className="rounded-full bg-gold/20 px-3 py-1 font-semibold text-goldtext">Demo mode</span>
           <button onClick={() => simulate("one")} className="rounded-[12px] border border-line bg-card px-3 py-1.5 hover:bg-hover">Simulate a face</button>
-          <button onClick={() => simulate("family")} className="rounded-[12px] border border-line bg-card px-3 py-1.5 hover:bg-hover">Simulate a family</button>
           <button onClick={() => simulate("unknown")} className="rounded-[12px] border border-line bg-card px-3 py-1.5 hover:bg-hover">Simulate unknown</button>
         </div>
       )}

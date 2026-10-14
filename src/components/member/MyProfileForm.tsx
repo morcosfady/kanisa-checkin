@@ -13,7 +13,7 @@ import { CONSENT_TEXT, Seg } from "@/components/members/MemberForm";
 
 export type MyProfile = {
   firstName: string; lastName: string; gender: string; dob: string; phone: string; email: string;
-  family: string; address: string; city: Choice; church: Choice; consent: boolean; signedBy: string;
+  address: string; apartment: string; city: Choice; church: Choice; consent: boolean; signedBy: string;
 };
 
 const field = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 text-sm outline-none focus:border-gold";
@@ -47,7 +47,6 @@ export default function MyProfileForm({
     if (!v.dob) missing.push("date of birth");
     if (!v.phone.trim()) missing.push("phone");
     if (!v.email.trim()) missing.push("email");
-    if (!v.family.trim()) missing.push("family name");
     if (!v.address.trim()) missing.push("address");
     if (!v.city.text.trim()) missing.push("city");
     if (!v.church.text.trim()) missing.push("church");
@@ -63,7 +62,7 @@ export default function MyProfileForm({
     }
     const { error: err } = await supabaseBrowser().rpc("upsert_my_profile", {
       p_first: v.firstName, p_last: v.lastName, p_gender: v.gender, p_dob: v.dob,
-      p_phone: v.phone, p_email: v.email, p_family: v.family, p_address: v.address,
+      p_phone: v.phone, p_email: v.email, p_address: v.address, p_apartment: v.apartment,
       p_city_id: v.city.id, p_city_other: v.city.id ? null : v.city.text,
       p_church_id: v.church.id, p_church_other: v.church.id ? null : v.church.text,
       p_consent: v.consent, p_signed_by: v.signedBy,
@@ -82,7 +81,7 @@ export default function MyProfileForm({
 
   return (
     <form onSubmit={submit} className={`${card} mx-auto max-w-xl space-y-5 p-6`} noValidate>
-      <p className="text-sm text-muted">All fields are required except face recognition.</p>
+      <p className="text-sm text-muted">All fields are required except apartment and face recognition.</p>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium">First name *
           <input value={v.firstName} onChange={(e) => set("firstName", e.target.value)} required className={field} autoComplete="given-name" />
@@ -102,11 +101,11 @@ export default function MyProfileForm({
         <label className="text-sm font-medium">Email *
           <input type="email" value={v.email} onChange={(e) => set("email", e.target.value)} required className={field} autoComplete="email" />
         </label>
-        <label className="text-sm font-medium sm:col-span-2">Family name *
-          <input value={v.family} onChange={(e) => set("family", e.target.value)} required placeholder="Example: Girgis" className={field} />
-        </label>
         <label className="text-sm font-medium sm:col-span-2">Address *
-          <input value={v.address} onChange={(e) => set("address", e.target.value)} required placeholder="Street address" className={field} autoComplete="street-address" />
+          <input value={v.address} onChange={(e) => set("address", e.target.value)} required placeholder="Street address" className={field} autoComplete="address-line1" />
+        </label>
+        <label className="text-sm font-medium sm:col-span-2">Apartment / unit (optional)
+          <input value={v.apartment} onChange={(e) => set("apartment", e.target.value)} placeholder="Apt, suite or unit" className={field} autoComplete="address-line2" />
         </label>
         <Combobox label="City" required value={v.city} onChange={(c) => set("city", c)} options={cOpts} placeholder="Start typing your city" otherLabel={(t) => `My city is not listed: use “${t}”`} />
         <Combobox label="Church" required value={v.church} onChange={(c) => set("church", c)} options={hOpts} boost={boost} placeholder="Start typing your church" otherLabel={(t) => `My church is not listed: use “${t}”`} />

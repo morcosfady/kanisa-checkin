@@ -7,9 +7,8 @@ import { supabaseServer } from "@/lib/supabase/server";
 
 export default async function Members() {
   if (!hasSupabase) {
-    const families = [...new Set(demoMembers.map((m) => m.family))].map((f) => ({ id: f, name: f }));
-    return <MembersView initial={demoMembers.map(fromDemo)} families={families} cities={demoCities} churches={demoChurches} />;
+    return <MembersView initial={demoMembers.map(fromDemo)} cities={demoCities} churches={demoChurches} />;
   }
-  const { members, families, cities, churches } = await loadMembers(await supabaseServer());
-  return <MembersView initial={members} families={families} cities={cities} churches={churches} />;
+  const { members, cities, churches } = await loadMembers(await supabaseServer());
+  return <MembersView initial={members} cities={cities} churches={churches} />;
 }

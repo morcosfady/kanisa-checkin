@@ -2,12 +2,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ChevronLeft, ChevronRight, Church, Download, LayoutGrid, List, Plus, ScanFace, Search,
+  ChevronLeft, ChevronRight, Download, LayoutGrid, List, Plus, ScanFace, Search,
   Upload, UserCheck, Users, UsersRound, X, Cross, Check, AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, Badge, CountUp, b, card } from "@/components/ui";
-import type { FamilyOption, Member } from "@/lib/members";
+import type { Member } from "@/lib/members";
 import type { ChurchRow, CityRow } from "@/lib/places";
 import { useRouter } from "@/i18n/navigation";
 import { hasSupabase } from "@/lib/supabase/env";
@@ -16,8 +16,8 @@ import MemberDrawer from "./MemberDrawer";
 import RowMenu from "./RowMenu";
 
 const PAGE = 10;
-type View = "table" | "cards" | "families";
-type Sort = "name" | "family" | "last" | "rate";
+type View = "table" | "cards";
+type Sort = "name" | "last" | "rate";
 
 export const rel = (d: number | null) => (d === null ? "Never" : d === 0 ? "Today" : d === 1 ? "Yesterday" : `${d} days ago`);
 
@@ -62,7 +62,7 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
   );
 }
 
-export default function MembersView({ initial, families, cities, churches }: { initial: Member[]; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[] }) {
+export default function MembersView({ initial, cities, churches }: { initial: Member[]; cities: CityRow[]; churches: ChurchRow[] }) {
   const router = useRouter();
   // demo mode keeps changes in memory; real mode refreshes from the server
   const [local, setLocal] = useState<Member[]>([]);
@@ -98,7 +98,7 @@ export default function MembersView({ initial, families, cities, churches }: { i
     const t = q.trim().toLowerCase();
     const list = all.filter(
       (m) =>
-        (!t || m.name.toLowerCase().includes(t) || m.family.toLowerCase().includes(t) || m.phone.includes(t)) &&
+        (!t || m.name.toLowerCase().includes(t) || m.city.toLowerCase().includes(t) || m.church.toLowerCase().includes(t) || m.phone.includes(t)) &&
         (gender === "all" || m.gender === gender) &&
         (!deacon || m.deacon) &&
         (status === "all" || m.status === status) &&
@@ -106,7 +106,6 @@ export default function MembersView({ initial, families, cities, churches }: { i
     );
     const cmp: Record<Sort, (a: Member, c: Member) => number> = {
       name: (a, c) => a.name.localeCompare(c.name),
-      family: (a, c) => a.family.localeCompare(c.family) || a.name.localeCompare(c.name),
       last: (a, c) => (a.lastDays ?? 9999) - (c.lastDays ?? 9999),
       rate: (a, c) => (c.rate ?? -1) - (a.rate ?? -1),
     };
@@ -116,7 +115,6 @@ export default function MembersView({ initial, families, cities, churches }: { i
   const pages = Math.max(1, Math.ceil(rows.length / PAGE));
   const cur = Math.min(page, pages - 1);
   const slice = rows.slice(cur * PAGE, cur * PAGE + PAGE);
-  const familyCount = new Set(all.filter((m) => m.family !== "No family").map((m) => m.family)).size;
   const enrolledPct = all.length ? Math.round((all.filter((m) => m.face === "enrolled").length / all.length) * 100) : 0;
   const demoSpark = !hasSupabase;
   const stats = [
@@ -126,18 +124,12 @@ export default function MembersView({ initial, families, cities, churches }: { i
     { label: "Face check-in enabled", value: enrolledPct, suffix: "%", icon: ScanFace, spark: demoSpark ? [30, 38, 41, 47, 52, 55, enrolledPct] : [] },
   ];
 
-  const byFamily = useMemo(() => {
-    const g = new Map<string, Member[]>();
-    rows.forEach((m) => g.set(m.family, [...(g.get(m.family) ?? []), m]));
-    return [...g.entries()];
-  }, [rows]);
-
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end gap-4">
         <div className="me-auto">
           <h1 className="font-display text-3xl font-semibold text-heading">Members</h1>
-          <p className="text-muted num">{all.length} people in {familyCount} families</p>
+          <p className="text-muted num">{all.length} {all.length === 1 ? "person" : "people"}</p>
         </div>
         <button className={b("secondary")} onClick={() => toast("Import is coming soon")}><Upload size={18} strokeWidth={1.75} /> Import</button>
         <button className={b("secondary")} onClick={() => toast("Export (Excel / PDF) is coming soon")}><Download size={18} strokeWidth={1.75} /> Export</button>
@@ -173,7 +165,7 @@ export default function MembersView({ initial, families, cities, churches }: { i
               ref={search}
               value={q}
               onChange={(e) => { setQ(e.target.value); setPage(0); }}
-              placeholder="Search name, family or phone"
+              placeholder="Search name, phone, city or church"
               className="w-full rounded-[8px] border border-line bg-page py-2 ps-10 pe-16 text-sm outline-none focus:border-gold"
             />
             <kbd className="absolute end-3 top-1/2 -translate-y-1/2 rounded border border-line bg-card px-1.5 text-[11px] text-muted">Ctrl K</kbd>
@@ -182,13 +174,12 @@ export default function MembersView({ initial, families, cities, churches }: { i
             <span className="sr-only">Sort by</span>
             <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-[8px] border border-line bg-page px-3 py-2 text-sm">
               <option value="name">Sort: Name</option>
-              <option value="family">Sort: Family</option>
               <option value="last">Sort: Last attended</option>
               <option value="rate">Sort: Attendance rate</option>
             </select>
           </label>
           <div className="flex overflow-hidden rounded-[12px] border border-line" role="group" aria-label="View">
-            {([["table", List, "Table"], ["cards", LayoutGrid, "Cards"], ["families", Church, "Families"]] as const).map(([v, Icon, label]) => (
+            {([["table", List, "Table"], ["cards", LayoutGrid, "Cards"]] as const).map(([v, Icon, label]) => (
               <button
                 key={v}
                 onClick={() => setView(v)}
@@ -273,7 +264,7 @@ export default function MembersView({ initial, families, cities, churches }: { i
                             {m.name}
                             {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
                           </div>
-                          <div className="text-xs text-muted">{m.family} family</div>
+                          <div className="text-xs text-muted">{m.church || m.city || "—"}</div>
                         </div>
                       </div>
                     </td>
@@ -305,13 +296,9 @@ export default function MembersView({ initial, families, cities, churches }: { i
           </div>
         </div>
         </>
-      ) : view === "cards" ? (
+      ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {rows.map((m, i) => <MemberCard key={m.id} m={m} onOpen={setOpen} delay={Math.min(i, 14) * 0.025} />)}
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {byFamily.map(([fam, list]) => <FamilyCard key={fam} fam={fam} list={list} onOpen={setOpen} />)}
         </div>
       )}
 
@@ -321,7 +308,6 @@ export default function MembersView({ initial, families, cities, churches }: { i
       <MemberForm
         open={form.open}
         member={form.member}
-        families={families}
         cities={cities}
         churches={churches}
         onClose={() => setForm({ open: false, member: null })}
@@ -349,7 +335,7 @@ function MemberCard({ m, onOpen, delay = 0 }: { m: Member; onOpen: (m: Member) =
         <Avatar name={m.name} gender={m.gender} size={44} />
         <div className="min-w-0 flex-1">
           <div className="truncate font-semibold">{m.name}</div>
-          <div className="text-xs text-muted">{m.family} family</div>
+          <div className="text-xs text-muted">{m.church || m.city || "—"}</div>
         </div>
         <Ring pct={m.rate ?? 0} />
       </div>
@@ -372,42 +358,5 @@ function Ring({ pct }: { pct: number }) {
       <circle cx="20" cy="20" r={r} fill="none" stroke="var(--gold-500)" strokeWidth="4" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - pct / 100)} transform="rotate(-90 20 20)" />
       <text x="20" y="24" textAnchor="middle" fontSize="11" fontWeight="600" fill="currentColor" className="num">{pct}</text>
     </svg>
-  );
-}
-
-function FamilyCard({ fam, list, onOpen }: { fam: string; list: Member[]; onOpen: (m: Member) => void }) {
-  const [open, setOpen] = useState(true);
-  const rates = list.filter((m) => m.rate !== null);
-  const avg = rates.length ? Math.round(rates.reduce((s, m) => s + (m.rate ?? 0), 0) / rates.length) : null;
-  return (
-    <div className={card}>
-      <button onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center gap-3 p-4 text-start">
-        <span className="grid h-10 w-10 place-items-center rounded-[12px] bg-gold/20 text-goldtext"><Church size={20} strokeWidth={1.75} /></span>
-        <div className="me-auto">
-          <div className="font-display text-lg font-semibold text-heading">{fam} family</div>
-          <div className="text-sm text-muted num">{list.length} members</div>
-        </div>
-        <div className="text-end text-sm"><span className="num font-semibold">{avg === null ? "—" : `${avg}%`}</span> <span className="text-muted">attendance</span></div>
-        <ChevronRight size={18} className={`transition ${open ? "rotate-90" : ""}`} />
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-            <ul className="divide-y divide-line border-t border-line">
-              {list.map((m) => (
-                <li key={m.id}>
-                  <button onClick={() => onOpen(m)} className="flex w-full items-center gap-3 px-4 py-3 text-start hover:bg-hover">
-                    <Avatar name={m.name} gender={m.gender} />
-                    <span className="me-auto font-medium">{m.name}</span>
-                    {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
-                    <span className="num text-sm text-muted">{m.rate === null ? "—" : `${m.rate}%`}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
   );
 }

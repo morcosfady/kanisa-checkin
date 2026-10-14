@@ -1,6 +1,7 @@
 "use client";
 import { useId, useMemo, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { searchScore } from "@/lib/search";
 
 export type Option = { id: string; label: string; hint?: string };
 export type Choice = { id: string | null; text: string };
@@ -24,16 +25,17 @@ export default function Combobox({
   const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
 
-  const matches = useMemo(() => {
-    const q = value.text.trim().toLowerCase();
-    const list = options.filter((o) => !q || o.label.toLowerCase().includes(q) || (o.hint ?? "").toLowerCase().includes(q));
-    // names that start with the typed text first, then boosted ones
-    return list
-      .map((o) => ({ o, rank: (o.label.toLowerCase().startsWith(q) ? 2 : 0) + (boost?.(o) ?? 0) }))
-      .sort((a, b) => b.rank - a.rank || a.o.label.localeCompare(b.o.label))
-      .slice(0, 8)
-      .map((x) => x.o);
-  }, [options, value.text, boost]);
+  const matches = useMemo(
+    () =>
+      options
+        .map((o) => ({ o, rank: searchScore(value.text, o.label, o.hint) }))
+        .filter((x) => x.rank > 0)
+        .map((x) => ({ o: x.o, rank: x.rank + (boost?.(x.o) ?? 0) }))
+        .sort((a, b) => b.rank - a.rank || a.o.label.localeCompare(b.o.label))
+        .slice(0, 8)
+        .map((x) => x.o),
+    [options, value.text, boost],
+  );
 
   const typed = value.text.trim();
   const showOther = Boolean(otherLabel) && typed.length > 0 && !options.some((o) => o.label.toLowerCase() === typed.toLowerCase());

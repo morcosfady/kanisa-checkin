@@ -4,12 +4,12 @@ import { getSession, hasSupabase } from "@/lib/session";
 
 type MemberRow = {
   first_name: string; last_name: string; gender: string | null; date_of_birth: string | null; phone: string | null; email: string | null;
-  address: string | null; city_id: string | null; city_other: string | null; church_id: string | null; church_other: string | null;
-  biometric_consent: boolean; consent_signed_by: string | null; has_face: boolean; families: { family_name: string } | null;
+  address: string | null; apartment: string | null; city_id: string | null; city_other: string | null; church_id: string | null; church_other: string | null;
+  biometric_consent: boolean; consent_signed_by: string | null; has_face: boolean;
 };
 
 export const emptyProfile: MyProfile = {
-  firstName: "", lastName: "", gender: "", dob: "", phone: "", email: "", family: "", address: "",
+  firstName: "", lastName: "", gender: "", dob: "", phone: "", email: "", address: "", apartment: "",
   city: { id: null, text: "" }, church: { id: null, text: "" }, consent: false, signedBy: "",
 };
 
@@ -28,7 +28,7 @@ export async function loadProfileData() {
     const [{ data: m }, { data: cs }, { data: hs }] = await Promise.all([
       db
         .from("members")
-        .select("first_name, last_name, gender, date_of_birth, phone, email, address, city_id, city_other, church_id, church_other, biometric_consent, consent_signed_by, has_face, families(family_name)")
+        .select("first_name, last_name, gender, date_of_birth, phone, email, address, apartment, city_id, city_other, church_id, church_other, biometric_consent, consent_signed_by, has_face")
         .eq("user_id", user!.id)
         .maybeSingle<MemberRow>(),
       db.from("cities").select("id, name").order("name"),
@@ -41,7 +41,7 @@ export async function loadProfileData() {
       hasFace = Boolean(m.has_face);
       initial = {
         firstName: m.first_name, lastName: m.last_name, gender: m.gender ?? "", dob: m.date_of_birth ?? "",
-        phone: m.phone ?? "", email: m.email ?? user!.email ?? "", family: m.families?.family_name ?? "", address: m.address ?? "",
+        phone: m.phone ?? "", email: m.email ?? user!.email ?? "", address: m.address ?? "", apartment: m.apartment ?? "",
         city: m.city_id ? { id: m.city_id, text: cities.find((c) => c.id === m.city_id)?.name ?? "" } : { id: null, text: m.city_other ?? "" },
         church: m.church_id ? { id: m.church_id, text: churches.find((c) => c.id === m.church_id)?.name ?? "" } : { id: null, text: m.church_other ?? "" },
         consent: m.biometric_consent, signedBy: m.consent_signed_by ?? "",

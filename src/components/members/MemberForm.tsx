@@ -5,12 +5,11 @@ import { Cross, ShieldCheck, X } from "lucide-react";
 import { toast } from "sonner";
 import { b } from "@/components/ui";
 import Combobox, { type Choice } from "@/components/Combobox";
-import { isMinor, type FamilyOption, type Member } from "@/lib/members";
+import { isMinor, type Member } from "@/lib/members";
 import { churchOptions, cityOptions, type ChurchRow, type CityRow } from "@/lib/places";
 import { hasSupabase } from "@/lib/supabase/env";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
-const NEW_FAMILY = "__new";
 export const CONSENT_TEXT =
   "Amoinee keeps a numeric face template (never a photo) only to record attendance. It is kept until consent is withdrawn or 12 months after the last visit, and it is never sold or shared. Consent can be withdrawn any time and the data is deleted immediately. Without consent you can still check in by QR code or name.";
 const field = "mt-1 w-full rounded-[8px] border border-line bg-page px-3 py-2.5 text-sm outline-none focus:border-gold";
@@ -37,11 +36,10 @@ export function Seg({ value, options, onChange, label }: { value: string; option
 }
 
 export default function MemberForm({
-  open, member, families, cities, churches, onClose, onSaved,
+  open, member, cities, churches, onClose, onSaved,
 }: {
   open: boolean;
   member: Member | null; // null = add
-  families: FamilyOption[];
   cities: CityRow[];
   churches: ChurchRow[];
   onClose: () => void;
@@ -49,12 +47,12 @@ export default function MemberForm({
 }) {
   return (
     <AnimatePresence>
-      {open && <Inner key={member?.id ?? "new"} member={member} families={families} cities={cities} churches={churches} onClose={onClose} onSaved={onSaved} />}
+      {open && <Inner key={member?.id ?? "new"} member={member} cities={cities} churches={churches} onClose={onClose} onSaved={onSaved} />}
     </AnimatePresence>
   );
 }
 
-function Inner({ member, families, cities, churches, onClose, onSaved }: { member: Member | null; families: FamilyOption[]; cities: CityRow[]; churches: ChurchRow[]; onClose: () => void; onSaved: (m: Member) => void }) {
+function Inner({ member, cities, churches, onClose, onSaved }: { member: Member | null; cities: CityRow[]; churches: ChurchRow[]; onClose: () => void; onSaved: (m: Member) => void }) {
   const [first, setFirst] = useState(member?.firstName ?? "");
   const [last, setLast] = useState(member?.lastName ?? "");
   const [gender, setGender] = useState<string>(member?.gender ?? "male");
@@ -63,8 +61,7 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
   const [phone, setPhone] = useState(member?.phone ?? "");
   const [email, setEmail] = useState(member?.email ?? "");
   const [status, setStatus] = useState<string>(member?.status ?? "active");
-  const [familyId, setFamilyId] = useState(member?.familyId ?? "");
-  const [newFamily, setNewFamily] = useState("");
+  const [apartment, setApartment] = useState(member?.apartment ?? "");
   const [consent, setConsent] = useState(member?.consent ?? false);
   const [signature, setSignature] = useState(member?.signedBy ?? "");
   const [address, setAddress] = useState(member?.address ?? "");
@@ -88,13 +85,11 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
     e.preventDefault();
     setError("");
     if (!first.trim() || !last.trim()) return setError("First and last name are required.");
-    if (familyId === NEW_FAMILY && !newFamily.trim()) return setError("Enter the new family name.");
     if (consent && !alreadySigned && !signature.trim()) {
       return setError(minor ? "A parent or guardian must type their full name to sign." : "Type your full name to sign the consent.");
     }
     setBusy(true);
 
-    const familyName = familyId === NEW_FAMILY ? newFamily.trim() : families.find((f) => f.id === familyId)?.name ?? "No family";
     const signNow = consent && !alreadySigned;
     const result: Member = {
       id: member?.id ?? `local-${Date.now()}`,
@@ -103,8 +98,8 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
       lastName: last.trim(),
       gender: gender as Member["gender"],
       deacon,
-      family: familyName,
-      familyId: familyId === NEW_FAMILY ? null : familyId || null,
+      family: member?.family ?? "",
+      familyId: member?.familyId ?? null,
       status: status as Member["status"],
       consent,
       face: !consent ? "none" : member?.face === "enrolled" ? "enrolled" : "pending",
@@ -118,6 +113,7 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
       signedAt: signNow ? new Date().toISOString() : member?.signedAt ?? null,
       signedBy: signNow ? signature.trim() : member?.signedBy ?? null,
       address: address.trim(),
+      apartment: apartment.trim(),
       cityId: city.id,
       city: city.text.trim(),
       churchId: church.id,
@@ -134,12 +130,6 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
     try {
       const db = supabaseBrowser();
       const { data: auth } = await db.auth.getUser();
-      let fid: string | null = familyId && familyId !== NEW_FAMILY ? familyId : null;
-      if (familyId === NEW_FAMILY) {
-        const { data, error: fe } = await db.from("families").insert({ family_name: newFamily.trim() }).select("id").single();
-        if (fe) throw fe;
-        fid = data.id;
-      }
       const payload = {
         first_name: first.trim(),
         last_name: last.trim(),
@@ -149,9 +139,9 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
         phone: phone.trim() || null,
         email: email.trim() || null,
         is_minor: minor,
-        family_id: fid,
         status,
         address: address.trim() || null,
+        apartment: apartment.trim() || null,
         city_id: city.id,
         city_other: city.id || !city.text.trim() ? null : city.text.trim(),
         church_id: church.id,
@@ -228,23 +218,14 @@ function Inner({ member, families, cities, churches, onClose, onSaved }: { membe
             <label className="text-sm font-medium">Email
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={field} />
             </label>
-            <label className="text-sm font-medium sm:col-span-2">Family
-              <select value={familyId} onChange={(e) => setFamilyId(e.target.value)} className={field}>
-                <option value="">No family yet</option>
-                {families.map((f) => <option key={f.id} value={f.id}>{f.name} family</option>)}
-                <option value={NEW_FAMILY}>+ New family…</option>
-              </select>
-            </label>
             <label className="text-sm font-medium sm:col-span-2">Address
               <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Street address" className={field} />
             </label>
+            <label className="text-sm font-medium sm:col-span-2">Apartment / unit (optional)
+              <input value={apartment} onChange={(e) => setApartment(e.target.value)} placeholder="Apt, suite or unit" className={field} />
+            </label>
             <Combobox label="City" value={city} onChange={setCity} options={cityOptions(cities)} placeholder="Start typing a city" otherLabel={(t) => `Not listed: use “${t}”`} />
             <Combobox label="Church" value={church} onChange={setChurch} options={churchOptions(churches, cities)} placeholder="Start typing a church" otherLabel={(t) => `Not listed: use “${t}”`} />
-            {familyId === NEW_FAMILY && (
-              <label className="text-sm font-medium sm:col-span-2">New family name
-                <input value={newFamily} onChange={(e) => setNewFamily(e.target.value)} placeholder="Example: Girgis" className={field} />
-              </label>
-            )}
           </div>
 
           <fieldset className="rounded-[16px] border border-gold/50 bg-gold/10 p-4">

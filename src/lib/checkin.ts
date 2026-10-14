@@ -3,7 +3,6 @@ export const METHOD_LABEL: Record<string, string> = {
   self: "3-digit code",
   qr: "QR code at the kiosk",
   manual: "Added by an admin",
-  family: "Family check-in",
 };
 
 const TZ = "America/Chicago";

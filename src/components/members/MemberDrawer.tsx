@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Church, Cross, MapPin, Phone, Users, GraduationCap, X, ShieldOff, ShieldCheck } from "lucide-react";
+import { Church, Cross, MapPin, Phone, GraduationCap, X, ShieldOff, ShieldCheck } from "lucide-react";
 import { Avatar, Badge, b } from "@/components/ui";
 import type { Member } from "@/lib/members";
 import ConfirmDialog from "./ConfirmDialog";
@@ -69,7 +69,7 @@ export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Mem
           <Avatar name={m.name} gender={m.gender} size={56} />
           <div className="min-w-0 flex-1">
             <h2 className="font-display text-xl font-semibold">{m.name}</h2>
-            <p className="text-sm text-cream/75">{m.family} family</p>
+            <p className="text-sm text-cream/75">{m.church || m.city || "Member"}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               <Badge tone={statusTone[m.status]}>{m.status[0].toUpperCase() + m.status.slice(1)}</Badge>
               {m.deacon && <Badge tone="gold" icon={<Cross size={12} strokeWidth={2} />}>Deacon</Badge>}
@@ -96,9 +96,8 @@ export default function MemberDrawer({ m, onClose, onEdit, onChanged }: { m: Mem
           {tab === "Overview" && (
             <div>
               <Row icon={Phone} label="Phone" value={m.phone || "—"} />
-              <Row icon={Users} label="Family" value={`${m.family} family`} />
               <Row icon={GraduationCap} label="Class / group" value={m.className || "—"} />
-              <Row icon={MapPin} label="Address" value={[m.address, m.city].filter(Boolean).join(", ") || "—"} />
+              <Row icon={MapPin} label="Address" value={[m.address, m.apartment, m.city].filter(Boolean).join(", ") || "—"} />
               <Row icon={Church} label="Church" value={m.church || "—"} />
               <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                 {[["Attendance", m.rate === null ? "—" : `${m.rate}%`], ["Streak", m.streak === null ? "—" : `${m.streak} wks`], ["Last seen", rel(m.lastDays)]].map(([l, v]) => (

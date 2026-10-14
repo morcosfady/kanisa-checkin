@@ -14,7 +14,7 @@ export type TodayMember = { id: string; name: string; gender: string; deacon: bo
 export type Arrival = { memberId: string; min: number; method: string; late: boolean; fresh?: boolean };
 export type TodayService = { id: string | null; name: string; whenLabel: string; startMin: number; graceMin: number; code?: string | null };
 
-const METHOD_ICON: Record<string, typeof ScanFace> = { face: ScanFace, qr: QrCode, manual: UserPlus, self: Smartphone, family: Users };
+const METHOD_ICON: Record<string, typeof ScanFace> = { face: ScanFace, qr: QrCode, manual: UserPlus, self: Smartphone };
 
 function Clock12() {
   const [now, setNow] = useState<Date | null>(null);
