@@ -14,17 +14,17 @@ export default function PrintReport({ sheet, church, periodText, serviceName, to
 
   return (
     <div className="print-report ledger" dir={ar ? "rtl" : "ltr"} lang={ar ? "ar" : "en"} data-ink="false" style={{ fontFamily: ar ? "var(--font-cairo), sans-serif" : undefined }}>
-      <header style={{ borderBottom: "2px solid var(--l-burg)", paddingBottom: 6, marginBottom: 10 }}>
+      <div style={{ borderBottom: "2px solid var(--l-burg)", paddingBottom: 6, marginBottom: 10 }}>
         <div className="l-title" style={{ fontSize: 22 }}>{tx("Attendance Report", "تقرير الحضور")}</div>
         <div style={{ fontSize: 12 }}>{church} · {periodText}{serviceName ? ` · ${serviceName}` : ""}</div>
-      </header>
+      </div>
       <p style={{ fontSize: 12, lineHeight: 1.5, margin: "0 0 10px" }}>{ar ? summaryAr(sheet) : summaryText(sheet, periodText, serviceName)}</p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 10 }}>
         {[
           [tx("Average per service", "متوسط الحضور"), String(Math.round(t.avgPerService))],
           [tx("Attendance rate", "نسبة الحضور"), pct(t.rate)],
-          [tx("Faithful (90%+)", "ملتزمون"), String(t.faithful)],
+          [tx("Attend every week (90%+)", "يحضرون كل أسبوع"), String(t.faithful)],
           [tx("Need follow-up", "يحتاجون متابعة"), String(t.followup)],
         ].map(([l, v]) => (
           <div key={l} style={{ border: "1px solid var(--l-line)", borderRadius: 8, padding: "6px 8px" }}>
@@ -52,7 +52,7 @@ export default function PrintReport({ sheet, church, periodText, serviceName, to
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
         <section>
-          <h3 style={{ fontSize: 13, margin: "0 0 4px" }}>{tx("Top 10 most faithful", "الأكثر التزامًا")}</h3>
+          <h3 style={{ fontSize: 13, margin: "0 0 4px" }}>{tx("Top 10 by attendance", "الأعلى حضورًا")}</h3>
           <table style={{ width: "100%", fontSize: 11, borderCollapse: "collapse" }}><tbody>
             {top.map((r) => <tr key={r.id} style={{ borderTop: "1px solid var(--l-line)" }}><td>{r.rank}</td><td>{r.name}</td><td style={{ textAlign: "end" }}>{r.present}/{r.possible}</td><td style={{ textAlign: "end" }}>{pct(r.rate)}</td></tr>)}
           </tbody></table>
@@ -74,7 +74,7 @@ export default function PrintReport({ sheet, church, periodText, serviceName, to
           </tbody></table>
         </section>
       </div>
-      <footer style={{ marginTop: 14, fontSize: 10, color: "var(--l-mute)" }}>{tx("Printed", "طُبع في")} {today} · Amoinee</footer>
+      <div style={{ marginTop: 14, fontSize: 10, color: "var(--l-mute)" }}>{tx("Printed", "طُبع في")} {today} · Amoinee</div>
     </div>
   );
 }
