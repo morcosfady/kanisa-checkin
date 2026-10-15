@@ -1,52 +1,50 @@
 [
   {
-    "id": "a2",
+    "id": "a1",
     "part": "A",
-    "title": "So many faces",
+    "title": "A Sunday morning",
     "visual": {
       "type": "image",
-      "file": "a2-entrance.png",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The entrance of a Coptic Orthodox church after the Liturgy, many diverse Egyptian-Coptic families and children chatting and leaving, warm daylight, candle glow visible inside, a stone cross above the door, 16:9, no text inside the image, no logos"
+      "file": "a1-church-sunday.jpg"
     },
     "onScreen": "Every Sunday, more families come",
     "sentences": [
       {
-        "en": "Thank God, His people keep growing.",
-        "ar": "الحمد لله، شعبه في ازدياد."
+        "en": "Thank God, His people keep growing!",
+        "ar": "الحمد لله، شعبه في ازدياد!"
       },
       {
-        "en": "Every Sunday, more families fill the church.",
-        "ar": "في كل يوم أحد، تمتلئ الكنيسة بعائلات أكثر."
+        "en": "Every Sunday, more families fill our churches, and more little feet come running through the doors.",
+        "ar": "في كل يوم أحد تمتلئ كنائسنا بعائلات أكثر، وأقدام صغيرة تركض عبر الأبواب."
+      }
+    ]
+  },
+  {
+    "id": "a2",
+    "part": "A",
+    "title": "The question",
+    "visual": {
+      "type": "image",
+      "file": "a2-abouna-night.jpg"
+    },
+    "onScreen": "Who came today? Who is missing?",
+    "sentences": [
+      {
+        "en": "But here's the question every priest quietly asks.",
+        "ar": "لكن هذا هو السؤال الذي يسأله كل كاهن في صمت."
       },
       {
-        "en": "But with so many faces, it becomes almost impossible to know who came, who is missing, and who quietly drifted away.",
-        "ar": "لكن مع كثرة الوجوه، يصبح من الصعب معرفة من حضر، ومن غاب، ومن ابتعد بهدوء."
+        "en": "Who came today? Who didn't? And who has been missing for weeks, without anyone noticing?",
+        "ar": "من حضر اليوم؟ ومن لم يحضر؟ ومن غاب أسابيع دون أن ينتبه أحد؟"
+      },
+      {
+        "en": "Paper lists get lost. Names get forgotten. And the people who need a phone call the most are the easiest to miss.",
+        "ar": "القوائم الورقية تضيع، والأسماء تُنسى، والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن يفوتنا أمرهم."
       }
     ]
   },
   {
     "id": "a3",
-    "part": "A",
-    "title": "Abouna at night",
-    "visual": {
-      "type": "image",
-      "file": "a3-abouna-desk.png",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood with a Coptic hand cross on the desk, sitting at a wooden desk at night under a warm lamp, papers with handwritten lists and a phone full of contacts, slightly tired and thoughtful, an icon on the wall behind him, 16:9, no text inside the image. The priest is a fictional person, not a real one."
-    },
-    "onScreen": "Paper lists get lost",
-    "sentences": [
-      {
-        "en": "Paper lists get lost.",
-        "ar": "القوائم الورقية تضيع."
-      },
-      {
-        "en": "And the people who need a call the most are the easiest to miss.",
-        "ar": "والذين يحتاجون إلى اتصال أكثر من غيرهم هم الأسهل في أن يفوتنا أمرهم."
-      }
-    ]
-  },
-  {
-    "id": "a4",
     "part": "A",
     "title": "Amoinee",
     "visual": {
@@ -55,12 +53,16 @@
     "onScreen": "ⲁⲙⲱⲓⲛⲓ · Come!",
     "sentences": [
       {
-        "en": "That's where Amoinee comes in.",
-        "ar": "وهنا يأتي دور أمويني."
+        "en": "That's why we built Amoinee.",
+        "ar": "لهذا صنعنا أمويني."
       },
       {
-        "en": "Amoinee, from the Coptic word for \"Come!\", helps every church know its people, and never lose one of them.",
-        "ar": "أمويني، من الكلمة القبطية «تعال!»، تساعد كل كنيسة أن تعرف أولادها وألا تفقد واحدًا منهم."
+        "en": "It comes from the Coptic word for \"Come!\" It helps every church know its people, care for them, and never lose one of them.",
+        "ar": "الاسم من الكلمة القبطية «تعال!». وهي تساعد كل كنيسة أن تعرف أولادها وترعاهم ولا تفقد واحدًا منهم."
+      },
+      {
+        "en": "So let's see how it works, step by step.",
+        "ar": "فلنرَ كيف تعمل، خطوة بخطوة."
       }
     ]
   },
@@ -69,97 +71,220 @@
     "part": "B",
     "title": "Create your profile, once",
     "visual": {
-      "type": "screen",
-      "mockup": "phone",
-      "src": {
-        "file": "phone-signup",
-        "from": 0.5,
-        "to": 25
-      }
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b1-mother-phone.jpg",
+          "weight": 0.3
+        },
+        {
+          "type": "screen",
+          "mockup": "phone",
+          "src": {
+            "file": "phone-signup",
+            "from": 0.5,
+            "to": 14
+          },
+          "weight": 0.7
+        }
+      ]
     },
-    "onScreen": "One time only",
+    "onScreen": "Create your profile. Once.",
     "sentences": [
       {
-        "en": "For members, it starts with one simple step, done only once.",
-        "ar": "بالنسبة للأعضاء، كل شيء يبدأ بخطوة بسيطة واحدة، مرة واحدة فقط."
+        "en": "It all starts with the members.",
+        "ar": "كل شيء يبدأ بالأعضاء."
       },
       {
-        "en": "Create your profile with your name and contact details, and choose whether to turn on face check-in.",
-        "ar": "أنشئ ملفك الشخصي بالاسم وبيانات التواصل، واختر إن كنت تريد تفعيل تسجيل الحضور بالوجه."
+        "en": "Create your profile just once. Your name, your phone, your email, your address, and your church, which you simply start typing and pick from the list.",
+        "ar": "أنشئ ملفك الشخصي مرة واحدة فقط: اسمك وهاتفك وبريدك وعنوانك وكنيستك، وتكتب أول حروفها فقط وتختارها من القائمة."
       },
       {
-        "en": "It's always your choice, and you can turn it off anytime.",
-        "ar": "القرار دائمًا قرارك، ويمكنك إيقافه في أي وقت."
+        "en": "It takes a minute, and it works on any phone.",
+        "ar": "يستغرق الأمر دقيقة، ويعمل على أي هاتف."
       }
     ]
   },
   {
     "id": "b2",
     "part": "B",
-    "title": "The kiosk at the door",
+    "title": "Face check-in is your choice",
     "visual": {
-      "type": "mix",
-      "parts": [
-        {
-          "type": "image",
-          "file": "b2-kiosk-door.png",
-          "weight": 0.38,
-          "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. A sleek tablet kiosk on an elegant dark wooden floor stand just inside the doors of a Coptic Orthodox church, a Coptic family of three walking toward it in warm light, the tablet screen softly glowing (screen content blurred, no readable text), candles and icons in the background, 16:9, no text inside the image, no logos"
-        },
-        {
-          "type": "screen",
-          "mockup": "tablet",
-          "weight": 0.62,
-          "src": {
-            "file": "kiosk",
-            "from": 1.2,
-            "to": 9
-          }
-        }
-      ]
+      "type": "screen",
+      "mockup": "phone",
+      "src": {
+        "file": "phone-signup",
+        "from": 14,
+        "to": 25
+      }
     },
-    "onScreen": "Just look at the screen",
+    "onScreen": "Face check-in: your choice",
     "sentences": [
       {
-        "en": "At the church door stands the Amoinee kiosk.",
-        "ar": "عند باب الكنيسة يقف جهاز أمويني."
+        "en": "You also choose whether to turn on face check-in.",
+        "ar": "وتختار أيضًا هل تريد تفعيل تسجيل الحضور بالوجه."
       },
       {
-        "en": "Just look at the screen as you walk in.",
-        "ar": "فقط انظر إلى الشاشة وأنت تدخل."
+        "en": "Say yes, sign the consent, and take a quick face setup. Say no, and that's perfectly fine, because there are other ways to check in.",
+        "ar": "إن وافقت، توقّع الموافقة وتُجري إعدادًا سريعًا للوجه. وإن رفضت فلا مشكلة، فهناك طرق أخرى لتسجيل الحضور."
       },
       {
-        "en": "In a second it welcomes you by name, and records that you're here.",
-        "ar": "في لحظة يرحّب بك باسمك ويسجّل حضورك."
+        "en": "And you can always take it back: turn it off, and your face data is deleted.",
+        "ar": "ويمكنك التراجع في أي وقت: أوقفه وتُحذف بيانات وجهك."
       }
     ]
   },
   {
     "id": "b3",
     "part": "B",
-    "title": "Other ways to check in",
+    "title": "The kiosk at the door",
     "visual": {
-      "type": "screen",
-      "mockup": "tablet",
-      "src": {
-        "file": "kiosk",
-        "from": 9,
-        "to": 17.2
-      }
+      "type": "image",
+      "file": "b3-kiosk-setup.jpg"
     },
-    "onScreen": "QR code or 3-digit code",
+    "onScreen": "The kiosk at the door",
     "sentences": [
       {
-        "en": "Prefer not to use your face? No problem.",
-        "ar": "لا تفضّل استخدام وجهك؟ لا مشكلة."
+        "en": "At the church door stands the Amoinee kiosk, a tablet on a stand that an admin signs in.",
+        "ar": "عند باب الكنيسة يقف جهاز أمويني، وهو جهاز لوحي على حامل يسجّل مسؤول الدخول عليه."
       },
       {
-        "en": "Scan the QR code on the kiosk with your phone, or type the three-digit code of the day.",
-        "ar": "امسح رمز الاستجابة السريعة على الجهاز بهاتفك، أو اكتب الرمز المكوّن من ثلاثة أرقام لهذا اليوم."
+        "en": "Before the service, it just shows what's coming next, with the camera switched off. When check-in opens, it wakes up all by itself.",
+        "ar": "قبل الخدمة يعرض ما هو قادم فقط والكاميرا مغلقة. وعندما يُفتح تسجيل الحضور يستيقظ وحده."
+      }
+    ]
+  },
+  {
+    "id": "b4",
+    "part": "B",
+    "title": "Just look at the screen",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b4-family-kiosk.jpg",
+          "weight": 0.35
+        },
+        {
+          "type": "screen",
+          "mockup": "tablet",
+          "src": {
+            "file": "kiosk",
+            "from": 1.2,
+            "to": 9
+          },
+          "weight": 0.65
+        }
+      ]
+    },
+    "onScreen": "Just look at the screen",
+    "sentences": [
+      {
+        "en": "Now watch. Someone walks in, looks at the screen, and in a second it says, welcome, by name.",
+        "ar": "شاهد الآن. يدخل شخص وينظر إلى الشاشة، وفي لحظة تقول له: أهلًا بك، باسمه."
       },
       {
-        "en": "Nobody is ever left at the door.",
-        "ar": "لا أحد يبقى عند الباب."
+        "en": "It records that you're here. It even checks that it's a real face and not a photo.",
+        "ar": "ويسجّل حضوره، بل ويتأكد أنه وجه حقيقي وليس صورة."
+      },
+      {
+        "en": "And it takes one person at a time, so everyone gets their moment.",
+        "ar": "ويستقبل شخصًا واحدًا في كل مرة، فينال الجميع لحظته."
+      }
+    ]
+  },
+  {
+    "id": "b5",
+    "part": "B",
+    "title": "Scan the QR code",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b5-qr-phone.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "screen",
+          "mockup": "tablet",
+          "src": {
+            "file": "kiosk",
+            "from": 9,
+            "to": 13.5
+          },
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "Scan the QR code",
+    "sentences": [
+      {
+        "en": "Prefer not to use your face? Just scan the QR code on the kiosk with your phone, and you're checked in.",
+        "ar": "لا تفضّل استخدام وجهك؟ امسح رمز الاستجابة السريعة على الجهاز بهاتفك فيُسجَّل حضورك."
+      },
+      {
+        "en": "The code changes every minute, so it can't be passed around.",
+        "ar": "الرمز يتغيّر كل دقيقة، فلا يمكن تداوله."
+      }
+    ]
+  },
+  {
+    "id": "b6",
+    "part": "B",
+    "title": "Or type the code",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b6-teen-code.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "screen",
+          "mockup": "phone",
+          "src": {
+            "file": "phone-checkin",
+            "from": 0.5,
+            "to": 10
+          },
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "Or type the 3-digit code",
+    "sentences": [
+      {
+        "en": "Or type the three-digit code of the day in the app.",
+        "ar": "أو اكتب الرمز المكوّن من ثلاثة أرقام لهذا اليوم في التطبيق."
+      },
+      {
+        "en": "Three simple ways to check in, and nobody is ever left at the door.",
+        "ar": "ثلاث طرق بسيطة لتسجيل الحضور، ولا أحد يُترك عند الباب."
+      }
+    ]
+  },
+  {
+    "id": "b7",
+    "part": "B",
+    "title": "My history",
+    "visual": {
+      "type": "screen",
+      "mockup": "phone",
+      "src": {
+        "file": "phone-checkin",
+        "from": 10,
+        "to": 22
+      }
+    },
+    "onScreen": "My history, always there",
+    "sentences": [
+      {
+        "en": "And members can open My History at any time, to see every service they attended, with the date and time.",
+        "ar": "ويستطيع الأعضاء فتح «سجلّي» في أي وقت ليروا كل خدمة حضروها بتاريخها ووقتها."
       }
     ]
   },
@@ -169,21 +294,24 @@
     "title": "For Abouna and servants",
     "visual": {
       "type": "image",
-      "file": "c0-abouna-laptop.png",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind elderly Coptic Orthodox priest in a black robe and black eiskeem hood, smiling gently at a laptop in a calm church office, an icon of the Virgin and Child on the wall, warm window light, 16:9, no text inside the image, the laptop screen not readable. Fictional cartoon character, not a real person."
+      "file": "c0-abouna-laptop.jpg"
     },
     "onScreen": "Attendance becomes care",
     "sentences": [
       {
-        "en": "For Abouna and church servants, Amoinee turns attendance into care.",
-        "ar": "بالنسبة لأبونا والخدام، تحوّل أمويني الحضور إلى رعاية."
+        "en": "Now let's see what Abouna and the servants get.",
+        "ar": "والآن لنرَ ما يحصل عليه أبونا والخدام."
+      },
+      {
+        "en": "This is where attendance turns into care.",
+        "ar": "هنا يتحوّل الحضور إلى رعاية."
       }
     ]
   },
   {
     "id": "c1",
     "part": "C",
-    "title": "Today",
+    "title": "Today, live",
     "visual": {
       "type": "screen",
       "mockup": "laptop",
@@ -193,20 +321,45 @@
         "to": 14.3
       }
     },
-    "onScreen": "Today · live",
+    "onScreen": "Today, live",
     "sentences": [
       {
-        "en": "The Today screen shows who is here, live, as the Liturgy begins, with every arrival time.",
-        "ar": "تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت وصول كل شخص."
+        "en": "The Today screen is live. As people arrive, their names pop up with the arrival time, whether they came by face, QR code or the daily code.",
+        "ar": "شاشة «اليوم» مباشرة. فعند وصول الناس تظهر أسماؤهم مع وقت الوصول، سواء بالوجه أو بالرمز أو بالرمز اليومي."
       },
       {
-        "en": "Weekly events open check-in on their own, so no one has to remember.",
-        "ar": "والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر."
+        "en": "You see who is on time and who is late, who is still missing, and you can check someone in by hand with one tap.",
+        "ar": "ترى من جاء في موعده ومن تأخر ومن لم يصل بعد، ويمكنك تسجيل حضور أحدهم يدويًا بلمسة واحدة."
       }
     ]
   },
   {
     "id": "c2",
+    "part": "C",
+    "title": "Services open by themselves",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "schedule",
+        "from": 0.5,
+        "to": 18
+      }
+    },
+    "onScreen": "Services open by themselves",
+    "sentences": [
+      {
+        "en": "Services open by themselves. Set your weekly events once, like the Divine Liturgy on Sunday morning, and check-in opens and closes on time.",
+        "ar": "الخدمات تُفتح وحدها. اضبط أحداثك الأسبوعية مرة واحدة، مثل القداس الإلهي صباح الأحد، ويفتح التسجيل ويُغلق في موعده."
+      },
+      {
+        "en": "Each church has its own list of services, like Vespers, Bible Study, Sunday School, choir, youth, and family meetings. Add or remove your own, any time.",
+        "ar": "ولكل كنيسة قائمة خدماتها: العشية ودراسة الكتاب وإعداد الخدام وكورال والشباب واجتماعات الأسر. أضف أو احذف ما تشاء في أي وقت."
+      }
+    ]
+  },
+  {
+    "id": "c3",
     "part": "C",
     "title": "Members",
     "visual": {
@@ -215,98 +368,271 @@
       "src": {
         "file": "members",
         "from": 1.5,
-        "to": 19
+        "to": 21
       }
     },
-    "onScreen": "Members, notes, consent",
+    "onScreen": "Every person, one place",
     "sentences": [
       {
-        "en": "The Members page keeps every person in one place, with their photo, consent status, and private notes that only the church's admins can see.",
-        "ar": "تجمع صفحة الأعضاء كل شخص في مكان واحد، مع صورته وحالة موافقته وملاحظات خاصة لا يراها إلا مسؤولو الكنيسة."
-      }
-    ]
-  },
-  {
-    "id": "c3",
-    "part": "C",
-    "title": "The Attendance Sheet",
-    "minDur": 30,
-    "visual": {
-      "type": "screen",
-      "mockup": "laptop",
-      "src": {
-        "file": "attendance",
-        "from": 1,
-        "to": 27.5
-      }
-    },
-    "onScreen": "The Attendance Sheet",
-    "sentences": [
-      {
-        "en": "And the Attendance Sheet gives Abouna a clear summary.",
-        "ar": "وتعطي صفحة الحضور أبونا ملخصًا واضحًا."
+        "en": "The Members page keeps every person in one place, numbered and easy to search by name, phone, city or church.",
+        "ar": "صفحة الأعضاء تجمع كل شخص في مكان واحد، مرقّمين وسهلي البحث بالاسم أو الهاتف أو المدينة أو الكنيسة."
       },
       {
-        "en": "How many came, who is faithful, who is drifting, and who hasn't come in weeks, ranked from most to least.",
-        "ar": "كم حضر، ومن هو الأمين، ومن يبتعد، ومن لم يأتِ منذ أسابيع، مرتّبين من الأكثر إلى الأقل."
+        "en": "Filter by men, women, deacons, or visitors.",
+        "ar": "ويمكنك التصفية: رجال، نساء، شمامسة، أو زوّار."
       },
       {
-        "en": "A beautiful register shows every person at every service, at a glance.",
-        "ar": "وسجل جميل يُظهر كل شخص في كل خدمة بنظرة واحدة."
+        "en": "Open any profile to add a photo, make someone a deacon, call or text with one tap, see their family, and write private notes that only your church's admins can read.",
+        "ar": "افتح أي ملف لتضيف صورة، أو تجعل شخصًا شماسًا، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك."
       }
     ]
   },
   {
     "id": "c4",
     "part": "C",
-    "title": "Labels and follow-up",
+    "title": "The Attendance Sheet",
     "visual": {
       "type": "screen",
       "mockup": "laptop",
       "src": {
-        "file": "labels",
-        "from": 4,
-        "to": 29.3
+        "file": "attendance2",
+        "from": 3.8,
+        "to": 23.2
       }
     },
-    "onScreen": "Follow up needed",
+    "onScreen": "The Attendance Sheet",
     "sentences": [
       {
-        "en": "When someone misses several Sundays, Amoinee gently marks them \"Follow up needed.\"",
-        "ar": "عندما يغيب شخص عدة آحاد، تضع أمويني عليه بلطف علامة «يحتاج متابعة»."
+        "en": "And now, the heart of Amoinee: the Attendance Sheet.",
+        "ar": "والآن قلب أمويني: صفحة الحضور."
       },
       {
-        "en": "Servants add labels like \"Called,\" \"Visited,\" \"Needs prayer,\" or \"Traveling,\" and can snooze a reminder when it's not the right time.",
-        "ar": "ويضيف الخدام علامات مثل «تم الاتصال» و«تمت الزيارة» و«يحتاج صلاة» و«مسافر»، ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا."
+        "en": "At the top, a short summary in plain words. How many people came, the average per service, and how many need a follow-up.",
+        "ar": "في الأعلى ملخص قصير بكلمات بسيطة: كم شخصًا حضر، ومتوسط كل خدمة، وكم شخصًا يحتاج متابعة."
       },
       {
-        "en": "Abouna also sees who came back, who is new, and whose birthday is this week.",
-        "ar": "ويرى أبونا أيضًا من عاد، ومن هو جديد، ومن عيد ميلاده هذا الأسبوع."
+        "en": "Four big numbers show the average attendance, the attendance rate, how many attend every week, and how many need a call.",
+        "ar": "وأربعة أرقام كبيرة تعرض متوسط الحضور ونسبته، وكم يحضرون كل أسبوع، وكم يحتاجون إلى اتصال."
       }
-    ]
+    ],
+    "minDur": 0
   },
   {
     "id": "c5",
     "part": "C",
-    "title": "Reports and privacy",
+    "title": "Charts",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "attendance2",
+        "from": 23.3,
+        "to": 43.2
+      }
+    },
+    "onScreen": "Clear charts",
+    "sentences": [
+      {
+        "en": "Below, simple charts. Who came at least once. Attendance over time, compared with the period before.",
+        "ar": "وتحتها رسوم بسيطة: من حضر مرة على الأقل، والحضور عبر الزمن مقارنةً بالفترة السابقة."
+      },
+      {
+        "en": "How many attend every week, how many come often, sometimes, or rarely. What time people arrive. And men, women and deacons at each service.",
+        "ar": "كم يحضرون كل أسبوع، وكم يأتون كثيرًا أو أحيانًا أو نادرًا، ومتى يصل الناس، وعدد الرجال والنساء والشمامسة في كل خدمة."
+      },
+      {
+        "en": "Pick any period you like, or a single kind of service.",
+        "ar": "اختر أي فترة تريدها، أو نوعًا واحدًا من الخدمات."
+      }
+    ]
+  },
+  {
+    "id": "c6",
+    "part": "C",
+    "title": "The register and the list",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "attendance2",
+        "from": 43.3,
+        "to": 72.0
+      }
+    },
+    "onScreen": "The register",
+    "sentences": [
+      {
+        "en": "Then the register. One little square for every person at every service, like the paper register of old, but alive.",
+        "ar": "ثم السجلّ. مربع صغير لكل شخص في كل خدمة، مثل السجل الورقي القديم لكنه حيّ."
+      },
+      {
+        "en": "And the ranked list puts everyone in order, from the people who attend every single week, with a medal for the top three, to those who could use a gentle call.",
+        "ar": "والقائمة المرتّبة تضع الجميع في ترتيبه، من الذين يحضرون كل أسبوع، مع ميدالية للثلاثة الأوائل، إلى الذين يحتاجون إلى اتصال لطيف."
+      },
+      {
+        "en": "You'll see streaks, the last visit, and how late they usually arrive. On a phone, a compact view shows one line per person.",
+        "ar": "سترى تتابع الحضور وآخر زيارة ومتوسط التأخير. وعلى الهاتف يعرض العرض المختصر سطرًا واحدًا لكل شخص."
+      }
+    ]
+  },
+  {
+    "id": "c7",
+    "part": "C",
+    "title": "Follow-up and labels",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c7-servants-team.jpg",
+          "weight": 0.25
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "labels",
+            "from": 4,
+            "to": 22
+          },
+          "weight": 0.75
+        }
+      ]
+    },
+    "onScreen": "Follow up, with care",
+    "sentences": [
+      {
+        "en": "When someone misses a few Sundays, Amoinee gently marks them \"Follow up needed\", so nobody slips through the cracks.",
+        "ar": "عندما يغيب شخص بضعة آحاد، تضع أمويني عليه بلطف علامة «يحتاج متابعة»، فلا يسقط أحد من بين الأيدي."
+      },
+      {
+        "en": "Then your servants can add labels: Called, Visited, Needs prayer, Traveling, Sick, Away at college.",
+        "ar": "ويستطيع خدامك إضافة علامات: تم الاتصال، تمت الزيارة، يحتاج صلاة، مسافر، مريض، بعيد للدراسة."
+      },
+      {
+        "en": "They can snooze a reminder when it's not the right time, and everyone sees who is taking care of whom. You can even create your own labels.",
+        "ar": "ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا، ويرى الجميع من يرعى من. بل يمكنك إنشاء علاماتك الخاصة."
+      }
+    ]
+  },
+  {
+    "id": "c7b",
+    "part": "C",
+    "title": "Welcome back, new, birthdays",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c7b-birthday.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "labels",
+            "from": 22,
+            "to": 29.5
+          },
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "Welcome back · New · Birthdays",
+    "sentences": [
+      {
+        "en": "And when that person comes back, they show up under Welcome Back, so you can greet them warmly.",
+        "ar": "وعندما يعود ذلك الشخص يظهر تحت «أهلًا بعودتك»، لتستقبله بحرارة."
+      },
+      {
+        "en": "You'll also see who is new, and whose birthday is this week, so every member feels remembered.",
+        "ar": "وسترى أيضًا من هو جديد ومن عيد ميلاده هذا الأسبوع، فيشعر كل عضو بأنه مذكور."
+      }
+    ]
+  },
+  {
+    "id": "c8",
+    "part": "C",
+    "title": "Encouragement",
+    "visual": {
+      "type": "image",
+      "file": "c8-abouna-call.jpg"
+    },
+    "onScreen": "Behind every name, a person",
+    "sentences": [
+      {
+        "en": "Because behind every name is a person who may be waiting for a call.",
+        "ar": "لأن وراء كل اسم إنسانًا قد ينتظر اتصالًا."
+      },
+      {
+        "en": "A word of encouragement, a visit, a prayer, can bring someone home.",
+        "ar": "كلمة تشجيع أو زيارة أو صلاة قد تعيد إنسانًا إلى بيته."
+      }
+    ]
+  },
+  {
+    "id": "c9",
+    "part": "C",
+    "title": "Reports",
     "visual": {
       "type": "screen",
       "mockup": "laptop",
       "src": {
         "file": "reports",
         "from": 1.5,
-        "to": 17.8
+        "to": 12
       }
     },
-    "onScreen": "One-page report · Excel · private",
+    "onScreen": "One-page report · Excel",
     "sentences": [
       {
-        "en": "With one tap, Abouna can print a one-page report, or export everything to Excel.",
-        "ar": "بلمسة واحدة يستطيع أبونا طباعة تقرير من صفحة واحدة أو تصدير كل شيء إلى إكسل."
+        "en": "Need a report? With one tap, Abouna gets a one-page summary to print or save as a PDF, in English or in Arabic.",
+        "ar": "تحتاج تقريرًا؟ بلمسة واحدة يحصل أبونا على ملخص من صفحة واحدة للطباعة أو الحفظ بصيغة PDF، بالإنجليزية أو العربية."
       },
       {
-        "en": "Each church sees only its own people, with access given church by church, and privacy and consent built in from the start.",
-        "ar": "كل كنيسة ترى أولادها فقط، والصلاحيات تُمنح كنيسة بكنيسة، والخصوصية والموافقة جزء من التصميم منذ البداية."
+        "en": "And the full data goes to Excel, with the register, the follow-up list, and the label history.",
+        "ar": "والبيانات الكاملة تذهب إلى إكسل: السجلّ وقائمة المتابعة وتاريخ العلامات."
+      }
+    ]
+  },
+  {
+    "id": "c10",
+    "part": "C",
+    "title": "Access and privacy",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c10-two-priests.jpg",
+          "weight": 0.35
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "reports",
+            "from": 8,
+            "to": 17.8
+          },
+          "weight": 0.65
+        }
+      ]
+    },
+    "onScreen": "Each church sees its own people",
+    "sentences": [
+      {
+        "en": "Access is simple and safe. Anyone can ask to become an admin of their church, and an existing admin approves it.",
+        "ar": "الصلاحيات بسيطة وآمنة. يستطيع أي شخص طلب أن يصبح مسؤولًا عن كنيسته، ويوافق عليه مسؤول حالي."
+      },
+      {
+        "en": "Each admin sees only their own church. The super admin can switch between churches.",
+        "ar": "كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس."
+      },
+      {
+        "en": "Notes and labels are never public, never on the kiosk, and every face is stored only with consent.",
+        "ar": "الملاحظات والعلامات ليست علنية أبدًا ولا تظهر على جهاز الحضور، ولا يُحفظ أي وجه إلا بموافقة."
       }
     ]
   },
@@ -316,8 +642,7 @@
     "title": "Every soul matters",
     "visual": {
       "type": "outro",
-      "file": "d-outro.png",
-      "prompt": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets, NOT photorealistic. The same kind Coptic Orthodox priest in black robe and eiskeem hood warmly greeting a returning Coptic family of four at the church door in soft golden morning light, the mother holds a child's hand, joyful and peaceful, 16:9, no text inside the image. Fictional cartoon characters, not real people."
+      "file": "d-welcome-back.jpg"
     },
     "onScreen": "Every one of God's people, known and cared for.",
     "sentences": [

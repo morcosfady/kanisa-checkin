@@ -57,3 +57,4 @@ video/google-vids-pack/*.png
 video/google-vids-pack/*.mp4
 video/out/render-*.log
 video/out/_*.mp4
+video/google-vids-pack/*.jpg

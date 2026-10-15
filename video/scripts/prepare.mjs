@@ -4,6 +4,9 @@ import path from "node:path";
 
 const FPS = 30, LEAD = 0.5, TAIL = 0.5;
 const scenes = JSON.parse(fs.readFileSync("scenes.json", "utf8"));
+// Flow prompts: file -> full prompt text
+const fp = JSON.parse(fs.readFileSync("flow-prompts.json", "utf8"));
+const PROMPT = Object.fromEntries(fp.images.map((i) => [i.file, `${fp.style} ${i.scene.replace("{priest}", fp.priest)} ${fp.tail}`]));
 const rd = (p) => fs.readFileSync(p);
 const exists = (p) => fs.existsSync(p);
 
@@ -122,7 +125,7 @@ let sb = `# Amoinee explainer: storyboard\n\nTotal about ${mm(total)}. Generated
 for (const s of out) {
   const v = s.visual;
   const vis = v.type === "image" ? `AI image${v.clip ? " + Veo clip" : ""}` : v.type === "screen" ? `screen recording (${v.mockup})` : v.type === "mix" ? "AI image then screen recording" : v.type === "logo" ? "logo animation" : "AI image + logo end card";
-  const src = v.type === "image" || v.type === "outro" ? `${v.file}: ${v.prompt}` : v.type === "screen" ? `${v.src.file}.webm ${v.src.from}-${v.src.to}s` : v.type === "mix" ? v.parts.map((p) => (p.type === "image" ? `${p.file}: ${p.prompt}` : `${p.src.file}.webm ${p.src.from}-${p.src.to}s`)).join(" / ") : "SVG logo draws on";
+  const src = v.type === "image" || v.type === "outro" ? `${v.file}: ${PROMPT[v.file] ?? ''}` : v.type === "screen" ? `${v.src.file}.webm ${v.src.from}-${v.src.to}s` : v.type === "mix" ? v.parts.map((p) => (p.type === "image" ? `${p.file}: ${PROMPT[p.file] ?? ''}` : `${p.src.file}.webm ${p.src.from}-${p.src.to}s`)).join(" / ") : "SVG logo draws on";
   sb += `| ${s.id} | ${mm(s.start)} | ${vis} | ${src.replace(/\|/g, "/")} | ${s.onScreen} | ${s.sentences.map((x) => x.en).join(" ").replace(/\|/g, "/")} | cross-dissolve |\n`;
 }
 fs.writeFileSync("storyboard.md", sb);

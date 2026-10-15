@@ -2,7 +2,7 @@ import React from "react";
 import { Composition, Still } from "remotion";
 import { Cut, Thumb, cutFrames } from "./Explainer";
 
-const SHORT = ["a2", "a4", "b2", "c3", "d"];
+const SHORT = ["a2", "a3", "b4", "c4", "d"];
 
 export const Root: React.FC = () => (
   <>

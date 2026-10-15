@@ -1,4 +1,4 @@
-The Today screen shows who is here, live, as the Liturgy begins, with every arrival time. Weekly events open check-in on their own, so no one has to remember.
+Prefer not to use your face? Just scan the QR code on the kiosk with your phone, and you're checked in. The code changes every minute, so it can't be passed around.
 
 عربي:
-تعرض شاشة «اليوم» من حضر مباشرةً مع بدء القداس، وبوقت وصول كل شخص. والخدمات الأسبوعية تفتح تسجيل الحضور تلقائيًا، فلا يحتاج أحد أن يتذكر.
+لا تفضّل استخدام وجهك؟ امسح رمز الاستجابة السريعة على الجهاز بهاتفك فيُسجَّل حضورك. الرمز يتغيّر كل دقيقة، فلا يمكن تداوله.

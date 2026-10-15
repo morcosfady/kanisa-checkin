@@ -1,216 +1,528 @@
 ﻿1
-00:00:00,699 --> 00:00:03,465
-Thank God, His people keep growing.
+00:00:00,654 --> 00:00:02,967
+Thank God, His people keep growing!
 
 2
-00:00:03,465 --> 00:00:06,790
-Every Sunday, more families fill the church.
+00:00:02,967 --> 00:00:05,982
+Every Sunday, more families fill our churches,
 
 3
-00:00:06,790 --> 00:00:10,952
-But with so many faces, it becomes almost impossible to know
+00:00:05,982 --> 00:00:08,444
+and more little feet come running through the doors.
 
 4
-00:00:10,952 --> 00:00:15,820
-who came, who is missing, and who quietly drifted away.
+00:00:09,058 --> 00:00:12,358
+But here's the question every priest quietly asks.
 
 5
-00:00:16,516 --> 00:00:18,205
-Paper lists get lost.
+00:00:12,358 --> 00:00:13,312
+Who came today?
 
 6
-00:00:18,205 --> 00:00:21,064
-And the people who need a call the most are the easiest to
+00:00:13,312 --> 00:00:13,959
+Who didn't?
 
 7
-00:00:21,064 --> 00:00:22,049
-miss.
+00:00:13,959 --> 00:00:15,582
+And who has been missing for weeks,
 
 8
-00:00:22,743 --> 00:00:24,711
-That's where Amoinee comes in.
+00:00:15,582 --> 00:00:17,139
+without anyone noticing?
 
 9
-00:00:24,711 --> 00:00:28,368
-Amoinee, from the Coptic word for "Come!",
+00:00:17,139 --> 00:00:18,553
+Paper lists get lost.
 
 10
-00:00:28,368 --> 00:00:31,014
-helps every church know its people,
+00:00:18,553 --> 00:00:19,727
+Names get forgotten.
 
 11
-00:00:31,014 --> 00:00:32,664
-and never lose one of them.
+00:00:19,727 --> 00:00:22,161
+And the people who need a phone call the most are the easiest
 
 12
-00:00:33,406 --> 00:00:36,225
-For members, it starts with one simple step,
+00:00:22,161 --> 00:00:23,032
+to miss.
 
 13
-00:00:36,225 --> 00:00:37,928
-done only once.
+00:00:23,659 --> 00:00:25,128
+That's why we built Amoinee.
 
 14
-00:00:37,928 --> 00:00:41,797
-Create your profile with your name and contact details,
+00:00:25,128 --> 00:00:28,363
+It comes from the Coptic word for "Come!" It helps every
 
 15
-00:00:41,797 --> 00:00:44,178
-and choose whether to turn on face check-in.
+00:00:28,363 --> 00:00:30,808
+church know its people, care for them,
 
 16
-00:00:44,178 --> 00:00:47,423
-It's always your choice, and you can turn it off anytime.
+00:00:30,808 --> 00:00:32,167
+and never lose one of them.
 
 17
-00:00:48,100 --> 00:00:51,318
-At the church door stands the Amoinee kiosk.
+00:00:32,167 --> 00:00:34,322
+So let's see how it works, step by step.
 
 18
-00:00:51,318 --> 00:00:53,286
-Just look at the screen as you walk in.
+00:00:34,948 --> 00:00:36,571
+It all starts with the members.
 
 19
-00:00:53,286 --> 00:00:55,587
-In a second it welcomes you by name,
+00:00:36,571 --> 00:00:38,599
+Create your profile just once.
 
 20
-00:00:55,587 --> 00:00:57,157
-and records that you're here.
+00:00:38,599 --> 00:00:41,033
+Your name, your phone, your email,
 
 21
-00:00:57,833 --> 00:00:59,682
-Prefer not to use your face?
+00:00:41,033 --> 00:00:44,323
+your address, and your church, which you simply start typing
 
 22
-00:00:59,682 --> 00:01:00,772
-No problem.
+00:00:44,323 --> 00:00:45,573
+and pick from the list.
 
 23
-00:01:00,772 --> 00:01:03,791
-Scan the QR code on the kiosk with your phone,
+00:00:45,573 --> 00:00:47,848
+It takes a minute, and it works on any phone.
 
 24
-00:01:03,791 --> 00:01:06,011
-or type the three-digit code of the day.
+00:00:48,458 --> 00:00:51,100
+You also choose whether to turn on face check-in.
 
 25
-00:01:06,011 --> 00:01:08,659
-Nobody is ever left at the door.
+00:00:51,100 --> 00:00:54,379
+Say yes, sign the consent, and take a quick face setup.
 
 26
-00:01:09,433 --> 00:01:14,247
-For Abouna and church servants, Amoinee turns attendance into
+00:00:54,379 --> 00:00:56,583
+Say no, and that's perfectly fine,
 
 27
-00:01:14,247 --> 00:01:15,099
-care.
+00:00:56,583 --> 00:00:58,326
+because there are other ways to check in.
 
 28
-00:01:15,796 --> 00:01:18,389
-The Today screen shows who is here,
+00:00:58,326 --> 00:01:00,662
+And you can always take it back: turn it off,
 
 29
-00:01:18,389 --> 00:01:22,791
-live, as the Liturgy begins, with every arrival time.
+00:01:00,662 --> 00:01:02,641
+and your face data is deleted.
 
 30
-00:01:22,791 --> 00:01:25,530
-Weekly events open check-in on their own,
+00:01:03,257 --> 00:01:06,130
+At the church door stands the Amoinee kiosk,
 
 31
-00:01:25,530 --> 00:01:27,340
-so no one has to remember.
+00:01:06,130 --> 00:01:08,366
+a tablet on a stand that an admin signs in.
 
 32
-00:01:28,050 --> 00:01:31,454
-The Members page keeps every person in one place,
+00:01:08,366 --> 00:01:10,844
+Before the service, it just shows what's coming next,
 
 33
-00:01:31,454 --> 00:01:35,270
-with their photo, consent status, and private notes that only
+00:01:10,844 --> 00:01:12,380
+with the camera switched off.
 
 34
-00:01:35,270 --> 00:01:37,253
-the church's admins can see.
+00:01:12,380 --> 00:01:15,323
+When check-in opens, it wakes up all by itself.
 
 35
-00:01:37,920 --> 00:01:41,909
-And the Attendance Sheet gives Abouna a clear summary.
+00:01:15,938 --> 00:01:16,815
+Now watch.
 
 36
-00:01:41,909 --> 00:01:46,351
-How many came, who is faithful, who is drifting,
+00:01:16,815 --> 00:01:18,822
+Someone walks in, looks at the screen,
 
 37
-00:01:46,351 --> 00:01:49,888
-and who hasn't come in weeks, ranked from most to least.
+00:01:18,822 --> 00:01:21,091
+and in a second it says, welcome, by name.
 
 38
-00:01:49,888 --> 00:01:54,755
-A beautiful register shows every person at every service,
+00:01:21,091 --> 00:01:22,506
+It records that you're here.
 
 39
-00:01:54,755 --> 00:01:55,939
-at a glance.
+00:01:22,506 --> 00:01:25,499
+It even checks that it's a real face and not a photo.
 
 40
-00:02:07,533 --> 00:02:09,993
-When someone misses several Sundays,
+00:01:25,499 --> 00:01:27,275
+And it takes one person at a time,
 
 41
-00:02:09,993 --> 00:02:14,647
-Amoinee gently marks them "Follow up needed." Servants add
+00:01:27,275 --> 00:01:28,936
+so everyone gets their moment.
 
 42
-00:02:14,647 --> 00:02:18,225
-labels like "Called," "Visited," "Needs prayer," or
+00:01:29,548 --> 00:01:31,072
+Prefer not to use your face?
 
 43
-00:02:18,225 --> 00:02:21,150
-"Traveling," and can snooze a reminder when it's not the
+00:01:31,072 --> 00:01:33,473
+Just scan the QR code on the kiosk with your phone,
 
 44
-00:02:21,150 --> 00:02:22,254
-right time.
+00:01:33,473 --> 00:01:34,449
+and you're checked in.
 
 45
-00:02:22,254 --> 00:02:26,017
-Abouna also sees who came back, who is new,
+00:01:34,449 --> 00:01:37,777
+The code changes every minute, so it can't be passed around.
 
 46
-00:02:26,017 --> 00:02:28,385
-and whose birthday is this week.
+00:01:38,408 --> 00:01:41,357
+Or type the three-digit code of the day in the app.
 
 47
-00:02:29,076 --> 00:02:32,946
-With one tap, Abouna can print a one-page report,
+00:01:41,357 --> 00:01:44,614
+Three simple ways to check in, and nobody is ever left at the
 
 48
-00:02:32,946 --> 00:02:35,393
-or export everything to Excel.
+00:01:44,614 --> 00:01:45,365
+door.
 
 49
-00:02:35,393 --> 00:02:38,279
-Each church sees only its own people,
+00:01:45,988 --> 00:01:48,400
+And members can open My History at any time,
 
 50
-00:02:38,279 --> 00:02:40,938
-with access given church by church,
+00:01:48,400 --> 00:01:50,396
+to see every service they attended,
 
 51
-00:02:40,938 --> 00:02:44,330
-and privacy and consent built in from the start.
+00:01:50,396 --> 00:01:51,936
+with the date and time.
 
 52
-00:02:45,036 --> 00:02:49,305
-Because every soul matters, and no one should be forgotten.
+00:01:52,568 --> 00:01:55,101
+Now let's see what Abouna and the servants get.
 
 53
-00:02:49,305 --> 00:02:50,276
-Amoinee.
+00:01:55,101 --> 00:01:57,430
+This is where attendance turns into care.
 
 54
-00:02:50,276 --> 00:02:51,660
+00:01:58,038 --> 00:01:59,825
+The Today screen is live.
+
+55
+00:01:59,825 --> 00:02:02,829
+As people arrive, their names pop up with the arrival time,
+
+56
+00:02:02,829 --> 00:02:06,097
+whether they came by face, QR code or the daily code.
+
+57
+00:02:06,097 --> 00:02:08,191
+You see who is on time and who is late,
+
+58
+00:02:08,191 --> 00:02:10,636
+who is still missing, and you can check someone in by hand
+
+59
+00:02:10,636 --> 00:02:11,815
+with one tap.
+
+60
+00:02:12,407 --> 00:02:14,359
+Services open by themselves.
+
+61
+00:02:14,359 --> 00:02:17,286
+Set your weekly events once, like the Divine Liturgy on
+
+62
+00:02:17,286 --> 00:02:20,652
+Sunday morning, and check-in opens and closes on time.
+
+63
+00:02:20,652 --> 00:02:22,330
+Each church has its own list of services,
+
+64
+00:02:22,330 --> 00:02:24,962
+like Vespers, Bible Study, Sunday School,
+
+65
+00:02:24,962 --> 00:02:27,451
+choir, youth, and family meetings.
+
+66
+00:02:27,451 --> 00:02:30,022
+Add or remove your own, any time.
+
+67
+00:02:30,649 --> 00:02:33,258
+The Members page keeps every person in one place,
+
+68
+00:02:33,258 --> 00:02:35,210
+numbered and easy to search by name,
+
+69
+00:02:35,210 --> 00:02:37,436
+phone, city or church.
+
+70
+00:02:37,436 --> 00:02:40,605
+Filter by men, women, deacons, or visitors.
+
+71
+00:02:40,605 --> 00:02:43,708
+Open any profile to add a photo, make someone a deacon,
+
+72
+00:02:43,708 --> 00:02:46,592
+call or text with one tap, see their family,
+
+73
+00:02:46,592 --> 00:02:48,839
+and write private notes that only your church's admins can
+
+74
+00:02:48,839 --> 00:02:49,535
+read.
+
+75
+00:02:50,148 --> 00:02:53,766
+And now, the heart of Amoinee: the Attendance Sheet.
+
+76
+00:02:53,766 --> 00:02:56,573
+At the top, a short summary in plain words.
+
+77
+00:02:56,573 --> 00:02:59,205
+How many people came, the average per service,
+
+78
+00:02:59,205 --> 00:03:00,784
+and how many need a follow-up.
+
+79
+00:03:00,784 --> 00:03:02,933
+Four big numbers show the average attendance,
+
+80
+00:03:02,933 --> 00:03:05,860
+the attendance rate, how many attend every week,
+
+81
+00:03:05,860 --> 00:03:07,138
+and how many need a call.
+
+82
+00:03:07,768 --> 00:03:09,149
+Below, simple charts.
+
+83
+00:03:09,149 --> 00:03:10,399
+Who came at least once.
+
+84
+00:03:10,399 --> 00:03:13,459
+Attendance over time, compared with the period before.
+
+85
+00:03:13,459 --> 00:03:16,540
+How many attend every week, how many come often,
+
+86
+00:03:16,540 --> 00:03:18,206
+sometimes, or rarely.
+
+87
+00:03:18,206 --> 00:03:19,489
+What time people arrive.
+
+88
+00:03:19,489 --> 00:03:22,329
+And men, women and deacons at each service.
+
+89
+00:03:22,329 --> 00:03:25,405
+Pick any period you like, or a single kind of service.
+
+90
+00:03:26,028 --> 00:03:27,157
+Then the register.
+
+91
+00:03:27,157 --> 00:03:30,797
+One little square for every person at every service,
+
+92
+00:03:30,797 --> 00:03:33,462
+like the paper register of old, but alive.
+
+93
+00:03:33,462 --> 00:03:36,050
+And the ranked list puts everyone in order,
+
+94
+00:03:36,050 --> 00:03:38,451
+from the people who attend every single week,
+
+95
+00:03:38,451 --> 00:03:40,984
+with a medal for the top three, to those who could use a
+
+96
+00:03:40,984 --> 00:03:41,905
+gentle call.
+
+97
+00:03:41,905 --> 00:03:44,218
+You'll see streaks, the last visit,
+
+98
+00:03:44,218 --> 00:03:46,039
+and how late they usually arrive.
+
+99
+00:03:46,039 --> 00:03:49,520
+On a phone, a compact view shows one line per person.
+
+100
+00:03:50,128 --> 00:03:52,167
+When someone misses a few Sundays,
+
+101
+00:03:52,167 --> 00:03:55,062
+Amoinee gently marks them "Follow up needed",
+
+102
+00:03:55,062 --> 00:03:56,915
+so nobody slips through the cracks.
+
+103
+00:03:56,915 --> 00:03:58,461
+Then your servants can add labels:
+
+104
+00:03:58,461 --> 00:04:01,136
+Called, Visited, Needs prayer, Traveling,
+
+105
+00:04:01,136 --> 00:04:03,011
+Sick, Away at college.
+
+106
+00:04:03,011 --> 00:04:05,643
+They can snooze a reminder when it's not the right time,
+
+107
+00:04:05,643 --> 00:04:08,099
+and everyone sees who is taking care of whom.
+
+108
+00:04:08,099 --> 00:04:09,837
+You can even create your own labels.
+
+109
+00:04:10,458 --> 00:04:12,673
+And when that person comes back, they show up under Welcome
+
+110
+00:04:12,673 --> 00:04:14,701
+Back, so you can greet them warmly.
+
+111
+00:04:14,701 --> 00:04:18,495
+You'll also see who is new, and whose birthday is this week,
+
+112
+00:04:18,495 --> 00:04:20,233
+so every member feels remembered.
+
+113
+00:04:20,848 --> 00:04:23,852
+Because behind every name is a person who may be waiting for
+
+114
+00:04:23,852 --> 00:04:24,576
+a call.
+
+115
+00:04:24,576 --> 00:04:27,668
+A word of encouragement, a visit, a prayer,
+
+116
+00:04:27,668 --> 00:04:28,967
+can bring someone home.
+
+117
+00:04:29,577 --> 00:04:30,487
+Need a report?
+
+118
+00:04:30,487 --> 00:04:34,445
+With one tap, Abouna gets a one-page summary to print or save
+
+119
+00:04:34,445 --> 00:04:37,285
+as a PDF, in English or in Arabic.
+
+120
+00:04:37,285 --> 00:04:40,618
+And the full data goes to Excel, with the register,
+
+121
+00:04:40,618 --> 00:04:43,124
+the follow-up list, and the label history.
+
+122
+00:04:43,748 --> 00:04:45,732
+Access is simple and safe.
+
+123
+00:04:45,732 --> 00:04:48,386
+Anyone can ask to become an admin of their church,
+
+124
+00:04:48,386 --> 00:04:50,491
+and an existing admin approves it.
+
+125
+00:04:50,491 --> 00:04:52,739
+Each admin sees only their own church.
+
+126
+00:04:52,739 --> 00:04:55,447
+The super admin can switch between churches.
+
+127
+00:04:55,447 --> 00:04:57,465
+Notes and labels are never public,
+
+128
+00:04:57,465 --> 00:05:00,546
+never on the kiosk, and every face is stored only with
+
+129
+00:05:00,546 --> 00:05:01,516
+consent.
+
+130
+00:05:02,128 --> 00:05:05,637
+Because every soul matters, and no one should be forgotten.
+
+131
+00:05:05,637 --> 00:05:06,426
+Amoinee.
+
+132
+00:05:06,426 --> 00:05:07,572
 Come, let us worship.
 

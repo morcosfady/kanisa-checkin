@@ -1,6 +1,7 @@
 // Records the app in DEMO mode (fake data only) with smooth scripted moves.
 // Start the app first:  NEXT_PUBLIC_SUPABASE_URL= npx next dev -p 3055   (from the repo root)
 import fs from "node:fs";
+const require_fs = fs;
 import path from "node:path";
 import { chromium } from "playwright";
 
@@ -183,4 +184,66 @@ if (want("reports")) await session("reports", { width: 1440, height: 900 }, 1.4,
   await a.glide(p.getByText(/Admin access/i).first()); await a.wait(1600);
   await a.mark("Switch church", p.getByRole("button", { name: "Switch church" }));
   await a.glide(p.getByRole("button", { name: "Switch church" })); await a.wait(1800);
+});
+
+// 8. phone: type the daily code, then the history page (member view)
+if (want("phone-checkin")) await session("phone-checkin", { width: 430, height: 900 }, 1, async (a) => {
+  const p = a.page;
+  await go(p, "/check-in"); await a.wait(1800);
+  await a.mark("The 3-digit code", p.getByRole("group", { name: "3-digit check-in code" }));
+  for (const [i, d] of ["4", "8", "2"].entries()) await a.type(p.getByLabel(`Digit ${i + 1}`), d);
+  await a.wait(2400);
+  await go(p, "/history"); await a.wait(1800);
+  await a.scrollTo(300, 1800); await a.wait(1400);
+  await a.scrollTo(0, 1200); await a.wait(1200);
+}, { member: true });
+
+// 9. laptop: weekly events and the services each church offers
+if (want("schedule")) await session("schedule", { width: 1440, height: 900 }, 1, async (a) => {
+  const p = a.page;
+  await go(p, "/schedule"); await a.wait(1800);
+  await a.mark("Weekly events", p.getByRole("heading", { name: "Weekly events" }));
+  await a.glide(p.getByRole("heading", { name: "Weekly events" })); await a.wait(1800);
+  await a.scrollTo(520, 2000); await a.wait(1400);
+  await a.mark("Your church's own services", p.locator("#kinds"));
+  await a.scrollTo(1100, 2000); await a.wait(2200);
+  await a.scrollTo(1500, 1600); await a.wait(1400);
+});
+
+// 10. attendance, slow and in three parts so each part matches its narration
+if (want("attendance2")) await session("attendance2", { width: 1440, height: 900 }, 1, async (a) => {
+  const p = a.page;
+  const phases = {};
+  const t0 = Date.now();
+  const phase = (n) => (phases[n] = Math.round((Date.now() - t0) / 100) / 10);
+  await go(p, "/attendance"); await a.wait(3500);
+  phase("c4");
+  await a.mark("Abouna's summary", p.getByText(/Abouna’s summary/i));
+  await a.glide(p.getByText(/Abouna’s summary/i)); await a.wait(3500);
+  for (const t of ["Average per service", "Attendance rate", "Faithful members", "Need follow-up"]) {
+    const tile = p.getByText(new RegExp(t)).first();
+    await a.mark(t === "Faithful members" ? "Attends every week" : t, tile);
+    await a.glide(tile); await a.wait(2300);
+  }
+  await a.wait(1500);
+  phase("c5");
+  await a.scrollTo(560, 1800); await a.wait(2600);
+  await a.scrollTo(840, 1800); await a.wait(3000);
+  await a.scrollTo(1100, 1800); await a.wait(3200);
+  await a.mark("Arrival time", p.getByText(/Arrival time/i).first());
+  await a.wait(3200);
+  await a.mark("Men, women and deacons", p.getByText(/Men, women and deacons/i).first());
+  await a.wait(2600);
+  phase("c6");
+  await a.scrollTo(1560, 2200); await a.wait(2200);
+  await a.mark("The register", p.getByText(/The register/i).first());
+  await a.wait(4200);
+  await a.scrollTo(2150, 2200); await a.wait(2200);
+  await a.mark("Ranked, with medals", p.getByText(/Who attends/i).first());
+  await a.wait(3500);
+  await a.click(p.getByRole("button", { name: "Compact" })); await a.mark("Compact view", p.getByRole("button", { name: "Compact" })); await a.wait(3200);
+  await a.click(p.getByRole("button", { name: "Compact" })); await a.wait(1600);
+  await a.scrollTo(2500, 2000); await a.wait(2600);
+  phase("end");
+  require_fs.writeFileSync(path.join(OUT, "attendance2.phases.json"), JSON.stringify(phases));
 });

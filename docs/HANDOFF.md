@@ -207,3 +207,11 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - NOT done (blocked on keys): animated-style pictures and the Veo clip (`GEMINI_API_KEY`, `node scripts/images.mjs`), real voice (`ELEVENLABS_API_KEY`). Missing pictures show a labelled placeholder card. Style decision: 3D animated family-movie look, never photorealistic (user request).
 - Script changes vs the brief: no family check-in (removed from the app), "other ways to check in" = kiosk QR + 3-digit code. Narration is about 330 words; the cut is 2:54.
 - Gotchas: Remotion needs a headless browser, `render.mjs` points to Playwright's headless shell; MP4s are git-ignored (68 MB), regenerate with `node scripts/render.mjs`. Audio loudness is normalised with ffmpeg loudnorm (-14 LUFS target) but not measured.
+
+## Explainer video v2 (2026-10-14)
+- Rebuilt as a full feature walkthrough: 23 scenes, 5:08 (`video/out/amoinee-explainer-1080p.mp4`) plus a 1:04 vertical (`amoinee-short-vertical.mp4`). Script source: `video/scripts/make_scenes.py` (writes `scenes.json`, EN + AR).
+- Pictures: 13 Pixar-style animated images made in Google Flow (Nano Banana 2.1, free, signed-in account) with the prompts in `video/flow-prompts.json`; saved in `video/raw/images/` (git-ignored). The browser pane could not POST to localhost, so each picture is downloaded through the page (it lands in Downloads as a .tmp JPEG, then moved).
+- Voice: `scripts/tts_edge.py` (neural voice Andrew, +14% faster, exact word timings). Subtitles: English only, burned in, the spoken word highlighted gold; `out/amoinee-ar.srt` is a separate file.
+- New recordings: phone-checkin, schedule, attendance2 (slow, 3 phases). Mixed look: animated people first, then the real screen in a device frame.
+- Wording: no "faithful/drifting"; "attends every week / needs follow-up" plus encouragement.
+- Not done: Veo video clips, real ElevenLabs voice, loudness not measured (loudnorm applied).

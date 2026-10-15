@@ -1,0 +1,20 @@
+{
+  "style": "3D animated feature-film look like a big-studio family movie still (Pixar-style): expressive stylized characters with big warm eyes, soft global illumination, rich warm colors, cinematic golden lighting, detailed storybook sets.",
+  "priest": "a kind elderly Coptic Orthodox priest with a short gray beard, wearing a black robe and a black hood (eiskeem) with small white embroidered crosses, holding a small Coptic hand cross",
+  "tail": "16:9 wide shot, no text, no logos, no readable writing on screens.",
+  "images": [
+    { "file": "a1-church-sunday.jpg", "done": true, "scene": "Wide shot of the entrance of a beautiful Coptic Orthodox church on a Sunday morning, happy Egyptian-Coptic families with children in their Sunday best streaming through the open doors, golden morning light, a stone cross above the door." },
+    { "file": "a2-abouna-night.jpg", "scene": "{priest}, sitting at a wooden desk at night under a warm lamp, surrounded by paper attendance lists and a phone full of contacts, looking thoughtful and a little overwhelmed, a Coptic icon on the wall behind him." },
+    { "file": "b1-mother-phone.jpg", "scene": "A young Egyptian-Coptic mother sitting on a bench in a church lobby, smiling as she creates her profile on her smartphone, her toddler beside her holding a toy, warm candle glow and icons in the background." },
+    { "file": "b3-kiosk-setup.jpg", "scene": "{priest} and a young male servant placing a sleek tablet kiosk on an elegant dark wooden floor stand just inside the church doors, both smiling and giving a thumbs up, golden light through the doorway." },
+    { "file": "b4-family-kiosk.jpg", "scene": "A Coptic family of four (father, mother, a girl and a boy) at a sleek tablet kiosk on a wooden floor stand just inside the church doors; the father looks at the tablet with a friendly smile, a glowing green check on the tablet, the kids waving happily, candles and icons behind them." },
+    { "file": "b5-qr-phone.jpg", "scene": "A cheerful young man at a church entrance holding up his smartphone to scan a square code shown on a tablet kiosk, a soft beam of golden light between the phone and the tablet." },
+    { "file": "b6-teen-code.jpg", "scene": "A teenage girl typing three numbers on her smartphone in a church lobby while her friend beside her points at a kiosk tablet showing a big three-digit number, both smiling." },
+    { "file": "c0-abouna-laptop.jpg", "scene": "{priest}, smiling gently at a laptop in a calm church office, friendly colorful charts glowing on the laptop screen, an icon of the Virgin and Child on the wall, a cup of tea on the desk." },
+    { "file": "c7-servants-team.jpg", "scene": "Three church servants (a young man, a young woman and an older lady) gathered around a tablet at a table in a church hall, smiling and helping each other, children's drawings on the wall, warm light." },
+    { "file": "c8-abouna-call.jpg", "scene": "{priest}, on a phone call with a warm caring smile, sitting in a cozy office with a handwritten notebook and a small candle, evening light." },
+    { "file": "c7b-birthday.jpg", "scene": "A small birthday celebration for a boy in a Coptic church hall, servants and children gathered around a cake with candles, balloons, joyful warm atmosphere." },
+    { "file": "c10-two-priests.jpg", "scene": "Two friendly Coptic Orthodox priests in black robes and black hoods standing side by side in front of two different small church buildings, each holding a golden key, shaking hands, sunny sky." },
+    { "file": "d-welcome-back.jpg", "scene": "{priest}, warmly greeting a returning Coptic family of four at the church door in soft golden morning light, the mother holds a child's hand, joyful and peaceful." }
+  ]
+}
