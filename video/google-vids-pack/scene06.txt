@@ -1,4 +1,4 @@
-At the church door stands the Amoinee kiosk, a tablet on a stand that an admin signs in. Before the service, it just shows what's coming next, with the camera switched off. When check-in opens, it wakes up all by itself.
+If you choose face check-in, the setup takes under a minute. You look at the camera, then turn a little to the left, then to the right. Three short captures, and that's it. Amoinee keeps only a numeric template, never a photo, and if the picture is too dark or blurry, it simply asks you to try again. You can withdraw your consent any time, and the data is erased on the spot.
 
 عربي:
-عند باب الكنيسة يقف جهاز أمويني، وهو جهاز لوحي على حامل يسجّل مسؤول الدخول عليه. قبل الخدمة يعرض ما هو قادم فقط والكاميرا مغلقة. وعندما يُفتح تسجيل الحضور يستيقظ وحده.
+إن اخترت تسجيل الحضور بالوجه، فالإعداد يستغرق أقل من دقيقة. تنظر إلى الكاميرا، ثم تلتفت قليلًا يسارًا ثم يمينًا. ثلاث لقطات قصيرة وينتهي الأمر. تحتفظ أمويني برقم تعريفي فقط ولا تحفظ صورة أبدًا، وإن كانت الصورة معتمة أو غير واضحة تطلب منك المحاولة مرة أخرى. ويمكنك سحب موافقتك في أي وقت، فتُمحى البيانات فورًا.

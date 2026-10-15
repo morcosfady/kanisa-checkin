@@ -1,4 +1,4 @@
-The Members page keeps every person in one place, numbered and easy to search by name, phone, city or church. Filter by men, women, deacons, or visitors. Open any profile to add a photo, make someone a deacon, call or text with one tap, see their family, and write private notes that only your church's admins can read.
+The Today screen is live. As people arrive, their names pop up with the arrival time, whether they came by face, QR code or the daily code. You see who is on time and who is late, who is still missing, and you can check someone in by hand with one tap.
 
 عربي:
-صفحة الأعضاء تجمع كل شخص في مكان واحد، مرقّمين وسهلي البحث بالاسم أو الهاتف أو المدينة أو الكنيسة. ويمكنك التصفية: رجال، نساء، شمامسة، أو زوّار. افتح أي ملف لتضيف صورة، أو تجعل شخصًا شماسًا، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك.
+شاشة «اليوم» مباشرة. فعند وصول الناس تظهر أسماؤهم مع وقت الوصول، سواء بالوجه أو بالرمز أو بالرمز اليومي. ترى من جاء في موعده ومن تأخر ومن لم يصل بعد، ويمكنك تسجيل حضور أحدهم يدويًا بلمسة واحدة.

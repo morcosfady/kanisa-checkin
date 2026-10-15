@@ -1,4 +1,4 @@
-And now, the heart of Amoinee: the Attendance Sheet. At the top, a short summary in plain words. How many people came, the average per service, and how many need a follow-up. Four big numbers show the average attendance, the attendance rate, how many attend every week, and how many need a call.
+Someone forgot their phone? Under Not Here Yet, one tap checks them in by hand, and it's marked as added by an admin. You can also start a service yourself, choose the kind and the time, and end it when it's over. Everything is saved for the reports.
 
 عربي:
-والآن قلب أمويني: صفحة الحضور. في الأعلى ملخص قصير بكلمات بسيطة: كم شخصًا حضر، ومتوسط كل خدمة، وكم شخصًا يحتاج متابعة. وأربعة أرقام كبيرة تعرض متوسط الحضور ونسبته، وكم يحضرون كل أسبوع، وكم يحتاجون إلى اتصال.
+نسي أحدهم هاتفه؟ تحت «لم يصل بعد» لمسة واحدة تسجّل حضوره يدويًا، ويُوسَم بأنه أضافه مسؤول. ويمكنك أيضًا بدء خدمة بنفسك واختيار نوعها ووقتها وإنهاؤها عند انتهائها، ويُحفظ كل شيء للتقارير.

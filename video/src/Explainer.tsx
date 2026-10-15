@@ -3,13 +3,13 @@ import { AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame
 import data from "./data.json";
 import { C, FONT } from "./theme";
 import { LogoAnim, Mark } from "./Logo";
-import { Backdrop, Device, LowerThird, Particles, Photo, Subtitle } from "./Visuals";
+import { Backdrop, Device, LowerThird, Paper, Particles, Photo, Subtitle } from "./Visuals";
 
 type Scene = (typeof data.scenes)[number];
 const FPS = data.fps;
 const have = new Set(data.have as string[]);
 const LAYOUT = {
-  land: { laptop: { x: 140, y: 40, w: 1640, h: 880 }, tablet: { x: 300, y: 30, w: 1320, h: 860 }, phone: { x: 120, y: 20, w: 760, h: 960 } },
+  land: { laptop: { x: 140, y: 120, w: 1640, h: 800 }, tablet: { x: 300, y: 110, w: 1320, h: 790 }, phone: { x: 120, y: 20, w: 760, h: 960 } },
   vert: { laptop: { x: 10, y: 380, w: 1060, h: 880 }, tablet: { x: 10, y: 380, w: 1060, h: 900 }, phone: { x: 120, y: 150, w: 840, h: 1250 } },
 };
 
@@ -45,6 +45,7 @@ const Visual: React.FC<{ s: Scene; vertical: boolean }> = ({ s, vertical }) => {
     );
   }
   if (v.type === "screen") return screen(v, dur);
+  if (v.type === "paper") return <><Backdrop vertical={vertical} /><Paper file={v.file} vertical={vertical} /></>;
   if (v.type === "mix") {
     const [a, b] = v.parts;
     const cut = Math.round(a.weight * dur * FPS);
@@ -52,7 +53,7 @@ const Visual: React.FC<{ s: Scene; vertical: boolean }> = ({ s, vertical }) => {
       <>
         <Sequence from={0} durationInFrames={cut + 10}><Photo file={a.file} dur={a.weight * dur} label={s.onScreen} hasFile={have.has(a.file)} vertical={vertical} /></Sequence>
         <Sequence from={cut} durationInFrames={Math.round(dur * FPS) - cut}>
-          <AbsoluteFill>{screen(b, b.weight * dur)}</AbsoluteFill>
+          <AbsoluteFill>{b.type === "paper" ? <><Backdrop vertical={vertical} /><Paper file={b.file} vertical={vertical} /></> : screen(b, b.weight * dur)}</AbsoluteFill>
         </Sequence>
       </>
     );

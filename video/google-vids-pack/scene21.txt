@@ -1,4 +1,4 @@
-Need a report? With one tap, Abouna gets a one-page summary to print or save as a PDF, in English or in Arabic. And the full data goes to Excel, with the register, the follow-up list, and the label history.
+Then the register. One little square for every person at every service, like the paper register of old, but alive. And the ranked list puts everyone in order, from the people who attend every single week, with a medal for the top three, to those who could use a gentle call. You'll see streaks, the last visit, and how late they usually arrive.
 
 عربي:
-تحتاج تقريرًا؟ بلمسة واحدة يحصل أبونا على ملخص من صفحة واحدة للطباعة أو الحفظ بصيغة PDF، بالإنجليزية أو العربية. والبيانات الكاملة تذهب إلى إكسل: السجلّ وقائمة المتابعة وتاريخ العلامات.
+ثم السجلّ. مربع صغير لكل شخص في كل خدمة، مثل السجل الورقي القديم لكنه حيّ. والقائمة المرتّبة تضع الجميع في ترتيبه، من الذين يحضرون كل أسبوع، مع ميدالية للثلاثة الأوائل، إلى الذين يحتاجون إلى اتصال لطيف. سترى تتابع الحضور وآخر زيارة ومتوسط التأخير.

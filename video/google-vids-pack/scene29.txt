@@ -1,0 +1,4 @@
+Access is simple and safe. Anyone can ask to become an admin of their church, and an existing admin approves it. Each admin sees only their own church, and the super admin can switch between churches.
+
+عربي:
+الصلاحيات بسيطة وآمنة. يستطيع أي شخص طلب أن يصبح مسؤولًا عن كنيسته، ويوافق عليه مسؤول حالي. كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس.

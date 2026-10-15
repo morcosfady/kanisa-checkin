@@ -1,5 +1,6 @@
 """Builds scenes.json (the full feature walkthrough). Edit the words here, then run: python scripts/make_scenes.py"""
-import json, pathlib
+import json, pathlib, sys
+sys.path.insert(0, "scripts")
 
 def img(f): return {"type": "image", "file": f}
 def scr(mock, f, a, b): return {"type": "screen", "mockup": mock, "src": {"file": f, "from": a, "to": b}}
@@ -54,7 +55,7 @@ S = [
  ("c3", "C", "Members", "Every person, one place", scr("laptop", "members", 1.5, 21), None, [
    ("The Members page keeps every person in one place, numbered and easy to search by name, phone, city or church.", "صفحة الأعضاء تجمع كل شخص في مكان واحد، مرقّمين وسهلي البحث بالاسم أو الهاتف أو المدينة أو الكنيسة."),
    ("Filter by men, women, deacons, or visitors.", "ويمكنك التصفية: رجال، نساء، شمامسة، أو زوّار."),
-   ("Open any profile to add a photo, make someone a deacon, call or text with one tap, see their family, and write private notes that only your church's admins can read.", "افتح أي ملف لتضيف صورة، أو تجعل شخصًا شماسًا، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك.")]),
+   ("Open any profile to add a photo, call or text with one tap, see their family, and write private notes that only your church's admins can read.", "افتح أي ملف لتضيف صورة، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك.")]),
  ("c4", "C", "The Attendance Sheet", "The Attendance Sheet", scr("laptop", "attendance2", 3.8, 23.2), None, [
    ("And now, the heart of Amoinee: the Attendance Sheet.", "والآن قلب أمويني: صفحة الحضور."),
    ("At the top, a short summary in plain words. How many people came, the average per service, and how many need a follow-up.", "في الأعلى ملخص قصير بكلمات بسيطة: كم شخصًا حضر، ومتوسط كل خدمة، وكم شخصًا يحتاج متابعة."),
@@ -62,15 +63,15 @@ S = [
  ("c5", "C", "Charts", "Clear charts", scr("laptop", "attendance2", 23.3, 43.2), None, [
    ("Below, simple charts. Who came at least once. Attendance over time, compared with the period before.", "وتحتها رسوم بسيطة: من حضر مرة على الأقل، والحضور عبر الزمن مقارنةً بالفترة السابقة."),
    ("How many attend every week, how many come often, sometimes, or rarely. What time people arrive. And men, women and deacons at each service.", "كم يحضرون كل أسبوع، وكم يأتون كثيرًا أو أحيانًا أو نادرًا، ومتى يصل الناس، وعدد الرجال والنساء والشمامسة في كل خدمة."),
-   ("Pick any period you like, or a single kind of service.", "اختر أي فترة تريدها، أو نوعًا واحدًا من الخدمات.")]),
+   ]),
  ("c6", "C", "The register and the list", "The register", scr("laptop", "attendance2", 43.3, 72.0), None, [
    ("Then the register. One little square for every person at every service, like the paper register of old, but alive.", "ثم السجلّ. مربع صغير لكل شخص في كل خدمة، مثل السجل الورقي القديم لكنه حيّ."),
    ("And the ranked list puts everyone in order, from the people who attend every single week, with a medal for the top three, to those who could use a gentle call.", "والقائمة المرتّبة تضع الجميع في ترتيبه، من الذين يحضرون كل أسبوع، مع ميدالية للثلاثة الأوائل، إلى الذين يحتاجون إلى اتصال لطيف."),
-   ("You'll see streaks, the last visit, and how late they usually arrive. On a phone, a compact view shows one line per person.", "سترى تتابع الحضور وآخر زيارة ومتوسط التأخير. وعلى الهاتف يعرض العرض المختصر سطرًا واحدًا لكل شخص.")]),
+   ("You'll see streaks, the last visit, and how late they usually arrive.", "سترى تتابع الحضور وآخر زيارة ومتوسط التأخير.")]),
  ("c7", "C", "Follow-up and labels", "Follow up, with care", mix("c7-servants-team.jpg", 0.25, scr("laptop", "labels", 4, 22)), None, [
    ("When someone misses a few Sundays, Amoinee gently marks them \"Follow up needed\", so nobody slips through the cracks.", "عندما يغيب شخص بضعة آحاد، تضع أمويني عليه بلطف علامة «يحتاج متابعة»، فلا يسقط أحد من بين الأيدي."),
    ("Then your servants can add labels: Called, Visited, Needs prayer, Traveling, Sick, Away at college.", "ويستطيع خدامك إضافة علامات: تم الاتصال، تمت الزيارة، يحتاج صلاة، مسافر، مريض، بعيد للدراسة."),
-   ("They can snooze a reminder when it's not the right time, and everyone sees who is taking care of whom. You can even create your own labels.", "ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا، ويرى الجميع من يرعى من. بل يمكنك إنشاء علاماتك الخاصة.")]),
+   ("They can snooze a reminder when it's not the right time, and everyone sees who is taking care of whom.", "ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا، ويرى الجميع من يرعى من.")]),
  ("c7b", "C", "Welcome back, new, birthdays", "Welcome back · New · Birthdays", mix("c7b-birthday.jpg", 0.4, scr("laptop", "labels", 22, 29.5)), None, [
    ("And when that person comes back, they show up under Welcome Back, so you can greet them warmly.", "وعندما يعود ذلك الشخص يظهر تحت «أهلًا بعودتك»، لتستقبله بحرارة."),
    ("You'll also see who is new, and whose birthday is this week, so every member feels remembered.", "وسترى أيضًا من هو جديد ومن عيد ميلاده هذا الأسبوع، فيشعر كل عضو بأنه مذكور.")]),
@@ -82,18 +83,22 @@ S = [
    ("And the full data goes to Excel, with the register, the follow-up list, and the label history.", "والبيانات الكاملة تذهب إلى إكسل: السجلّ وقائمة المتابعة وتاريخ العلامات.")]),
  ("c10", "C", "Access and privacy", "Each church sees its own people", mix("c10-two-priests.jpg", 0.35, scr("laptop", "reports", 8, 17.8)), None, [
    ("Access is simple and safe. Anyone can ask to become an admin of their church, and an existing admin approves it.", "الصلاحيات بسيطة وآمنة. يستطيع أي شخص طلب أن يصبح مسؤولًا عن كنيسته، ويوافق عليه مسؤول حالي."),
-   ("Each admin sees only their own church. The super admin can switch between churches.", "كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس."),
-   ("Notes and labels are never public, never on the kiosk, and every face is stored only with consent.", "الملاحظات والعلامات ليست علنية أبدًا ولا تظهر على جهاز الحضور، ولا يُحفظ أي وجه إلا بموافقة.")]),
+   ("Each admin sees only their own church, and the super admin can switch between churches.", "كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس.")]),
 
  ("d", "D", "Every soul matters", "Every one of God's people, known and cared for.", {"type": "outro", "file": "d-welcome-back.jpg"}, None, [
    ("Because every soul matters, and no one should be forgotten.", "لأن كل نفس لها قيمة، ولا ينبغي أن يُنسى أحد."),
    ("Amoinee. Come, let us worship.", "أمويني. تعالوا نسجد.")]),
 ]
 
+from more_scenes import EXTRA
+for after, scene in EXTRA:
+    i = next(k for k, x in enumerate(S) if x[0] == after)
+    S.insert(i + 1, scene)
+
 out = []
 for sid, part, title, onscreen, visual, _x, sents in S:
     o = {"id": sid, "part": part, "title": title, "visual": visual, "onScreen": onscreen, "sentences": [{"en": e, "ar": a} for e, a in sents]}
-    if sid == "c4": o["minDur"] = 0
+    if sid == "c6b": o["minDur"] = 25
     out.append(o)
 pathlib.Path("scenes.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf8")
 words = sum(len(s["en"].split()) for o in out for s in o["sentences"])

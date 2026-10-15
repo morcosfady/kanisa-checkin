@@ -98,6 +98,19 @@ export const Device: React.FC<{ mock: Mock; src: Src; dur: number; box: { x: num
   );
 };
 
+// A printed page on a dark table (the one-page report)
+export const Paper: React.FC<{ file: string; vertical?: boolean }> = ({ file, vertical }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const enter = interpolate(f, [0, 16], [0, 1], { extrapolateRight: "clamp" });
+  const h = vertical ? 1100 : 940;
+  return (
+    <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", paddingBottom: vertical ? 300 : 40 }}>
+      <Img src={staticFile(`images/${file}`)} style={{ height: h, background: "#fff", borderRadius: 6, boxShadow: "0 40px 90px rgba(0,0,0,.6)", transform: `translateY(${(1 - enter) * 40}px) rotate(${-1.2 + (f / fps) * 0.08}deg) scale(${1 + (f / fps) * 0.004})`, opacity: enter }} />
+    </AbsoluteFill>
+  );
+};
+
 export const LowerThird: React.FC<{ text: string; vertical?: boolean; top?: boolean }> = ({ text, vertical, top }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();

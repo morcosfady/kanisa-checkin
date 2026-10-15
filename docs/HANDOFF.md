@@ -215,3 +215,9 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - New recordings: phone-checkin, schedule, attendance2 (slow, 3 phases). Mixed look: animated people first, then the real screen in a device frame.
 - Wording: no "faithful/drifting"; "attends every week / needs follow-up" plus encouragement.
 - Not done: Veo video clips, real ElevenLabs voice, loudness not measured (loudnorm applied).
+
+## Explainer video v3 (2026-10-14)
+- 8:14 (32 scenes, ~1400 words), voice a little slower (edge-tts rate +6%). New scenes: face setup, kiosk safety, check in by hand, add/edit member, filters and light/dark, custom labels, one-page report (shown as a printed page), admin requests, privacy. 19 Flow pictures in `video/raw/images/` (git-ignored); prompts in `video/flow-prompts.json`.
+- New recordings (`scripts/record.mjs`): members2, kiosk-exit, today2, labels2, attendance3, approvals2, report picture. phone-admin was skipped (the Request admin card only shows for a saved profile in the real app).
+- Fixed in app: the one-page report lost its title and footer when printing (global print rule hid `header`/`footer` elements); now plain divs. Wording "Attend every week".
+- Rendering: `node scripts/render.mjs full|vertical` (about 25 min for full).

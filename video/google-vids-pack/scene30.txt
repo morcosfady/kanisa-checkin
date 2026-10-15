@@ -1,0 +1,4 @@
+A priest or servant who wants access opens My Profile, chooses their church, and taps Request admin access. The admin sees it under Approvals, with a red badge, and approves or declines it. You can also invite someone by email before they even have an account, and they become an admin the first time they sign up. So there are three kinds of people: members, who need no approval; church admins, who manage one church; and one super admin, who can switch between all churches.
+
+عربي:
+الكاهن أو الخادم الذي يريد صلاحية يفتح «ملفي» ويختار كنيسته ويضغط «طلب صلاحية مسؤول». يراه المسؤول تحت «الموافقات» مع شارة حمراء ويوافق عليه أو يرفضه. ويمكنك أيضًا دعوة شخص بالبريد قبل أن يكون له حساب، فيصبح مسؤولًا عند أول تسجيل. فهناك ثلاثة أنواع: أعضاء لا يحتاجون موافقة، ومسؤولو كنائس يديرون كنيسة واحدة، ومسؤول أعلى واحد يتنقل بين كل الكنائس.

@@ -1,0 +1,4 @@
+You're not limited to our labels. In Manage Labels, create your own, with a name in English and Arabic, an emoji, and a color. Tick this box for labels like Traveling or Sick, and Amoinee stops asking you to follow up while they are active. Reorder them or turn them off, and every change is kept in the history.
+
+عربي:
+لست مقيّدًا بعلاماتنا. في «إدارة العلامات» أنشئ علامتك بالاسم بالإنجليزية والعربية ورمز وتعبيري ولون. ضع علامة على هذا الخيار للعلامات مثل «مسافر» أو «مريض»، فتتوقف أمويني عن طلب المتابعة ما دامت فعّالة. رتّبها أو أوقفها، وكل تغيير يُحفظ في السجل.

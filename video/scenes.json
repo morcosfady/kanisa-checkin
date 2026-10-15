@@ -136,6 +136,50 @@
     ]
   },
   {
+    "id": "b2b",
+    "part": "B",
+    "title": "Face setup",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "b2b-face-enroll.jpg",
+          "weight": 0.55
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "members2",
+            "from": 28.8,
+            "to": 35.7
+          },
+          "weight": 0.45
+        }
+      ]
+    },
+    "onScreen": "Face setup, in under a minute",
+    "sentences": [
+      {
+        "en": "If you choose face check-in, the setup takes under a minute.",
+        "ar": "إن اخترت تسجيل الحضور بالوجه، فالإعداد يستغرق أقل من دقيقة."
+      },
+      {
+        "en": "You look at the camera, then turn a little to the left, then to the right. Three short captures, and that's it.",
+        "ar": "تنظر إلى الكاميرا، ثم تلتفت قليلًا يسارًا ثم يمينًا. ثلاث لقطات قصيرة وينتهي الأمر."
+      },
+      {
+        "en": "Amoinee keeps only a numeric template, never a photo, and if the picture is too dark or blurry, it simply asks you to try again.",
+        "ar": "تحتفظ أمويني برقم تعريفي فقط ولا تحفظ صورة أبدًا، وإن كانت الصورة معتمة أو غير واضحة تطلب منك المحاولة مرة أخرى."
+      },
+      {
+        "en": "You can withdraw your consent any time, and the data is erased on the spot.",
+        "ar": "ويمكنك سحب موافقتك في أي وقت، فتُمحى البيانات فورًا."
+      }
+    ]
+  },
+  {
     "id": "b3",
     "part": "B",
     "title": "The kiosk at the door",
@@ -152,6 +196,31 @@
       {
         "en": "Before the service, it just shows what's coming next, with the camera switched off. When check-in opens, it wakes up all by itself.",
         "ar": "قبل الخدمة يعرض ما هو قادم فقط والكاميرا مغلقة. وعندما يُفتح تسجيل الحضور يستيقظ وحده."
+      }
+    ]
+  },
+  {
+    "id": "b3b",
+    "part": "B",
+    "title": "Kiosk safety",
+    "visual": {
+      "type": "screen",
+      "mockup": "tablet",
+      "src": {
+        "file": "kiosk-exit",
+        "from": 0.5,
+        "to": 12.8
+      }
+    },
+    "onScreen": "A kiosk for staff devices",
+    "sentences": [
+      {
+        "en": "The kiosk is only for church devices, so an admin has to be signed in.",
+        "ar": "جهاز الحضور مخصص لأجهزة الكنيسة فقط، لذلك يجب أن يكون مسؤول مسجّلًا الدخول."
+      },
+      {
+        "en": "To leave it, press and hold the logo for two seconds, then type the admin password, so no one wanders out of it by accident.",
+        "ar": "للخروج منه اضغط مطولًا على الشعار ثانيتين ثم اكتب كلمة مرور المسؤول، فلا يخرج منه أحد بالخطأ."
       }
     ]
   },
@@ -334,6 +403,42 @@
     ]
   },
   {
+    "id": "c1b",
+    "part": "C",
+    "title": "Check in by hand",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c1b-welcome-desk.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "today2",
+            "from": 4,
+            "to": 17
+          },
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "Check in by hand, one tap",
+    "sentences": [
+      {
+        "en": "Someone forgot their phone? Under Not Here Yet, one tap checks them in by hand, and it's marked as added by an admin.",
+        "ar": "نسي أحدهم هاتفه؟ تحت «لم يصل بعد» لمسة واحدة تسجّل حضوره يدويًا، ويُوسَم بأنه أضافه مسؤول."
+      },
+      {
+        "en": "You can also start a service yourself, choose the kind and the time, and end it when it's over. Everything is saved for the reports.",
+        "ar": "ويمكنك أيضًا بدء خدمة بنفسك واختيار نوعها ووقتها وإنهاؤها عند انتهائها، ويُحفظ كل شيء للتقارير."
+      }
+    ]
+  },
+  {
     "id": "c2",
     "part": "C",
     "title": "Services open by themselves",
@@ -382,8 +487,37 @@
         "ar": "ويمكنك التصفية: رجال، نساء، شمامسة، أو زوّار."
       },
       {
-        "en": "Open any profile to add a photo, make someone a deacon, call or text with one tap, see their family, and write private notes that only your church's admins can read.",
-        "ar": "افتح أي ملف لتضيف صورة، أو تجعل شخصًا شماسًا، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك."
+        "en": "Open any profile to add a photo, call or text with one tap, see their family, and write private notes that only your church's admins can read.",
+        "ar": "افتح أي ملف لتضيف صورة، أو تتصل أو ترسل رسالة بلمسة، وترى عائلته، وتكتب ملاحظات خاصة لا يقرؤها إلا مسؤولو كنيستك."
+      }
+    ]
+  },
+  {
+    "id": "c3b",
+    "part": "C",
+    "title": "Add and edit members",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "members2",
+        "from": 0.5,
+        "to": 26
+      }
+    },
+    "onScreen": "Add a member in a minute",
+    "sentences": [
+      {
+        "en": "Adding a member takes about a minute: name, gender, birthday, phone, email, address, city and church.",
+        "ar": "إضافة عضو تستغرق دقيقة تقريبًا: الاسم والنوع وتاريخ الميلاد والهاتف والبريد والعنوان والمدينة والكنيسة."
+      },
+      {
+        "en": "If they agree, add face consent, and parents can sign for their children under eighteen.",
+        "ar": "وإن وافق يُضاف إقرار الوجه، ويستطيع الوالدان التوقيع عن أبنائهم دون الثامنة عشرة."
+      },
+      {
+        "en": "Open a profile for tabs on notes, attendance and consent, and make someone a deacon, or change their status, with one tap.",
+        "ar": "افتح أي ملف لتجد تبويبات للملاحظات والحضور والموافقة، واجعل شخصًا شماسًا أو غيّر حالته بلمسة واحدة."
       }
     ]
   },
@@ -414,8 +548,7 @@
         "en": "Four big numbers show the average attendance, the attendance rate, how many attend every week, and how many need a call.",
         "ar": "وأربعة أرقام كبيرة تعرض متوسط الحضور ونسبته، وكم يحضرون كل أسبوع، وكم يحتاجون إلى اتصال."
       }
-    ],
-    "minDur": 0
+    ]
   },
   {
     "id": "c5",
@@ -439,10 +572,6 @@
       {
         "en": "How many attend every week, how many come often, sometimes, or rarely. What time people arrive. And men, women and deacons at each service.",
         "ar": "كم يحضرون كل أسبوع، وكم يأتون كثيرًا أو أحيانًا أو نادرًا، ومتى يصل الناس، وعدد الرجال والنساء والشمامسة في كل خدمة."
-      },
-      {
-        "en": "Pick any period you like, or a single kind of service.",
-        "ar": "اختر أي فترة تريدها، أو نوعًا واحدًا من الخدمات."
       }
     ]
   },
@@ -470,10 +599,40 @@
         "ar": "والقائمة المرتّبة تضع الجميع في ترتيبه، من الذين يحضرون كل أسبوع، مع ميدالية للثلاثة الأوائل، إلى الذين يحتاجون إلى اتصال لطيف."
       },
       {
-        "en": "You'll see streaks, the last visit, and how late they usually arrive. On a phone, a compact view shows one line per person.",
-        "ar": "سترى تتابع الحضور وآخر زيارة ومتوسط التأخير. وعلى الهاتف يعرض العرض المختصر سطرًا واحدًا لكل شخص."
+        "en": "You'll see streaks, the last visit, and how late they usually arrive.",
+        "ar": "سترى تتابع الحضور وآخر زيارة ومتوسط التأخير."
       }
     ]
+  },
+  {
+    "id": "c6b",
+    "part": "C",
+    "title": "Filters and views",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "attendance3",
+        "from": 4,
+        "to": 44
+      }
+    },
+    "onScreen": "Filter anything. Light or dark.",
+    "sentences": [
+      {
+        "en": "Everything here can be filtered: any period, one kind of service, or one group, like the deacons or a family.",
+        "ar": "كل شيء هنا يمكن تصفيته: أي فترة، أو نوع واحد من الخدمات، أو مجموعة واحدة مثل الشمامسة أو عائلة."
+      },
+      {
+        "en": "Each chart has a table view, and tapping a group like Absent shows exactly who is in it.",
+        "ar": "ولكل رسم عرض جدولي، والضغط على مجموعة مثل «غائب» يُظهر بالضبط من فيها."
+      },
+      {
+        "en": "And one tap switches between the dark look and the parchment look.",
+        "ar": "ولمسة واحدة تبدّل بين المظهر الداكن ومظهر الرق."
+      }
+    ],
+    "minDur": 25
   },
   {
     "id": "c7",
@@ -510,8 +669,8 @@
         "ar": "ويستطيع خدامك إضافة علامات: تم الاتصال، تمت الزيارة، يحتاج صلاة، مسافر، مريض، بعيد للدراسة."
       },
       {
-        "en": "They can snooze a reminder when it's not the right time, and everyone sees who is taking care of whom. You can even create your own labels.",
-        "ar": "ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا، ويرى الجميع من يرعى من. بل يمكنك إنشاء علاماتك الخاصة."
+        "en": "They can snooze a reminder when it's not the right time, and everyone sees who is taking care of whom.",
+        "ar": "ويمكنهم تأجيل التذكير حين لا يكون الوقت مناسبًا، ويرى الجميع من يرعى من."
       }
     ]
   },
@@ -548,6 +707,39 @@
       {
         "en": "You'll also see who is new, and whose birthday is this week, so every member feels remembered.",
         "ar": "وسترى أيضًا من هو جديد ومن عيد ميلاده هذا الأسبوع، فيشعر كل عضو بأنه مذكور."
+      }
+    ]
+  },
+  {
+    "id": "c7c",
+    "part": "C",
+    "title": "Your own labels",
+    "visual": {
+      "type": "screen",
+      "mockup": "laptop",
+      "src": {
+        "file": "labels2",
+        "from": 3,
+        "to": 28
+      }
+    },
+    "onScreen": "Create your own labels",
+    "sentences": [
+      {
+        "en": "You're not limited to our labels.",
+        "ar": "لست مقيّدًا بعلاماتنا."
+      },
+      {
+        "en": "In Manage Labels, create your own, with a name in English and Arabic, an emoji, and a color.",
+        "ar": "في «إدارة العلامات» أنشئ علامتك بالاسم بالإنجليزية والعربية ورمز وتعبيري ولون."
+      },
+      {
+        "en": "Tick this box for labels like Traveling or Sick, and Amoinee stops asking you to follow up while they are active.",
+        "ar": "ضع علامة على هذا الخيار للعلامات مثل «مسافر» أو «مريض»، فتتوقف أمويني عن طلب المتابعة ما دامت فعّالة."
+      },
+      {
+        "en": "Reorder them or turn them off, and every change is kept in the history.",
+        "ar": "رتّبها أو أوقفها، وكل تغيير يُحفظ في السجل."
       }
     ]
   },
@@ -597,6 +789,37 @@
     ]
   },
   {
+    "id": "c9b",
+    "part": "C",
+    "title": "The one-page report",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c9b-report-desk.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "paper",
+          "file": "report-page.png",
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "The one-page report",
+    "sentences": [
+      {
+        "en": "Here is that one-page report. The church, the period, a plain summary, the big numbers, the charts, the top attenders, and the follow-up list.",
+        "ar": "هذا هو التقرير من صفحة واحدة: الكنيسة والفترة وملخص بسيط والأرقام الكبيرة والرسوم وأعلى الحاضرين وقائمة المتابعة."
+      },
+      {
+        "en": "It's perfect for a meeting with the servants, or to keep in your archive. Choose the English or the Arabic version before you print.",
+        "ar": "وهو مثالي لاجتماع مع الخدام أو للأرشيف. اختر النسخة الإنجليزية أو العربية قبل الطباعة."
+      }
+    ]
+  },
+  {
     "id": "c10",
     "part": "C",
     "title": "Access and privacy",
@@ -627,12 +850,76 @@
         "ar": "الصلاحيات بسيطة وآمنة. يستطيع أي شخص طلب أن يصبح مسؤولًا عن كنيسته، ويوافق عليه مسؤول حالي."
       },
       {
-        "en": "Each admin sees only their own church. The super admin can switch between churches.",
+        "en": "Each admin sees only their own church, and the super admin can switch between churches.",
         "ar": "كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس."
+      }
+    ]
+  },
+  {
+    "id": "c10b",
+    "part": "C",
+    "title": "Admin requests",
+    "visual": {
+      "type": "mix",
+      "parts": [
+        {
+          "type": "image",
+          "file": "c10b-approve.jpg",
+          "weight": 0.4
+        },
+        {
+          "type": "screen",
+          "mockup": "laptop",
+          "src": {
+            "file": "approvals2",
+            "from": 0.5,
+            "to": 20.9
+          },
+          "weight": 0.6
+        }
+      ]
+    },
+    "onScreen": "Request access. Approve it.",
+    "sentences": [
+      {
+        "en": "A priest or servant who wants access opens My Profile, chooses their church, and taps Request admin access.",
+        "ar": "الكاهن أو الخادم الذي يريد صلاحية يفتح «ملفي» ويختار كنيسته ويضغط «طلب صلاحية مسؤول»."
       },
       {
-        "en": "Notes and labels are never public, never on the kiosk, and every face is stored only with consent.",
-        "ar": "الملاحظات والعلامات ليست علنية أبدًا ولا تظهر على جهاز الحضور، ولا يُحفظ أي وجه إلا بموافقة."
+        "en": "The admin sees it under Approvals, with a red badge, and approves or declines it.",
+        "ar": "يراه المسؤول تحت «الموافقات» مع شارة حمراء ويوافق عليه أو يرفضه."
+      },
+      {
+        "en": "You can also invite someone by email before they even have an account, and they become an admin the first time they sign up.",
+        "ar": "ويمكنك أيضًا دعوة شخص بالبريد قبل أن يكون له حساب، فيصبح مسؤولًا عند أول تسجيل."
+      },
+      {
+        "en": "So there are three kinds of people: members, who need no approval; church admins, who manage one church; and one super admin, who can switch between all churches.",
+        "ar": "فهناك ثلاثة أنواع: أعضاء لا يحتاجون موافقة، ومسؤولو كنائس يديرون كنيسة واحدة، ومسؤول أعلى واحد يتنقل بين كل الكنائس."
+      }
+    ]
+  },
+  {
+    "id": "p",
+    "part": "C",
+    "title": "Privacy",
+    "visual": {
+      "type": "image",
+      "file": "p-privacy.jpg"
+    },
+    "onScreen": "Trust comes first",
+    "sentences": [
+      {
+        "en": "Your people's trust matters most.",
+        "ar": "ثقة شعبك هي الأهم."
+      },
+      {
+        "en": "Face data is only a number, never a photo, and only with consent. Notes and labels are visible to admins of that church alone, never to members, and never on the kiosk.",
+        "ar": "بيانات الوجه رقم فقط وليست صورة، وبموافقة فقط. والملاحظات والعلامات يراها مسؤولو تلك الكنيسة وحدهم، ولا يراها الأعضاء ولا تظهر على جهاز الحضور."
+      },
+      {
+        "en": "Every change is logged, and each church only ever sees its own people.",
+        "ar": "وكل تغيير يُسجَّل، وكل كنيسة ترى أولادها فقط."
       }
     ]
   },

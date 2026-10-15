@@ -124,8 +124,8 @@ const mm = (x) => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2
 let sb = `# Amoinee explainer: storyboard\n\nTotal about ${mm(total)}. Generated from \`scenes.json\` by \`scripts/prepare.mjs\`.\n\n| Scene | Time | Visual | Prompt / source | On-screen text | Narration | Transition |\n|---|---|---|---|---|---|---|\n`;
 for (const s of out) {
   const v = s.visual;
-  const vis = v.type === "image" ? `AI image${v.clip ? " + Veo clip" : ""}` : v.type === "screen" ? `screen recording (${v.mockup})` : v.type === "mix" ? "AI image then screen recording" : v.type === "logo" ? "logo animation" : "AI image + logo end card";
-  const src = v.type === "image" || v.type === "outro" ? `${v.file}: ${PROMPT[v.file] ?? ''}` : v.type === "screen" ? `${v.src.file}.webm ${v.src.from}-${v.src.to}s` : v.type === "mix" ? v.parts.map((p) => (p.type === "image" ? `${p.file}: ${PROMPT[p.file] ?? ''}` : `${p.src.file}.webm ${p.src.from}-${p.src.to}s`)).join(" / ") : "SVG logo draws on";
+  const vis = v.type === "paper" ? "report picture" : v.type === "image" ? `AI image${v.clip ? " + Veo clip" : ""}` : v.type === "screen" ? `screen recording (${v.mockup})` : v.type === "mix" ? "AI image then screen recording" : v.type === "logo" ? "logo animation" : "AI image + logo end card";
+  const src = v.type === "image" || v.type === "outro" ? `${v.file}: ${PROMPT[v.file] ?? ''}` : v.type === "screen" ? `${v.src.file}.webm ${v.src.from}-${v.src.to}s` : v.type === "mix" ? v.parts.map((p) => (p.type === "image" ? `${p.file}: ${PROMPT[p.file] ?? ''}` : p.type === "paper" ? `report picture ${p.file}` : `${p.src.file}.webm ${p.src.from}-${p.src.to}s`)).join(" / ") : "SVG logo draws on";
   sb += `| ${s.id} | ${mm(s.start)} | ${vis} | ${src.replace(/\|/g, "/")} | ${s.onScreen} | ${s.sentences.map((x) => x.en).join(" ").replace(/\|/g, "/")} | cross-dissolve |\n`;
 }
 fs.writeFileSync("storyboard.md", sb);

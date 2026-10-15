@@ -10,7 +10,7 @@ scenes = json.loads(pathlib.Path("scenes.json").read_text(encoding="utf8"))
 
 async def one(s):
     text = " ".join(x["en"] for x in s["sentences"])
-    comm = edge_tts.Communicate(text, VOICE, rate="+14%", pitch="+0Hz", boundary="WordBoundary")
+    comm = edge_tts.Communicate(text, VOICE, rate="+6%", pitch="+0Hz", boundary="WordBoundary")
     words, audio = [], bytearray()
     async for chunk in comm.stream():
         if chunk["type"] == "audio":

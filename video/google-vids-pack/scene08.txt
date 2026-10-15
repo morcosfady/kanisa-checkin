@@ -1,4 +1,4 @@
-Prefer not to use your face? Just scan the QR code on the kiosk with your phone, and you're checked in. The code changes every minute, so it can't be passed around.
+The kiosk is only for church devices, so an admin has to be signed in. To leave it, press and hold the logo for two seconds, then type the admin password, so no one wanders out of it by accident.
 
 عربي:
-لا تفضّل استخدام وجهك؟ امسح رمز الاستجابة السريعة على الجهاز بهاتفك فيُسجَّل حضورك. الرمز يتغيّر كل دقيقة، فلا يمكن تداوله.
+جهاز الحضور مخصص لأجهزة الكنيسة فقط، لذلك يجب أن يكون مسؤول مسجّلًا الدخول. للخروج منه اضغط مطولًا على الشعار ثانيتين ثم اكتب كلمة مرور المسؤول، فلا يخرج منه أحد بالخطأ.

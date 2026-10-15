@@ -1,4 +1,4 @@
-Access is simple and safe. Anyone can ask to become an admin of their church, and an existing admin approves it. Each admin sees only their own church. The super admin can switch between churches. Notes and labels are never public, never on the kiosk, and every face is stored only with consent.
+Everything here can be filtered: any period, one kind of service, or one group, like the deacons or a family. Each chart has a table view, and tapping a group like Absent shows exactly who is in it. And one tap switches between the dark look and the parchment look.
 
 عربي:
-الصلاحيات بسيطة وآمنة. يستطيع أي شخص طلب أن يصبح مسؤولًا عن كنيسته، ويوافق عليه مسؤول حالي. كل مسؤول يرى كنيسته فقط، ويستطيع المسؤول الأعلى التنقل بين الكنائس. الملاحظات والعلامات ليست علنية أبدًا ولا تظهر على جهاز الحضور، ولا يُحفظ أي وجه إلا بموافقة.
+كل شيء هنا يمكن تصفيته: أي فترة، أو نوع واحد من الخدمات، أو مجموعة واحدة مثل الشمامسة أو عائلة. ولكل رسم عرض جدولي، والضغط على مجموعة مثل «غائب» يُظهر بالضبط من فيها. ولمسة واحدة تبدّل بين المظهر الداكن ومظهر الرق.

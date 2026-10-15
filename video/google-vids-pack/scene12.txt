@@ -1,4 +1,4 @@
-The Today screen is live. As people arrive, their names pop up with the arrival time, whether they came by face, QR code or the daily code. You see who is on time and who is late, who is still missing, and you can check someone in by hand with one tap.
+And members can open My History at any time, to see every service they attended, with the date and time.
 
 عربي:
-شاشة «اليوم» مباشرة. فعند وصول الناس تظهر أسماؤهم مع وقت الوصول، سواء بالوجه أو بالرمز أو بالرمز اليومي. ترى من جاء في موعده ومن تأخر ومن لم يصل بعد، ويمكنك تسجيل حضور أحدهم يدويًا بلمسة واحدة.
+ويستطيع الأعضاء فتح «سجلّي» في أي وقت ليروا كل خدمة حضروها بتاريخها ووقتها.
