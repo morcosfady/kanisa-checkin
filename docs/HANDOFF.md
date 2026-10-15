@@ -202,3 +202,8 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Members list is numbered (# column; numbering continues across pages; cards show the number too).
 
 - 2026-10-15: new web address https://amoinee.vercel.app added as a Production domain (same project, same deploys). The old kanisa-checkin.vercel.app still works. Supabase needs no change (password sign-in only, no redirect links).
+
+## Admin welcome email (2026-10-15)
+- `src/lib/email/adminEmail.ts` (HTML template, tests in tests/unit/email.test.ts), `POST /api/admin-email` (admin only, checks the address really is an admin/invite of the caller church). Sent when an admin is granted (promoted or invited) and when a request is approved.
+- Sends from heavenlyvisions25@gmail.com through the Apps Script mailer (`apps-script/approval-mailer.gs`, now allows any recipient with the token). NOT live until: deploy the script under heavenlyvisions25, then set MAILER_URL and MAILER_TOKEN in Vercel (same token as in the script). Without them nothing is sent and nothing breaks.
+- Preview: docs/screenshots/admin-email.png (+ -phone).

@@ -20,6 +20,12 @@ export default function ApprovalList({ initial }: { initial: AdminRequest[] }) {
     if (hasSupabase) {
       const { error } = await supabaseBrowser().rpc(ok ? "approve_admin" : "decline_admin", { p_user: r.id });
       if (error) return toast.error(error.message);
+      if (ok && r.email) {
+        fetch("/api/admin-email", { method: "POST", body: JSON.stringify({ to: r.email, kind: "approved" }) })
+          .then((x) => x.json())
+          .then((j) => j.sent && toast.success(`Email sent to ${r.name} ✉️`))
+          .catch(() => {});
+      }
       router.refresh();
     } else {
       setRows((x) => x.filter((y) => y.id !== r.id));

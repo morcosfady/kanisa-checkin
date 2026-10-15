@@ -46,6 +46,11 @@ export default function AdminAccess({ admins, invites, church, churches, cities 
     if (err) return setError(err.message);
     setEmail("");
     toast.success(data.status === "promoted" ? `${data.email} is now an admin` : `${data.email} will be an admin as soon as they sign up`);
+    // a welcome email, sent from the church Gmail (needs the mailer to be set up)
+    fetch("/api/admin-email", { method: "POST", body: JSON.stringify({ to: data.email, kind: data.status === "promoted" ? "granted" : "invited" }) })
+      .then((r) => r.json())
+      .then((j) => j.sent && toast.success(`Welcome email sent to ${data.email} ✉️`))
+      .catch(() => {});
     router.refresh();
   }
 
