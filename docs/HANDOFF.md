@@ -200,3 +200,5 @@ What it is: new admin tab `/attendance` (after Today). Parchment-ledger look (sc
 - Attendance page now starts in the dark "ink" look (app default). The parchment look is a toggle (sun/moon button) remembered per device; localStorage key amoinee-ledger-ink ("0" = parchment).
 
 - Members list is numbered (# column; numbering continues across pages; cards show the number too).
+
+- 2026-10-15: new web address https://amoinee.vercel.app added as a Production domain (same project, same deploys). The old kanisa-checkin.vercel.app still works. Supabase needs no change (password sign-in only, no redirect links).
