@@ -106,5 +106,7 @@ export function adminEmail({ church, kind, to }: { church: string; kind: AdminEm
  </td></tr>
 </table>
 </body></html>`;
-  return { subject, html };
+  // emoji and other special characters become plain ASCII codes, so no mail system can garble them
+  const safe = html.replace(/[^ -]/gu, (ch) => `&#${ch.codePointAt(0)};`);
+  return { subject, html: safe };
 }
